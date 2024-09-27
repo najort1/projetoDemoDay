@@ -1,15 +1,10 @@
 import './styleFooter.css'
-export function Footer(){
+
+function Footer(){
 
     return(
 
         <footer>
-
-            <div id="logo">
-
-                NuhCorre
-
-            </div>
 
             <ul>
 
@@ -42,3 +37,5 @@ export function Footer(){
     )
 
 }
+
+export default Footer;
