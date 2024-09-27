@@ -1,4 +1,4 @@
-export function Header(){
+function Header(){
 
     return(
 
@@ -28,3 +28,5 @@ export function Header(){
     )
 
 }
+
+export default Header;
