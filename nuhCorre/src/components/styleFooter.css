@@ -1,0 +1,36 @@
+footer{
+
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    background: #9A348E;
+    color: #fff;
+    font-family: sans-serif;
+    padding: 10% 0;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+  
+  }
+  
+  #logo{
+  
+    font-size: 3em;
+    font-weight: 700;
+  
+  }
+  
+  ul li{
+  
+    list-style: none;
+    line-height: 48px;
+    cursor: pointer;
+  
+  }
+  #cima:hover{
+  
+    text-decoration: underline;
+    font-size: 1.1em;
+    transition: font-size 1s;
+  
+  }
