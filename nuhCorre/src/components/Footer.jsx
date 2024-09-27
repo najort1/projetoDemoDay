@@ -1,16 +1,24 @@
 import './styleFooter.css'
+<<<<<<< HEAD
 export function Footer(){
+=======
+
+function Footer(){
+>>>>>>> main
 
     return(
 
         <footer>
 
+<<<<<<< HEAD
             <div id="logo">
 
                 NuhCorre
 
             </div>
 
+=======
+>>>>>>> main
             <ul>
 
                 <li id='cima'>Sobre</li>
@@ -41,4 +49,10 @@ export function Footer(){
 
     )
 
+<<<<<<< HEAD
 }
+=======
+}
+
+export default Footer;
+>>>>>>> main

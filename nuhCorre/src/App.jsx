@@ -9,8 +9,6 @@ import { Header } from './components/Header'
 import PesquisaVaga from './components/Main'
 
 import Header from './components/Header'
-import { Footer } from './components/footer'
->>>>>>> Stashed changes
 
 function App() {
 
@@ -19,8 +17,8 @@ function App() {
     <Header/>
 =======
     <>
-      
-      <Footer/>
+      <Header />
+      <PesquisaVaga />
     </>
 >>>>>>> Stashed changes
   )
