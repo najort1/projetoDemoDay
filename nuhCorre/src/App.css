@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
-
 * {
   margin: 0;
   padding: 0;
@@ -36,10 +35,9 @@ header {
 }
 
 .titulo {
-  margin: 1em 0em 2em 0em;
+  margin: 1em 0 2em;
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
   align-items: center;
   gap: 10px;
   color: white;
@@ -47,37 +45,35 @@ header {
 }
 
 .pesquisa {
-  gap: 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 10px 0px 10px 0px;
+  margin: 10px 0;
+  gap: 10px;
 }
 
-select {
-  border-radius: 5px;
-  border: 1px solid black;
-  height: 4em;
-  font-size: 1em;
-}
-
-input[type="text"] {
-  border-radius: 5px;
-  border: 1px solid black;
-  width: 20em;
-  height: 4em;
-  font-size: 1em;
-}
-
+select,
+input[type="text"],
 button {
   border-radius: 5px;
   border: 1px solid black;
-  background-color: #ed8e00; /* Cor laranja do botão */
-  color: white;
   height: 4em;
-  width: 7em;
   font-size: 1em;
+}
+
+select {
+  width: auto;
+}
+
+input[type="text"] {
+  width: 20em;
+}
+
+button {
+  background-color: #ed8e00;
+  color: white;
+  width: 7em;
   font-weight: 700;
 }
 
