@@ -1,0 +1,25 @@
+header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgb(74,0,123);
+    background: linear-gradient(90deg, rgba(74,0,123,1) 0%, rgba(130,74,173,1) 53%, rgba(124,24,140,1) 100%);
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    position: fixed;
+    border-bottom: 1px solid #fff;
+  }
+
+  a{
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.5em;
+    margin: 1em 2em 1em 2em;
+  }
+
+  ul {
+    display: flex;
+    list-style: none;
+    margin: 1em 0em 0em 0em;
+}
