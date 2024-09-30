@@ -31,7 +31,7 @@ background: linear-gradient(90deg, rgba(74,0,123,1) 0%, rgba(130,74,173,1) 53%, 
   backdrop-filter: blur(400px);
   border: 2px solid rgba(255, 255, 255, 0.2);
   position: relative;
-  top: 10em;
+  top: 0.2em;
   margin: 0 auto;
 }
 
