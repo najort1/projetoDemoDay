@@ -4,13 +4,12 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", system-ui;
+  font-family: 'Quicksand', sans-serif;
 }
 
 body{
   background: rgb(74,0,123);
-  background: linear-gradient(90deg, rgba(74,0,123,1) 0%, rgba(130,74,173,1) 53%, rgba(124,24,140,1) 100%);
-
+background: linear-gradient(90deg, rgba(74,0,123,1) 0%, rgba(130,74,173,1) 53%, rgba(124,24,140,1) 100%);
 }
 
 .tudo {
@@ -62,24 +61,8 @@ button {
   border: 1px solid black;
   height: 4em;
   font-size: 1em;
-  padding-left: 10px;
-  border: none;
-  outline: none;
-  cursor: pointer;
 }
 
-select:hover,
-input[type="text"]:hover{
-
-  border: 3px solid #ff510c;
-
-}
-select:focus,
-input[type="text"]:focus{
-
-  border: 3px solid #ff510c;
-
-}
 
 input[type="text"] {
   width: 20em;
@@ -90,8 +73,6 @@ button {
   color: white;
   width: 7em;
   font-weight: 700;
-  padding: 0;
-  
 }
 
 button:hover {
