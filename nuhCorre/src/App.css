@@ -64,8 +64,22 @@ button {
   font-size: 1em;
   padding-left: 10px;
   border: none;
+  outline: none;
+  cursor: pointer;
 }
 
+select:hover,
+input[type="text"]:hover{
+
+  border: 3px solid #ff510c;
+
+}
+select:focus,
+input[type="text"]:focus{
+
+  border: 3px solid #ff510c;
+
+}
 
 input[type="text"] {
   width: 20em;
