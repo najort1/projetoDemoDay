@@ -1,6 +1,18 @@
 import "./styleHeader.css";
+import { useNavigate } from 'react-router-dom';
 
 function Header() {
+
+  const navigate = useNavigate();
+
+  const navegarParaOLogin = () => {
+    navigate('/login');
+  }
+
+  const navegarParaOCadastro = () => {
+    navigate('/cadastro');
+  }
+
   return (
     <header>
       <div id="logo">NuhCorre</div>
@@ -18,8 +30,8 @@ function Header() {
         </div>
 
         <div className="botoes">
-          <button className="btn">Entrar</button>
-          <button className="btn">Cadastro</button>
+          <button className="btn" onClick={navegarParaOLogin}>Entrar</button>
+          <button className="btn" onClick={navegarParaOCadastro}>Cadastro</button>
         </div>
       </div>
     </header>
