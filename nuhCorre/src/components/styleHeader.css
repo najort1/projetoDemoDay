@@ -4,6 +4,14 @@
   box-sizing: border-box;
 }
 
+
+a{
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1em;
+  margin: 1em 2em 1em 2em;
+}
+
 header{
   display: flex;
   background-color: purple;
