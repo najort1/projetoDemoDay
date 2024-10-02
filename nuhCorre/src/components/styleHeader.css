@@ -1,25 +1,70 @@
-header {
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: rgb(74,0,123);
-    background: linear-gradient(90deg, rgba(74,0,123,1) 0%, rgba(130,74,173,1) 53%, rgba(124,24,140,1) 100%);
-    color: #ffffff;
-    display: flex;
-    justify-content: space-between;
-    position: fixed;
-    border-bottom: 1px solid #fff;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+<<<<<<< HEAD
   a{
     color: #ffffff;
     text-decoration: none;
     font-size: 1em;
     margin: 1em 2em 1em 2em;
   }
+=======
+header{
+  display: flex;
+  background-color: purple;
+  background: linear-gradient(90deg, rgba(74,0,123,1) 0%, rgba(130,74,173,1) 53%, rgba(124,24,140,1) 100%);
+  width: 100%;
+  height: 6.0rem;
+>>>>>>> main
 
-  ul {
-    display: flex;
-    list-style: none;
-    margin: 1em 0em 0em 0em;
+}
+
+a{
+  color: white;
+  text-decoration: none;
+  font-size: 1.0rem;
+  text-decoration: none;
+}
+
+a:hover{
+  color: #ff510c;
+}
+
+ul {
+  display: flex;
+  list-style-type: none;
+  margin-top: 1.8rem;
+  margin-left: 4.8rem;
+  gap: 2.2rem;
+}
+
+.btn{
+  background: rgb(255, 103, 1);
+  background: linear-gradient(45deg, #ff8c00, #ff510c);
+  border: none;
+  width: 5.3rem;
+  height: 2.4rem;
+  font-size: 12px;
+  border-radius: 100px; /*100px 9px;*/
+  cursor: pointer; /*alterar o cursor do mouse para uma mão */
+  transition: background-color 0.3s;
+  margin-top: 2.0rem;
+  margin-left: 26rem;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.329);
+  margin-right: -24.0rem;
+}
+
+.btn:hover{
+  background: linear-gradient(45deg, #ff6900, #ff3f00);
+}
+
+
+header #logo{
+  font-size: 50px;
+  color: white;
+  padding-left: 5.4rem;
+  padding-top: 1.1rem;
 }

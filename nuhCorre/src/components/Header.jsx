@@ -20,10 +20,10 @@ function Header(){
                 </ul>
 
                 <div className="botoes">
-                    <button>Entrar</button>
-                    <button>Cadastro</button>
+                    <button className="btn">Entrar</button>
+                    <button className="btn">Cadastro</button>
                 </div>
-
+            
 
 
         </header>
