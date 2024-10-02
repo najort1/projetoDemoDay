@@ -1,0 +1,58 @@
+header{
+  background-color: purple;
+  background: linear-gradient(90deg, rgba(74,0,123,1) 0%, rgba(130,74,173,1) 53%, rgba(124,24,140,1) 100%);
+  width: 100vw;
+  height: 6.0rem;
+  position: fixed;
+  border-bottom: 1px solid #fff;
+  display: flex;
+}
+
+a {
+  color: white;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+a:hover{
+  color: #ff510c;
+}
+
+.btn {
+  background: rgb(255, 103, 1);
+  background: linear-gradient(45deg, #ff8c00, #ff510c);
+  border: none;
+  width: 7.3rem;
+  height: 2.4rem;
+  font-size: 15px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.329);
+}
+
+.btn:hover{
+  background: linear-gradient(45deg, #ff6900, #ff3f00);
+}
+
+
+header #logo{
+  font-size: 50px;
+  color: white;
+  padding: 1rem;
+  margin: 0em 1em 0em 0em
+}
+
+.conteudoHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.botoes{
+  margin-left: auto;
+  display: flex;
+  gap: 1rem;
+  margin-right: 2rem;
+}

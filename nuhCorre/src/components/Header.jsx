@@ -1,30 +1,29 @@
-export function Header(){
+import "./styleHeader.css";
 
-    return(
+function Header() {
+  return (
+    <header>
+      <div id="logo">NuhCorre</div>
 
-        <header>
+      <div className="conteudoHeader">
+        <div className="listaIdentificador">
+          <ul className="identificadorCandidato">
+            <li>
+              <a href="">Sou candidato</a>
+            </li>
+            <li>
+              <a href="">Sou empresa</a>
+            </li>
+          </ul>
+        </div>
 
-            <div id='logo'>
-
-                NuhCorre
-
-            </div>
-            <div>
-
-                <ul>
-
-                    <li>Sou candidato</li>
-                    <li>Sou empresa</li>
-
-                </ul>
-
-                <button>Entrar</button>
-                <button>Cadastro</button>
-
-            </div>
-
-        </header>
-
-    )
-
+        <div className="botoes">
+          <button className="btn">Entrar</button>
+          <button className="btn">Cadastro</button>
+        </div>
+      </div>
+    </header>
+  );
 }
+
+export default Header;
