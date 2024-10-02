@@ -14,12 +14,11 @@ background: linear-gradient(90deg, rgba(74,0,123,1) 0%, rgba(130,74,173,1) 53%, 
 
 .tudo {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 30em;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   background-size: cover;
   background-position: center;
+  align-items: center;
 }
 
 .container {
@@ -80,3 +79,17 @@ button:hover {
 }
 
 
+select,
+input[type="text"] {
+  transition: border 0.2s ease;
+}
+
+select:hover,
+input[type="text"]:hover {
+  border: 3px solid #ff510c;
+}
+
+select:focus,
+input[type="text"]:focus {
+  border: 3px solid #ff510c;
+}

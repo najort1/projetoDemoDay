@@ -1,22 +1,16 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 header{
-  display: flex;
   background-color: purple;
   background: linear-gradient(90deg, rgba(74,0,123,1) 0%, rgba(130,74,173,1) 53%, rgba(124,24,140,1) 100%);
-  width: 100%;
+  width: 100vw;
   height: 6.0rem;
-
+  position: fixed;
+  border-bottom: 1px solid #fff;
+  display: flex;
 }
 
-a{
+a {
   color: white;
-  text-decoration: none;
-  font-size: 1.0rem;
+  font-size: 1.2rem;
   text-decoration: none;
 }
 
@@ -24,28 +18,17 @@ a:hover{
   color: #ff510c;
 }
 
-ul {
-  display: flex;
-  list-style-type: none;
-  margin-top: 1.8rem;
-  margin-left: 4.8rem;
-  gap: 2.2rem;
-}
-
-.btn{
+.btn {
   background: rgb(255, 103, 1);
   background: linear-gradient(45deg, #ff8c00, #ff510c);
   border: none;
-  width: 5.3rem;
+  width: 7.3rem;
   height: 2.4rem;
-  font-size: 12px;
-  border-radius: 100px; /*100px 9px;*/
-  cursor: pointer; /*alterar o cursor do mouse para uma mão */
+  font-size: 15px;
+  border-radius: 100px;
+  cursor: pointer;
   transition: background-color 0.3s;
-  margin-top: 2.0rem;
-  margin-left: 26rem;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.329);
-  margin-right: -24.0rem;
 }
 
 .btn:hover{
@@ -56,6 +39,20 @@ ul {
 header #logo{
   font-size: 50px;
   color: white;
-  padding-left: 5.4rem;
-  padding-top: 1.1rem;
+  padding: 1rem;
+  margin: 0em 1em 0em 0em
+}
+
+.conteudoHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+
+.botoes{
+  margin-left: auto;
+  display: flex;
+  gap: 1rem;
+  margin-right: 2rem;
 }
