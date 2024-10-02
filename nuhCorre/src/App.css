@@ -53,15 +53,13 @@ background: linear-gradient(90deg, rgba(74,0,123,1) 0%, rgba(130,74,173,1) 53%, 
   gap: 10px;
 }
 
-select,
-input[type="text"],
-button {
+select, input[type="text"], button {
+  padding: 10px;
   border-radius: 5px;
   border: 1px solid black;
   height: 4em;
   font-size: 1em;
 }
-
 
 input[type="text"] {
   width: 20em;
