@@ -9,11 +9,11 @@ function Footer(){
             <div className="linksERedes">
 
                     <div className="listaDeLinks">
-                    <ul className='listaLinks'>
-                        <li id='cima'>Sobre</li>
-                        <li id='cima'>Serviços</li>
-                        <li id='cima'>Suporte</li>
-                    </ul>
+                        <ul className='listaLinks'>
+                            <li id='cima'>Sobre</li>
+                            <li id='cima'>Serviços</li>
+                            <li id='cima'>Suporte</li>
+                        </ul>
                     </div>
     
  
