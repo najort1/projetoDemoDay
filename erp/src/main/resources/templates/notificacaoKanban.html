@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .table-container {
+            margin-bottom: 30px;
+            overflow-x: auto;
+            position: relative; /* Necessário para posicionamento absoluto dos headers */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            min-width: 600px; /* Garante a largura mínima da tabela */
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .header-andamento, .header-selecionado, .header-pendencias {
+            padding: 10px;
+            margin-bottom: 10px;
+            color: white;
+            min-width: 600px; /* Igualando ao min-width da tabela */
+            background-color: #007bff;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            display: block;
+            white-space: nowrap; /* Previne quebra de linha */
+        }
+
+        /* Cores específicas para cada header */
+        .header-andamento {
+            background-color: #007bff;
+        }
+
+        .header-selecionado {
+            background-color: #ffc107;
+        }
+
+        .header-pendencias {
+            background-color: #6c757d;
+        }
+
+        .footer {
+            margin-top: 20px;
+            background-color: #4c5faf;
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Ajustes responsivos */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            th, td {
+                padding: 6px;
+                font-size: 14px;
+            }
+
+            .header-andamento, .header-selecionado, .header-pendencias {
+                font-size: 16px;
+                padding: 8px;
+            }
+
+            .footer {
+                padding: 8px;
+                font-size: 14px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .table-container {
+                margin-bottom: 20px;
+            }
+
+            th, td {
+                font-size: 12px;
+                padding: 4px;
+            }
+
+            .header-andamento, .header-selecionado, .header-pendencias {
+                font-size: 14px;
+                padding: 6px;
+            }
+
+            .footer {
+                font-size: 12px;
+                padding: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+<p>Olá, <span th:text="${emailData.nome}"></span>!</p>
+<p>Segue abaixo a listagem das tarefas kanban de <span th:text="${emailData.nomeEmpresa}"></span>.</p>
+
+<div class="table-container">
+    <div class="header-andamento">Em andamento</div>
+    <table>
+        <thead>
+        <tr>
+            <th>Título</th>
+            <th>Status</th>
+            <th>Tipo</th>
+            <th>Relator</th>
+            <th>Responsável</th>
+            <th>Prazo</th>
+        </tr>
+        </thead>
+        <tbody th:each="item : ${emailData.notificacaoKanbanDTO}">
+        <tr th:if="${item.status == 'Em andamento'}">
+            <td th:text="${item.titulo}"></td>
+            <td th:text="${item.status}"></td>
+            <td th:text="${item.tipo}"></td>
+            <td th:text="${item.relator}"></td>
+            <td th:text="${item.responsavel}"></td>
+            <td th:text="${#dates.format(item.dtPrazo, 'dd/MM/yyyy')}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="table-container">
+    <div class="header-selecionado">Selecionado para trabalhar</div>
+    <table>
+        <thead>
+        <tr>
+            <th>Título</th>
+            <th>Status</th>
+            <th>Tipo</th>
+            <th>Relator</th>
+            <th>Responsável</th>
+            <th>Prazo</th>
+        </tr>
+        </thead>
+        <tbody th:each="item : ${emailData.notificacaoKanbanDTO}">
+        <tr th:if="${item.status == 'Tarefa selecionada'}">
+            <td th:text="${item.titulo}"></td>
+            <td th:text="${item.status}"></td>
+            <td th:text="${item.tipo}"></td>
+            <td th:text="${item.relator}"></td>
+            <td th:text="${item.responsavel}"></td>
+            <td th:text="${#dates.format(item.dtPrazo, 'dd/MM/yyyy')}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="table-container">
+    <div class="header-pendencias">Pendências</div>
+    <table>
+        <thead>
+        <tr>
+            <th>Título</th>
+            <th>Status</th>
+            <th>Tipo</th>
+            <th>Relator</th>
+            <th>Responsável</th>
+            <th>Prazo</th>
+        </tr>
+        </thead>
+        <tbody th:each="item : ${emailData.notificacaoKanbanDTO}">
+        <tr th:if="${item.status == 'Pendente'}">
+            <td th:text="${item.titulo}"></td>
+            <td th:text="${item.status}"></td>
+            <td th:text="${item.tipo}"></td>
+            <td th:text="${item.relator}"></td>
+            <td th:text="${item.responsavel}"></td>
+            <td th:text="${#dates.format(item.dtPrazo, 'dd/MM/yyyy')}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br><br>
+<div class="container">
+    <div class="footer">
+        <p style="font-weight: bold;">ERP - nuhcorre</p>
+    </div>
+</div>
+</body>
+</html>

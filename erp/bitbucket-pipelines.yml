@@ -1,0 +1,81 @@
+pipelines:
+  branches:
+    develop: # Para a branch develop
+      - step:
+          name: Build and Push Docker Image to AWS ECR (HML)
+          script:
+            # Pegar a hash do commit mais recente
+            - COMMIT_HASH=$(git rev-parse --short $BITBUCKET_COMMIT)
+            # Usar a hash do commit como tag
+            - TAG_NAME="$COMMIT_HASH"
+            # build the image
+            - docker build --build-arg DATABASE_URL=$DATABASE_URL_HML --build-arg DATABASE_USERNAME=$DATABASE_USERNAME_HML --build-arg DATABASE_PASSWORD=$DATABASE_PASSWORD_HML --build-arg BUCKET_URL=BUCKET_URL_HML -t $IMAGE_NAME_QA:"$TAG_NAME" -t $IMAGE_NAME_QA:"latest" .
+            # use the pipe to push the image to AWS ECR
+            - pipe: atlassian/aws-ecr-push-image:2.3.0
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                IMAGE_NAME: $IMAGE_NAME_QA
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                TAGS: "$TAG_NAME latest"
+            # Atualizar o serviço ECS
+            - pipe: atlassian/aws-ecs-deploy:1.12.1
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                CLUSTER_NAME: $CLUSTER_NAME
+                SERVICE_NAME: $SERVICE_NAME_HML
+                FORCE_NEW_DEPLOYMENT: "true"
+                WAIT: "false"
+
+  tags:
+    '*': # Para todas as tags
+      - step:
+          name: Build and Push Docker Image to AWS ECR (PROD)
+          clone:
+            depth: full
+          size: 2x
+          services:
+            - docker
+          script:
+            # Atualizar o repositório git
+            - git fetch --all
+            - git fetch --tags
+            - git checkout master
+            - git pull origin master
+            - git tag -l
+            # Pegar a hash do commit do tag
+            - COMMIT_HASH=$(git rev-parse $BITBUCKET_TAG)
+            # Verificar se a tag está na branch master
+            - BRANCHES=$(git branch --contains $COMMIT_HASH | grep -v "detached" | cut -c3-)
+            - if [[ "$BRANCHES" == *"master"* ]]; then
+              echo "tag na master";
+              else
+              echo "Tag não está na master";
+              exit 0;
+              fi
+            # Pegar a hash do commit mais recente
+            - COMMIT_HASH=$(git rev-parse --short $BITBUCKET_COMMIT)
+            # Usar a hash do commit como tag
+            - TAG_NAME="$COMMIT_HASH"
+            # build the image
+            - docker build --build-arg DATABASE_URL=$DATABASE_URL_PROD --build-arg DATABASE_USERNAME=$DATABASE_USERNAME_PROD --build-arg DATABASE_PASSWORD=$DATABASE_PASSWORD_PROD --build-arg BUCKET_URL=BUCKET_URL_PROD -t $IMAGE_NAME_PROD:"$TAG_NAME" -t $IMAGE_NAME_PROD:"latest" .
+            # use the pipe to push the image to AWS ECR
+            - pipe: atlassian/aws-ecr-push-image:2.3.0
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+                IMAGE_NAME: $IMAGE_NAME_PROD
+                AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+                TAGS: "$TAG_NAME latest"
+            # Atualizar o serviço ECS
+            #- pipe: atlassian/aws-ecs-deploy:1.12.1
+            #  variables:
+            #    AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+            #    AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
+            #    AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+            #    CLUSTER_NAME: $CLUSTER_NAME
+            #    SERVICE_NAME: $SERVICE_NAME_PROD
+            #    FORCE_NEW_DEPLOYMENT: "true"
+            #    WAIT: "false"

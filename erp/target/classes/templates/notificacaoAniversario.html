@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background-color: #4CAF50;
+            color: #ffffff;
+            padding: 1px;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #4c5faf;
+            color: #ffffff;
+        }
+
+        .footer {
+            margin-top: 20px;
+            background-color: #4c5faf;
+            color: #ffffff;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="header">
+        <h2>ANIVERSÁRIO</h2>
+    </div>
+    <div style="margin-top: 50px;padding: 1px;text-align: center;" class="content">
+        <p style="font-weight: bold;display: inline;">Aniversariante: </p><span th:text="${emailData.nome}"></span><br>
+        <p style="font-weight: bold;display: inline;">Data do aniversário: </p><span  th:text="${emailData.dtNascimento}"></span><br>
+        <p style="font-weight: bold;display: inline;">Está fazendo: </p><span  th:text="${emailData.idade}"></span><p style="display: inline;"> anos</p>
+    </div>
+</div>
+<br><br>
+<div class="container">
+    <div class="footer">
+        <p style="font-weight: bold;">ERP - nuhcorre</p>
+    </div>
+</div>
+</body>
+
+</html>
