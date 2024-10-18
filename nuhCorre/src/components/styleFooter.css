@@ -1,0 +1,40 @@
+footer{
+
+    display: flex;
+    align-items: center;
+    justify-content:space-around;
+    background: #9A348E;
+    color: #fff;
+    font-family: sans-serif;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    height: 5em;
+    background: rgb(74,0,123);
+    background: linear-gradient(90deg, rgba(74,0,123,1) 0%, rgba(130,74,173,1) 53%, rgba(124,24,140,1) 100%);
+    border-top: 1px solid #fff;
+  }
+  
+  #logo{
+  
+    font-size: 3em;
+    font-weight: 700;
+    margin-left: 30px;
+  
+  }
+  
+  ul li{
+    list-style: none;
+    line-height: 48px;
+    cursor: pointer;
+    display: inline;
+    margin-right: 1em;
+  }
+  
+  #cima:hover{
+  
+    text-decoration: underline;
+    font-size: 1.1em;
+    transition: font-size 1s;
+  
+  }
