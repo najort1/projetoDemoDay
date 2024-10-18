@@ -15,12 +15,11 @@ body{
 
 .tudo {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 30em;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   background-size: cover;
   background-position: center;
+  align-items: center;
 }
 
 .container {
@@ -55,31 +54,14 @@ body{
   gap: 10px;
 }
 
-select,
-input[type="text"],
-button {
+select, input[type="text"], button {
+  padding: 10px;
   border-radius: 5px;
   border: 1px solid black;
   height: 4em;
   font-size: 1em;
-  padding-left: 10px;
-  border: none;
-  outline: none;
-  cursor: pointer;
 }
 
-select:hover,
-input[type="text"]:hover{
-
-  border: 3px solid #ff510c;
-
-}
-select:focus,
-input[type="text"]:focus{
-
-  border: 3px solid #ff510c;
-
-}
 
 input[type="text"] {
   width: 20em;
@@ -103,7 +85,3 @@ input[placeholder="Pesquisar"] {
   transition: border 0.2s ease;
 }
 
-select:hover,
-input[placeholder="Pesquisar"]:hover {
-  border: 3px solid #ff510c;
-}
