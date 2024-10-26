@@ -1,4 +1,4 @@
-package com.chupe.chupeshop.exceptions;
+package com.nuhcorre.nuhcorre.exceptions;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.security.SignatureException;

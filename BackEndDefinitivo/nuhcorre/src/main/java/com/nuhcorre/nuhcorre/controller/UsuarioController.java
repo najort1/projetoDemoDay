@@ -8,10 +8,7 @@ import com.nuhcorre.nuhcorre.model.Usuario;
 import com.nuhcorre.nuhcorre.service.AuthenticationService;
 import com.nuhcorre.nuhcorre.service.JwtService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -26,7 +23,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/login/{tipoLogin}")
-    public ResponseEntity<UsuarioRespostaLoginDTO> loginUsuario(UsuarioLoginDTO usuarioLoginDTO, @PathVariable String tipoLogin) {
+    public ResponseEntity<UsuarioRespostaLoginDTO> loginUsuario(@RequestBody UsuarioLoginDTO usuarioLoginDTO, @PathVariable String tipoLogin) {
         {
             Usuario usuario = authenticationService.loginUsuario(usuarioLoginDTO, tipoLogin);
             String token = jwtService.generateToken(usuario);
@@ -35,10 +32,10 @@ public class UsuarioController {
     }
 
     @PostMapping("/cadastrar")
-    public ResponseEntity<Usuario> cadastrarUsuario(RegistroUsuarioDTO registroUsuarioDTO) {
+    public ResponseEntity<UsuarioRespostaLoginDTO> cadastrarUsuario(@RequestBody RegistroUsuarioDTO registroUsuarioDTO) {
             Usuario usuario = authenticationService.cadastrarUsuario(registroUsuarioDTO);
             String token = jwtService.generateToken(usuario);
-            return ResponseEntity.ok(usuario);
+            return ResponseEntity.ok(new UsuarioRespostaLoginDTO(token, usuario.getNome(), usuario.getEmail(), usuario.getCpf()));
     }
 
 }
