@@ -24,11 +24,10 @@ public class UsuarioController {
 
     @PostMapping("/login/{tipoLogin}")
     public ResponseEntity<UsuarioRespostaLoginDTO> loginUsuario(@RequestBody UsuarioLoginDTO usuarioLoginDTO, @PathVariable String tipoLogin) {
-        {
+            System.out.println(usuarioLoginDTO);
             Usuario usuario = authenticationService.loginUsuario(usuarioLoginDTO, tipoLogin);
             String token = jwtService.generateToken(usuario);
             return ResponseEntity.ok(new UsuarioRespostaLoginDTO(token, usuario.getNome(), usuario.getEmail(), usuario.getCpf()));
-        }
     }
 
     @PostMapping("/cadastrar")

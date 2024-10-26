@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Service
 public class AuthenticationService {
@@ -30,6 +31,8 @@ public class AuthenticationService {
 
     @Autowired
     private EmpresaRepository empresaRepository;
+
+    private final Logger logger = Logger.getLogger(AuthenticationService.class.getName());
 
     public Usuario loginUsuario(UsuarioLoginDTO usuarioLoginDTO, String tipoLogin) {
         Usuario usuario = buscarUsuario(usuarioLoginDTO, tipoLogin);
@@ -63,10 +66,22 @@ public class AuthenticationService {
     }
 
     private Usuario buscarUsuario(UsuarioLoginDTO usuarioLoginDTO, String tipoLogin) {
-        Optional<Usuario> usuarioOpt = tipoLogin.equals("cpf") ?
-                usuarioRepository.findByCpf(usuarioLoginDTO.cpf()) :
-                usuarioRepository.findByEmail(usuarioLoginDTO.email());
-        return usuarioOpt.orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        logger.info("Buscando usuário Tipo login: " + tipoLogin);
+//        Optional<Usuario> usuarioOpt = tipoLogin.equals("cpf") ?
+//                usuarioRepository.findByCpf(usuarioLoginDTO.cpf()) :
+//                usuarioRepository.findByEmail(usuarioLoginDTO.email());
+//        return usuarioOpt.orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+        if(tipoLogin.equals("cpf")){
+            logger.info("Buscando usuário por CPF");
+            logger.info("CPF: " + usuarioLoginDTO.cpf());
+            return usuarioRepository.findByCpf(usuarioLoginDTO.cpf())
+                    .orElseThrow(() -> new RuntimeException("CPF não encontrado"));
+        } else {
+            return usuarioRepository.findByEmail(usuarioLoginDTO.email())
+                    .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        }
+
     }
 
     private Empresa buscarEmpresa(EmpresaLoginDTO empresaLoginDTO, String tipoLogin) {
@@ -79,6 +94,8 @@ public class AuthenticationService {
     private void validarSenha(String senhaInformada, String senhaArmazenada) {
         if (!passwordEncoder.matches(senhaInformada, senhaArmazenada)) {
             throw new RuntimeException("Senha inválida");
+        }else{
+            System.out.println("Senha válida");
         }
     }
 
