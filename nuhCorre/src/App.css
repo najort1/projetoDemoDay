@@ -19,8 +19,20 @@ background: linear-gradient(90deg, rgba(74,0,123,1) 0%, rgba(130,74,173,1) 53%, 
   background-size: cover;
   background-position: center;
   align-items: center;
+
+  /*Image de fundo*/
+
+  background-size: 100% 100%;
+  animation: BgAnimation 10s linear infinite alternate;
+
 }
 
+@keyframes BgAnimation {
+  0%{background-image:url('./assets/img1.jpg')}
+  30%{background-image:url('./assets/img2.jpg')}
+  60%{background-image:url('./assets/img3.jpg')}
+  100%{background-image:url('./assets/img4.jpg')}
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -53,7 +65,10 @@ background: linear-gradient(90deg, rgba(74,0,123,1) 0%, rgba(130,74,173,1) 53%, 
   gap: 10px;
 }
 
-select, input[type="text"], button {
+select,
+input[type="text"],
+button {
+  outline: none !important;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid black;
@@ -70,6 +85,7 @@ button {
   color: white;
   width: 7em;
   font-weight: 700;
+  border: none;
 }
 
 button:hover {
@@ -90,4 +106,52 @@ input[type="text"]:hover {
 select:focus,
 input[type="text"]:focus {
   border: 3px solid #ff510c;
+}
+
+/* Responsivo */
+
+@media  screen and (max-width:800px) {
+
+  /* Diminui o container de pesquisa */
+  .container{
+
+    padding: 4vw;
+
+  }
+
+  /* Muda a direção do flex das  caixas de pesquisas */
+  .pesquisa{
+
+    flex-direction: column;
+  
+  }
+  
+  /* Tamanho dos inputs */
+  select:hover,
+  input[type="text"]{
+    width: 80vw;
+  }
+
+  /* Botão de pesquisa */
+  #pesquisar{
+
+    align-self: center;
+
+  }
+
+  /* titulo */
+  .titulo{
+
+    font-size: 2vw;
+
+  }
+
+  /*.listaRedesSociais{
+
+    position: absolute;
+    bottom: 13vw;
+    right: 10px;
+    flex-direction: column;
+
+  }*/
 }

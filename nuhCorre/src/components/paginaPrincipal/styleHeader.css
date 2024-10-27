@@ -10,12 +10,14 @@ header{
 
 a {
   color: white;
-  font-size: 1.2rem;
+  font-size: 1em;
   text-decoration: none;
 }
 
 a:hover{
-  color: #ff510c;
+  
+  padding-bottom: 5px;
+  text-decoration: underline;
 }
 
 .btn {
@@ -37,7 +39,7 @@ a:hover{
 
 
 header #logo{
-  font-size: 50px;
+  font-size: 40px;
   color: white;
   padding: 1rem;
   margin: 0em 1em 0em 0em;
@@ -56,4 +58,23 @@ header #logo{
   display: flex;
   gap: 1rem;
   margin-right: 2rem;
+}
+
+/* Responsivo */
+
+@media  screen and (max-width:800px) {
+  
+  header #logo{
+
+    font-size: 5vw;
+    
+  }
+
+  .btn{
+
+    width: 15vw;
+    font-size: 2vw;
+
+  }
+
 }

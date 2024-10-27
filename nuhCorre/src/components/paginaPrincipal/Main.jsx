@@ -61,7 +61,7 @@ const PesquisaVaga = () => {
                 <option value="portoVelho">Porto Velho</option>
                 <option value="rioBranco">Rio Branco</option>
             </select>
-            <button>Pesquisar</button>
+            <button id='pesquisar'>Pesquisar</button>
 
           </div>
         </div>
