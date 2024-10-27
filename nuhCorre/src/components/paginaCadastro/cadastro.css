@@ -1,4 +1,4 @@
-body{
+main{
 
     display: flex;
     align-items: center;
@@ -9,39 +9,40 @@ body{
 
 #caixaCadastro{
 
-    background: #fff;
-    display: flex;
+    background: transparent;
+    backdrop-filter: blur(400px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: #fff;
+    /*display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: center;*/
     width: 500px;
-    /*height: 500px;*/
+    height: 500px;
+    overflow: auto;
     padding: 40px;
+    /*position: absolute;
+    top: 180px;*/
 
 }
 
-#caixaCadastro div{
+#caixaCadastro div{margin: 10px 0;}
 
-    margin: 10px 0;
+/* Formatação do form */
 
-}
-label{
+label{display: block;}
+form{width: 100%;}
 
-    display: block;
-
-}
-form{
-
-    width: 100%;
-
-}
-
-form input{
+#caixaCadastro form input,
+#caixaCadastro select{
 
     border-radius: 4px;
-    background: #171717c0;
+    /*background: #171717c0;*/
+    background: #fff;
     border: 1px solid #565656;
-    color: #b8b8b8;
+    /*color: #b8b8b8;*/
+    color: #000;
     font-size: 1em;
     font-weight: 500;
     height: 50px !important;
@@ -49,7 +50,7 @@ form input{
     /*margin-bottom: 15px;*/
     margin: 5px 0;
     outline: none;
-    padding-left: 15px;
+    padding: 0 15px;
     width: 100% !important;
 
 }
@@ -82,9 +83,37 @@ input:not(:focus)::placeholder {
 
 }
 
+/*Botão submit*/
+#caixaCadastro input[type='submit']{
+
+    background: #ff510c;
+    color: #fff;
+    border:none;
+    cursor: pointer;
+}
+
+#caixaCadastro input[type='submit']:hover{
+
+    background: #ff3f00;
+
+}
+
+/*Span de erro*/
 span{
 
     margin-bottom: 20px;
-    color: red;
+    color: #fff;
 
+}
+
+/* Rolagem da caixa */
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+::-webkit-scrollbar {
+    width: 6px;
+    background: #F4F4F4;
+}
+::-webkit-scrollbar-thumb {
+    background: #dad7d7;
 }

@@ -7,9 +7,7 @@ import PesquisaVaga from './Main'
 const HomePage = () => {
     return (
         <>
-        <Header />
-        <PesquisaVaga />
-        <Footer />
+            <PesquisaVaga />
         </>
     );
 };

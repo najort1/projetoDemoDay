@@ -13,10 +13,16 @@ function Header() {
     navigate('/cadastro');
   }
 
-  return (
-    <header>
-      <div id="logo">NuhCorre</div>
+  const navegarParaPaginaPrincipal = () => {
+    navigate('/vagas');
+  }
 
+  return (
+  
+    <header>
+      
+      <div id="logo" onClick={navegarParaPaginaPrincipal}>NuhCorre</div>
+      
       <div className="conteudoHeader">
         <div className="listaIdentificador">
           <ul className="identificadorCandidato">

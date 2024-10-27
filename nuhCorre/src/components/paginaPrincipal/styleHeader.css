@@ -40,7 +40,8 @@ header #logo{
   font-size: 50px;
   color: white;
   padding: 1rem;
-  margin: 0em 1em 0em 0em
+  margin: 0em 1em 0em 0em;
+  cursor: pointer;
 }
 
 .conteudoHeader {

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const PesquisaVaga = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -11,6 +13,9 @@ const PesquisaVaga = () => {
 
   return (
     <>
+
+      <Header/>
+      
       <div className="tudo">
         <div className="container">
           <div className="titulo">
@@ -61,6 +66,9 @@ const PesquisaVaga = () => {
           </div>
         </div>
       </div>
+
+      <Footer/>
+
     </>
   );
 };
