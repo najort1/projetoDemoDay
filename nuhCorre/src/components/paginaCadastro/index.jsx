@@ -2,6 +2,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import './cadastro.css';
 import Header from '../paginaPrincipal/Header';
 import Footer from '../paginaPrincipal/Footer';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 
 const CadastroUsuario = () => {
 
@@ -13,6 +16,8 @@ const CadastroUsuario = () => {
     const erroSenha = useRef(null);
     const erroTelefone = useRef(null);
     const errovulnerabilidade = useRef(null);
+    const navigate = useNavigate();
+
 
     //Estados para animação para visibilidade da senha
     const [senha, setSenha] = useState('');
@@ -206,6 +211,38 @@ const CadastroUsuario = () => {
         };
     }, []);
 
+    const handleCadastro = async () => {
+        const form = document.querySelector('form');
+        const formData = new FormData(form);
+    
+        const data = {};
+    
+        formData.forEach((value, key) => {
+            data[key] = value;
+        });
+    
+        try {
+            const response = await axios.post('http://localhost:8080/auth/cadastrar', data);
+            const repostaJson = response.data;
+    
+            if (response.status === 201) {
+                const bearer = repostaJson.token;
+                localStorage.setItem('token', bearer);
+                alert('Usuário cadastrado com sucesso!');
+                navigate('/vagas');
+            } else {
+                alert(`${repostaJson.detail}`);
+            }
+        } catch (error) {
+            if (error.response && error.response.data) {
+                alert(error.response.data.detail);
+            } else {
+                alert('Erro ao cadastrar usuário.');
+            }
+        }
+    };
+
+
     return (
         <>
             <Header />
@@ -216,13 +253,13 @@ const CadastroUsuario = () => {
 
                         <div>
                             <label htmlFor="name">Nome:</label>
-                            <input type="text" name="name" required pattern="^([a-zA-ZÀ-ÖØ-öø-ÿ]|\s)*$" placeholder="Nome" />
+                            <input type="text" name="nome" required pattern="^([a-zA-ZÀ-ÖØ-öø-ÿ]|\s)*$" placeholder="Nome" />
                             <span ref={erroNome} className="erro"></span>
                         </div>
 
                         <div>
                             <label htmlFor="Data">Data de Nascimento:</label>
-                            <input type="date" name="Data" required placeholder="Data de Nascimento" />
+                            <input type="date" name="dataNascimento" required placeholder="Data de Nascimento" />
                             <span ref={erroData} className="erro"></span>
                         </div>
 
@@ -279,7 +316,7 @@ const CadastroUsuario = () => {
                             <div style={{ position: 'relative' }}>
                                 <input
                                     type={senhaVisivel ? 'text' : 'password'}
-                                    name="password"
+                                    name="senha"
                                     value={senha}
                                     onChange={(e) => setSenha(e.target.value)}
                                     required
@@ -305,7 +342,7 @@ const CadastroUsuario = () => {
                             </div>
                         </div>
 
-                        <input type="submit" />
+                        <input type="submit" onClick={handleCadastro} />
 
                     </form>
                 </div>
