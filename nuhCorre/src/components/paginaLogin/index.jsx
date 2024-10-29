@@ -4,7 +4,6 @@ import Footer from '../paginaPrincipal/Footer';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import ValidarCPF from '../hooks/ValidaCPF';
 import validarCNPJ from '../../hooks/validarCNPJ'
 import validarCPF from '../../hooks/ValidaCPF'
 
