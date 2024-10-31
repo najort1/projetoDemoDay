@@ -1,5 +1,17 @@
 package com.nuhcorre.nuhcorre.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Optional;
+import java.util.logging.Logger;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
 import com.nuhcorre.nuhcorre.model.DTO.EmpresaLoginDTO;
 import com.nuhcorre.nuhcorre.model.DTO.RegistroEmpresaDTO;
 import com.nuhcorre.nuhcorre.model.DTO.RegistroUsuarioDTO;
@@ -8,14 +20,6 @@ import com.nuhcorre.nuhcorre.model.Empresa;
 import com.nuhcorre.nuhcorre.model.Usuario;
 import com.nuhcorre.nuhcorre.repository.EmpresaRepository;
 import com.nuhcorre.nuhcorre.repository.UsuarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-
-import java.util.Optional;
-import java.util.logging.Logger;
 
 @Service
 public class AuthenticationService {
@@ -137,12 +141,17 @@ public class AuthenticationService {
         usuario.setEmail(registroUsuarioDTO.email());
         usuario.setCpf(registroUsuarioDTO.cpf());
         usuario.setSenha(passwordEncoder.encode(registroUsuarioDTO.senha()));
-        usuario.setDataNascimento(registroUsuarioDTO.dataNascimento());
-        usuario.setSexo(registroUsuarioDTO.sexo());
-        usuario.setEndereco(registroUsuarioDTO.endereco());
-        usuario.setEscolaridade(registroUsuarioDTO.escolaridade());
-        usuario.setVulnerabilidade(registroUsuarioDTO.vulnerabilidade());
         usuario.setTelefone(registroUsuarioDTO.telefone());
+
+        // Conversão de String para Date
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date dataNascimento = dateFormat.parse(registroUsuarioDTO.dataNascimento());
+            usuario.setDataNascimento(dataNascimento);
+        } catch (ParseException e) {
+            throw new RuntimeException("Formato de data inválido. Use o formato yyyy-MM-dd.", e);
+        }
+
         return usuario;
     }
 

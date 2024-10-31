@@ -1,11 +1,26 @@
 package com.nuhcorre.nuhcorre.model;
 
-import jakarta.persistence.*;
+import java.util.Date;
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Entity
 @Data
@@ -20,17 +35,21 @@ public class Vaga {
 
     private String titulo;
     private String descricao;
+    @Lob
+    @Column(columnDefinition = "TEXT")
     private String requisitos;
     private String beneficios;
-    private String salario;
+    private Double salario;
     private String cargaHoraria;
     private String tipoContrato;
-    private String dataCadastro;
-    private String dataExpiracao;
-    private String status;
-    private String cidade;
-    private String estado;
-    private String endereco;
+
+    @Temporal(TemporalType.DATE)
+    private Date dataCadastro;
+
+    @Temporal(TemporalType.DATE)
+    private Date dataExpiracao;
+
+    private boolean status;
 
     @ManyToOne
     @JoinColumn(name = "empresa_id")
@@ -43,4 +62,13 @@ public class Vaga {
             inverseJoinColumns = @JoinColumn(name = "usuario_id")
     )
     private List<Usuario> usuarios;
+    @OneToOne
+    @JoinColumn(name = "endereco_id")
+    private Endereco endereco;
+
+    @PrePersist
+    protected void onCreate() {
+        dataCadastro = new Date();
+    }
+
 }
