@@ -66,15 +66,26 @@ header #logo{
   
   header #logo{
 
-    font-size: 5vw;
+    font-size: 2rem;
     
   }
 
-  .btn{
-
-    width: 15vw;
-    font-size: 2vw;
-
+  header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
+  
+  .listaIdentificador{
+    display: none;
+  }
+
+  .btn{
+    width: 5rem;
+    height: 2.5rem;
+    font-size: 12px;
+  }
+  
 
 }
