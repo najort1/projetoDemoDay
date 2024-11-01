@@ -13,6 +13,10 @@ public class EmpresaUserDetails implements UserDetails {
         this.empresa = empresa;
     }
 
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null; // Adicione as autoridades conforme necessário
