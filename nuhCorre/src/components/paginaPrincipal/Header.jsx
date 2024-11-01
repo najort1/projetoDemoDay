@@ -1,5 +1,6 @@
 import "./styleHeader.css";
 import { useNavigate } from 'react-router-dom';
+import logo from '../../assets/logo.png';
 
 function Header() {
 
@@ -21,7 +22,10 @@ function Header() {
   
     <header>
       
-      <div id="logo" onClick={navegarParaPaginaPrincipal}>NuhCorre</div>
+      <div id="logo" onClick={navegarParaPaginaPrincipal}>
+
+        <img src={logo} alt='logo' id='imgLogo'/>
+      </div>
       
       <div className="conteudoHeader">
         <div className="listaIdentificador">

@@ -4,7 +4,7 @@ import Header from '../paginaPrincipal/Header';
 import Footer from '../paginaPrincipal/Footer';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import Logo from '../../assets/logo.png';
 
 const CadastroUsuario = () => {
 
@@ -247,8 +247,39 @@ const CadastroUsuario = () => {
         <>
             <Header />
             <main>
+                <div id='expli'>
+
+                    <div>
+
+                        <img src={Logo} alt=''/>
+                        <h2>Sobre a NuhCorre</h2>
+                        <p>
+                            A nuhCorre é lider em conectar com<br/>
+                            oportunidades, Nossa missão é criar um mercado de<br/>
+                            trabalho mais incrusivo e acessivel paratodos
+
+                            <ul>
+
+                                <li>Mais de 1 milhão de vagas preenchidas</li>
+                                <li>Presente em todo o Brasil</li>
+                                <li>Suporte personalizado para candidatos e empressas</li>
+
+                            </ul>
+
+                        </p>
+
+                    </div>
+
+                </div>
                 <div id="caixaCadastro">
-                    <h1>Cadastro</h1>
+                    <div className='alinhamento'>
+
+                        <img src={Logo} alt='' className='alinhamento' style={{width: '10vw'}}/>
+                        <h2 className='alinhamento' style={{marginBottom:'10px'}}>Crie sua conta</h2>
+                        <span className='alinhamento'>Comece sua jornada profissional conosco</span>
+
+                    </div>
+                    
                     <form>
 
                         <div>
@@ -335,6 +366,7 @@ const CadastroUsuario = () => {
                                         border: 'none',
                                         cursor: 'pointer',
                                     }}
+                                    value='Criar conta'
                                 >
                                     {senhaVisivel ? '-' : '👁'} {/* Ícones para mostrar/esconder */}
                                 </button>
@@ -343,7 +375,7 @@ const CadastroUsuario = () => {
                         </div>
 
                         <input type="submit" onClick={handleCadastro} />
-
+                        <a href='' style={{color: '#000', textAlign:'center', display: 'block'}}>Já tem uma conta? <span style={{color: '#425BD6'}}>Faça login</span></a>
                     </form>
                 </div>
             </main>

@@ -13,6 +13,7 @@ function Footer(){
                             <li id='cima'>Sobre</li>
                             <li id='cima'>Serviços</li>
                             <li id='cima'>Suporte</li>
+                            <li id='cima'>Politica de privacidade</li>
                         </ul>
                     </div>
     

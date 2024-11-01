@@ -6,14 +6,8 @@ footer {
   bottom: 0;
   width: 100vw;
   height: 5em;
-  background: rgb(74, 0, 123);
-  background: linear-gradient(
-    90deg,
-    rgba(74, 0, 123, 1) 0%,
-    rgba(130, 74, 173, 1) 53%,
-    rgba(124, 24, 140, 1) 100%
-  );
-  border-top: 1px solid #fff;
+  background-color: #5b82bbd1;
+  /*background: linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(118,146,185,1) 40%);*/
 }
 
 #logo {

@@ -19,7 +19,7 @@ const PesquisaVaga = () => {
       <div className="tudo">
         <div className="container">
           <div className="titulo">
-            <h1>Encontre as Melhores Vagas de Emprego</h1>
+            <h1>Conecte-se com Empregos Acessíveis para Todos</h1>
             <h2>Temos mais de 320 mil oportunidades para você</h2>
           </div>
           <div className="pesquisa">
