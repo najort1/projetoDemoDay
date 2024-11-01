@@ -4,6 +4,10 @@ import com.nuhcorre.nuhcorre.model.Usuario;
 import com.nuhcorre.nuhcorre.model.details.EmpresaUserDetails; // Adicione esta linha
 import com.nuhcorre.nuhcorre.repository.EmpresaRepository;
 import com.nuhcorre.nuhcorre.repository.UsuarioRepository;
+import io.swagger.v3.oas.models.Components;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -93,4 +97,19 @@ public class ApplicationConfiguration {
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
+
+    @Bean
+    public OpenAPI customOpenAPI() {
+        return new OpenAPI()
+                .addSecurityItem(new SecurityRequirement().addList("bearer-jwt"))
+                .components(new Components().addSecuritySchemes("bearer-jwt", createApiKeyScheme()));
+    }
+
+    private io.swagger.v3.oas.models.security.SecurityScheme createApiKeyScheme() {
+        return new io.swagger.v3.oas.models.security.SecurityScheme()
+                .type(SecurityScheme.Type.HTTP)
+                .scheme("bearer")
+                .bearerFormat("JWT");
+    }
+
 }

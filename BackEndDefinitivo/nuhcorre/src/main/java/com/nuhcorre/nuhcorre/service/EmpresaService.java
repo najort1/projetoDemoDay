@@ -18,10 +18,6 @@ public class EmpresaService {
         return empresaRepository.findById(id).orElse(null);
     }
 
-    public List<Empresa> findAllByCategoria(String categoria) {
-        return empresaRepository.findAllByCategoria(categoria);
-    }
-
     public List<Empresa> findAllByNomeContaining(String nome) {
         return empresaRepository.findAllByNomeContaining(nome);
     }

@@ -7,9 +7,6 @@ public record RegistroUsuarioDTO(
         String cpf,
         String dataNascimento,
         String sexo,
-        String endereco,
-        String escolaridade,
-        String vulnerabilidade,
         String telefone
 ) {
 }

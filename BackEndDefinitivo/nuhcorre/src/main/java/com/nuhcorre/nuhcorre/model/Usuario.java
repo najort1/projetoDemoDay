@@ -60,6 +60,13 @@ public class Usuario implements UserDetails {
     @OneToMany(mappedBy = "usuario")
     private List<Avaliacao> avaliacoes;
 
+    private boolean isEmpresa;
+
+    @PrePersist
+    public void prePersist() {
+        this.isEmpresa = false;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return null;

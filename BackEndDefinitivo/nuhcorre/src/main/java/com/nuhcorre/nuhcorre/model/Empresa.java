@@ -1,20 +1,28 @@
 package com.nuhcorre.nuhcorre.model;
 
-import com.nuhcorre.nuhcorre.model.Avaliacao;
-import com.nuhcorre.nuhcorre.model.Endereco;
-import com.nuhcorre.nuhcorre.model.RedesSociais;
-import com.nuhcorre.nuhcorre.model.Vaga;
-import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
@@ -41,6 +49,7 @@ public class Empresa implements UserDetails {
     private boolean premium;
 
     @OneToMany(mappedBy = "empresa")
+    @JsonManagedReference
     private List<Vaga> vagas;
 
     @OneToOne
@@ -48,10 +57,17 @@ public class Empresa implements UserDetails {
     private Endereco endereco;
 
     @OneToMany(mappedBy = "empresa")
+    @JsonBackReference
     private List<RedesSociais> redesSociais;
 
     @OneToMany(mappedBy = "empresa")
+    @JsonBackReference
     private List<Avaliacao> avaliacoes;
+
+    @PrePersist
+    public void prePersist() {
+        setDataCadastro(new Date());
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
