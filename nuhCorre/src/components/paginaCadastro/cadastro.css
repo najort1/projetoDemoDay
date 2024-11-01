@@ -7,25 +7,28 @@ main{
 
 }
 
+.alinhamento{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
 #caixaCadastro{
 
-    background: transparent;
-    backdrop-filter: blur(400px);
+    background: #fff;
     border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
-    color: #fff;
-    /*display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;*/
-    width: 500px;
-    height: 500px;
+    color: #000;
+    width: 50vw;
+    height: calc(100vh - 10rem);
     overflow: auto;
     padding: 40px;
     /*position: absolute;
     top: 180px;*/
 
 }
+#caixaCadastro span{color: gray;}
 
 #caixaCadastro div{margin: 10px 0;}
 
@@ -86,7 +89,7 @@ input:not(:focus)::placeholder {
 /*Botão submit*/
 #caixaCadastro input[type='submit']{
 
-    background: #ff510c;
+    background: #425BD6;
     color: #fff;
     border:none;
     cursor: pointer;
@@ -94,7 +97,8 @@ input:not(:focus)::placeholder {
 
 #caixaCadastro input[type='submit']:hover{
 
-    background: #ff3f00;
+    background: #334ed8;
+    transition: background 1s;
 
 }
 
@@ -116,4 +120,28 @@ span{
 }
 ::-webkit-scrollbar-thumb {
     background: #dad7d7;
+}
+
+#expli{
+
+    width: 50vw;
+    height: calc(100vh - 10rem);
+    background: #5b82bb;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    
+    padding-left: 2rem;
+
+}
+#expli h2{
+    
+    margin-bottom: 20px;
+
+}
+#expli ul li{
+
+    display: block;
+    margin: 15px 0;
+
 }
