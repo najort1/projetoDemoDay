@@ -118,7 +118,7 @@ const LoginPage = () => {
       <Header />
       <div className='principalLogin'>
         <div className="container_login">
-          <div className="titulo">
+          <div className="titulo_container_login">
             <h1>Bem vindo, {tipoUsuario}!</h1>
           </div>
           <div className="inputsLogin">
