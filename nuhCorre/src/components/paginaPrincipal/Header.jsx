@@ -1,6 +1,7 @@
 import "./styleHeader.css";
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png';
+import CadastroEmpresa from "../paginaCadastroEmpresa";
 
 function Header() {
 
@@ -18,6 +19,10 @@ function Header() {
     navigate('/vagas');
   }
 
+  const navegarParaCadastroEmpresa = () => {
+    navigate('/cadastro-empresa');
+  } 
+
   return (
   
     <header>
@@ -34,7 +39,7 @@ function Header() {
               <a href="">Sou candidato</a>
             </li>
             <li>
-              <a href="">Sou empresa</a>
+              <a onClick={navegarParaCadastroEmpresa}>Sou empresa</a>
             </li>
           </ul>
         </div>
