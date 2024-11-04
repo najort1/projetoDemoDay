@@ -31,6 +31,8 @@ public class Endereco {
     @NotBlank(message = "O campo cep é obrigatório")
     private String cep;
 
+    private Boolean principal;
+
     @OneToOne(mappedBy = "endereco")
     private Empresa empresa;
 

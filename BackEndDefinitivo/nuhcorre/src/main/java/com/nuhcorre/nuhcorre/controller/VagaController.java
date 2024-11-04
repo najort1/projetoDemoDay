@@ -79,6 +79,22 @@ public class VagaController {
     @PostMapping("/atualizar")
     public ResponseEntity<?> atualizarVaga(@RequestBody Vaga vaga) {
         if (validaEmpresa()) {
+
+            Empresa emprsaVaga = vaga.getEmpresa();
+            if (emprsaVaga == null) {
+                return ResponseEntity.badRequest().body("Empresa não encontrada");
+            }
+
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            EmpresaUserDetails empresaUserDetails = (EmpresaUserDetails) authentication.getPrincipal();
+            Empresa empresaAutenticada = empresaUserDetails.getEmpresa();
+
+            if (!emprsaVaga.getCnpj().equals(empresaAutenticada.getCnpj())) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado");
+            }
+
+
+
             return ResponseEntity.ok(vagaService.atualizarVaga(vaga));
         }
 
