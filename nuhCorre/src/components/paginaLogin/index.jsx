@@ -1,6 +1,6 @@
 import './login.css';
-import Header from '../paginaPrincipal/Header';
-import Footer from '../paginaPrincipal/Footer';
+import Header from '../header/Header';
+import Footer from '../footer/Footer';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -116,25 +116,36 @@ const LoginPage = () => {
   return (
     <>
       <Header />
+
       <div className='principalLogin'>
         <div className="container_login">
+
           <div className="titulo">
             <h1>Bem vindo, {tipoUsuario}!</h1>
           </div>
+
           <div className="inputsLogin">
+
             <label htmlFor="email">{label}</label>
             <input type="email" name="email" className='inputLogin' placeholder={placeHolder} />
             <label htmlFor="senha">Senha:</label>
             <input type="password" name="senha" className='inputLogin' placeholder='Digite sua senha' />
+
           </div>
+
           <div className="botoes_container_login">
+
             <button className='botaoLogin' onClick={handleLogin}>Login</button>
             <button className='botaoLogin' onClick={navigateToCadastro}>Cadastrar</button>
+
           </div>
+
           <button className="botaoMudaTipo" onClick={handleMudarTipoUsuario}>{botaoMudar}</button>
           <p className="error">{erroLogin}</p>
+
         </div>
       </div>
+      
       <Footer />
     </>
   );

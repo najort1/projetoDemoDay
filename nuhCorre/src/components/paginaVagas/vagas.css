@@ -1,0 +1,125 @@
+body{
+
+    animation: none;
+
+}
+
+/* Parte de pesquisa de vagas */
+
+#pesquisaVagas{
+
+    background: #5b82bbd1;
+    padding: 20px 0;
+
+}
+
+#pesquisaVagas form{
+
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+}
+
+#pesquisaVagas form input[type='text']{
+
+    border-radius: 5px;
+    height: 2.4rem;
+    margin: 0 10px;
+    padding-left: 10px;
+    width: 42vw;
+
+}
+
+
+#pesquisaVagas input[type='button']{
+
+    border-radius: 7px;
+    background: #fff;
+    color: #718CB3;
+    font-weight: 600;
+    margin-left:20px ;
+    padding: 13px;
+    width: 120px;
+
+}
+
+/* Caixa de vagas */
+
+.styleBox{/* estilo geral das caixas */
+
+    border: 2px solid #718CB3;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    padding: 25px;
+    width: 75vw;
+
+}
+
+#campoDasVagas{
+
+    display: flex;
+    margin: 25px;
+
+}
+#selects select{
+
+    border: 1px solid #718CB3;
+    border-radius: 5px;
+    color: #8791A0;
+    font-weight: 600;
+    margin: 0 10px;
+    padding: 13px 0;
+    width: 10vw;
+
+}
+
+/* Parte das caixas das vagas */
+.seguraTitulo h2,
+.seguraTitulo div{margin-bottom: 10px;}
+
+.seguraTitulo .stylePreenchido{margin-top: 10px;}
+.horizontalNomeBotao{
+
+    display: flex;
+    justify-content: space-between;
+
+}
+
+/* Botão de candidatar */
+.candidatar{
+
+    padding: 5px;
+    height: 45px;
+    width: 11vw;
+
+}
+
+.stylePreenchido{/* Botão PCD */
+
+    background: #718CB3;
+    border-radius: 30px;
+    color: #fff;
+    font-weight: 600;
+    padding: 5px;
+    text-align: center;
+    width: 68px;
+
+}
+
+/* Caixa que ficará ao lado */
+
+.vertical{
+
+    color: #718CB3;
+    margin-left: 20px;
+
+}
+
+.vertical ul li{
+
+    display: block;
+    font-weight: 600;
+    margin: 20px 0;
+
+}

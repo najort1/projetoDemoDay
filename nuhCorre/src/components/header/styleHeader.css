@@ -1,0 +1,68 @@
+header{
+
+  align-items: center;
+  background-color: #5b82bbd1;
+  display: flex;
+  height: 5rem;
+  justify-content: space-between;
+  width: 100vw;
+
+}
+
+/* Parte da logo */
+#imgLogo{
+
+  width: 130px;
+  margin-left: 2rem;
+  filter: drop-shadow(1px 1px 20px #dbdfce);
+
+}
+
+#logoHeader{
+
+  cursor: pointer;
+  margin: 0em 1em 0em 0em;
+
+
+}
+
+/* Parte dos botões */
+
+.botoes{
+
+  gap: 1rem;
+  margin-right: 2rem;
+
+}
+
+.btn {
+
+  background: #DBDFCE;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.329);
+  border-radius: 100px;
+  color: #3565a7;
+  font-size: 15px;
+  height: 2.7rem;
+  transition: background-color 0.3s;
+  width: 6.3rem;
+
+}
+
+.btn:first-child{margin-right: 7px;}/* Pega o primerio botão e coloca uma margin direita */
+
+.btn:hover{
+
+  background-color: #4b7abb;
+  color: #fff;
+  transition: background 0.2s ease;
+  
+}
+
+/* Caixa se segura a navegação e os botões */
+.conteudoHeader {
+
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  
+}

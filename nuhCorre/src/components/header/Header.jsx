@@ -4,17 +4,22 @@ import logo from '../../assets/logo.png';
 
 function Header() {
 
+  //Navegações
   const navigate = useNavigate();
 
-  const navegarParaOLogin = () => {
+  const navegarParaPaginaPrincipal = () => {//Página principal
+    navigate('/principal');
+  }
+
+  const navegarParaOLogin = () => {//Página de login
     navigate('/login');
   }
 
-  const navegarParaOCadastro = () => {
+  const navegarParaOCadastro = () => {//Página de cadastro
     navigate('/cadastro');
   }
 
-  const navegarParaPaginaPrincipal = () => {
+  const navegarParaPaginaVagas = () => {//Página de vagas
     navigate('/vagas');
   }
 
@@ -22,28 +27,41 @@ function Header() {
   
     <header>
       
-      <div id="logo" onClick={navegarParaPaginaPrincipal}>
+      <div id="logoHeader" onClick={navegarParaPaginaPrincipal}>
 
         <img src={logo} alt='logo' id='imgLogo'/>
+
       </div>
       
       <div className="conteudoHeader">
-        <div className="listaIdentificador">
+
+        <nav className="listaIdentificador">
+
           <ul className="identificadorCandidato">
+
             <li>
               <a href="">Sou candidato</a>
             </li>
+
             <li>
               <a href="">Sou empresa</a>
             </li>
+
+            <li>
+              <a href="" onClick={navegarParaPaginaVagas}>Vagas</a>
+            </li>
+
           </ul>
-        </div>
+
+        </nav>
 
         <div className="botoes">
           <button className="btn" onClick={navegarParaOLogin}>Entrar</button>
           <button className="btn" onClick={navegarParaOCadastro}>Cadastro</button>
         </div>
+
       </div>
+
     </header>
   );
 }
