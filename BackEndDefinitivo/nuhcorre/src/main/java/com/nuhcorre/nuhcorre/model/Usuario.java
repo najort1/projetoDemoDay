@@ -9,6 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,6 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "usuario")
 public class Usuario implements UserDetails {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -36,23 +36,8 @@ public class Usuario implements UserDetails {
     @Column(unique = true)
     private String cpf;
 
-    @NotEmpty(message = "O campo data de nascimento é obrigatório")
-    private String dataNascimento;
-
-    @NotEmpty(message = "O campo sexo é obrigatório")
-    private String sexo;
-
-    @NotEmpty(message = "O campo endereco é obrigatório")
-    private String endereco;
-
-    private String cidade;
-    private String estado;
-
-    @NotEmpty(message = "O campo escolaridade é obrigatório")
-    private String escolaridade;
-
-    @NotEmpty(message = "O campo vulnerabilidade é obrigatório")
-    private String vulnerabilidade;
+    @Temporal(TemporalType.DATE)
+    private Date dataNascimento;
 
     @NotEmpty(message = "O campo telefone é obrigatório")
     private String telefone;
@@ -60,20 +45,41 @@ public class Usuario implements UserDetails {
     @ManyToMany(mappedBy = "usuarios")
     private List<Vaga> vagas;
 
+    @OneToOne
+    @JoinColumn(name = "endereco_id")
+    private Endereco endereco;
+
+    @ManyToMany
+    @JoinTable(
+            name = "usuario_vulnerabilidade",
+            joinColumns = @JoinColumn(name = "usuario_id"),
+            inverseJoinColumns = @JoinColumn(name = "vulnerabilidade_id")
+    )
+    private List<Vulnerabilidade> vulnerabilidades;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Avaliacao> avaliacoes;
+
+    private boolean isEmpresa;
+
+    @PrePersist
+    public void prePersist() {
+        this.isEmpresa = false;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        // Retornar as autoridades do usuário, se houver
         return null;
     }
 
     @Override
     public String getPassword() {
-        return this.senha;
+        return senha;
     }
 
     @Override
     public String getUsername() {
-        return this.email;
+        return email;
     }
 
     @Override
