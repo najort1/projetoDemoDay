@@ -119,7 +119,6 @@ const LoginPage = () => {
 
       <div className='principalLogin'>
         <div className="container_login">
-
           <div className="titulo">
             <h1>Bem vindo, {tipoUsuario}!</h1>
           </div>

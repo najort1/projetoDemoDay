@@ -11,7 +11,7 @@
     background-color: transparent;
     border-radius: 10px;
     padding: 3em;
-    backdrop-filter: blur(400px);
+    backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.2);
     position: relative;
     top: 0.2em;
@@ -65,15 +65,28 @@
     width: 100%;
 }
 
+.titulo_container_login {
+    margin: 1em 0 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff;
+    font-weight: 900;
+}
+
 
 @media  screen and (max-width:800px) {
 
-
-    .titulo{
-        font-size: 1rem;
-        text-align: center;
+    .titulo_container_login {
+        margin: 1em 0 2em;
         display: flex;
-        align-self: flex-start;
-    }   
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        color: #ffffff;
+        font-weight: 900;
+    }
+    
 
 }

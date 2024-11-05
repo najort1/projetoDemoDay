@@ -1,6 +1,8 @@
 package com.nuhcorre.nuhcorre.controller;
 
 import com.nuhcorre.nuhcorre.model.DTO.CadastrarVagaDTO;
+import com.nuhcorre.nuhcorre.model.DTO.EmpresaRespostaVagaDTO;
+import com.nuhcorre.nuhcorre.model.DTO.VagaRespostaDTO;
 import com.nuhcorre.nuhcorre.model.Empresa;
 import com.nuhcorre.nuhcorre.model.Endereco;
 import com.nuhcorre.nuhcorre.model.Usuario;
@@ -15,7 +17,9 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/vaga")
@@ -75,6 +79,22 @@ public class VagaController {
     @PostMapping("/atualizar")
     public ResponseEntity<?> atualizarVaga(@RequestBody Vaga vaga) {
         if (validaEmpresa()) {
+
+            Empresa emprsaVaga = vaga.getEmpresa();
+            if (emprsaVaga == null) {
+                return ResponseEntity.badRequest().body("Empresa não encontrada");
+            }
+
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            EmpresaUserDetails empresaUserDetails = (EmpresaUserDetails) authentication.getPrincipal();
+            Empresa empresaAutenticada = empresaUserDetails.getEmpresa();
+
+            if (!emprsaVaga.getCnpj().equals(empresaAutenticada.getCnpj())) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado");
+            }
+
+
+
             return ResponseEntity.ok(vagaService.atualizarVaga(vaga));
         }
 
@@ -84,6 +104,20 @@ public class VagaController {
     @DeleteMapping("/deletar/{id}")
     public ResponseEntity<?> deletarVaga(@PathVariable Long id) {
         if (validaEmpresa()) {
+            Vaga vaga = vagaService.buscarVagaPorId(id);
+            if (vaga == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Vaga não encontrada");
+            }
+
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            EmpresaUserDetails empresaUserDetails = (EmpresaUserDetails) authentication.getPrincipal();
+            Empresa empresaAutenticada = empresaUserDetails.getEmpresa();
+
+            Empresa empresaVaga = vaga.getEmpresa();
+            if (empresaVaga != null && !empresaVaga.getCnpj().equals(empresaAutenticada.getCnpj())) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado");
+            }
+
             vagaService.deletarVagaPorId(id);
             return ResponseEntity.ok("Vaga deletada com sucesso");
         }
@@ -91,14 +125,36 @@ public class VagaController {
         return ResponseEntity.badRequest().body("Acesso negado");
     }
 
-    @GetMapping("/buscar/{id}")
-    public ResponseEntity<?> buscarVagaPorId(@PathVariable Long id) {
-        return ResponseEntity.ok(vagaService.buscarVagaPorId(id));
-    }
-
     @GetMapping("/buscar/todas")
     public ResponseEntity<?> buscarTodasVagas() {
-        return ResponseEntity.ok(vagaService.buscarTodasVagas());
+        List<Vaga> vagas = (List<Vaga>) vagaService.buscarTodasVagas();
+        List<VagaRespostaDTO> vagasDTO = vagas.stream().map(vaga -> {
+            Empresa empresa = vaga.getEmpresa();
+            EmpresaRespostaVagaDTO empresaRespostaVagaDTO = null;
+            if (empresa != null) {
+                empresaRespostaVagaDTO = new EmpresaRespostaVagaDTO(
+                        empresa.getCnpj(),
+                        empresa.getNome(),
+                        empresa.getEmail(),
+                        empresa.getTelefone()
+                );
+            }
+            return new VagaRespostaDTO(
+                    vaga.getId(),
+                    vaga.getTitulo(),
+                    vaga.getDescricao(),
+                    vaga.getRequisitos(),
+                    vaga.getBeneficios(),
+                    vaga.getSalario(),
+                    vaga.getCargaHoraria(),
+                    vaga.getDataCadastro(),
+                    vaga.getDataExpiracao(),
+                    vaga.isStatus(),
+                    vaga.getEndereco(),
+                    empresaRespostaVagaDTO
+            );
+        }).collect(Collectors.toList());
+        return ResponseEntity.ok(vagasDTO);
     }
 
     @GetMapping("/buscar/titulo/{titulo}")
