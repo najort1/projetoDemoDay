@@ -7,16 +7,10 @@
   font-family: 'Quicksand', sans-serif;
 }
 
-body{
-  background-size: 100% 100%;
-  animation: BgAnimation 10s linear infinite alternate;
-}
+.fundo{
 
-.tudo {
-  display: flex;
-  height: 100vh;
-  width: 100vw;
-  background-size: contain;
+  animation: BgAnimation 10s linear infinite alternate;
+  background-size: cover;
   background-position: center;
 
 }
@@ -29,120 +23,34 @@ body{
   100% { background-image: url('./assets/img5.jpg'); }
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  background-color: #dbdfce;/*Opção 1*/
-  background:#dbdfceb3;/*Opção 2*/
-  border-radius: 10px;
-  padding: 3em;
-  /*backdrop-filter: blur(400px);*/
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  position: relative;
-  top: 0.2em;
-  margin: 0 auto;
+/* Estilização geral do botão */
+input, button{
 
-}
-
-.titulo {
- 
-  margin: 1em 0 2em;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  color: #405a7f;
-  font-weight: 700;
-}
-
-.pesquisa {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 10px 0;
-  gap: 10px;
-}
-
-select,
-input[type="text"],
-button {
-  outline: none !important;
-  padding: 10px;
-  border-radius: 5px;
-  border: 2px solid #7692b9;
-  height: 4em;
-  font-size: 1em;
-}
-
-input[type="text"] {
-  width: 20em;
-}
-
-button {
-  background-color: #7692B9;
-  color: white;
-  width: 7em;
-  font-weight: 700;
   border: none;
+  outline: none;
+  cursor: pointer;
+
 }
 
-button:hover {
-  transition: background 0.2s ease;
-  background-color: #4b7abb;
+a {
+
+  color: white;
+  font-size: 1em;
+  text-decoration: none;
+
 }
-
-
-select,
-input[type="text"] {
-
-  transition: border 0.2s ease;
-}
-
-/* Responsivo */
-
-@media  screen and (max-width:800px) {
-
-  /* Diminui o container de pesquisa */
-  .container{
-
-    padding: 4vw;
-
-  }
-
-  /* Muda a direção do flex das  caixas de pesquisas */
-  .pesquisa{
-
-    flex-direction: column;
+a:hover{
   
-  }
+  padding-bottom: 5px;
+  text-decoration: underline;
+}
+
+ul li {
+
+  cursor: pointer;
+  display: inline;
+  font-size: 1em;
+  list-style-type: none;
+  margin-right: 1em;
   
-  /* Tamanho dos inputs */
-  select:hover,
-  input[type="text"]{
-    width: 80vw;
-  }
-
-  /* Botão de pesquisa */
-  #pesquisar{
-
-    align-self: center;
-
-  }
-
-  /* titulo */
-  .titulo{
-
-    font-size: 2vw;
-
-  }
-
-  /*.listaRedesSociais{
-
-    position: absolute;
-    bottom: 13vw;
-    right: 10px;
-    flex-direction: column;
-
-  }*/
 }

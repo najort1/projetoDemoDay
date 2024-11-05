@@ -1,7 +1,6 @@
 import "./styleHeader.css";
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png';
-import CadastroEmpresa from "../paginaCadastroEmpresa";
 
 function Header() {
 
@@ -29,7 +28,7 @@ function Header() {
   } 
 
   return (
-  
+    
     <header>
       
       <div id="logoHeader" onClick={navegarParaPaginaPrincipal}>
