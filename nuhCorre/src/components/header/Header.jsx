@@ -8,7 +8,7 @@ function Header() {
   const navigate = useNavigate();
 
   const navegarParaPaginaPrincipal = () => {//Página principal
-    navigate('/principal');
+    navigate('/');
   }
 
   const navegarParaOLogin = () => {//Página de login
@@ -24,7 +24,7 @@ function Header() {
   }
 
   const navegarParaCadastroEmpresa = () => {
-    navigate('/cadastro-empresa');
+    navigate('/cadastroEmpresa');
   } 
 
   return (
