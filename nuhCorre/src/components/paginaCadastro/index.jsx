@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './cadastro.css';
-import Header from '../paginaPrincipal/Header';
-import Footer from '../paginaPrincipal/Footer';
+import Header from '../header/Header';
+import Footer from '../footer/Footer';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../../assets/logo.png';
@@ -247,7 +247,7 @@ const CadastroUsuario = () => {
         <>
             <Header />
             <main>
-                <div id='expli'>
+                <div id='descricao'>
 
                     <div>
 

@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './cadastroEmpresa.css';
-import Header from '../paginaPrincipal/Header';
-import Footer from '../paginaPrincipal/Footer';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Logo from '../../assets/logo.png';
+import Header from '../header/Header';
+import Footer from '../footer/Footer';
 
 const CadastroEmpresa = () => {
 
@@ -245,7 +245,7 @@ const CadastroEmpresa = () => {
 
     return (
         <>
-            <Header />
+            <Header/>
             <main>
                 <div id='expli'>
 
@@ -352,7 +352,7 @@ const CadastroEmpresa = () => {
                 </div>
             </main>
 
-            <Footer />
+            <Footer/>
         </>
     );
 };

@@ -3,7 +3,6 @@ main{
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
 
 }
 
@@ -24,8 +23,6 @@ main{
     height: calc(100vh - 10rem);
     overflow: auto;
     padding: 40px;
-    /*position: absolute;
-    top: 180px;*/
 
 }
 #caixaCadastro span{color: gray;}

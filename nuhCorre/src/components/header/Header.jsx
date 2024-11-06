@@ -1,54 +1,71 @@
 import "./styleHeader.css";
 import { useNavigate } from 'react-router-dom';
 import logo from '../../assets/logo.png';
-import CadastroEmpresa from "../paginaCadastroEmpresa";
 
 function Header() {
 
+  //Navegações
   const navigate = useNavigate();
 
-  const navegarParaOLogin = () => {
+  const navegarParaPaginaPrincipal = () => {//Página principal
+    navigate('/');
+  }
+
+  const navegarParaOLogin = () => {//Página de login
     navigate('/login');
   }
 
-  const navegarParaOCadastro = () => {
+  const navegarParaOCadastro = () => {//Página de cadastro
     navigate('/cadastro');
   }
 
-  const navegarParaPaginaPrincipal = () => {
+  const navegarParaPaginaVagas = () => {//Página de vagas
     navigate('/vagas');
   }
 
   const navegarParaCadastroEmpresa = () => {
-    navigate('/cadastro-empresa');
+    navigate('/cadastroEmpresa');
   } 
 
   return (
-  
+    
     <header>
       
-      <div id="logo" onClick={navegarParaPaginaPrincipal}>
+      <div id="logoHeader" onClick={navegarParaPaginaPrincipal}>
 
         <img src={logo} alt='logo' id='imgLogo'/>
+
       </div>
       
       <div className="conteudoHeader">
-        <div className="listaIdentificador">
+
+        <nav className="listaIdentificador">
+
           <ul className="identificadorCandidato">
+
             <li>
               <a href="">Sou candidato</a>
             </li>
+
             <li>
               <a onClick={navegarParaCadastroEmpresa}>Sou empresa</a>
             </li>
+
+            <li>
+              <a href="" onClick={navegarParaPaginaVagas}>Vagas</a>
+            </li>
+
           </ul>
-        </div>
+
+        </nav>
 
         <div className="botoes">
           <button className="btn" onClick={navegarParaOLogin}>Entrar</button>
           <button className="btn" onClick={navegarParaOCadastro}>Cadastro</button>
         </div>
+
       </div>
+
     </header>
   );
 }
