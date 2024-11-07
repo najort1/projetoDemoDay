@@ -1,71 +1,68 @@
-import "./styleHeader.css";
-import { useNavigate } from 'react-router-dom';
+import "./styleHeader.css"; 
+import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 
 function Header() {
-
-  //Navegações
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const navegarParaPaginaPrincipal = () => {//Página principal
-    navigate('/');
-  }
+  // Verifica se a página atual é "CadastroEmpresa"
+  const isCadastroEmpresaPage = location.pathname === '/cadastro-empresa';
 
-  const navegarParaOLogin = () => {//Página de login
+  const navegarParaOLogin = () => {
     navigate('/login');
-  }
+  };
 
-  const navegarParaOCadastro = () => {//Página de cadastro
+  const navegarParaOCadastro = () => {
     navigate('/cadastro');
-  }
+  };
 
-  const navegarParaPaginaVagas = () => {//Página de vagas
+  const navegarParaPaginaPrincipal = () => {
     navigate('/vagas');
-  }
-
-  const navegarParaCadastroEmpresa = () => {
-    navigate('/cadastroEmpresa');
-  } 
+  };
 
   return (
-    
     <header>
-      
-      <div id="logoHeader" onClick={navegarParaPaginaPrincipal}>
-
-        <img src={logo} alt='logo' id='imgLogo'/>
-
+      <div id="logo" onClick={navegarParaPaginaPrincipal}>
+        {!isCadastroEmpresaPage ? (
+          // Exibe a logo para outras páginas
+          <img src={logo} alt="logo" id="imgLogo" />
+        ) : (
+          // Exibe "Página Inicial" e "Sou Candidato" no lugar da logo para a página CadastroEmpresa
+          <div className="opcoesHeaderCadastro" style={{width:'40cm', fontSize:'19px', marginLeft:'2cm'}}>
+            <a onClick={navegarParaPaginaPrincipal}>Página Inicial </a>
+            <a> | </a>
+            <a onClick={() => navigate('/candidato')}>Sou Candidato</a>
+          </div>
+        )}
       </div>
       
       <div className="conteudoHeader">
-
-        <nav className="listaIdentificador">
-
-          <ul className="identificadorCandidato">
-
-            <li>
-              <a href="">Sou candidato</a>
-            </li>
-
-            <li>
-              <a onClick={navegarParaCadastroEmpresa}>Sou empresa</a>
-            </li>
-
-            <li>
-              <a href="" onClick={navegarParaPaginaVagas}>Vagas</a>
-            </li>
-
-          </ul>
-
-        </nav>
-
-        <div className="botoes">
-          <button className="btn" onClick={navegarParaOLogin}>Entrar</button>
-          <button className="btn" onClick={navegarParaOCadastro}>Cadastro</button>
-        </div>
-
+        {!isCadastroEmpresaPage ? (
+          // Conteúdo padrão do Header para outras páginas
+          <>
+            <div className="listaIdentificador">
+              <ul className="identificadorCandidato">
+                <li>
+                  <a href="">Sou candidato</a>
+                </li>
+                <li>
+                  <a onClick={() => navigate('/cadastro-empresa')}>Sou empresa</a>
+                </li>
+              </ul>
+            </div>
+            <div className="botoes">
+              <button className="btn" onClick={navegarParaOLogin}>Entrar</button>
+              <button className="btn" onClick={navegarParaOCadastro}>Cadastro</button>
+            </div>
+          </>
+        ) : (
+          // Conteúdo do Header para a página CadastroEmpresa
+          <div className="headerCadastroEmpresa">
+            
+          </div>
+        )}
       </div>
-
     </header>
   );
 }
