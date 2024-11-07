@@ -4,6 +4,7 @@ import Header from '../paginaPrincipal/Header';
 import Footer from '../paginaPrincipal/Footer';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import camaleao from '../../assets/camaleao.png';
 import Logo from '../../assets/logo.png';
 
 const CadastroEmpresa = () => {
@@ -247,43 +248,38 @@ const CadastroEmpresa = () => {
         <>
             <Header />
             <main>
-                <div id='expli'>
+            <div id="expli"> 
+                <div className="titulo_expli">
+                <img src={camaleao} alt="" className="logo-image" />
 
-                    <div className="titulo_expli">
+                    <h2>Sobre a NuhCorre</h2>
+                    <p>
+                        A NuhCorre é líder em conectar talentos com oportunidades.<br/>
+                        Nossa missão é criar um mercado de trabalho <br/>
+                        mais inclusivo e acessível para todos.<br/>
+                    </p>
 
-                        <img src={Logo} alt=''/>
-                        <h2>Sobre a NuhCorre</h2>
-                        <p>
-                            A nuhCorre é lider em conectar com<br/>
-                            oportunidades, Nossa missão é criar um mercado de<br/>
-                            trabalho mais incrusivo e acessivel paratodos
-
-                            <ul>
-
-                                <li>Mais de 1 milhão de vagas preenchidas</li>
-                                <li>Presente em todo o Brasil</li>
-                                <li>Suporte personalizado para candidatos e empressas</li>
-
-                            </ul>
-
-                        </p>
-
-                    </div>
-
+                    <ul className="check-list">
+                        <li>Encontre candidatos próximos a sua empresa!</li>
+                        <li>Filtros de vagas personalizados.</li>
+                        <li>Suporte personalizado para candidatos e empresas.</li>
+                    </ul>
                 </div>
+            </div>
+
                 <div id="caixaCadastro">
                     <div className='alinhamento'>
 
-                        <img src={Logo} alt='' className='alinhamento' style={{width: '10vw'}}/>
+                        <img src={Logo} alt='' className='alinhamento' style={{width: '11vw'}}/>
                         <h2 className='alinhamento' style={{marginBottom:'10px'}}>Crie sua conta</h2>
-                        <span className='alinhamento'>Comece sua jornada profissional conosco</span>
+                        <span className='alinhamento' style={{marginBottom:'15px', fontSize:'18px'}}>Inclusão começa com oportunidades!</span>
 
                     </div>
                     
                     <form>
 
                         <div>
-                            <label htmlFor="name">Nome:</label>
+                            <label htmlFor="name">Nome fantasia:</label>
                             <input type="text" name="nome" required pattern="^([a-zA-ZÀ-ÖØ-öø-ÿ]|\s)*$" placeholder="Nome" />
                             <span ref={erroNome} className="erro"></span>
                         </div>
