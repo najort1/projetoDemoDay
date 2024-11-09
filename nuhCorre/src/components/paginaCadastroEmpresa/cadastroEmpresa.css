@@ -55,6 +55,7 @@ form{width: 100%;}
 
 }
 
+
 /* Estilização do placeholder */
 input::placeholder {
 
@@ -86,7 +87,7 @@ input:not(:focus)::placeholder {
 /*Botão submit*/
 #caixaCadastro input[type='submit']{
 
-    background: #425BD6;
+    background: #3165b3 !important;
     color: #fff;
     border:none;
     cursor: pointer;
@@ -94,7 +95,7 @@ input:not(:focus)::placeholder {
 
 #caixaCadastro input[type='submit']:hover{
 
-    background: #334ed8;
+    background: #5B82BB !important;
     transition: background 1s;
 
 }
@@ -122,7 +123,7 @@ span{
 #expli {
     width: 50vw;
     height: calc(100vh - 10rem);
-    background: #5b82bb;
+    background: #5B82BB;
     color: #fff;
     display: flex;
     align-items: center;
@@ -147,3 +148,23 @@ span{
 
 }
 
+/* Estilos para a lista com o símbolo de check */
+.check-list {
+    list-style-type: none; /* Remove a numeração padrão */
+    padding: 0;
+    margin: 0;
+}
+
+.check-list li::before {
+    content: "✓"; /* Símbolo de check */
+    color: rgb(255, 255, 255); /* Define a cor do símbolo */
+    font-weight: bold;
+    margin-right: 8px; /* Espaço entre o símbolo e o texto */
+}
+
+
+
+.logo-image {
+    width: 180px; /* Defina a largura desejada */
+    height: auto; /* Ajusta a altura proporcionalmente */
+}
