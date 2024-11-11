@@ -1,63 +1,60 @@
 main{
 
-    align-items: center;
     display: flex;
+    align-items: center;
     justify-content: center;
 
 }
 
 .alinhamento{
 
-    align-items: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 
 }
-
 #caixaCadastro{
 
     background: #fff;
     border: 2px solid rgba(255, 255, 255, 0.2);
     color: #000;
+    width: 50vw;
     height: calc(100vh - 10rem);
     overflow: auto;
     padding: 40px;
-    width: 50vw;
 
 }
+#caixaCadastro span{color: gray;}
 
 #caixaCadastro div{margin: 10px 0;}
 
 /* Formatação do form */
 
-#caixaCadastro label{display: block;}
-#caixaCadastro form{width: 100%;}
+label{display: block;}
+form{width: 100%;}
 
 #caixaCadastro form input,
 #caixaCadastro select{
 
     border-radius: 4px;
+    /*background: #171717c0;*/
     background: #fff;
     border: 1px solid #565656;
+    /*color: #b8b8b8;*/
     color: #000;
     font-size: 1em;
     font-weight: 500;
-    height: 50px;
+    height: 50px !important;
     line-height: 1.5;
+    /*margin-bottom: 15px;*/
     margin: 5px 0;
     outline: none;
     padding: 0 15px;
-    width: 100%;
+    width: 100% !important;
 
 }
 
-#caixaCadastro span{
-
-    margin-bottom: 20px;
-    color: #000;
-
-}
 
 /* Estilização do placeholder */
 input::placeholder {
@@ -90,7 +87,7 @@ input:not(:focus)::placeholder {
 /*Botão submit*/
 #caixaCadastro input[type='submit']{
 
-    background: #425BD6;
+    background: #3165b3 !important;
     color: #fff;
     border:none;
     cursor: pointer;
@@ -98,8 +95,16 @@ input:not(:focus)::placeholder {
 
 #caixaCadastro input[type='submit']:hover{
 
-    background: #334ed8;
+    background: #5B82BB !important;
     transition: background 1s;
+
+}
+
+/*Span de erro*/
+span{
+
+    margin-bottom: 20px;
+    color: #fff;
 
 }
 
@@ -115,21 +120,51 @@ input:not(:focus)::placeholder {
     background: #dad7d7;
 }
 
-#descricao{
-
-    align-items: center;
-    background: #5b82bbd1;
+#expli {
+    width: 50vw;
+    height: calc(100vh - 10rem);
+    background: #5B82BB;
     color: #fff;
     display: flex;
-    height: calc(100vh - 10rem);
+    align-items: center;
     padding-left: 2rem;
-    width: 50vw;
+    justify-content: center;
+}
+
+#expli p {
+    margin-top: 10px;
+    font-size: 1.2em;
+}
+
+#expli h2{
+    
+    margin-bottom: 20px;
 
 }
-#descricao h2{margin-bottom: 20px;}
-#descricao ul li{
+#expli ul li{
 
     display: block;
     margin: 15px 0;
 
+}
+
+/* Estilos para a lista com o símbolo de check */
+.check-list {
+    list-style-type: none; /* Remove a numeração padrão */
+    padding: 0;
+    margin: 0;
+}
+
+.check-list li::before {
+    content: "✓"; /* Símbolo de check */
+    color: rgb(255, 255, 255); /* Define a cor do símbolo */
+    font-weight: bold;
+    margin-right: 8px; /* Espaço entre o símbolo e o texto */
+}
+
+
+
+.logo-image {
+    width: 180px; /* Defina a largura desejada */
+    height: auto; /* Ajusta a altura proporcionalmente */
 }

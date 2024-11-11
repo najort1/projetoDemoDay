@@ -1,17 +1,18 @@
 import { useEffect, useRef, useState } from 'react';
-import './cadastro.css';
-import Header from '../header/Header';
-import Footer from '../footer/Footer';
+import './cadastroEmpresa.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import camaleao from '../../assets/camaleao.png';
 import Logo from '../../assets/logo.png';
+import Header from '../header/Header';
+import Footer from '../footer/Footer';
 
-const CadastroUsuario = () => {
+const CadastroEmpresa = () => {
 
     //Referências para error dos inputs
     const erroNome = useRef(null);
     const erroData = useRef(null);
-    const erroCpf = useRef(null);
+    const erroCNPJ = useRef(null);
     const erroEmail = useRef(null);
     const erroSenha = useRef(null);
     const erroTelefone = useRef(null);
@@ -90,14 +91,14 @@ const CadastroUsuario = () => {
 
                         break;
 
-                    case 'cpf':
+                    case 'CNPJ':
 
                         if (element.validity.valueMissing) {
-                            errorStyling('Preencha o campo.', erroCpf.current, element, true);
+                            errorStyling('Preencha o campo.', erroCNPJ.current, element, true);
                         } else if (element.validity.patternMismatch) {
-                            errorStyling('Preencha um CPF válido (xxx.xxx.xxx-xx).', erroCpf.current, element, true);
+                            errorStyling('Preencha um CNPJ válido (xxx.xxx.xxx-xx).', erroCNPJ.current, element, true);
                         } else {
-                            errorStyling(undefined, erroCpf.current, element, false);
+                            errorStyling(undefined, erroCNPJ.current, element, false);
                         }
 
                         break;
@@ -155,9 +156,9 @@ const CadastroUsuario = () => {
             });
 
             // Formata o CPF enquanto o usuário digita
-            if (element.name === 'cpf') {
+            if (element.name === 'CNPJ') {
                 element.addEventListener('input', (e) => {
-                    const valorFormatado = formatarCPF(e.target.value);
+                    const valorFormatado = formatarCNPJ(e.target.value);
                     e.target.value = valorFormatado;
                 });
             }
@@ -173,13 +174,13 @@ const CadastroUsuario = () => {
     };
 
     //Formatação do cpf
-    const formatarCPF = (cpf) => {
-        cpf = cpf.replace(/\D/g, ''); // Remove caracteres não numéricos
-        return cpf.replace(/(\d{3})(\d)/, '$1.$2')
-                  .replace(/(\d{3})(\d)/, '$1.$2')
-                  .replace(/(\d{3})(\d{2})$/, '$1-$2');
+    const formatarCNPJ = (cnpj) => {
+        cnpj = cnpj.replace(/\D/g, ''); // Remove caracteres não numéricos
+        return cnpj.replace(/(\d{2})(\d)/, '$1.$2')
+                    .replace(/(\d{3})(\d)/, '$1.$2')
+                    .replace(/(\d{3})(\d)/, '$1/$2')
+                    .replace(/(\d{4})(\d{1,2})$/, '$1-$2');
     };
-
     //Formatação do número de telefone
     const formatarTelefone = (telefone) => {
         telefone = telefone.replace(/\D/g, ''); // Remove caracteres não numéricos
@@ -245,94 +246,42 @@ const CadastroUsuario = () => {
 
     return (
         <>
-            <Header />
+            <Header/>
             <main>
-                <div id='descricao'>
+            <div id="expli"> 
+                <div className="titulo_expli">
+                <img src={camaleao} alt="" className="logo-image" />
 
-                    <div>
+                    <h2>Sobre a NuhCorre</h2>
+                    <p>
+                        A NuhCorre é líder em conectar talentos com oportunidades.<br/>
+                        Nossa missão é criar um mercado de trabalho <br/>
+                        mais inclusivo e acessível para todos.<br/>
+                    </p>
 
-                        <img src={Logo} alt=''/>
-                        <h2>Sobre a NuhCorre</h2>
-                        <p>
-                            A nuhCorre é lider em conectar com<br/>
-                            oportunidades, Nossa missão é criar um mercado de<br/>
-                            trabalho mais incrusivo e acessivel paratodos
-
-                            <ul>
-
-                                <li>Mais de 1 milhão de vagas preenchidas</li>
-                                <li>Presente em todo o Brasil</li>
-                                <li>Suporte personalizado para candidatos e empressas</li>
-
-                            </ul>
-
-                        </p>
-
-                    </div>
-
+                    <ul className="check-list">
+                        <li>Encontre candidatos próximos a sua empresa!</li>
+                        <li>Filtros de vagas personalizados.</li>
+                        <li>Suporte personalizado para candidatos e empresas.</li>
+                    </ul>
                 </div>
+            </div>
+
                 <div id="caixaCadastro">
                     <div className='alinhamento'>
 
-                        <img src={Logo} alt='' className='alinhamento' style={{width: '10vw'}}/>
+                        <img src={Logo} alt='' className='alinhamento' style={{width: '11vw'}}/>
                         <h2 className='alinhamento' style={{marginBottom:'10px'}}>Crie sua conta</h2>
-                        <span className='alinhamento'>Comece sua jornada profissional conosco</span>
+                        <span className='alinhamento' style={{marginBottom:'15px', fontSize:'18px'}}>Inclusão começa com oportunidades!</span>
 
                     </div>
                     
                     <form>
 
                         <div>
-                            <label htmlFor="name">Nome:</label>
+                            <label htmlFor="name">Nome fantasia:</label>
                             <input type="text" name="nome" required pattern="^([a-zA-ZÀ-ÖØ-öø-ÿ]|\s)*$" placeholder="Nome" />
                             <span ref={erroNome} className="erro"></span>
-                        </div>
-
-                        <div>
-                            <label htmlFor="Data">Data de Nascimento:</label>
-                            <input type="date" name="dataNascimento" required placeholder="Data de Nascimento" />
-                            <span ref={erroData} className="erro"></span>
-                        </div>
-
-                        <div>
-                            <label htmlFor="cpf">CPF:</label>
-                            <input type="text" name="cpf" pattern='^\d{3}\.\d{3}\.\d{3}-\d{2}$' required placeholder="CPF" />
-                            <span ref={erroCpf} className="erro"></span>
-                        </div>
-
-                        <div>
-                            <label htmlFor="endereco">Endereço:</label>
-                            <input type="text" name="endereco" required placeholder="Endereço" />
-                            <span className="erro"></span>
-                        </div>
-
-                        <div>
-                            <label htmlFor="escolaridade">Escolaridade:</label>
-                            <input type="text" name="escolaridade" required placeholder="Escolaridade" />
-                            <span className="erro"></span>
-                        </div>
-
-                        <div>
-                            <label htmlFor="sexo">Sexo:</label>
-                            <select name="sexo" required>
-                                <option value="" disabled selected>Selecione seu sexo</option>
-                                <option value="masculino">Masculino</option>
-                                <option value="feminino">Feminino</option>
-                                <option value="outro">Outro</option>
-                            </select>
-    
-                        </div>
-
-                        <div>
-                            <label htmlFor="telefone">Telefone:</label>
-                            <input type="tel" name="telefone" pattern="^\(\d{2}\) \d{4,5}-\d{4}$" required placeholder="(XX) XXXX-XXXX" />
-                            <span ref={erroTelefone} className="erro"></span>
-                        </div>
-
-                        <div>
-                            <label htmlFor="vulnerabilidade">Vulnerabilidade:</label>
-                            <input type="text" name="vulnerabilidade" pattern='^[a-zA-ZÀ-ÖØ-öø-ÿ]+$' required placeholder="Vulnerabilidade" />
-                            <span ref={errovulnerabilidade} className="erro"></span>
                         </div>
 
                         <div>
@@ -340,6 +289,25 @@ const CadastroUsuario = () => {
                             <input type="email" name="email" required pattern="^[a-zA-Z0-9_]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" placeholder="Email" />
                             <span ref={erroEmail} className="erro"></span>
                         </div>
+
+                        <div>
+                            <label htmlFor="telefone">Telefone:</label>
+                            <input type="tel" name="telefone" pattern="^\(\d{2}\) \d{4,5}-\d{4}$" required placeholder="(XX) XXXX-XXXX" />
+                            <span ref={erroTelefone} className="erro"></span>
+                        </div>
+                        
+                        <div>
+                            <label htmlFor="CNPJ">CNPJ:</label>
+                            <input 
+                                type="text" 
+                                name="CNPJ" 
+                                required 
+                                pattern="^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$" 
+                                placeholder="CNPJ" 
+                            />
+                            <span ref={erroCNPJ} className="erro"></span>
+                        </div>
+
 
                         <div>
                             <label htmlFor="senha">Senha:</label>
@@ -380,9 +348,9 @@ const CadastroUsuario = () => {
                 </div>
             </main>
 
-            <Footer />
+            <Footer/>
         </>
     );
 };
 
-export default CadastroUsuario;
+export default CadastroEmpresa;
