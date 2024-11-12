@@ -6,10 +6,12 @@ import camaleao from '../../assets/camaleao.png';
 import Logo from '../../assets/logo.png';
 import Header from '../header/Header';
 import Footer from '../footer/Footer';
+import olhoAberto from '../../assets/olhoAberto.jpg.png'; // Caminho para o ícone de olho aberto
+import olhoFechado from '../../assets/olhoFechado.jpg'; // Caminho para o ícone de olho fechado
 
 const CadastroEmpresa = () => {
 
-    //Referências para error dos inputs
+    // Referências para error dos inputs
     const erroNome = useRef(null);
     const erroData = useRef(null);
     const erroCNPJ = useRef(null);
@@ -19,8 +21,7 @@ const CadastroEmpresa = () => {
     const errovulnerabilidade = useRef(null);
     const navigate = useNavigate();
 
-
-    //Estados para animação para visibilidade da senha
+    // Estados para animação para visibilidade da senha
     const [senha, setSenha] = useState('');
     const [senhaVisivel, setSenhaVisivel] = useState(false);
 
@@ -28,71 +29,57 @@ const CadastroEmpresa = () => {
         setSenhaVisivel(!senhaVisivel);
     };
 
-    //Estilização para quando dá erro em algum campo
+    // Estilização para quando dá erro em algum campo
     const errorStyling = (mensagem = '', span, tag, booleano) => {
         if (booleano) {
-            span.innerHTML = mensagem;//mensagem a ser exibida
-            tag.style.border = '2px solid red';//estilização da borda
+            span.innerHTML = mensagem; // Mensagem a ser exibida
+            tag.style.border = '2px solid red'; // Estilização da borda
         } else {
             span.innerHTML = '';
             tag.style.border = 'none';
         }
     };
 
-    //Execução dos erros
+    // Execução dos erros
     const errorHandling = () => {
-
-        const inputs = Array.from(document.querySelectorAll('input')).slice(0, -1);//Pegando todos os inputs(menos o submit)
+        const inputs = Array.from(document.querySelectorAll('input')).slice(0, -1); // Pegando todos os inputs (menos o submit)
 
         inputs.forEach((element) => {
 
-            //Quando um input entrar em foco ficará com essa estilização
+            // Quando um input entrar em foco ficará com essa estilização
             element.addEventListener('focus', () => {
                 element.style.border = 'none';
                 element.style.borderBottom = '5px solid #ff510c';
             });
 
-            //Quando sair do foco
+            // Quando sair do foco
             element.addEventListener('blur', () => {
 
                 let data;
 
-                /*
-                    valueMissing - O campo etá vazio
-                    patternMismatch - validando o pattern
-                
-                */
-
                 switch (element.name) {
-
                     case 'name':
-
                         if (element.validity.valueMissing) {
                             errorStyling('Preencha o campo.', erroNome.current, element, true);
                         } else if(element.validity.patternMismatch) {
                             errorStyling('Preencha apenas com letras.', erroNome.current, element, true);
-                        }else{
+                        } else {
                             errorStyling(undefined, erroNome.current, element, false);
                         }
-
                         break;
 
                     case 'Data':
-
-                        data = new Date(element.value);//Pagando ano digitado
-
+                        data = new Date(element.value); // Pegando ano digitado
                         if (element.validity.valueMissing) {
                             errorStyling('Preencha o campo.', erroData.current, element, true);
                         } else if (data.getFullYear() >= new Date().getFullYear() || (new Date().getFullYear() - data.getFullYear() < 18)) {
-                            errorStyling('Preencha uma data valida.', erroData.current, element, true);
+                            errorStyling('Preencha uma data válida.', erroData.current, element, true);
                         } else {
                             errorStyling(undefined, erroData.current, element, false);
                         }
-
                         break;
 
                     case 'CNPJ':
-
                         if (element.validity.valueMissing) {
                             errorStyling('Preencha o campo.', erroCNPJ.current, element, true);
                         } else if (element.validity.patternMismatch) {
@@ -100,11 +87,9 @@ const CadastroEmpresa = () => {
                         } else {
                             errorStyling(undefined, erroCNPJ.current, element, false);
                         }
-
                         break;
 
                     case 'telefone':
-
                         if (element.validity.valueMissing) {
                             errorStyling('Preencha o campo.', erroTelefone.current, element, true);
                         } else if (element.validity.patternMismatch) {
@@ -112,25 +97,19 @@ const CadastroEmpresa = () => {
                         } else {
                             errorStyling(undefined, erroTelefone.current, element, false);
                         }
-
                         break;
-                    case 'vulnerabilidade':
 
+                    case 'vulnerabilidade':
                         if (element.validity.valueMissing) {
                             errorStyling('Preencha o campo.', errovulnerabilidade.current, element, true);
                         } else if (element.validity.patternMismatch) {
-
                             errorStyling('Preencha apenas caracteres.', errovulnerabilidade.current, element, true);
-
-                        }else{
-
+                        } else {
                             errorStyling(undefined, errovulnerabilidade.current, element, false);
-
                         }
-
                         break;
-                    case 'email':
 
+                    case 'email':
                         if (element.value.length > 50) {
                             errorStyling('O máximo de caracteres é 50.', erroEmail.current, element, true);
                         } else if (element.validity.valueMissing) {
@@ -143,7 +122,6 @@ const CadastroEmpresa = () => {
                         break;
 
                     case 'password':
-
                         if (element.validity.valueMissing) {
                             errorStyling('Preencha o campo.', erroSenha.current, element, true);
                         } else if (element.value.length < 8 || element.value.length > 20 || element.validity.patternMismatch) {
@@ -155,7 +133,7 @@ const CadastroEmpresa = () => {
                 }
             });
 
-            // Formata o CPF enquanto o usuário digita
+            // Formatação do CNPJ
             if (element.name === 'CNPJ') {
                 element.addEventListener('input', (e) => {
                     const valorFormatado = formatarCNPJ(e.target.value);
@@ -163,7 +141,7 @@ const CadastroEmpresa = () => {
                 });
             }
 
-            // Formata o telefone enquanto o usuário digita
+            // Formatação do telefone
             if (element.name === 'telefone') {
                 element.addEventListener('input', (e) => {
                     const valorFormatado = formatarTelefone(e.target.value);
@@ -173,7 +151,7 @@ const CadastroEmpresa = () => {
         });
     };
 
-    //Formatação do cpf
+    // Formatação do CNPJ
     const formatarCNPJ = (cnpj) => {
         cnpj = cnpj.replace(/\D/g, ''); // Remove caracteres não numéricos
         return cnpj.replace(/(\d{2})(\d)/, '$1.$2')
@@ -181,7 +159,8 @@ const CadastroEmpresa = () => {
                     .replace(/(\d{3})(\d)/, '$1/$2')
                     .replace(/(\d{4})(\d{1,2})$/, '$1-$2');
     };
-    //Formatação do número de telefone
+
+    // Formatação do telefone
     const formatarTelefone = (telefone) => {
         telefone = telefone.replace(/\D/g, ''); // Remove caracteres não numéricos
         if (telefone.length <= 10) {
@@ -243,22 +222,19 @@ const CadastroEmpresa = () => {
         }
     };
 
-
     return (
         <>
-            <Header/>
+            <Header />
             <main>
             <div id="expli"> 
                 <div className="titulo_expli">
-                <img src={camaleao} alt="" className="logo-image" />
-
+                    <img src={camaleao} alt="" className="logo-image" />
                     <h2>Sobre a NuhCorre</h2>
                     <p>
                         A NuhCorre é líder em conectar talentos com oportunidades.<br/>
                         Nossa missão é criar um mercado de trabalho <br/>
                         mais inclusivo e acessível para todos.<br/>
                     </p>
-
                     <ul className="check-list">
                         <li>Encontre candidatos próximos a sua empresa!</li>
                         <li>Filtros de vagas personalizados.</li>
@@ -267,88 +243,91 @@ const CadastroEmpresa = () => {
                 </div>
             </div>
 
-                <div id="caixaCadastro">
-                    <div className='alinhamento'>
+            <div id="caixaCadastro">
+                <div className="alinhamento">
+                    <img src={Logo} alt='' className="alinhamento" style={{width: '11vw'}} />
+                    <h2 className="alinhamento" style={{marginBottom:'10px'}}>Crie sua conta</h2>
+                    <span className="alinhamento" style={{marginBottom:'15px', fontSize:'18px'}}>Inclusão começa com oportunidades!</span>
+                </div>
+                
+                <form>
 
-                        <img src={Logo} alt='' className='alinhamento' style={{width: '11vw'}}/>
-                        <h2 className='alinhamento' style={{marginBottom:'10px'}}>Crie sua conta</h2>
-                        <span className='alinhamento' style={{marginBottom:'15px', fontSize:'18px'}}>Inclusão começa com oportunidades!</span>
+                    <div>
+                        <label htmlFor="name">Nome fantasia:</label>
+                        <input type="text" name="nome" required pattern="^([a-zA-ZÀ-ÖØ-öø-ÿ]|\s)*$" placeholder="Nome" />
+                        <span ref={erroNome} className="erro"></span>
+                    </div>
 
+                    <div>
+                        <label htmlFor="email">Email:</label>
+                        <input type="email" name="email" required pattern="^[a-zA-Z0-9_]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" placeholder="Email" />
+                        <span ref={erroEmail} className="erro"></span>
+                    </div>
+
+                    <div>
+                        <label htmlFor="telefone">Telefone:</label>
+                        <input type="tel" name="telefone" pattern="^\(\d{2}\) \d{4,5}-\d{4}$" required placeholder="(XX) XXXX-XXXX" />
+                        <span ref={erroTelefone} className="erro"></span>
                     </div>
                     
-                    <form>
+                    <div>
+                        <label htmlFor="CNPJ">CNPJ:</label>
+                        <input 
+                            type="text" 
+                            name="CNPJ" 
+                            required 
+                            pattern="^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$" 
+                            placeholder="CNPJ" 
+                        />
+                        <span ref={erroCNPJ} className="erro"></span>
+                    </div>
 
-                        <div>
-                            <label htmlFor="name">Nome fantasia:</label>
-                            <input type="text" name="nome" required pattern="^([a-zA-ZÀ-ÖØ-öø-ÿ]|\s)*$" placeholder="Nome" />
-                            <span ref={erroNome} className="erro"></span>
-                        </div>
-
-                        <div>
-                            <label htmlFor="email">Email:</label>
-                            <input type="email" name="email" required pattern="^[a-zA-Z0-9_]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" placeholder="Email" />
-                            <span ref={erroEmail} className="erro"></span>
-                        </div>
-
-                        <div>
-                            <label htmlFor="telefone">Telefone:</label>
-                            <input type="tel" name="telefone" pattern="^\(\d{2}\) \d{4,5}-\d{4}$" required placeholder="(XX) XXXX-XXXX" />
-                            <span ref={erroTelefone} className="erro"></span>
-                        </div>
-                        
-                        <div>
-                            <label htmlFor="CNPJ">CNPJ:</label>
-                            <input 
-                                type="text" 
-                                name="CNPJ" 
-                                required 
-                                pattern="^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$" 
-                                placeholder="CNPJ" 
+                    <div>
+                        <label htmlFor="senha">Senha:</label>
+                        <div style={{ position: 'relative' }}>
+                            <input
+                                type={senhaVisivel ? 'text' : 'password'}
+                                name="senha"
+                                value={senha}
+                                onChange={(e) => setSenha(e.target.value)}
+                                required
+                                placeholder="Senha"
+                                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$"
                             />
-                            <span ref={erroCNPJ} className="erro"></span>
-                        </div>
-
-
-                        <div>
-                            <label htmlFor="senha">Senha:</label>
-                            
-                            <div style={{ position: 'relative' }}>
-                                <input
-                                    type={senhaVisivel ? 'text' : 'password'}
-                                    name="senha"
-                                    value={senha}
-                                    onChange={(e) => setSenha(e.target.value)}
-                                    required
-                                    placeholder="Senha"
-                                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$"
-                                />
-                                <button
-                                    type="button"
-                                    onClick={toggleSenhaVisivel}
+                            <button
+                                type="button"
+                                onClick={toggleSenhaVisivel}
+                                style={{
+                                    position: 'absolute',
+                                    right: '10px',
+                                    top: '50%',
+                                    transform: 'translateY(-50%)',
+                                    background: 'none',
+                                    border: 'none',
+                                    cursor: 'pointer',
+                                }}
+                            >
+                                <img
+                                    src={senhaVisivel ? olhoAberto : olhoFechado}
+                                    alt="Alternar visibilidade da senha"
                                     style={{
-                                        position: 'absolute',
-                                        right: '10px',
-                                        top: '50%',
-                                        transform: 'translateY(-50%)',
-                                        background: 'none',
-                                        border: 'none',
-                                        cursor: 'pointer',
+                                        width: '24px',
+                                        height: '24px',
+                                        marginRight:'10px'
                                     }}
-                                    value='Criar conta'
-                                >
-                                    {senhaVisivel ? '-' : '👁'} {/* Ícones para mostrar/esconder */}
-                                </button>
-                                <span ref={erroSenha} className="erro"></span>
-                            </div>
+                                />
+                            </button>
                         </div>
+                        <span ref={erroSenha} className="erro"></span>
+                    </div>
 
-                        <input type="submit" onClick={handleCadastro} />
-                        <a href='' style={{color: '#000', textAlign:'center', display: 'block'}}>Já tem uma conta? <span style={{color: '#425BD6'}}>Faça login</span></a>
-                    </form>
-                </div>
-            </main>
+                    <input style={{marginTop:'10px'}} type="submit" onClick={handleCadastro} />
+                    <a href='' style={{color: '#000', textAlign:'center', display: 'block', marginTop:'15px'}}>Já tem uma conta? <span style={{color: '#425BD6'}}>Faça login</span></a>
+                </form>
+            </div>
+        </main>
 
-            <Footer/>
+        <Footer />
         </>
     );
 };
