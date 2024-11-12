@@ -167,4 +167,6 @@ span{
 .logo-image {
     width: 180px; /* Defina a largura desejada */
     height: auto; /* Ajusta a altura proporcionalmente */
+    margin-left: 4cm;
+    margin-bottom: 0.5cm;
 }
