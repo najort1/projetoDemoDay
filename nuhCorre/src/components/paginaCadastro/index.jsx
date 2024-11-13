@@ -259,11 +259,6 @@ const CadastroUsuario = () => {
                             oportunidades. Nossa missão é criar um mercado de<br/>
                             trabalho mais inclusivo e acessivel para todos.
 
-<<<<<<< Updated upstream
-                            <ul className='check-list'>
-=======
->>>>>>> Stashed changes
-
                             <ul className="check-list">
 
                                 <li>Encontre canditados próximos a você! </li>
