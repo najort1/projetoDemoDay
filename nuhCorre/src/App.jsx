@@ -5,6 +5,8 @@ import CadastroUsuario from './components/paginaCadastro';
 import PesquisaVaga from './components/paginaPrincipal/Main';
 import { Vagas } from './components/paginaVagas/IndexVagas';
 import CadastroEmpresa from './components/paginaCadastroEmpresa';
+import { EdicaoEmpressa } from './components/EdicaoEmpressa/edicaoEmpressa';
+import EditarPerfilCandidato from './components/EditarPerfilCandidato';
 
 function App() {
 
@@ -33,6 +35,8 @@ function App() {
           <Route path="/cadastro" element={<CadastroUsuario />} />
           <Route path="/cadastroEmpresa" element={<CadastroEmpresa/>} />
           <Route path="/vagas" element={<Vagas/>} />
+          <Route path="/edicaoEmpressa" element={<EdicaoEmpressa/>} />
+          <Route path="/editarPerfilCandidato" element={<EditarPerfilCandidato/>} />
         </Routes>
       </Router>
     </>

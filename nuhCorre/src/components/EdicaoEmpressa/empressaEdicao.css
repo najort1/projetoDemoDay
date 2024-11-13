@@ -1,0 +1,141 @@
+.alinhamentoTitulo{
+
+    display: flex;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: #5b82bbd1;
+    color: #fff;
+
+}
+
+.tituloUsuario{margin-left: 20px;}
+
+#perfil{
+
+    border-radius: 100px;
+    width: 9vw;
+
+}
+
+
+#formEmpresa{
+
+    display: flex;
+    margin-top: 20px;
+    background: #F9FAFC;
+    height: 100vh;
+
+}
+
+#formEmpresa form{
+
+    background: #fff;
+    width: calc(95vw - 199px);
+    justify-content: space-around;
+    display:flex;
+    margin-top: 10px;
+
+}
+
+#formEmpresa form label{
+
+    margin: 10px 0;
+
+}
+.caixaInterna h1{
+
+    padding: 10px 0px 10px 40px;
+    border-bottom: 2px solid #E6E6E6;
+
+}
+.caixaInterna{
+
+    border: 2px solid #E6E6E6;
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+}
+#formEmpresa input, #formEmpresa select{
+
+    border: 2px solid #CFCFCF;
+    border-radius: 8px;
+    padding-left: 10px;
+    cursor:auto;
+
+}
+
+#formEmpresa input[type='radio']:first-child{margin-left:10px;}
+
+#formEmpresa input:not([type="radio"]):not([type="submit"]):not([type="reset"]), #formEmpresa select{
+
+
+    width: 30vw;
+    height: 6vh;
+
+}
+.linksInterno{
+    
+    margin-left: 1rem;
+    font-weight: 600;
+
+}
+.linksInterno ul li{
+
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px 10px;
+
+}
+.caixasCentrais div{
+    background: #fff;
+
+}
+.linkSelecionado{
+
+    background: #718CB3;
+    color: #fff;
+    border-radius: 3px;
+
+}
+.caixasCentrais{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+.textoLei{
+
+    background: #D8ECF5 !important;
+    color: #3C71BD;
+    padding: 20px 30px;
+    border-radius: 6px;
+    width: 60vw;
+    text-align: center;
+}
+
+#formEmpresa input[type='submit']{
+
+    margin-right: 20px;
+
+}
+#formEmpresa input[type='submit'],
+#formEmpresa input[type='reset']{
+
+    width: 190px;
+    height: 50px;
+    font-weight: 600;
+    color: #fff;
+    background: #718CB3;
+    cursor: pointer !important;
+    padding: 0 !important;
+
+}
+
+#botoes{
+
+    margin-top: 11vw;
+
+}

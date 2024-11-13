@@ -37,11 +37,11 @@ form{width: 100%;}
 #caixaCadastro form input,
 #caixaCadastro select{
 
-    border-radius: 4px;
+    border-radius: 15px;
     /*background: #171717c0;*/
     background: #fff;
-    border: 1px solid #565656;
-    /*color: #b8b8b8;*/
+    border: 2px solid #2F6FCC;
+    box-shadow: 3px 6px 6px rgba(0, 0, 0, 0.362);
     color: #000;
     font-size: 1em;
     font-weight: 500;
@@ -54,7 +54,6 @@ form{width: 100%;}
     width: 100% !important;
 
 }
-
 
 /* Estilização do placeholder */
 input::placeholder {
@@ -123,7 +122,7 @@ span{
 #expli {
     width: 50vw;
     height: calc(100vh - 10rem);
-    background: #5B82BB;
+    background: #5b82bbd1;
     color: #fff;
     display: flex;
     align-items: center;
@@ -149,22 +148,10 @@ span{
 }
 
 /* Estilos para a lista com o símbolo de check */
-.check-list {
-    list-style-type: none; /* Remove a numeração padrão */
-    padding: 0;
-    margin: 0;
-}
-
-.check-list li::before {
-    content: "✓"; /* Símbolo de check */
-    color: rgb(255, 255, 255); /* Define a cor do símbolo */
-    font-weight: bold;
-    margin-right: 8px; /* Espaço entre o símbolo e o texto */
-}
-
-
 
 .logo-image {
     width: 180px; /* Defina a largura desejada */
     height: auto; /* Ajusta a altura proporcionalmente */
+    margin-left: 4cm;
+    margin-bottom: 0.5cm;
 }

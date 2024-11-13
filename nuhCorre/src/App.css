@@ -54,3 +54,10 @@ ul li {
   margin-right: 1em;
   
 }
+
+.check-list li::before {
+  content: "✓"; /* Símbolo de check */
+  color: rgb(255, 255, 255); /* Define a cor do símbolo */
+  font-weight: bold;
+  margin-right: 8px; /* Espaço entre o símbolo e o texto */
+}
