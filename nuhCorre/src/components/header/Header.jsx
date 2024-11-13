@@ -25,6 +25,10 @@ function Header() {
     navigate('/');
   };
 
+  const edicaoEmpressa = () => {
+    navigate('/edicaoEmpressa');
+  };
+
   return (
     <header>
       <div id="logo" onClick={navegarParaPaginaPrincipal}>
@@ -52,6 +56,9 @@ function Header() {
                 </li>
                 <li>
                   <a onClick={cadastroEmpresa}>Sou empresa</a>
+                </li>
+                <li>
+                  <a onClick={edicaoEmpressa}>EdicaoEmpressa</a>
                 </li>
               </ul>
             </div>
