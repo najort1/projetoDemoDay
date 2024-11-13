@@ -13,12 +13,16 @@ function Header() {
     navigate('/login');
   };
 
-  const navegarParaOCadastro = () => {
+  const cadastroUsuario = () => {
     navigate('/cadastro');
   };
 
+  const cadastroEmpresa = () => {
+    navigate('/cadastroEmpresa');
+  };
+
   const navegarParaPaginaPrincipal = () => {
-    navigate('/vagas');
+    navigate('/');
   };
 
   return (
@@ -29,10 +33,10 @@ function Header() {
           <img src={logo} alt="logo" id="imgLogo" />
         ) : (
           // Exibe "Página Inicial" e "Sou Candidato" no lugar da logo para a página CadastroEmpresa
-          <div className="opcoesHeaderCadastro" style={{width:'40cm', fontSize:'19px', marginLeft:'2cm'}}>
+          <div className="opcoesHeaderCadastro" style={{fontSize:'19px', marginLeft:'2cm'}}>
             <a onClick={navegarParaPaginaPrincipal}>Página Inicial </a>
             <a> | </a>
-            <a onClick={() => navigate('/candidato')}>Sou Candidato</a>
+            <a onClick={cadastroUsuario}>Sou Candidato</a>
           </div>
         )}
       </div>
@@ -44,16 +48,16 @@ function Header() {
             <div className="listaIdentificador">
               <ul className="identificadorCandidato">
                 <li>
-                  <a href="">Sou candidato</a>
+                  <a onClick={cadastroUsuario}>Sou candidato</a>
                 </li>
                 <li>
-                  <a onClick={() => navigate('/cadastroEmpresa')}>Sou empresa</a>
+                  <a onClick={cadastroEmpresa}>Sou empresa</a>
                 </li>
               </ul>
             </div>
             <div className="botoes">
               <button className="btn" onClick={navegarParaOLogin}>Entrar</button>
-              <button className="btn" onClick={navegarParaOCadastro}>Cadastro</button>
+              <button className="btn" onClick={cadastroUsuario}>Cadastro</button>
             </div>
           </>
         ) : (

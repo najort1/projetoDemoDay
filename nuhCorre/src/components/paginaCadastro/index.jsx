@@ -46,10 +46,10 @@ const CadastroUsuario = () => {
         inputs.forEach((element) => {
 
             //Quando um input entrar em foco ficará com essa estilização
-            element.addEventListener('focus', () => {
+            /*element.addEventListener('focus', () => {
                 element.style.border = 'none';
                 element.style.borderBottom = '5px solid #ff510c';
-            });
+            });*/
 
             //Quando sair do foco
             element.addEventListener('blur', () => {
@@ -258,7 +258,7 @@ const CadastroUsuario = () => {
                             oportunidades, Nossa missão é criar um mercado de<br/>
                             trabalho mais incrusivo e acessivel paratodos
 
-                            <ul>
+                            <ul className='check-list'>
 
                                 <li>Mais de 1 milhão de vagas preenchidas</li>
                                 <li>Presente em todo o Brasil</li>

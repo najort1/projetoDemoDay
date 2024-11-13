@@ -47,10 +47,10 @@ const CadastroEmpresa = () => {
         inputs.forEach((element) => {
 
             // Quando um input entrar em foco ficará com essa estilização
-            element.addEventListener('focus', () => {
+            /*element.addEventListener('focus', () => {
                 element.style.border = 'none';
                 element.style.borderBottom = '5px solid #ff510c';
-            });
+            });*/
 
             // Quando sair do foco
             element.addEventListener('blur', () => {
