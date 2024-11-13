@@ -26,7 +26,7 @@ function Header() {
   };
 
   return (
-    <header>
+    <header className="header-principal">
       <div id="logo" onClick={navegarParaPaginaPrincipal}>
         {!isCadastroEmpresaPage ? (
           // Exibe a logo para outras páginas

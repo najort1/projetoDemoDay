@@ -1,9 +1,14 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
+import { PrimeReactProvider } from 'primereact/api';
+import './index.css'
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <PrimeReactProvider>
+      <App />
+    </PrimeReactProvider>
   </StrictMode>,
 )
