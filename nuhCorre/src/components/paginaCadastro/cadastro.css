@@ -29,6 +29,20 @@ main{
 
 #caixaCadastro div{margin: 10px 0;}
 
+/* Estilos para a lista com o símbolo de check */
+.check-list {
+    list-style-type: none; /* Remove a numeração padrão */
+    padding: 0;
+    margin: 0;
+}
+
+.check-list li::before {
+    content: "✓"; /* Símbolo de check */
+    color: rgb(255, 255, 255); /* Define a cor do símbolo */
+    font-weight: bold;
+    margin-right: 8px; /* Espaço entre o símbolo e o texto */
+}
+
 /* Formatação do form */
 
 #caixaCadastro label{display: block;}
