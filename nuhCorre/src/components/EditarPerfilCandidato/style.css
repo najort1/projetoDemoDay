@@ -1,0 +1,162 @@
+.header-perfil-candidato{
+    width: 100dvw;
+    height: 5em;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid black;
+}
+
+.logo-perfil-candidato img{
+    width: 10em;
+    height: 5em;
+    object-fit: cover;
+}
+
+.perfil-candidato{
+    display: flex;
+    flex-direction: row;
+    width: 100dvw;
+    height: 10em;
+    background-color: #718CB3;
+    color: white;
+}
+
+.imagem-candidato img {
+    border-radius: 50%;
+    width: 7em;
+    height: 7em;
+    background-color: gray;
+}
+
+.informacoes-usuario{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.protecao-dados{
+    text-align: center;
+    background-color: #D8ECF5;
+    color: #3C71BD;
+    border-radius: 10px;
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+.titulo-editar{
+    margin-top: 2em;
+    text-align: center;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+}
+
+.formulario-editar{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    padding: 1em;
+}
+
+.input-group input{
+    width: 100%;
+    height: 3em;
+    border-radius: 5px;
+    border: 1px solid #3C71BD;
+}
+
+.input-group label{
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+}
+
+.input-group textarea{
+    width: 100%;
+    height: 5em;
+    border-radius: 5px;
+    border: 1px solid #3C71BD;
+}
+
+.botao-salvar{
+    width: 100%;
+    height: 3em;
+    background-color: #3C71BD;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.vulnerabilidade {
+    font-size: 1.2em;
+    margin-top: 1em;
+    border: 1px solid #3C71BD;
+    border-radius: 5px;
+    padding: 1em;
+    background-color: #f9f9f9;
+}
+
+.vulnerabilidade summary {
+    font-weight: bold;
+    cursor: pointer;
+    color: #3C71BD;
+}
+
+.lista-vulnerabilidade {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.lista-vulnerabilidade li {
+    margin: 0.5em 0;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.lista-vulnerabilidade input[type="checkbox"] {
+    margin-right: 0.5em;
+    width: 1.5em;
+    border: 1px solid #3C71BD;
+}
+
+.lista-vulnerabilidade label {
+    font-size: 1em;
+    color: #333;
+}
+
+.editar-dados-candidato{
+    border: 2px solid gray;
+    box-shadow: 5px 5px 5px black;
+}
+
+@media (min-width: 1280px){
+
+    .formulario-editar{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 10px;
+        grid-row-gap: 10px;
+    }
+
+    .input-group textarea{
+        width: 100%;
+        height: 10em;
+        border-radius: 5px;
+        border: 1px solid #3C71BD;
+    }
+
+    .vulnerabilidade {
+        border: 1px solid #3C71BD;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+}
