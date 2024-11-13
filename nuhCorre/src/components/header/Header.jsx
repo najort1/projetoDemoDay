@@ -27,6 +27,7 @@ function Header() {
 
   return (
     <header>
+<<<<<<< Updated upstream
       <div id="logo" onClick={navegarParaPaginaPrincipal}>
         {!isCadastroEmpresaPage ? (
           // Exibe a logo para outras páginas
@@ -39,6 +40,13 @@ function Header() {
             <a onClick={cadastroUsuario}>Sou Candidato</a>
           </div>
         )}
+=======
+      
+      <div id="logoHeader" onClick={navegarParaPaginaPrincipal}>
+        
+        <img src={logo} alt='logo' id='imgLogo'/>
+
+>>>>>>> Stashed changes
       </div>
       
       <div className="conteudoHeader">

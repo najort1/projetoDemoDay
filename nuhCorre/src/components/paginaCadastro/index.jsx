@@ -4,7 +4,8 @@ import Header from '../header/Header';
 import Footer from '../footer/Footer';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import Logo from '../../assets/logo.png';
+import Logo1 from '../../assets/camaleao.png';
+import Logo2 from '../../assets/logo.png';
 
 const CadastroUsuario = () => {
 
@@ -251,16 +252,21 @@ const CadastroUsuario = () => {
 
                     <div>
 
-                        <img src={Logo} alt=''/>
+                        <img src={Logo1} alt='' style={{width:"180px"}}/>
                         <h2>Sobre a NuhCorre</h2>
                         <p>
-                            A nuhCorre é lider em conectar com<br/>
-                            oportunidades, Nossa missão é criar um mercado de<br/>
-                            trabalho mais incrusivo e acessivel paratodos
+                            A NuhCorre é lider em conectar talentos com<br/>
+                            oportunidades. Nossa missão é criar um mercado de<br/>
+                            trabalho mais inclusivo e acessivel para todos.
 
+<<<<<<< Updated upstream
                             <ul className='check-list'>
+=======
+>>>>>>> Stashed changes
 
-                                <li>Mais de 1 milhão de vagas preenchidas</li>
+                            <ul className="check-list">
+
+                                <li>Encontre canditados próximos a você! </li>
                                 <li>Presente em todo o Brasil</li>
                                 <li>Suporte personalizado para candidatos e empressas</li>
 
@@ -274,71 +280,30 @@ const CadastroUsuario = () => {
                 <div id="caixaCadastro">
                     <div className='alinhamento'>
 
-                        <img src={Logo} alt='' className='alinhamento' style={{width: '10vw'}}/>
-                        <h2 className='alinhamento' style={{marginBottom:'10px'}}>Crie sua conta</h2>
-                        <span className='alinhamento'>Comece sua jornada profissional conosco</span>
+                        <img src={Logo2} alt='' className='alinhamento' style={{width: '11vw'}}/>
+                        <h2 className='alinhamento' style={{marginBottom:'10px'}}>Olá candidato, Conecte-se conosco!</h2>
+                        <span className='alinhamento'>Cada pessoa importa, cada talento conta!</span>
 
                     </div>
                     
                     <form>
 
                         <div>
-                            <label htmlFor="name">Nome:</label>
-                            <input type="text" name="nome" required pattern="^([a-zA-ZÀ-ÖØ-öø-ÿ]|\s)*$" placeholder="Nome" />
+                            <label htmlFor="name">Nome completo:</label>
+                            <input type="text" name="nome" required pattern="^([a-zA-ZÀ-ÖØ-öø-ÿ]|\s)*$" placeholder="Nome completo" />
                             <span ref={erroNome} className="erro"></span>
-                        </div>
-
-                        <div>
-                            <label htmlFor="Data">Data de Nascimento:</label>
-                            <input type="date" name="dataNascimento" required placeholder="Data de Nascimento" />
-                            <span ref={erroData} className="erro"></span>
-                        </div>
-
-                        <div>
-                            <label htmlFor="cpf">CPF:</label>
-                            <input type="text" name="cpf" pattern='^\d{3}\.\d{3}\.\d{3}-\d{2}$' required placeholder="CPF" />
-                            <span ref={erroCpf} className="erro"></span>
-                        </div>
-
-                        <div>
-                            <label htmlFor="endereco">Endereço:</label>
-                            <input type="text" name="endereco" required placeholder="Endereço" />
-                            <span className="erro"></span>
-                        </div>
-
-                        <div>
-                            <label htmlFor="escolaridade">Escolaridade:</label>
-                            <input type="text" name="escolaridade" required placeholder="Escolaridade" />
-                            <span className="erro"></span>
-                        </div>
-
-                        <div>
-                            <label htmlFor="sexo">Sexo:</label>
-                            <select name="sexo" required>
-                                <option value="" disabled selected>Selecione seu sexo</option>
-                                <option value="masculino">Masculino</option>
-                                <option value="feminino">Feminino</option>
-                                <option value="outro">Outro</option>
-                            </select>
-    
-                        </div>
-
-                        <div>
-                            <label htmlFor="telefone">Telefone:</label>
-                            <input type="tel" name="telefone" pattern="^\(\d{2}\) \d{4,5}-\d{4}$" required placeholder="(XX) XXXX-XXXX" />
-                            <span ref={erroTelefone} className="erro"></span>
-                        </div>
-
-                        <div>
-                            <label htmlFor="vulnerabilidade">Vulnerabilidade:</label>
-                            <input type="text" name="vulnerabilidade" pattern='^[a-zA-ZÀ-ÖØ-öø-ÿ]+$' required placeholder="Vulnerabilidade" />
-                            <span ref={errovulnerabilidade} className="erro"></span>
                         </div>
 
                         <div>
                             <label htmlFor="email">Email:</label>
                             <input type="email" name="email" required pattern="^[a-zA-Z0-9_]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" placeholder="Email" />
                             <span ref={erroEmail} className="erro"></span>
+                        </div>
+
+                        <div>
+                            <label htmlFor="telefone">Telefone:</label>
+                            <input type="tel" name="telefone" pattern="^\(\d{2}\) \d{4,5}-\d{4}$" required placeholder="(XX) XXXX-XXXX" />
+                            <span ref={erroTelefone} className="erro"></span>
                         </div>
 
                         <div>
