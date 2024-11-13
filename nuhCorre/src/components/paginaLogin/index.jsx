@@ -1,11 +1,19 @@
+import { useEffect, useRef, useState } from 'react';
+import '../paginaCadastro/cadastro.css';
 import './login.css';
+import Header from '../header/Header';
+import Footer from '../footer/Footer';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import Logo from '../../assets/logo.png';
 
+const Login = () => {
 
-const LoginPage = () => {
-  return (
-    <div>
-      <h1>Login</h1>
-    </div>
-  );
+    return (
+        <>
+       
+        </>
+    );
 };
-export default LoginPage;
+
+export default Login;

@@ -1,0 +1,157 @@
+main{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.alinhamento{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+#caixaCadastro{
+
+    background: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: #000;
+    width: 50vw;
+    height: calc(100vh - 10rem);
+    overflow: auto;
+    padding: 40px;
+
+}
+#caixaCadastro span{color: gray;}
+
+#caixaCadastro div{margin: 10px 0;}
+
+/* Formatação do form */
+
+label{display: block;}
+form{width: 100%;}
+
+#caixaCadastro form input,
+#caixaCadastro select{
+
+    border-radius: 15px;
+    /*background: #171717c0;*/
+    background: #fff;
+    border: 2px solid #2F6FCC;
+    box-shadow: 3px 6px 6px rgba(0, 0, 0, 0.362);
+    color: #000;
+    font-size: 1em;
+    font-weight: 500;
+    height: 50px !important;
+    line-height: 1.5;
+    /*margin-bottom: 15px;*/
+    margin: 5px 0;
+    outline: none;
+    padding: 0 15px;
+    width: 100% !important;
+
+}
+
+/* Estilização do placeholder */
+input::placeholder {
+
+    color: #a6a6a6;
+    font-weight: 500;
+    
+}
+
+input:focus{border: 2px solid #fff;}
+
+input:focus::placeholder{
+
+    font-size: 0.8em;
+    position:relative;
+    top: -5px;
+    transform: translateY(-50%);
+    transition: all 0.3s ease; 
+
+}
+
+/* Quando não estiver em foco */
+input:not(:focus)::placeholder {
+
+    top: 0px;
+    transition: all 0.3s ease; 
+
+}
+
+/*Botão submit*/
+#caixaCadastro input[type='submit']{
+
+    background: #3165b3 !important;
+    color: #fff;
+    border:none;
+    cursor: pointer;
+}
+
+#caixaCadastro input[type='submit']:hover{
+
+    background: #5B82BB !important;
+    transition: background 1s;
+
+}
+
+/*Span de erro*/
+span{
+
+    margin-bottom: 20px;
+    color: #fff;
+
+}
+
+/* Rolagem da caixa */
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+::-webkit-scrollbar {
+    width: 6px;
+    background: #F4F4F4;
+}
+::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+}
+
+#expli {
+    width: 50vw;
+    height: calc(100vh - 10rem);
+    background: #5b82bbd1;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    padding-left: 2rem;
+    justify-content: center;
+}
+
+#expli p {
+    margin-top: 10px;
+    font-size: 1.2em;
+}
+
+#expli h2{
+    
+    margin-bottom: 20px;
+
+}
+#expli ul li{
+
+    display: block;
+    margin: 15px 0;
+
+}
+
+/* Estilos para a lista com o símbolo de check */
+
+.logo-image {
+    width: 180px; /* Defina a largura desejada */
+    height: auto; /* Ajusta a altura proporcionalmente */
+    margin-left: 4cm;
+    margin-bottom: 0.5cm;
+}
