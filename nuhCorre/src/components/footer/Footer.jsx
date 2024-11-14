@@ -14,11 +14,11 @@ function Footer(){
                 </div>
 
                 <div className="item-footer">
-                    <p className="text-footer">Contato</p>
+                    <p className="text-footer">Serviços</p>
                 </div>
 
                 <div className="item-footer">
-                    <p className="text-footer">Termos de Uso</p>
+                    <p className="text-footer">Suporte</p>
                 </div>
 
                 <div className="item-footer">

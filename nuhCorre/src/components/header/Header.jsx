@@ -2,6 +2,8 @@ import "./styleHeader.css";
 import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
 import {Image} from "@nextui-org/react";
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
+import boxicons from "boxicons";
 
 
 function Header() {
@@ -52,10 +54,47 @@ function Header() {
             <a href="#" className="text-white font-bold text-lg">Inicio</a>
           </li>
           <li className="hover:cursor-pointer" onClick={cadastroUsuario}>
-            <a href="#" className="text-white font-bold text-lg">Sou candidato</a>
+            <Dropdown>
+              <DropdownTrigger>
+                <a href="#" className="text-white font-bold text-lg">Sou usuário</a>
+              </DropdownTrigger>
+              <DropdownMenu>
+                <DropdownItem onClick={cadastroUsuario}>
+                  <div className="item-dropdown-usuario flex items-center gap-2">
+                    <box-icon name='user-plus' color='#000000' size='md' type='solid' ></box-icon>
+                    <p className="text-black font-bold text-lg">Cadastro</p>
+                  </div>
+
+                </DropdownItem>
+                <DropdownItem onClick={navegarParaOLogin}>
+                  <div className="item-dropdown-usuario flex items-center gap-2">
+                    <box-icon name='door-open' color='#000000' size='md' type='solid' ></box-icon>
+                    <p className="text-black font-bold text-lg">Login</p>
+                  </div>
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
           </li>
           <li className="hover:cursor-pointer" onClick={cadastroEmpresa}>
-            <a href="#" className="text-white font-bold text-lg">Sou empresa</a>
+            <Dropdown>
+              <DropdownTrigger>
+                <a href="#" className="text-white font-bold text-lg">Sou empresa</a>
+              </DropdownTrigger>
+              <DropdownMenu>
+                <DropdownItem onClick={cadastroEmpresa}>
+                  <div className="item-dropdown-empresa flex items-center gap-2">
+                    <box-icon name='user-plus' color='#000000' size='md' type='solid' ></box-icon>
+                    <p className="text-black font-bold text-lg">Cadastro</p>
+                  </div>
+                </DropdownItem>
+                <DropdownItem onClick={navegarParaOLogin}>
+                  <div className="item-dropdown-empresa flex items-center gap-2">
+                    <box-icon name='door-open' color='#000000' size='md' type='solid' ></box-icon>
+                    <p className="text-black font-bold text-lg">Login</p>
+                  </div>
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
           </li>
           </ul>
       </div>
