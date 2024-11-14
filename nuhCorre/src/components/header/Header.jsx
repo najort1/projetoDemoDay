@@ -1,6 +1,8 @@
 import "./styleHeader.css"; 
 import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
+import {Image} from "@nextui-org/react";
+
 
 function Header() {
   const navigate = useNavigate();
@@ -30,50 +32,35 @@ function Header() {
   };
 
   return (
-    <header className="header-principal">
-      <div id="logo" onClick={navegarParaPaginaPrincipal}>
-        {!isCadastroEmpresaPage ? (
-          // Exibe a logo para outras páginas
-          <img src={logo} alt="logo" id="imgLogo" />
-        ) : (
-          // Exibe "Página Inicial" e "Sou Candidato" no lugar da logo para a página CadastroEmpresa
-          <div className="opcoesHeaderCadastro" style={{fontSize:'19px', marginLeft:'2cm'}}>
-            <a onClick={navegarParaPaginaPrincipal}>Página Inicial </a>
-            <a> | </a>
-            <a onClick={cadastroUsuario}>Sou Candidato</a>
-          </div>
-        )}
+    <header className="pagina-principal 
+      top-0 left-0 w-full h-20 bg-[#5b82bbd1] flex justify-between items-center p-4
+    ">
+
+      <div className="logo flex items-center gap-2">
+            <Image
+              isZoomed
+              width={150}
+              alt="NuhCorre"
+              src={logo}
+              onClick={navegarParaPaginaPrincipal}
+          />
       </div>
-      
-      <div className="conteudoHeader">
-        {!isCadastroEmpresaPage ? (
-          // Conteúdo padrão do Header para outras páginas
-          <>
-            <div className="listaIdentificador">
-              <ul className="identificadorCandidato">
-                <li>
-                  <a onClick={cadastroUsuario}>Sou candidato</a>
-                </li>
-                <li>
-                  <a onClick={cadastroEmpresa}>Sou empresa</a>
-                </li>
-                <li>
-                  <a onClick={edicaoEmpressa}>EdicaoEmpressa</a>
-                </li>
-              </ul>
-            </div>
-            <div className="botoes">
-              <button className="btn" onClick={navegarParaOLogin}>Entrar</button>
-              <button className="btn" onClick={cadastroUsuario}>Cadastro</button>
-            </div>
-          </>
-        ) : (
-          // Conteúdo do Header para a página CadastroEmpresa
-          <div className="headerCadastroEmpresa">
-            
-          </div>
-        )}
+
+      <div className="tipos-usuarios">
+        <ul className="flex items-center gap-4">
+          <li className="hover:cursor-pointer" onClick={navegarParaPaginaPrincipal}>
+            <a href="#" className="text-white font-bold text-lg">Inicio</a>
+          </li>
+          <li className="hover:cursor-pointer" onClick={cadastroUsuario}>
+            <a href="#" className="text-white font-bold text-lg">Sou candidato</a>
+          </li>
+          <li className="hover:cursor-pointer" onClick={cadastroEmpresa}>
+            <a href="#" className="text-white font-bold text-lg">Sou empresa</a>
+          </li>
+          </ul>
       </div>
+
+
     </header>
   );
 }

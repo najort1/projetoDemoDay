@@ -2,6 +2,12 @@ import { useState } from "react";
 import "./mainStyle.css";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
+import { Dropdown } from 'primereact/dropdown';
+import boxicons from "boxicons";
+import { code } from "@nextui-org/react";
+import { InputText } from "primereact/inputtext";
+import { FloatLabel } from "primereact/floatlabel";
+import {Button} from "@nextui-org/react";
 
 const PesquisaVaga = () => {
 
@@ -28,67 +34,87 @@ const PesquisaVaga = () => {
     setCidade(value);
   };
 
+  const estados = [
+    { name: 'Acre', code: 'AC' },
+    { name: 'Alagoas', code: 'AL' },
+    { name: 'Amapá', code: 'AP' },
+    { name: 'Amazonas', code: 'AM' },
+    { name: 'Bahia', code: 'BA' },
+    { name: 'Ceará', code: 'CE' },
+    { name: 'Distrito Federal', code: 'DF' },
+    { name: 'Espírito Santo', code: 'ES' },
+    { name: 'Goiás', code: 'GO' },
+    { name: 'Maranhão', code: 'MA' },
+    { name: 'Mato Grosso', code: 'MT' },
+    { name: 'Mato Grosso do Sul', code: 'MS' },
+    { name: 'Minas Gerais', code: 'MG' },
+    { name: 'Pará', code: 'PA' },
+    { name: 'Paraíba', code: 'PB' },
+    { name: 'Paraná', code: 'PR' },
+    { name: 'Pernambuco', code: 'PE' },
+    { name: 'Piauí', code: 'PI' },
+    { name: 'Rio de Janeiro', code: 'RJ' },
+    { name: 'Rio Grande do Norte', code: 'RN' },
+    { name: 'Rio Grande do Sul', code: 'RS' },
+    { name: 'Rondônia', code: 'RO' },
+    { name: 'Roraima', code: 'RR' },
+    { name: 'Santa Catarina', code: 'SC' },
+    { name: 'São Paulo', code: 'SP' },
+    { name: 'Sergipe', code: 'SE' },
+    { name: 'Tocantins', code: 'TO' }
+  ];
+  
   return (
     <>
       <Header />
 
-      <div className="tudo">
+      <div className="fotos w-full h-full min-h-screen"></div>
 
-        <div className="container">
+      <div className="container absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#AAB9CE] w-[100%] h-[40%] flex flex-col justify-evenly p-2 shadow-2xl rounded-xl
 
-          <div className="titulo">
-            <h1>Conecte-se com Empregos Acessíveis para Todos</h1>
-            <h2>Temos mais de 320 mil oportunidades para você</h2>
-          </div>
 
-          <div className="pesquisa">
+      
+      xl:w-[40%] xl:h-[30%]
+      md:w-[80%]
+      
+      ">
 
-            <select onChange={handleTipo} value={tipo}>
-              <option value="Tipo" disabled>Tipo</option>
-              <option value="vagas">Vagas</option>
-              <option value="empresas">Empresas</option>
-              <option value="curriculos">Currículos</option>
-            </select>
 
-            <input type="text" placeholder="Pesquisar" required onChange={handlePesquisa} value={pesquisa} />
-
-            <select name="Cidade" id="selecionarCidade" onChange={handleSelectCidade} value={cidade}>
-
-              <option value="Cidade" disabled>Cidade</option>
-              <option value="saoPaulo">São Paulo</option>
-              <option value="rioDeJaneiro">Rio de Janeiro</option>
-              <option value="beloHorizonte">Belo Horizonte</option>
-              <option value="brasilia">Brasília</option>
-              <option value="salvador">Salvador</option>
-              <option value="curitiba">Curitiba</option>
-              <option value="fortaleza">Fortaleza</option>
-              <option value="manaus">Manaus</option>
-              <option value="goiania">Goiânia</option>
-              <option value="belem">Belém</option>
-              <option value="portoAlegre">Porto Alegre</option>
-              <option value="recife">Recife</option>
-              <option value="campinas">Campinas</option>
-              <option value="saoLuis">São Luís</option>
-              <option value="maceio">Maceió</option>
-              <option value="teresina">Teresina</option>
-              <option value="natal">Natal</option>
-              <option value="joaoPessoa">João Pessoa</option>
-              <option value="aracaju">Aracaju</option>
-              <option value="cuiaba">Cuiabá</option>
-              <option value="campoGrande">Campo Grande</option>
-              <option value="palmas">Palmas</option>
-              <option value="rioBranco">Rio Branco</option>
-              <option value="boaVista">Boa Vista</option>
-              <option value="macapa">Macapá</option>
-              <option value="portoVelho">Porto Velho</option>
-
-            </select>
-
-            <button id='pesquisar'>Pesquisar</button>
-
-          </div>
-        </div>
+      <div className="titulo-container flex flex-col items-center gap-2">
+        <h1 className="titulo-container-principal font-bold text-md text-center text-2xl text-black">Conecte-se com Empregos Acessíveis para Todos</h1>
       </div>
+
+      <div className="container-inputs flex flex-row items-center gap-2">
+
+      <select name="Tipo" id="selecionado_tipo" className="opcoes-tipo h-12 w-20" onChange={handleTipo}>
+          <option value="Vagas">Vagas</option>
+          <option value="Empresas">Empresas</option>      
+      </select>
+
+      <input type="text" placeholder="Pesquise" className="input-pesquisa h-12 w-full" onChange={handlePesquisa}/>
+
+      <select name="Estado" id="seleciona_estado" className="selecionar-estado h-12 w-24" onChange={handleSelectCidade}>
+
+        {estados.map((estado) => (
+          <option value={estado.name}>{estado.name}</option>
+        ))}
+
+      </select>
+
+      <Button
+      isIconOnly
+      className="botao-pesquisar bg-[#718CB3] flex items-center justify-center h-full w-24"
+      ><box-icon name='search' color='white'></box-icon></Button>
+
+      
+
+      </div>
+
+
+
+      </div>
+
+
 
       <Footer/>
     </>

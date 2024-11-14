@@ -9,9 +9,8 @@
 
 .fundo{
 
-  animation: BgAnimation 10s linear infinite alternate;
+  animation: BgAnimation 20s infinite;
   background-size: cover;
-  background-position: center;
 
 }
 
