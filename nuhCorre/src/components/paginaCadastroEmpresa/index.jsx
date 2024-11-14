@@ -4,8 +4,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import camaleao from '../../assets/camaleao.png';
 import Logo from '../../assets/logo.png';
-import Header from '../header/Header';
-import Footer from '../footer/Footer';
 import olhoAberto from '../../assets/olhoAberto.jpg.png'; // Caminho para o ícone de olho aberto
 import olhoFechado from '../../assets/olhoFechado.jpg'; // Caminho para o ícone de olho fechado
 
@@ -47,10 +45,10 @@ const CadastroEmpresa = () => {
         inputs.forEach((element) => {
 
             // Quando um input entrar em foco ficará com essa estilização
-            /*element.addEventListener('focus', () => {
+            element.addEventListener('focus', () => {
                 element.style.border = 'none';
-                element.style.borderBottom = '5px solid #ff510c';
-            });*/
+                element.style.borderBottom = '5px solid #718CB3';
+            });
 
             // Quando sair do foco
             element.addEventListener('blur', () => {
@@ -189,7 +187,7 @@ const CadastroEmpresa = () => {
                 }
             });
         };
-    }, []);
+    }, );
 
     const handleCadastro = async () => {
         const form = document.querySelector('form');
@@ -224,15 +222,20 @@ const CadastroEmpresa = () => {
 
     return (
         <>
-            <Header />
-            <main>
+
+            <main id='main-cadastroempresa'>
+                
             <div id="expli"> 
+                <div className="opcoesHeaderCadastro" style={{fontSize:'19px', marginLeft:'1rem'}}>
+                    <a onClick='#'>Página Inicial </a>
+                    <a onClick='#'>Sou Candidato</a>
+                </div>
                 <div className="titulo_expli">
                     <img src={camaleao} alt="" className="logo-image" />
                     <h2>Sobre a NuhCorre</h2>
                     <p>
-                        A NuhCorre é líder em conectar talentos com oportunidades.<br/>
-                        Nossa missão é criar um mercado de trabalho <br/>
+                        A NuhCorre é líder em conectar talentos com<br/> oportunidades.
+                        Nossa missão é criar um mercado<br/> de trabalho 
                         mais inclusivo e acessível para todos.<br/>
                     </p>
                     <ul className="check-list">
@@ -243,11 +246,11 @@ const CadastroEmpresa = () => {
                 </div>
             </div>
 
-            <div id="caixaCadastro">
-                <div className="alinhamento">
-                    <img src={Logo} alt='' className="alinhamento" style={{width: '11vw'}} />
-                    <h2 className="alinhamento" style={{marginBottom:'10px'}}>Crie sua conta</h2>
-                    <span className="alinhamento" style={{marginBottom:'15px', fontSize:'18px'}}>Inclusão começa com oportunidades!</span>
+            <div id="caixaCadastroEmpresa">
+                <div className="alinhamentoEmpresa">
+                    <img src={Logo} alt='' className="alinhamentoEmpresa" style={{width: '11vw'}} />
+                    <h2 className="alinhamentoEmpresaP" style={{marginBottom:'10px'}}>Olá empresa, Conecte-se conosco!</h2>
+                    <span className="alinhamentoEmpresaS" style={{marginBottom:'15px'}}>Inclusão começa com oportunidades!</span>
                 </div>
                 
                 <form>
@@ -327,7 +330,6 @@ const CadastroEmpresa = () => {
             </div>
         </main>
 
-        <Footer />
         </>
     );
 };

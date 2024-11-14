@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import './cadastro.css';
-import Header from '../header/Header';
-import Footer from '../footer/Footer';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Logo1 from '../../assets/camaleao.png';
@@ -47,10 +45,10 @@ const CadastroUsuario = () => {
         inputs.forEach((element) => {
 
             //Quando um input entrar em foco ficará com essa estilização
-            /*element.addEventListener('focus', () => {
+            element.addEventListener('focus', () => {
                 element.style.border = 'none';
-                element.style.borderBottom = '5px solid #ff510c';
-            });*/
+                element.style.borderBottom = '5px solid #718CB3';
+            });
 
             //Quando sair do foco
             element.addEventListener('blur', () => {
@@ -210,7 +208,7 @@ const CadastroUsuario = () => {
                 }
             });
         };
-    }, []);
+    }, );
 
     const handleCadastro = async () => {
         const form = document.querySelector('form');
@@ -246,9 +244,9 @@ const CadastroUsuario = () => {
 
     return (
         <>
-            <Header />
-            <main>
-                <div id='descricao'>
+
+            <main id= 'main-cadastrousuario'>
+                <div id='descricaoUsuario'>
 
                     <div>
 
@@ -272,11 +270,11 @@ const CadastroUsuario = () => {
                     </div>
 
                 </div>
-                <div id="caixaCadastro">
+                <div id="caixaCadastroUsuario">
                     <div className='alinhamento'>
 
-                        <img src={Logo2} alt='' className='alinhamento' style={{width: '11vw'}}/>
-                        <h2 className='alinhamento' style={{marginBottom:'10px'}}>Olá candidato, Conecte-se conosco!</h2>
+                        <img src={Logo2} alt='' className='alinhamento' style={{width: '13vw'}}/>
+                        <h2 className='alinhamento' style={{marginBottom:'7px'}}>Olá candidato, Conecte-se conosco!</h2>
                         <span className='alinhamento'>Cada pessoa importa, cada talento conta!</span>
 
                     </div>
@@ -335,12 +333,11 @@ const CadastroUsuario = () => {
                         </div>
 
                         <input type="submit" onClick={handleCadastro} />
-                        <a href='' style={{color: '#000', textAlign:'center', display: 'block'}}>Já tem uma conta? <span style={{color: '#425BD6'}}>Faça login</span></a>
+                        <a href='' style={{color: '#000', textAlign:'center', display: 'block'}}>Já tem uma conta? <span style={{color: '#718CB3'}}>Faça login</span></a>
                     </form>
                 </div>
             </main>
 
-            <Footer />
         </>
     );
 };
