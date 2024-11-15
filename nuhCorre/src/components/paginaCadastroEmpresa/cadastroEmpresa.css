@@ -1,12 +1,11 @@
-main{
+main#main-cadastroempresa{
 
     display: flex;
-    align-items: center;
     justify-content: center;
 
 }
 
-.alinhamento{
+.alinhamentoEmpresa{
 
     display: flex;
     flex-direction: column;
@@ -14,28 +13,40 @@ main{
     align-items: center;
 
 }
-#caixaCadastro{
+#caixaCadastroEmpresa{
 
     background: #fff;
     border: 2px solid rgba(255, 255, 255, 0.2);
     color: #000;
     width: 50vw;
-    height: calc(100vh - 10rem);
-    overflow: auto;
-    padding: 40px;
+    padding: 100px;
 
 }
-#caixaCadastro span{color: gray;}
 
-#caixaCadastro div{margin: 10px 0;}
+.opcoesHeaderCadastro{
+    margin-top: 1em;
+    display: flex;
+    gap: 2em;
+}
+
+.titulo_expli {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+#caixaCadastroEmpresa span{color: gray;}
+
+#caixaCadastroEmpresa div{margin: 10px 0;}
 
 /* Formatação do form */
 
 label{display: block;}
 form{width: 100%;}
 
-#caixaCadastro form input,
-#caixaCadastro select{
+#caixaCadastroEmpresa form input,
+#caixaCadastroEmpresa select{
 
     border-radius: 15px;
     /*background: #171717c0;*/
@@ -84,17 +95,17 @@ input:not(:focus)::placeholder {
 }
 
 /*Botão submit*/
-#caixaCadastro input[type='submit']{
+#caixaCadastroEmpresa input[type='submit']{
 
-    background: #3165b3 !important;
+    background: #718CB3!important;
     color: #fff;
     border:none;
     cursor: pointer;
 }
 
-#caixaCadastro input[type='submit']:hover{
+#caixaCadastroEmpresa input[type='submit']:hover{
 
-    background: #5B82BB !important;
+    background: #3f5c88 !important;
     transition: background 1s;
 
 }
@@ -121,13 +132,11 @@ span{
 
 #expli {
     width: 50vw;
-    height: calc(100vh - 10rem);
-    background: #5b82bbd1;
+    background: #718CB3;
     color: #fff;
-    display: flex;
-    align-items: center;
     padding-left: 2rem;
-    justify-content: center;
+    justify-content: space-around;
+
 }
 
 #expli p {
@@ -137,21 +146,36 @@ span{
 
 #expli h2{
     
-    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 2rem;
+    margin-right: 11rem;
 
 }
 #expli ul li{
 
     display: block;
     margin: 15px 0;
+    margin-right: 2rem;
+    
+}
 
+.alinhamentoEmpresaP{
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 0.6rem;
+}
+
+.alinhamentoEmpresaS{
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-right: 0.6rem;
 }
 
 /* Estilos para a lista com o símbolo de check */
 
 .logo-image {
-    width: 180px; /* Defina a largura desejada */
+    width: 170px; /* Defina a largura desejada */
     height: auto; /* Ajusta a altura proporcionalmente */
-    margin-left: 4cm;
+    margin-top: 8rem;
     margin-bottom: 0.5cm;
 }

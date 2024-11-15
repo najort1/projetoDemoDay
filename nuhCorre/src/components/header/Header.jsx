@@ -1,6 +1,10 @@
 import "./styleHeader.css"; 
 import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
+import {Image} from "@nextui-org/react";
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
+import boxicons from "boxicons";
+
 
 function Header() {
   const navigate = useNavigate();
@@ -36,33 +40,23 @@ function Header() {
   };  
 
   return (
-    <header className={`header-principal 
-    ${isCadastroPage ? 'degrade' : ''}
-    ${isCadastroEmpresaPage ? 'degrade' : ''}
-    ${isLogin ? 'degradeReverso' : ''} `}>
-
-<div id="logo" onClick={navegarParaPaginaPrincipal}>
-        {!isCadastroEmpresaPage && !isCadastroPage && !isLogin?(
+    <header className="header-principal">
+      <div id="logo" onClick={navegarParaPaginaPrincipal}>
+        {!isCadastroEmpresaPage ? (
           // Exibe a logo para outras páginas
           <img src={logo} alt="logo" id="imgLogo" />
         ) : (
           // Exibe "Página Inicial" e "Sou Candidato" no lugar da logo para a página CadastroEmpresa
           <div className="opcoesHeaderCadastro" style={{fontSize:'19px', marginLeft:'2cm'}}>
-            <a onClick={cadastroEmpresa}>Sou empresa </a>
+            <a onClick={navegarParaPaginaPrincipal}>Página Inicial </a>
+            <a> | </a>
             <a onClick={cadastroUsuario}>Sou Candidato</a>
-            <a onClick={navegarParaPaginaPrincipal}>vagas</a>
-            <a onClick={navegarParaPaginaPrincipal}>Página inicial</a>
-            {/*!isLogin?(
-
-                <a onClick={navegarParaPaginaPrincipal}>Página inicial</a>
-
-            ):("")*/}
           </div>
         )}
       </div>
-
+      
       <div className="conteudoHeader">
-        {!isCadastroEmpresaPage && !isCadastroPage && !isLogin? (
+        {!isCadastroEmpresaPage ? (
           // Conteúdo padrão do Header para outras páginas
           <>
             <div className="listaIdentificador">
@@ -75,9 +69,6 @@ function Header() {
                 </li>
                 <li>
                   <a onClick={edicaoEmpressa}>EdicaoEmpressa</a>
-                </li>
-                <li>
-                  <a onClick={PaginaDeVagas}>Vagas</a>
                 </li>
               </ul>
             </div>
