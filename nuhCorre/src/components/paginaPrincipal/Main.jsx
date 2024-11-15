@@ -9,7 +9,7 @@ import { InputText } from "primereact/inputtext";
 import { FloatLabel } from "primereact/floatlabel";
 import {Button} from "@nextui-org/react";
 
-const PesquisaVaga = () => {
+export const PesquisaVagaTelaInicial = () => {
 
   // Estados dos campos com valores padrão
   const [tipo, setTipo] = useState("Tipo");
@@ -120,5 +120,3 @@ const PesquisaVaga = () => {
     </>
   );
 };
-
-export default PesquisaVaga;
