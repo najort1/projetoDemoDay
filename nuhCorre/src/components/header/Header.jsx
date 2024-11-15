@@ -8,6 +8,8 @@ function Header() {
 
   // Verifica se a página atual é "CadastroEmpresa"
   const isCadastroEmpresaPage = location.pathname === '/cadastroEmpresa';
+  const isCadastroPage = location.pathname === '/cadastro';
+  const isLogin= location.pathname === '/login';
 
   const navegarParaOLogin = () => {
     navigate('/login');
@@ -21,32 +23,46 @@ function Header() {
     navigate('/cadastroEmpresa');
   };
 
-  const navegarParaPaginaPrincipal = () => {
-    navigate('/');
-  };
-
   const edicaoEmpressa = () => {
     navigate('/edicaoEmpressa');
   };
 
+  const navegarParaPaginaPrincipal = () => {
+    navigate('/');
+  };
+
+  const PaginaDeVagas = () => {
+    navigate('/vagas');
+  };  
+
   return (
-    <header className="header-principal">
-      <div id="logo" onClick={navegarParaPaginaPrincipal}>
-        {!isCadastroEmpresaPage ? (
+    <header className={`header-principal 
+    ${isCadastroPage ? 'degrade' : ''}
+    ${isCadastroEmpresaPage ? 'degrade' : ''}
+    ${isLogin ? 'degradeReverso' : ''} `}>
+
+<div id="logo" onClick={navegarParaPaginaPrincipal}>
+        {!isCadastroEmpresaPage && !isCadastroPage && !isLogin?(
           // Exibe a logo para outras páginas
           <img src={logo} alt="logo" id="imgLogo" />
         ) : (
           // Exibe "Página Inicial" e "Sou Candidato" no lugar da logo para a página CadastroEmpresa
           <div className="opcoesHeaderCadastro" style={{fontSize:'19px', marginLeft:'2cm'}}>
-            <a onClick={navegarParaPaginaPrincipal}>Página Inicial </a>
-            <a> | </a>
+            <a onClick={cadastroEmpresa}>Sou empresa </a>
             <a onClick={cadastroUsuario}>Sou Candidato</a>
+            <a onClick={navegarParaPaginaPrincipal}>vagas</a>
+            <a onClick={navegarParaPaginaPrincipal}>Página inicial</a>
+            {/*!isLogin?(
+
+                <a onClick={navegarParaPaginaPrincipal}>Página inicial</a>
+
+            ):("")*/}
           </div>
         )}
       </div>
-      
+
       <div className="conteudoHeader">
-        {!isCadastroEmpresaPage ? (
+        {!isCadastroEmpresaPage && !isCadastroPage && !isLogin? (
           // Conteúdo padrão do Header para outras páginas
           <>
             <div className="listaIdentificador">
@@ -59,6 +75,9 @@ function Header() {
                 </li>
                 <li>
                   <a onClick={edicaoEmpressa}>EdicaoEmpressa</a>
+                </li>
+                <li>
+                  <a onClick={PaginaDeVagas}>Vagas</a>
                 </li>
               </ul>
             </div>

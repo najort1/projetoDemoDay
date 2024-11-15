@@ -2,11 +2,11 @@ import './App.css'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginPage from './components/paginaLogin';
 import CadastroUsuario from './components/paginaCadastro';
-import PesquisaVaga from './components/paginaPrincipal/Main';
-import { Vagas } from './components/paginaVagas/IndexVagas';
 import CadastroEmpresa from './components/paginaCadastroEmpresa';
 import { EdicaoEmpressa } from './components/EdicaoEmpressa/edicaoEmpressa';
 import EditarPerfilCandidato from './components/EditarPerfilCandidato';
+import { PesquisaVagaTelaInicial } from './components/paginaPrincipal/Main';
+import { Vagas } from './components/paginaVagas/IndexVagas';
 
 function App() {
 
@@ -30,13 +30,13 @@ function App() {
 
       <Router>
         <Routes>
-          <Route path="/" element={<PesquisaVaga />} />
+          <Route path="/" element={<PesquisaVagaTelaInicial/>} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/cadastro" element={<CadastroUsuario />} />
           <Route path="/cadastroEmpresa" element={<CadastroEmpresa/>} />
-          <Route path="/vagas" element={<Vagas/>} />
           <Route path="/edicaoEmpressa" element={<EdicaoEmpressa/>} />
           <Route path="/editarPerfilCandidato" element={<EditarPerfilCandidato/>} />
+          <Route path="/vagas" element={<Vagas/>} />
         </Routes>
       </Router>
     </>

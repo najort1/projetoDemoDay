@@ -3,7 +3,7 @@ import "./mainStyle.css";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 
-const PesquisaVaga = () => {
+export const PesquisaVagaTelaInicial = () => {
 
   // Estados dos campos com valores padrão
   const [tipo, setTipo] = useState("Tipo");
@@ -94,5 +94,3 @@ const PesquisaVaga = () => {
     </>
   );
 };
-
-export default PesquisaVaga;
