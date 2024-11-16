@@ -35,10 +35,19 @@ export function EdicaoEmpressa(){
 
                         <ul>
 
-                            <li>🏠Página Inicial</li>
-                            <li className="linkSelecionado">🏠Informações Pessoais</li>
-                            <li>🏠Perfil</li>
-                            <li>🏠Vagas</li>
+                            <li>
+                                <img class='listImg'width="25" height="25" src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/64/external-home-contact-flatart-icons-outline-flatarticons-1.png" alt="external-home-contact-flatart-icons-outline-flatarticons-1"/>
+                                Página Inicial
+                            </li>
+                            <li className="linkSelecionado">
+                                <img class='listImg'width="25" height="25" src="https://img.icons8.com/deco/48/engineering.png" alt="engineering"/>
+                                Informações Pessoais</li>
+                            <li>
+                                <img class='listImg'width="25" height="25" src="https://img.icons8.com/pixels/32/conference-call.png" alt="conference-call"/>
+                                Perfil</li>
+                            <li>
+                                <img class='listImg'width="25" height="25" src="https://img.icons8.com/android/24/news.png" alt="news"/>
+                                Vagas</li>
 
                         </ul>
 
