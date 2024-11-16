@@ -4,7 +4,6 @@ import logo from '../../assets/logo.png';
 import {Image} from "@nextui-org/react";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
 import boxicons from "boxicons";
-import { EdicaoEmpressa } from "../EdicaoEmpressa/edicaoEmpressa";
 
 
 function Header() {
@@ -13,10 +12,6 @@ function Header() {
 
   // Verifica se a página atual é "CadastroEmpresa"
   const isCadastroEmpresaPage = location.pathname === '/cadastroEmpresa';
-  const isCadastroPage = location.pathname === '/cadastro';
-  const isLogin= location.pathname === '/login';
-  const isEditarEmpressa= location.pathname === '/edicaoEmpressa';
-  const isVagas= location.pathname === '/vagas';
 
   const navegarParaOLogin = () => {
     navigate('/login');
@@ -30,78 +25,78 @@ function Header() {
     navigate('/cadastroEmpresa');
   };
 
-  const edicaoEmpressa = () => {
-    navigate('/edicaoEmpressa');
-  };
-
   const navegarParaPaginaPrincipal = () => {
     navigate('/');
   };
 
-  const PaginaDeVagas = () => {
-    navigate('/vagas');
-  }; 
+  const edicaoEmpressa = () => {
+    navigate('/edicaoEmpressa');
+  };
 
   return (
-    <header className={`header-principal 
-    ${isCadastroPage ? 'degrade' : ''}
-    ${isCadastroEmpresaPage ? 'degrade' : ''}
-    ${isLogin ? 'degradeReverso' : ''}
-    ${isEditarEmpressa ? 'headerBranco' : ''}
-     `}>
+    <header className="pagina-principal 
+      top-0 left-0 w-full h-20 bg-[#5b82bbd1] flex justify-between items-center p-4
+    ">
 
-      <div id="logo" onClick={navegarParaPaginaPrincipal}>
-        {!isCadastroEmpresaPage && !isCadastroPage && !isLogin?(
-          // Exibe a logo para outras páginas
-          <img src={logo} alt="logo" id="imgLogo" />
-        ) : (
-          // Exibe "Página Inicial" e "Sou Candidato" no lugar da logo para a página CadastroEmpresa
-          <div className="opcoesHeaderCadastro" style={{fontSize:'19px', marginLeft:'2cm'}}>
-            
-            <a onClick={cadastroEmpresa}>Sou empresa </a>
-            <a onClick={cadastroUsuario}>Sou Candidato</a>
-            <a onClick={PaginaDeVagas}>vagas</a>
-            <a onClick={navegarParaPaginaPrincipal}>Página inicial</a>
-            
-          </div>
-        )}
+      <div className="logo flex items-center gap-2">
+            <Image
+              isZoomed
+              width={150}
+              alt="NuhCorre"
+              src={logo}
+              onClick={navegarParaPaginaPrincipal}
+          />
       </div>
 
-      <div className="conteudoHeader">
-        {!isCadastroEmpresaPage && !isCadastroPage && !isLogin && !isEditarEmpressa && !isVagas? (
-          // Conteúdo padrão do Header para outras páginas
-          <>
-            <div className="listaIdentificador">
-              <ul className="identificadorCandidato">
-                <li>
-                  <a onClick={cadastroUsuario}>Sou candidato</a>
-                </li>
-                <li>
-                  <a onClick={cadastroEmpresa}>Sou empresa</a>
-                </li>
-                <li>
-                  <a onClick={edicaoEmpressa}>EdicaoEmpressa</a>
-                </li>
-                <li>
-                  <a onClick={PaginaDeVagas}>Vagas</a>
-                </li>
+      <div className="tipos-usuarios">
+        <ul className="flex items-center gap-4">
+          <li className="hover:cursor-pointer" onClick={navegarParaPaginaPrincipal}>
+            <a href="#" className="text-white font-bold text-lg">Inicio</a>
+          </li>
+          <li className="hover:cursor-pointer" onClick={cadastroUsuario}>
+            <Dropdown>
+              <DropdownTrigger>
+                <a href="#" className="text-white font-bold text-lg">Sou usuário</a>
+              </DropdownTrigger>
+              <DropdownMenu>
+                <DropdownItem onClick={cadastroUsuario}>
+                  <div className="item-dropdown-usuario flex items-center gap-2">
+                    <box-icon name='user-plus' color='#000000' size='md' type='solid' ></box-icon>
+                    <p className="text-black font-bold text-lg">Cadastro</p>
+                  </div>
 
-              </ul>
-            </div>
-
-            {!isVagas? (
-            <div className="botoes">
-              <button className="btn" onClick={navegarParaOLogin}>Entrar</button>
-              <button className="btn" onClick={cadastroUsuario}>Cadastro</button>
-            </div>
-            ):('')}
-          </>
-        ) : (
-          // Conteúdo do Header para a página CadastroEmpresa
-          <div className="headerCadastroEmpresa">
-            
-          </div>
-        )}
+                </DropdownItem>
+                <DropdownItem onClick={navegarParaOLogin}>
+                  <div className="item-dropdown-usuario flex items-center gap-2">
+                    <box-icon name='door-open' color='#000000' size='md' type='solid' ></box-icon>
+                    <p className="text-black font-bold text-lg">Login</p>
+                  </div>
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </li>
+          <li className="hover:cursor-pointer" onClick={cadastroEmpresa}>
+            <Dropdown>
+              <DropdownTrigger>
+                <a href="#" className="text-white font-bold text-lg">Sou empresa</a>
+              </DropdownTrigger>
+              <DropdownMenu>
+                <DropdownItem onClick={cadastroEmpresa}>
+                  <div className="item-dropdown-empresa flex items-center gap-2">
+                    <box-icon name='user-plus' color='#000000' size='md' type='solid' ></box-icon>
+                    <p className="text-black font-bold text-lg">Cadastro</p>
+                  </div>
+                </DropdownItem>
+                <DropdownItem onClick={navegarParaOLogin}>
+                  <div className="item-dropdown-empresa flex items-center gap-2">
+                    <box-icon name='door-open' color='#000000' size='md' type='solid' ></box-icon>
+                    <p className="text-black font-bold text-lg">Login</p>
+                  </div>
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </li>
+          </ul>
       </div>
 
 
