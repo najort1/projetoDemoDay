@@ -13,20 +13,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
-import com.nuhcorre.nuhcorre.model.DTO.CadastrarEnderecoDTO;
-import com.nuhcorre.nuhcorre.model.Empresa;
-import com.nuhcorre.nuhcorre.model.Usuario;
-import com.nuhcorre.nuhcorre.model.Endereco;
-import com.nuhcorre.nuhcorre.model.details.EmpresaUserDetails;
-import com.nuhcorre.nuhcorre.service.EmpresaService;
-import com.nuhcorre.nuhcorre.service.EnderecoService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/endereco")

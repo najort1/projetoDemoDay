@@ -178,9 +178,9 @@ public class VagaController {
         return ResponseEntity.ok(vagaService.buscarVagasPorDescricao(descricao));
     }
 
-
     @GetMapping("/buscar/cnpj/{cnpj}")
     public ResponseEntity<?> buscarVagasPorCnpjEmpresa(@PathVariable String cnpj) {
         return ResponseEntity.ok(vagaService.buscarVagasPorCnpjEmpresa(cnpj));
     }
+
 }
