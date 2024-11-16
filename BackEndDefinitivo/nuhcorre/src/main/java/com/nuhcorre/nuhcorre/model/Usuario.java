@@ -45,9 +45,8 @@ public class Usuario implements UserDetails {
     @ManyToMany(mappedBy = "usuarios")
     private List<Vaga> vagas;
 
-    @OneToOne
-    @JoinColumn(name = "endereco_id")
-    private Endereco endereco;
+    @OneToMany(mappedBy = "usuario")
+    private List<Endereco> enderecos;
 
     @ManyToMany
     @JoinTable(

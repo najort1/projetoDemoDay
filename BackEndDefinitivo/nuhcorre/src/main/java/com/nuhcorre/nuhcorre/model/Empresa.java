@@ -52,9 +52,9 @@ public class Empresa implements UserDetails {
     @JsonManagedReference
     private List<Vaga> vagas;
 
-    @OneToOne
-    @JoinColumn(name = "endereco_id")
-    private Endereco endereco;
+    @OneToMany(mappedBy = "empresa")
+    @JsonManagedReference
+    private List<Endereco> enderecos;
 
     @OneToMany(mappedBy = "empresa")
     @JsonBackReference

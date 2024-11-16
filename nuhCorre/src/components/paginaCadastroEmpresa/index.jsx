@@ -77,7 +77,7 @@ const CadastroEmpresa = () => {
                         }
                         break;
 
-                    case 'CNPJ':
+                    case 'cnpj':
                         if (element.validity.valueMissing) {
                             errorStyling('Preencha o campo.', erroCNPJ.current, element, true);
                         } else if (element.validity.patternMismatch) {
@@ -200,7 +200,7 @@ const CadastroEmpresa = () => {
         });
     
         try {
-            const response = await axios.post('http://localhost:8080/auth/cadastrar', data);
+            const response = await axios.post('http://localhost:8080/auth/empresa/cadastrar', data);
             const repostaJson = response.data;
     
             if (response.status === 201) {
@@ -274,13 +274,13 @@ const CadastroEmpresa = () => {
                     </div>
                     
                     <div>
-                        <label htmlFor="CNPJ">CNPJ:</label>
+                        <label htmlFor="cnpj">CNPJ:</label>
                         <input 
                             type="text" 
-                            name="CNPJ" 
+                            name="cnpj" 
                             required 
                             pattern="^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$" 
-                            placeholder="CNPJ" 
+                            placeholder="cnpj" 
                         />
                         <span ref={erroCNPJ} className="erro"></span>
                     </div>

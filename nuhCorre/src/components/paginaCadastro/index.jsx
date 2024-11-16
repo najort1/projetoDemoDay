@@ -76,7 +76,7 @@ const CadastroUsuario = () => {
 
                         break;
 
-                    case 'Data':
+                    case 'dataNascimento':
 
                         data = new Date(element.value);//Pagando ano digitado
 
@@ -300,6 +300,17 @@ const CadastroUsuario = () => {
                             <label htmlFor="telefone">Telefone:</label>
                             <input type="tel" name="telefone" pattern="^\(\d{2}\) \d{4,5}-\d{4}$" required placeholder="(XX) XXXX-XXXX" />
                             <span ref={erroTelefone} className="erro"></span>
+                        </div>
+
+                        <div>
+                            <label htmlFor="dataNascimento">Nascimento:</label>
+                            <input type="date" name="dataNascimento" required />
+                            <span ref={erroData} className="erro"></span>
+                        </div>
+                        <div>
+                            <label htmlFor="cpf">CPF:</label>
+                            <input type="text" name="cpf" required pattern="^\d{3}\.\d{3}\.\d{3}-\d{2}$" placeholder="XXX.XXX.XXX-XX" />
+                            <span ref={erroCpf} className="erro"></span>
                         </div>
 
                         <div>

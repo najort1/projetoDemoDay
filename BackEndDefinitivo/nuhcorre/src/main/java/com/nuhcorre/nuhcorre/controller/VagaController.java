@@ -49,7 +49,13 @@ public class VagaController {
     @PostMapping("/cadastrar")
     public ResponseEntity<?> cadastrarVaga(@RequestBody CadastrarVagaDTO vagaDTO) {
         if (validaEmpresa()) {
-            Optional<Vaga> vagaExistente = vagaService.buscarVagaPorTituloEEmpresa(vagaDTO.titulo(), vagaDTO.empresaId());
+
+            EmpresaUserDetails empresaUserDetails = (EmpresaUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+            String cnpj = empresaUserDetails.getEmpresa().getCnpj();
+
+
+            Optional<Vaga> vagaExistente = vagaService.buscarVagaPorTituloEEmpresa(vagaDTO.titulo(), cnpj);
             if (vagaExistente.isPresent()) {
                 return ResponseEntity.status(HttpStatus.CONFLICT).body("Vaga já existe com os mesmos valores únicos.");
             }
@@ -62,13 +68,18 @@ public class VagaController {
             vaga.setCargaHoraria(vagaDTO.cargaHoraria());
             vaga.setDataExpiracao(vagaDTO.dataExpiracao());
 
-            Empresa empresa = empresaService.findById(vagaDTO.empresaId());
+            Empresa empresa = empresaService.findById(cnpj);
             if (empresa == null) {
                 return ResponseEntity.badRequest().body("Empresa não encontrada");
             }
             vaga.setEmpresa(empresa);
 
             Endereco endereco = enderecoService.findById(vagaDTO.enderecoId());
+
+            if (endereco == null) {
+                return ResponseEntity.badRequest().body("Endereço não encontrado");
+            }
+
             vaga.setEndereco(endereco);
 
             return ResponseEntity.ok(vagaService.salvarVaga(vaga));

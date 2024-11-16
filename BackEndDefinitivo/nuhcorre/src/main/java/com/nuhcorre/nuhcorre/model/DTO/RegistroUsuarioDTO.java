@@ -6,7 +6,6 @@ public record RegistroUsuarioDTO(
         String nome,
         String cpf,
         String dataNascimento,
-        String sexo,
         String telefone
 ) {
 }

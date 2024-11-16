@@ -21,8 +21,6 @@ public record CadastrarVagaDTO(
         String cargaHoraria,
         @JsonProperty("dataExpiracao")
         Date dataExpiracao,
-        @JsonProperty("empresaId")
-        String empresaId,
         @JsonProperty("enderecoId")
         Long enderecoId
 ) {

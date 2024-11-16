@@ -1,5 +1,6 @@
 package com.nuhcorre.nuhcorre.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -33,9 +34,13 @@ public class Endereco {
 
     private Boolean principal;
 
-    @OneToOne(mappedBy = "endereco")
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
+    @JsonBackReference
     private Empresa empresa;
 
-    @OneToOne(mappedBy = "endereco")
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    @JsonBackReference
     private Usuario usuario;
 }
