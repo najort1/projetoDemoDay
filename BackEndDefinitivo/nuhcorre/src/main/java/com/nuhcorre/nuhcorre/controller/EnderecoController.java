@@ -1,5 +1,6 @@
 package com.nuhcorre.nuhcorre.controller;
 
+import com.nuhcorre.nuhcorre.model.DTO.AtualizarEnderecoDTO;
 import com.nuhcorre.nuhcorre.model.DTO.CadastrarEnderecoDTO;
 import com.nuhcorre.nuhcorre.model.Empresa;
 import com.nuhcorre.nuhcorre.model.Usuario;
@@ -146,37 +147,48 @@ public class EnderecoController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não autorizado.");
     }
 
-    @PutMapping("/atualizar")
-    public ResponseEntity<?> atualizarEndereco(@RequestBody Endereco endereco) {
+    @PutMapping("/atualizar/{id}")
+    public ResponseEntity<?> atualizarEndereco(@RequestBody AtualizarEnderecoDTO atualizarEnderecoDTO, @PathVariable Long id) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
 
         if (principal instanceof Usuario) {
             Usuario usuario = (Usuario) principal;
-            Endereco enderecoAtual = enderecoService.findById(endereco.getId());
-            if (enderecoAtual == null) {
+            Endereco endereco = enderecoService.findById(id);
+            if (endereco == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Endereço não encontrado.");
             }
 
-            if(enderecoAtual.getUsuario().getId() == usuario.getId()){
+            if (endereco.getUsuario().getId() == usuario.getId()) {
+                endereco.setRua(atualizarEnderecoDTO.rua());
+                endereco.setNumero(atualizarEnderecoDTO.numero());
+                endereco.setCidade(atualizarEnderecoDTO.cidade());
+                endereco.setEstado(atualizarEnderecoDTO.estado());
+                endereco.setCep(atualizarEnderecoDTO.cep());
                 enderecoService.atualizarEndereco(endereco);
                 return ResponseEntity.ok("Endereço atualizado com sucesso.");
             }
-
         }else if (principal instanceof EmpresaUserDetails) {
             EmpresaUserDetails empresaUserDetails = (EmpresaUserDetails) principal;
             Empresa empresa = empresaUserDetails.getEmpresa();
-            Endereco enderecoAtual = enderecoService.findById(endereco.getId());
-            if (enderecoAtual == null) {
+            Endereco endereco = enderecoService.findById(id);
+            if (endereco == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Endereço não encontrado.");
             }
-            if (enderecoAtual.getEmpresa().getCnpj().trim().equals(empresa.getCnpj().trim())) {
+
+            if (endereco.getEmpresa().getCnpj().trim().equals(empresa.getCnpj().trim())) {
+                endereco.setRua(atualizarEnderecoDTO.rua());
+                endereco.setNumero(atualizarEnderecoDTO.numero());
+                endereco.setCidade(atualizarEnderecoDTO.cidade());
+                endereco.setEstado(atualizarEnderecoDTO.estado());
+                endereco.setCep(atualizarEnderecoDTO.cep());
                 enderecoService.atualizarEndereco(endereco);
                 return ResponseEntity.ok("Endereço atualizado com sucesso.");
             }
         }
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não autorizado.");
+
     }
 
 
