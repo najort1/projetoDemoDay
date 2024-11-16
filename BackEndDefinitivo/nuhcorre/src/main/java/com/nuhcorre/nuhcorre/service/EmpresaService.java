@@ -18,6 +18,10 @@ public class EmpresaService {
         return empresaRepository.findById(id).orElse(null);
     }
 
+    public Empresa atualizarEmpresa(Empresa empresa) {
+        return empresaRepository.save(empresa);
+    }
+
     public List<Empresa> findAllByNomeContaining(String nome) {
         return empresaRepository.findAllByNomeContaining(nome);
     }

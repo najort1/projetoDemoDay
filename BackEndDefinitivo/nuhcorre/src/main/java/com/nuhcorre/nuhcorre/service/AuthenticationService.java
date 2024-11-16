@@ -46,12 +46,29 @@ public class AuthenticationService {
     }
 
     public Usuario cadastrarUsuario(RegistroUsuarioDTO registroUsuarioDTO) {
+
+        if (registroUsuarioDTO.email() == null || registroUsuarioDTO.email().isEmpty()) {
+            throw new IllegalArgumentException("O campo email é obrigatório");
+        }
+        if (registroUsuarioDTO.senha() == null || registroUsuarioDTO.senha().isEmpty()) {
+            throw new IllegalArgumentException("O campo senha é obrigatório");
+        }
+
         verificarEmailECPFExistentes(registroUsuarioDTO.email(), registroUsuarioDTO.cpf());
         Usuario usuario = criarUsuario(registroUsuarioDTO);
         return usuarioRepository.save(usuario);
     }
 
     public Empresa cadastrarEmpresa(RegistroEmpresaDTO registroEmpresaDTO) {
+
+        if (registroEmpresaDTO.email() == null || registroEmpresaDTO.email().isEmpty()) {
+            throw new IllegalArgumentException("O campo email é obrigatório");
+        }
+        if (registroEmpresaDTO.senha() == null || registroEmpresaDTO.senha().isEmpty()) {
+            throw new IllegalArgumentException("O campo senha é obrigatório");
+        }
+// Adicione verificações para outros campos obrigatórios
+
         verificarEmailECNPJExistentes(registroEmpresaDTO.email(), registroEmpresaDTO.cnpj());
         Empresa empresa = criarEmpresa(registroEmpresaDTO);
         return empresaRepository.save(empresa);

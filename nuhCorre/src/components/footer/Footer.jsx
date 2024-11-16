@@ -1,42 +1,48 @@
 import './styleFooter.css';
+import boxicons from 'boxicons';
 
 function Footer(){
 
     return(
 
-        <footer>
+        <footer className="bg-[#5b82bbd1] h-14 w-full flex justify-evenly items-center p-4 bottom-0">
+            
+            <div className="items-textuais flex flex-row gap-4 text-white font-bold text-sm hover:cursor-pointer">
 
-            <div className="linksERedes">
+                <div className="item-footer">
+                    <p className="text-footer">Sobre</p>
+                </div>
 
-                <nav className="listaDeLinks">
-                    <ul className='listaLinks'>
-                        <li className='linksFooter'><a href=''>Sobre</a></li>
-                        <li className='linksFooter'><a href=''>Serviços</a></li>
-                        <li className='linksFooter'><a href=''>Suporte</a></li>
-                        <li className='linksFooter'><a href=''>Politica de privacidade</a></li>
-                    </ul>
-                </nav>
+                <div className="item-footer">
+                    <p className="text-footer">Serviços</p>
+                </div>
+
+                <div className="item-footer">
+                    <p className="text-footer">Suporte</p>
+                </div>
+
+                <div className="item-footer">
+                    <p className="text-footer">Política de Privacidade</p>
+                </div>
+
+
+            </div>
+
+            <div className="items-redes-sociais flex flex-row hover:cursor-pointer gap-2">
+                    
     
-                <nav className="caixaRedesSociais">
-                    <ul className='listaRedesSociais'>
-        
-                        <li>
-        
-                            <img width="30" height="30" src="https://img.icons8.com/ffffff/50/facebook-new.png" alt="facebook-new"/>
-        
-                        </li>
-                        <li>
-                            <img width="30" height="30" src="https://img.icons8.com/ffffff/material-outlined/24/instagram-new--v1.png" alt="instagram-new--v1"/>
-                        </li>
-                        <li>
-        
-                            <img width="30" height="30" src="https://img.icons8.com/ffffff/ios-glyphs/30/linkedin.png" alt="linkedin"/>
-                                
-                        </li>
-        
-                    </ul>
-                </nav>
+                        <div className="item-footer">
+                            <box-icon name='facebook-circle' color='#FFFFFF' size='md' type='logo' ></box-icon>
+                        </div>
     
+                        <div className="item-footer">
+                            <box-icon name='instagram-alt' color='#FFFFFF' size='md' type='logo' ></box-icon>
+                        </div>
+    
+                        <div className="item-footer">
+                            <box-icon name='linkedin-square' color='#FFFFFF' size='md' type='logo' ></box-icon>
+                        </div>
+
             </div>
 
         </footer>

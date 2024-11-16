@@ -1,10 +1,9 @@
-main{
+main#main-cadastrousuario{
 
-    align-items: center;
     display: flex;
     justify-content: center;
 
-}
+} 
 
 .alinhamento{
 
@@ -15,19 +14,17 @@ main{
 
 }
 
-#caixaCadastro{
+#caixaCadastroUsuario{
 
     background: #fff;
     border: 2px solid rgba(255, 255, 255, 0.2);
     color: #000;
-    height: calc(100vh - 10rem);
-    overflow: auto;
-    padding: 40px;
+    padding: 100px;
     width: 50vw;
 
 }
 
-#caixaCadastro div{margin: 10px 0;}
+#caixaCadastroUsuario div{margin: 10px 0;}
 
 /* Estilos para a lista com o símbolo de check */
 .check-list {
@@ -45,11 +42,11 @@ main{
 
 /* Formatação do form */
 
-#caixaCadastro label{display: block;}
-#caixaCadastro form{width: 100%;}
+#caixaCadastroUsuario label{display: block;}
+#caixaCadastroUsuario form{width: 100%;}
 
-#caixaCadastro form input,
-#caixaCadastro select{
+#caixaCadastroUsuario form input,
+#caixaCadastroUsuario select{
 
     border-radius: 4px;
     background: #fff;
@@ -66,7 +63,7 @@ main{
 
 }
 
-#caixaCadastro span{
+#caixaCadastroUsuario span{
 
     margin-bottom: 20px;
     color: #000;
@@ -102,15 +99,15 @@ input:not(:focus)::placeholder {
 }
 
 /*Botão submit*/
-#caixaCadastro input[type='submit']{
+#caixaCadastroUsuario input[type='submit']{
 
-    background: #425BD6;
+    background: #718CB3;
     color: #fff;
     border:none;
     cursor: pointer;
 }
 
-#caixaCadastro input[type='submit']:hover{
+#caixaCadastroUsuario input[type='submit']:hover{
 
     background: #334ed8;
     transition: background 1s;
@@ -129,19 +126,19 @@ input:not(:focus)::placeholder {
     background: #dad7d7;
 }
 
-#descricao{
+#descricaoUsuario{
 
     align-items: center;
-    background: #5b82bbd1;
+    background: #718CB3;
     color: #fff;
     display: flex;
-    height: calc(100vh - 10rem);
+    height: calc(100vh -10rem );
     padding-left: 2rem;
     width: 50vw;
 
 }
-#descricao h2{margin-bottom: 20px;}
-#descricao ul li{
+#descricaoUsuario h2{margin-bottom: 20px;}
+#descricaoUsuario ul li{
 
     display: block;
     margin: 15px 0;

@@ -7,6 +7,7 @@ import com.nuhcorre.nuhcorre.repository.EnderecoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,4 +44,11 @@ public class EnderecoService {
         return enderecoRepository.save(endereco);
     }
 
+    public List<Endereco> findAllByUsuario(Usuario usuario) {
+        return enderecoRepository.findAllByUsuario(usuario);
+    }
+
+    public List<Endereco> findAllByEmpresa(Empresa empresa) {
+        return enderecoRepository.findAllByEmpresa(empresa);
+    }
 }

@@ -2,9 +2,20 @@
 
   align-items: center;
   background-color: #5b82bbd1;
+  color: #fff;
   display: flex;
   height: 5rem;
   justify-content: space-between;
+}
+
+/* LInks */
+.opcoesHeaderCadastro{margin-right: 2cm;}
+
+.header-principal a{
+
+  font-size: 15px;
+  margin-left: 2vw;
+
 }
 
 /* Parte da logo */
@@ -63,4 +74,21 @@
   display: flex;
   flex-direction: row;
   
+}
+
+.degrade{
+
+  background: linear-gradient(270deg, rgba(255,255,255,1) 50%, #718cb3 50%);
+
+}
+.degradeReverso{
+
+  background: linear-gradient(90deg, rgba(255,255,255,1) 50%, #718cb3 50%);
+  justify-content: flex-end;
+
+}
+.headerBranco{
+
+  background: #fff;
+
 }
