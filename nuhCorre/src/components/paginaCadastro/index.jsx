@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Logo1 from '../../assets/camaleao.png';
 import Logo2 from '../../assets/logo.png';
+import Header from '../header/Header';
 
 const CadastroUsuario = () => {
 
@@ -244,6 +245,8 @@ const CadastroUsuario = () => {
 
     return (
         <>
+
+            <Header/>
 
             <main id= 'main-cadastrousuario'>
                 <div id='descricaoUsuario'>

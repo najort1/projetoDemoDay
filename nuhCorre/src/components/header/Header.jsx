@@ -4,6 +4,7 @@ import logo from '../../assets/logo.png';
 import {Image} from "@nextui-org/react";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
 import boxicons from "boxicons";
+import { EdicaoEmpressa } from "../EdicaoEmpressa/edicaoEmpressa";
 
 
 function Header() {
@@ -14,6 +15,8 @@ function Header() {
   const isCadastroEmpresaPage = location.pathname === '/cadastroEmpresa';
   const isCadastroPage = location.pathname === '/cadastro';
   const isLogin= location.pathname === '/login';
+  const isEditarEmpressa= location.pathname === '/edicaoEmpressa';
+  const isVagas= location.pathname === '/vagas';
 
   const navegarParaOLogin = () => {
     navigate('/login');
@@ -37,36 +40,35 @@ function Header() {
 
   const PaginaDeVagas = () => {
     navigate('/vagas');
-  };  
+  }; 
 
   return (
     <header className={`header-principal 
     ${isCadastroPage ? 'degrade' : ''}
     ${isCadastroEmpresaPage ? 'degrade' : ''}
-    ${isLogin ? 'degradeReverso' : ''} `}>
+    ${isLogin ? 'degradeReverso' : ''}
+    ${isEditarEmpressa ? 'headerBranco' : ''}
+     `}>
 
-<div id="logo" onClick={navegarParaPaginaPrincipal}>
+      <div id="logo" onClick={navegarParaPaginaPrincipal}>
         {!isCadastroEmpresaPage && !isCadastroPage && !isLogin?(
           // Exibe a logo para outras páginas
           <img src={logo} alt="logo" id="imgLogo" />
         ) : (
           // Exibe "Página Inicial" e "Sou Candidato" no lugar da logo para a página CadastroEmpresa
           <div className="opcoesHeaderCadastro" style={{fontSize:'19px', marginLeft:'2cm'}}>
+            
             <a onClick={cadastroEmpresa}>Sou empresa </a>
             <a onClick={cadastroUsuario}>Sou Candidato</a>
-            <a onClick={navegarParaPaginaPrincipal}>vagas</a>
+            <a onClick={PaginaDeVagas}>vagas</a>
             <a onClick={navegarParaPaginaPrincipal}>Página inicial</a>
-            {/*!isLogin?(
-
-                <a onClick={navegarParaPaginaPrincipal}>Página inicial</a>
-
-            ):("")*/}
+            
           </div>
         )}
       </div>
 
       <div className="conteudoHeader">
-        {!isCadastroEmpresaPage && !isCadastroPage && !isLogin? (
+        {!isCadastroEmpresaPage && !isCadastroPage && !isLogin && !isEditarEmpressa && !isVagas? (
           // Conteúdo padrão do Header para outras páginas
           <>
             <div className="listaIdentificador">
@@ -83,12 +85,16 @@ function Header() {
                 <li>
                   <a onClick={PaginaDeVagas}>Vagas</a>
                 </li>
+
               </ul>
             </div>
+
+            {!isVagas? (
             <div className="botoes">
               <button className="btn" onClick={navegarParaOLogin}>Entrar</button>
               <button className="btn" onClick={cadastroUsuario}>Cadastro</button>
             </div>
+            ):('')}
           </>
         ) : (
           // Conteúdo do Header para a página CadastroEmpresa

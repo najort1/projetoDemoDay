@@ -78,12 +78,17 @@
 
 .degrade{
 
-  background: linear-gradient(270deg, rgba(255,255,255,1) 50%, #5b82bbd1 50%);
+  background: linear-gradient(270deg, rgba(255,255,255,1) 50%, #718cb3 50%);
 
 }
 .degradeReverso{
 
-  background: linear-gradient(90deg, rgba(255,255,255,1) 50%, #5b82bbd1 50%);
+  background: linear-gradient(90deg, rgba(255,255,255,1) 50%, #718cb3 50%);
   justify-content: flex-end;
+
+}
+.headerBranco{
+
+  background: #fff;
 
 }
