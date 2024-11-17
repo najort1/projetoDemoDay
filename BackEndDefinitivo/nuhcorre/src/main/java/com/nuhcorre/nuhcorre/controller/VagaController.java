@@ -67,6 +67,7 @@ public class VagaController {
             vaga.setSalario(vagaDTO.salario());
             vaga.setCargaHoraria(vagaDTO.cargaHoraria());
             vaga.setDataExpiracao(vagaDTO.dataExpiracao());
+            vaga.setStatus(vagaDTO.status());
 
             Empresa empresa = empresaService.findById(cnpj);
             if (empresa == null) {
@@ -87,26 +88,50 @@ public class VagaController {
         return ResponseEntity.badRequest().body("Acesso negado");
     }
 
-    @PostMapping("/atualizar")
-    public ResponseEntity<?> atualizarVaga(@RequestBody Vaga vaga) {
+    @PostMapping("/atualizar/{id}")
+    public ResponseEntity<?> atualizarVaga(@RequestBody CadastrarVagaDTO cadastrarVagaDTO, @PathVariable Long id) {
         if (validaEmpresa()) {
 
-            Empresa emprsaVaga = vaga.getEmpresa();
-            if (emprsaVaga == null) {
-                return ResponseEntity.badRequest().body("Empresa não encontrada");
+
+            Vaga vaga = vagaService.buscarVagaPorId(id);
+            if (vaga == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Vaga não encontrada");
             }
 
             Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
             EmpresaUserDetails empresaUserDetails = (EmpresaUserDetails) authentication.getPrincipal();
             Empresa empresaAutenticada = empresaUserDetails.getEmpresa();
 
-            if (!emprsaVaga.getCnpj().equals(empresaAutenticada.getCnpj())) {
+            Empresa empresaVaga = vaga.getEmpresa();
+            if (empresaVaga != null && !empresaVaga.getCnpj().equals(empresaAutenticada.getCnpj())) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Acesso negado");
             }
 
+            vaga.setTitulo(cadastrarVagaDTO.titulo());
+            vaga.setDescricao(cadastrarVagaDTO.descricao());
+            vaga.setRequisitos(cadastrarVagaDTO.requisitos());
+            vaga.setBeneficios(cadastrarVagaDTO.beneficios());
+            vaga.setSalario(cadastrarVagaDTO.salario());
+            vaga.setCargaHoraria(cadastrarVagaDTO.cargaHoraria());
+            vaga.setDataExpiracao(cadastrarVagaDTO.dataExpiracao());
+            vaga.setStatus(cadastrarVagaDTO.status());
 
+            Empresa empresa = empresaService.findById(empresaAutenticada.getCnpj());
+            if (empresa == null) {
+                return ResponseEntity.badRequest().body("Empresa não encontrada");
+            }
+            vaga.setEmpresa(empresa);
 
-            return ResponseEntity.ok(vagaService.atualizarVaga(vaga));
+            Endereco endereco = enderecoService.findById(cadastrarVagaDTO.enderecoId());
+
+            if (endereco == null) {
+                return ResponseEntity.badRequest().body("Endereço não encontrado");
+            }
+
+            vaga.setEndereco(endereco);
+
+            return ResponseEntity.ok(vagaService.salvarVaga(vaga));
+
         }
 
         return ResponseEntity.badRequest().body("Acesso negado");

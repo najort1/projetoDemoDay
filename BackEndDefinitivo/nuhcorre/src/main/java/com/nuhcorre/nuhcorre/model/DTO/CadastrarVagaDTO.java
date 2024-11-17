@@ -22,6 +22,8 @@ public record CadastrarVagaDTO(
         @JsonProperty("dataExpiracao")
         Date dataExpiracao,
         @JsonProperty("enderecoId")
-        Long enderecoId
+        Long enderecoId,
+        @JsonProperty("status")
+        Boolean status
 ) {
 }
