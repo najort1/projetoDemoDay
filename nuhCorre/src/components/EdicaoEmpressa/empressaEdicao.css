@@ -44,6 +44,8 @@
 }
 .caixaInterna h1{
 
+    font-weight: 600;
+    font-size: 1.2em;
     padding: 10px 0px 10px 40px;
     border-bottom: 2px solid #E6E6E6;
 
@@ -81,7 +83,9 @@
 }
 .linksInterno ul li{
 
-    display: block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     margin-bottom: 10px;
     padding: 10px 10px;
 
@@ -141,13 +145,80 @@
 }
 .listImg{
 
-    display: inline;
-    vertical-align: sub;
     margin-right: 10px;
 
 }
+
 textarea{
 
     border: 2px solid #CFCFCF;
+
+}
+
+.editBoxNome{
+
+    background: #fff;
+    color: #000;
+    position: absolute;
+    top: 5vw;
+    left: 30vw;
+    width: 45vw;
+    height: 37vh;
+    border: 4px solid #7999c7;
+
+}
+
+.editBoxNome form{
+
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.editBoxNome label{
+
+    align-self: baseline;
+    margin-left: 9vw;
+    margin-bottom: 5px;
+
+}
+
+.editBoxNome input[type='text']{
+
+    border: 2px solid gray;
+    width: 60%;
+    padding: 10px;
+
+}
+
+.botoes{margin-top: 15px;}
+
+.botoes .submitCancel{
+
+    background: #7999c7;
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px;
+
+}
+.botoes .submitCancel:first-child{
+
+    margin-right: 20px;
+
+}
+.editNome{
+
+    float: left;
+    margin-right: 10px;
+
+}
+.editImagem{
+
+    position: absolute;
+    top: 29vh;
+    left: 9vw;
 
 }
