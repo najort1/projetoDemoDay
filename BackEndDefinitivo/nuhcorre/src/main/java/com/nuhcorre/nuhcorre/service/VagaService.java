@@ -1,6 +1,8 @@
 package com.nuhcorre.nuhcorre.service;
 
+import com.nuhcorre.nuhcorre.model.Usuario;
 import com.nuhcorre.nuhcorre.model.Vaga;
+import com.nuhcorre.nuhcorre.repository.UsuarioRepository;
 import com.nuhcorre.nuhcorre.repository.VagaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class VagaService {
     private final VagaRepository vagaRepository;
+    private final UsuarioRepository usuarioRepository;
 
     public Vaga salvarVaga(Vaga vaga) {
         return vagaRepository.save(vaga);
@@ -48,4 +51,15 @@ public class VagaService {
     public Optional<Vaga> buscarVagaPorTituloEEmpresa(String titulo, String empresaId) {
         return vagaRepository.findByTituloAndEmpresaCnpj(titulo, empresaId);
     }
+
+    public Vaga candidatarUsuarioAVaga(Long vagaId, Long usuarioId) {
+        Vaga vaga = vagaRepository.findById(vagaId).orElseThrow(() -> new RuntimeException("Vaga não encontrada"));
+        Usuario usuario = usuarioRepository.findById(usuarioId).orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+
+
+
+        vaga.adicionarCandidato(usuario);
+        return vagaRepository.save(vaga);
+    }
+
 }

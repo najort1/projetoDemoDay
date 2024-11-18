@@ -208,4 +208,25 @@ public class VagaController {
         return ResponseEntity.ok(vagaService.buscarVagasPorCnpjEmpresa(cnpj));
     }
 
+    @PostMapping("/{vagaId}/candidatar")
+    public ResponseEntity<?> candidatarUsuario(@PathVariable Long vagaId) {
+        try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            Object principal = authentication.getPrincipal();
+
+            if (!(principal instanceof Usuario)) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não autenticado");
+            }
+
+            Usuario usuario = (Usuario) principal;
+            Long usuarioId = usuario.getId();
+
+
+            Vaga vaga = vagaService.candidatarUsuarioAVaga(vagaId, usuarioId);
+            return ResponseEntity.ok(vaga);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
 }

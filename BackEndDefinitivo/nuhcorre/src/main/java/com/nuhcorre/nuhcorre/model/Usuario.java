@@ -1,5 +1,7 @@
 package com.nuhcorre.nuhcorre.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -43,6 +45,7 @@ public class Usuario implements UserDetails {
     private String telefone;
 
     @ManyToMany(mappedBy = "usuarios")
+    @JsonBackReference
     private List<Vaga> vagas;
 
     @OneToMany(mappedBy = "usuario")
@@ -100,4 +103,6 @@ public class Usuario implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
 }

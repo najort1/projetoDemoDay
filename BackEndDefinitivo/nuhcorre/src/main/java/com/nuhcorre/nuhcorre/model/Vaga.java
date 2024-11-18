@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -76,6 +77,7 @@ public class Vaga {
             joinColumns = @JoinColumn(name = "vaga_id"),
             inverseJoinColumns = @JoinColumn(name = "usuario_id")
     )
+    @JsonManagedReference
     private List<Usuario> usuarios;
 
     @ManyToOne
@@ -91,4 +93,9 @@ public class Vaga {
         }
         dataCadastro = new Date();
     }
+
+    public void adicionarCandidato(Usuario usuario) {
+        this.usuarios.add(usuario);
+    }
+
 }
