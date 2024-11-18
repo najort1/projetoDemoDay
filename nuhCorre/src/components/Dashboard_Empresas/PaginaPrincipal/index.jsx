@@ -258,7 +258,7 @@ useEffect(() => {
                                         maxValue={120}
                                         className="max-w-md"
                                     />
-                                    <p className="candidatos font-bold text-center">100 candidatos</p>
+                                    <p className="candidatos font-bold text-center">80 candidatos</p>
                                 </div>
                             </div>
                             <div className="vaga-em-destaque flex flex-col gap-4">
@@ -273,7 +273,7 @@ useEffect(() => {
                                         maxValue={120}
                                         className="max-w-md"
                                     />
-                                    <p className="candidatos font-bold text-center">100 candidatos</p>
+                                    <p className="candidatos font-bold text-center">40 candidatos</p>
                                 </div>
                             </div>
                             
