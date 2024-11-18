@@ -7,6 +7,7 @@ import { EdicaoEmpressa } from './components/EdicaoEmpressa/edicaoEmpressa';
 import EditarPerfilCandidato from './components/EditarPerfilCandidato';
 import { PesquisaVagaTelaInicial } from './components/paginaPrincipal/Main';
 import { Vagas } from './components/paginaVagas/IndexVagas';
+import DashBoardPrincipal from './components/Dashboard_Empresas/PaginaPrincipal';
 
 function App() {
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/edicaoEmpressa" element={<EdicaoEmpressa/>} />
           <Route path="/editarPerfilCandidato" element={<EditarPerfilCandidato/>} />
           <Route path="/vagas" element={<Vagas/>} />
+          <Route path="/dashboard" element={<DashBoardPrincipal/>} />
         </Routes>
       </Router>
     </>
