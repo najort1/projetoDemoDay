@@ -6,6 +6,7 @@ import EditarPerfilCandidato from './components/EditarPerfilCandidato';
 import { PesquisaVagaTelaInicial } from './components/paginaPrincipal/Main';
 import { Vagas } from './components/paginaVagas/IndexVagas';
 import DashBoardPrincipal from './components/Dashboard_Empresas/PaginaPrincipal';
+import LoginPageEm from './components/paginaloginempresa';
 
 const routes = [
   { path: "/", element: <PesquisaVagaTelaInicial /> },
@@ -16,6 +17,7 @@ const routes = [
   { path: "/editarPerfilCandidato", element: <EditarPerfilCandidato /> },
   { path: "/vagas", element: <Vagas /> },
   { path: "/dashboard", element: <DashBoardPrincipal /> },
+  { path: "/loginEmpresa", element: <LoginPageEm /> },
 ];
 
 export default routes;
