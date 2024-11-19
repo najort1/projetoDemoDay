@@ -33,6 +33,9 @@ function Header() {
     navigate('/edicaoEmpressa');
   };
 
+  const paginaLoginEmpresa = () => {
+    navigate('/loginEmpresa');
+  };
   return (
     <header className="pagina-principal 
       top-0 left-0 w-full h-20 bg-[#5b82bbd1] flex justify-between items-center p-4
@@ -87,7 +90,7 @@ function Header() {
                     <p className="text-black font-bold text-lg">Cadastro</p>
                   </div>
                 </DropdownItem>
-                <DropdownItem onClick={navegarParaOLogin}>
+                <DropdownItem onClick={paginaLoginEmpresa}>
                   <div className="item-dropdown-empresa flex items-center gap-2">
                     <box-icon name='door-open' color='#000000' size='md' type='solid' ></box-icon>
                     <p className="text-black font-bold text-lg">Login</p>
