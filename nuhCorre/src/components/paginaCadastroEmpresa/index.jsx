@@ -249,7 +249,7 @@ const CadastroEmpresa = () => {
             <div id="caixaCadastroEmpresa">
                 <div className="alinhamentoEmpresa">
                     <img src={Logo} alt='' className="alinhamentoEmpresa" style={{width: '11vw'}} />
-                    <h2 className="alinhamentoEmpresaP" style={{marginBottom:'10px'}}>Olá empresa, Conecte-se conosco!</h2>
+                    <h2 className="alinhamentoEmpresaP" style={{marginBottom:'10px'}}>Olá empresa, conecte-se conosco!</h2>
                     <span className="alinhamentoEmpresaS" style={{marginBottom:'15px'}}>Inclusão começa com oportunidades!</span>
                 </div>
                 
@@ -286,7 +286,7 @@ const CadastroEmpresa = () => {
                     </div>
 
                     <div>
-                        <label htmlFor="senha">Senha:</label>
+                        <label htmlFor="senha">Crie sua senha:</label>
                         <div style={{ position: 'relative' }}>
                             <input
                                 type={senhaVisivel ? 'text' : 'password'}
