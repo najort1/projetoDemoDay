@@ -62,6 +62,9 @@ public class Usuario implements UserDetails {
     @OneToMany(mappedBy = "usuario")
     private List<Avaliacao> avaliacoes;
 
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Candidatura> candidaturas;
+
     private boolean isEmpresa;
 
     @PrePersist

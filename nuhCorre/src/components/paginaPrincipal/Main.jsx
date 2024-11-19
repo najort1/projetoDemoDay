@@ -74,26 +74,28 @@ export const PesquisaVagaTelaInicial = () => {
 
 
       
-      xl:w-[40%] xl:h-[30%]
+      xl:w-[57%] xl:h-[40%]
       md:w-[80%]
+
+      px-[10px]
       
       ">
 
 
       <div className="titulo-container flex flex-col items-center gap-2">
-        <h1 className="titulo-container-principal font-bold text-md text-center text-2xl text-black">Conecte-se com Empregos Acessíveis para Todos</h1>
+        <h1 className="titulo-container-principal font-bold text-md text-center text-2xl text-white">Conecte-se com Empregos Acessíveis para Todos</h1>
       </div>
 
       <div className="container-inputs flex flex-row items-center gap-2">
 
-      <select name="Tipo" id="selecionado_tipo" className="opcoes-tipo h-12 w-20" onChange={handleTipo}>
+      <select name="Tipo" id="selecionado_tipo" className="opcoes-tipo h-12 w-20 rounded-[5px]" onChange={handleTipo}>
           <option value="Vagas">Vagas</option>
           <option value="Empresas">Empresas</option>      
       </select>
 
-      <input type="text" placeholder="Pesquise" className="input-pesquisa h-12 w-full" onChange={handlePesquisa}/>
+      <input type="text" placeholder="Pesquise" className="input-pesquisa h-12 w-full rounded-[5px] px-[5px]" onChange={handlePesquisa}/>
 
-      <select name="Estado" id="seleciona_estado" className="selecionar-estado h-12 w-24" onChange={handleSelectCidade}>
+      <select name="Estado" id="seleciona_estado" className="selecionar-estado h-12 w-24 rounded-[5px]" onChange={handleSelectCidade}>
 
         {estados.map((estado) => (
           <option value={estado.name}>{estado.name}</option>
