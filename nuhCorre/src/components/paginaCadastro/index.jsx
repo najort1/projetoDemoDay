@@ -4,6 +4,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Logo1 from '../../assets/camaleao.png';
 import Logo2 from '../../assets/logo.png';
+import olhoAberto from '../../assets/olhoAberto.jpg.png'; // Caminho para o ícone de olho aberto
+import olhoFechado from '../../assets/olhoFechado.jpg'; // Caminho para o ícone de olho fechado
+
 
 
 const CadastroUsuario = () => {
@@ -339,7 +342,15 @@ const CadastroUsuario = () => {
                                     }}
                                     value='Criar conta'
                                 >
-                                    {senhaVisivel ? '-' : '👁'} {/* Ícones para mostrar/esconder */}
+                                    
+                                    <img
+                                        src={senhaVisivel? olhoAberto : olhoFechado}
+                                        alt="Alternar visibilidade da senha"
+                                        style={{
+                                            width: '24px',
+                                            height: '24px',
+                                        }}
+                                    />
                                 </button>
                                 <span ref={erroSenha} className="erro"></span>
                             </div>

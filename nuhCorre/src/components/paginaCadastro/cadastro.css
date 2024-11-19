@@ -173,6 +173,7 @@ input:not(:focus)::placeholder {
 #expliu p {
     margin-top: 10px;
     font-size: 1.2em;
+    margin-left: 1.1rem;
 }
 
 #expliu h2{
@@ -186,7 +187,7 @@ input:not(:focus)::placeholder {
 
     display: block;
     margin: 15px 0;
-    margin-right: 2rem;
+    margin-right: 2.8rem;
     
 }
 
