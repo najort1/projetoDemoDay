@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import "../paginaCadastro/cadastro.css";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import axios from "axios";
@@ -25,7 +24,48 @@ import {
 } from "@nextui-org/react";
 import boxicons from "boxicons";
 
+
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({ email: "", password: "" });
+
+  const navigate = useNavigate();
+
+  const navegarParaLoginUsuario = () => { navigate('/login') };
+  const navegarParaCadastroUsuario = () => { navigate('/cadastro') };
+  const navegarParaCadastroEmpresa = () => { navigate('/cadastroEmpresa') };
+  const navegarParaLoginEmpresa = () => { navigate('/loginEmpresa') };
+
+
+  const validateEmail = (email) => {
+    const regex = /^[a-zA-Z0-9_]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    return password.length > 6 && /[a-zA-Z]/.test(password);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let valid = true;
+    let errors = { email: "", password: "" };
+
+    if (!validateEmail(email)) {
+      errors.email = "Email inválido";
+      valid = false;
+    }
+
+    if (!validatePassword(password)) {
+      errors.password =
+        "A senha deve ter mais de 6 caracteres e conter pelo menos uma letra";
+      valid = false;
+    }
+
+    setErrors(errors);
+  };
+
   return (
     <>
       {isMobile && !isTablet && (
@@ -49,17 +89,21 @@ const Login = () => {
                 </h3>
               </div>
               <div className="form-login w-full h-full p-4">
-                <form className="flex flex-col gap-4">
+                <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
                   <input
                     type="text"
                     placeholder="Email"
-                    className="input-login h-12 border-sky-500 border rounded-xl border-solid"
+                    onChange={(e) => setEmail(e.target.value)}
+                    className={`input-login h-12 border rounded-xl border-solid ${errors.email ? 'border-red-500 shadow-md shadow-red-500' : 'border-sky-500'}`}
                   />
+                  {errors.email && <p className="text-red-500">{errors.email}</p>}
                   <input
                     type="password"
                     placeholder="Senha"
-                    className="input-login h-12 border-sky-500 border rounded-xl border-solid"
+                    onChange={(e) => setPassword(e.target.value)}
+                    className={`input-login h-12 border rounded-xl border-solid ${errors.password ? 'border-red-500 shadow-md shadow-red-500' : 'border-sky-500'}`}
                   />
+                  {errors.password && <p className="text-red-500">{errors.password}</p>}
                   <button
                     type="submit"
                     className="botao-login h-12 rounded-xl bg-[#5B82BB] text-white font-bold"
@@ -89,30 +133,54 @@ const Login = () => {
           <div className="tudo-conteudo-principal w-full h-full flex flex-row items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <div className="container-login w-[50%] shadow-2xl h-dvh flex flex-col">
               <div className="logo-login flex justify-center items-center flex-col font-bold gap-2 mb-6">
-                <Image isZoomed width={150} alt="NuhCorre" src={Logo}></Image>
+                <Image isZoomed width={250} alt="NuhCorre" src={Logo}></Image>
                 <h2 className="texto">Acesse sua conta</h2>
                 <h3 className="texto-usuario text-gray-400">
                   Bem-vindo de volta! Estamos felizes em vê-lo.
                 </h3>
               </div>
               <div className="form-login w-full h-full p-4">
-                <form className="flex flex-col gap-4">
-                  <input
-                    type="text"
-                    placeholder="Email"
-                    className="input-login h-12 border-sky-500 border rounded-xl border-solid"
-                  />
-                  <input
-                    type="password"
-                    placeholder="Senha"
-                    className="input-login h-12 border-sky-500 border rounded-xl border-solid"
-                  />
+                <form className="flex flex-col gap-4 items-center w-full" onSubmit={handleSubmit}>
+                  <div className="form-input flex flex-col gap-2 w-[100%]">
+                    <label htmlFor="email" className="text-black">
+                      Email
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Digite seu email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      className={`input-login h-12 p-2 border-sky-500 border rounded-xl border-solid ${errors.email ? 'border-red-500 shadow-md shadow-red-500' : 'border-sky-500'}`}
+                    />
+                    {errors.email && <p className="text-red-500">{errors.email}</p>}
+                  </div>
+
+                  <div className="form-input flex flex-col gap-2 w-[100%]">
+                    <label htmlFor="senha" className="text-black">
+                      Senha
+                    </label>
+                    <input
+                      type="password"
+                      placeholder="Digite sua senha"
+                      onChange={(e) => setPassword(e.target.value)}
+                      className={`input-login h-12 p-2 border-sky-500 border rounded-xl border-solid ${errors.password ? 'border-red-500 shadow-md shadow-red-500' : 'border-sky-500'}`}
+                    />
+                    {errors.password && <p className="text-red-500">{errors.password}</p>}
+                  </div>
+
                   <button
                     type="submit"
-                    className="botao-login h-12 rounded-xl bg-[#5B82BB] text-white font-bold"
+                    className="botao-login h-12 rounded-xl bg-[#5B82BB] text-white font-bold w-[100%]"
                   >
                     Entrar
                   </button>
+                  <div className="texto-cadastro flex justify-center items-center flex-col font-bold">
+                    <h2 className="texto">
+                      Ainda não tem uma conta?{" "}
+                      <span className="cadastre-se text-blue-800 hover:cursor-pointer">
+                        Cadastre-se
+                      </span>
+                    </h2>
+                  </div>
                 </form>
               </div>
             </div>
@@ -124,7 +192,7 @@ const Login = () => {
                     <h1 className="text-white text-bold">Sou usuário</h1>
                   </DropdownTrigger>
                   <DropdownMenu>
-                    <DropdownItem>
+                    <DropdownItem onClick={navegarParaCadastroUsuario}>
                       <div className="item-dropdown-usuario flex items-center gap-2">
                         <box-icon
                           name="user-plus"
@@ -135,7 +203,7 @@ const Login = () => {
                         <p className="text-black font-bold">Cadastro</p>
                       </div>
                     </DropdownItem>
-                    <DropdownItem>
+                    <DropdownItem onClick={navegarParaLoginUsuario}>
                       <div className="item-dropdown-usuario flex items-center gap-2">
                         <box-icon
                           name="door-open"
@@ -155,7 +223,7 @@ const Login = () => {
                     </h1>
                   </DropdownTrigger>
                   <DropdownMenu>
-                    <DropdownItem>
+                    <DropdownItem onClick={navegarParaCadastroEmpresa}>
                       <div className="item-dropdown-usuario flex items-center gap-2">
                         <box-icon
                           name="user-plus"
@@ -166,7 +234,7 @@ const Login = () => {
                         <p className="text-black font-bold text-sm">Cadastro</p>
                       </div>
                     </DropdownItem>
-                    <DropdownItem>
+                    <DropdownItem onClick={navegarParaLoginEmpresa}>
                       <div className="item-dropdown-usuario flex items-center gap-2">
                         <box-icon
                           name="door-open"
@@ -189,10 +257,10 @@ const Login = () => {
               </div>
 
               <div className="explica-o-nuhcorre flex flex-col gap-4 ml-4">
-                <h1 className="titulo text-white font-bold text-2xl">
+                <h1 className="titulo-informacoes-projeto text-white font-bold text-2xl mb-2">
                   Sobre a NuhCorre
                 </h1>
-                <p className="texto text-white font-medium">
+                <p className="texto text-white font-medium mb-4">
                   A NuhCorre é lider em conectar talentos com oportunidades.
                   Nossa missão é criar um mercado de trabalho mais inclusivo e
                   acessivel para todos
@@ -235,23 +303,47 @@ const Login = () => {
               </h3>
             </div>
             <div className="form-login p-4 w-full">
-              <form className="flex flex-col gap-4">
-                <input
-                  type="text"
-                  placeholder="Email"
-                  className="input-login h-12 border-sky-500 border rounded-xl border-solid"
-                />
-                <input
-                  type="password"
-                  placeholder="Senha"
-                  className="input-login h-12 border-sky-500 border rounded-xl border-solid"
-                />
+              <form className="flex flex-col gap-4 items-center w-full" onSubmit={handleSubmit}>
+                <div className="form-input flex flex-col gap-2 w-[50%]">
+                  <label htmlFor="email" className="text-black">
+                    Email
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Digite seu email"
+                    onChange={(e) => setEmail(e.target.value)}
+                    className={`input-login h-12 p-2 border-sky-500 border rounded-xl border-solid ${errors.email ? 'border-red-500 shadow-md shadow-red-500' : 'border-sky-500 shadow-md'}`}
+                  />
+                  {errors.email && <p className="text-red-500">{errors.email}</p>}
+                </div>
+
+                <div className="form-input flex flex-col gap-2 w-[50%]">
+                  <label htmlFor="senha" className="text-black">
+                    Senha
+                  </label>
+                  <input
+                    type="password"
+                    placeholder="Digite sua senha"
+                    onChange={(e) => setPassword(e.target.value)}
+                    className={`input-login h-12 p-2 border-sky-500 border rounded-xl border-solid ${errors.password ? 'border-red-500 shadow-md shadow-red-500' : 'border-sky-500 shadow-md'}`}
+                  />
+                  {errors.password && <p className="text-red-500">{errors.password}</p>}
+                </div>
+
                 <button
                   type="submit"
-                  className="botao-login h-12 rounded-xl bg-[#5B82BB] text-white font-bold"
+                  className="botao-login h-12 rounded-xl bg-[#5B82BB] text-white font-bold w-[50%]"
                 >
                   Entrar
                 </button>
+                <div className="texto-cadastro flex justify-center items-center flex-col font-bold">
+                  <h2 className="texto">
+                    Ainda não tem uma conta?{" "}
+                    <span className="cadastre-se text-blue-800 hover:cursor-pointer">
+                      Cadastre-se
+                    </span>
+                  </h2>
+                </div>
               </form>
             </div>
           </div>
@@ -263,7 +355,7 @@ const Login = () => {
                   <h1 className="text-white text-bold text-2xl">Sou usuário</h1>
                 </DropdownTrigger>
                 <DropdownMenu>
-                  <DropdownItem>
+                  <DropdownItem onClick={navegarParaCadastroUsuario}>
                     <div className="item-dropdown-usuario flex items-center gap-2">
                       <box-icon
                         name="user-plus"
@@ -274,7 +366,7 @@ const Login = () => {
                       <p className="text-black font-bold">Cadastro</p>
                     </div>
                   </DropdownItem>
-                  <DropdownItem>
+                  <DropdownItem onClick={navegarParaLoginUsuario}>
                     <div className="item-dropdown-usuario flex items-center gap-2">
                       <box-icon
                         name="door-open"
@@ -294,7 +386,7 @@ const Login = () => {
                   </h1>
                 </DropdownTrigger>
                 <DropdownMenu>
-                  <DropdownItem>
+                  <DropdownItem onClick={navegarParaCadastroEmpresa}>
                     <div className="item-dropdown-usuario flex items-center gap-2">
                       <box-icon
                         name="user-plus"
@@ -305,7 +397,7 @@ const Login = () => {
                       <p className="text-black font-bold text-sm">Cadastro</p>
                     </div>
                   </DropdownItem>
-                  <DropdownItem>
+                  <DropdownItem onClick={navegarParaLoginEmpresa}>
                     <div className="item-dropdown-usuario flex items-center gap-2">
                       <box-icon
                         name="door-open"
@@ -323,21 +415,20 @@ const Login = () => {
               </h1>
             </div>
 
-            <div className="imagem-projeto flex mt-8 ml-8 flex justify-center">
-              <Image width={150} alt="NuhCorre" src={Camaleao}></Image>
-            </div>
-
-            <div className="explica-o-nuhcorre flex flex-col ml-4">
-              <h1 className="titulo text-white font-bold text-4xl">
+            <div className="explica-o-nuhcorre flex flex-col justify-center h-full">
+              <div className="imagem-projeto flex mt-8 ml-8 flex justify-center items-center">
+                <Image width={200} alt="NuhCorre" src={Camaleao}></Image>
+              </div>
+              <h1 className="titulo-informacoes-projeto text-white font-bold text-4xl mb-4 ml-[20%]">
                 Sobre a NuhCorre
               </h1>
-              <p className="texto text-white font-medium">
+              <p className="texto text-white font-medium mb-8 w-[50%] ml-[20%]">
                 A NuhCorre é lider em conectar talentos com oportunidades. Nossa
                 missão é criar um mercado de trabalho mais inclusivo e acessivel
                 para todos
               </p>
 
-              <ul className="qualidades-nuh-corre ">
+              <ul className="qualidades-nuh-corre ml-[20%]">
                 <li className="item-qualidade-nuh-corre flex gap-1 text-white font-medium">
                   <span className="check">✓</span>
                   <p className="texto">Encontre canditados próximos a você!</p>
