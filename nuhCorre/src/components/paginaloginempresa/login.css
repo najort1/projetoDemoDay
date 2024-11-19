@@ -1,0 +1,189 @@
+main#main-loginempresa {
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse; /* Inverte a ordem dos elementos */
+}
+
+#expliu-loginempresa {
+    width: 50vw;
+    background: #718CB3;
+    color: #fff;
+    padding-right: 2rem; /* Altere para padding-right para inverter */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#expliu-loginempresa p {
+    margin-top: 10px;
+    font-size: 1.2em;
+    margin-left: 0.5rem; /* Altere para margin-left */
+}
+
+#expliu-loginempresa h2 {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-left: 2rem; /* Altere para margin-left */
+}
+
+#expliu-loginempresa ul li {
+    display: block;
+    margin: 15px 0;
+    margin-left: 1.5rem; /* Altere para margin-left */
+}
+
+#caixaLoginEmpresa {
+    background: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: #000;
+    width: 50vw;
+    padding: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.alinhamentoLoginEmpresa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.alinhamentoLoginEmpresa h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.alinhamentoLoginEmpresa span {
+    font-size: 1em;
+    color: gray;
+    text-align: center;
+}
+
+#caixaLoginEmpresa form {
+    width: 100%;
+}
+
+#caixaLoginEmpresa form div {
+    margin: 10px 0;
+}
+
+#caixaLoginEmpresa form input,
+#caixaLoginEmpresa select {
+    border-radius: 15px;
+    background: #fff;
+    border: 2px solid #2F6FCC;
+    box-shadow: 3px 6px 6px rgba(0, 0, 0, 0.362);
+    color: #000;
+    font-size: 1em;
+    font-weight: 500;
+    height: 50px;
+    line-height: 1.5;
+    margin: 5px 0;
+    outline: none;
+    padding: 0 15px;
+    width: 100%;
+}
+
+#caixaLoginEmpresa input[type='submit'] {
+    background: #718CB3 !important;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    width: 100%;
+}
+
+#caixaLoginEmpresa input[type='submit']:hover {
+    background: #3f5c88 !important;
+    transition: background 1s;
+}
+
+input::placeholder {
+    color: #a6a6a6;
+    font-weight: 500;
+}
+
+input:focus {
+    border: 2px solid #fff;
+}
+
+input:focus::placeholder {
+    font-size: 0.8em;
+    position: relative;
+    top: -5px;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+}
+
+input:not(:focus)::placeholder {
+    top: 0px;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #F4F4F4;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    background: #F4F4F4;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #dad7d7;
+}
+
+.logo-image-loginempresa {
+    width: 170px; /* Defina a largura desejada */
+    height: auto; /* Ajusta a altura proporcionalmente */
+    margin-top: 8rem;
+    margin-bottom: 0.5cm;
+    margin-left: 17rem;
+}
+
+.alinhamentoLoginEmpresaTitulo {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 0.6rem;
+}
+
+.opcoesHeaderLoginEmpresa {
+    display: flex;
+    gap: 2em;
+}
+
+.alinhamentoLoginEmpresaTexto {
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-right: 0.6rem;
+}
+
+#expliu-loginempresa {
+    width: 50vw;
+    background: #718CB3;
+    color: #fff;
+    padding-left: 2rem;
+    justify-content: space-around;
+}
+
+#expliu-loginempresa p {
+    margin-top: 10px;
+    font-size: 1.2em;
+    margin-right: 0.5rem;
+}
+
+#expliu-loginempresa h2 {
+    font-weight: bold;
+    font-size: 2rem;
+    margin-right: 11rem;
+}
+
+#expliu-loginempresa ul li {
+    display: block;
+    margin: 15px 0;
+    margin-right: 2.8rem;
+}
