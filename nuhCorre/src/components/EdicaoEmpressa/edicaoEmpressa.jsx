@@ -28,6 +28,9 @@ export function EdicaoEmpressa() {
         <>
             <Header />
 
+            {/* Adicionando a sobreposição escura quando estamos no modo de edição */}
+            {isEditing && <div className="dark-overlay"></div>}
+
             <section className="perfil">
                 <div className="alinhamentoTitulo">
                     <div>
@@ -38,7 +41,9 @@ export function EdicaoEmpressa() {
                         {/* Exibe o nome e profissão ou a caixa de edição */}
                         {isEditing ? (
                             <div className='editBoxNome'>
+
                                 <form onSubmit={altSub}>
+                                    <h2>Editar</h2>
                                     <label htmlFor='nome'>Nome</label>
                                     <input 
                                         type='text' 
@@ -66,7 +71,6 @@ export function EdicaoEmpressa() {
                                 <h2 className="editNome">{nome}</h2>
                                 <button onClick={editNome}><box-icon name='edit'></box-icon></button>
                                 <h3>{profissao}</h3>
-                                
                             </>
                         )}
                     </div>
@@ -145,6 +149,8 @@ export function EdicaoEmpressa() {
                 </div>
             </section>
 
+       
         </>
     );
 }
+

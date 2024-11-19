@@ -1,224 +1,247 @@
-.alinhamentoTitulo{
-
-    display: flex;
-    align-items: center;
-    padding: 1rem 2rem;
-    background: #5b82bbd1;
-    color: #fff;
-
+/* Alinhamento do título na seção de perfil */
+.alinhamentoTitulo {
+    align-items: center; /* Alinha itens verticalmente no centro */
+    background: #5b82bbd1; /* Cor de fundo */
+    color: #fff; /* Cor do texto */
+    display: flex; /* Usa o modelo flexbox */
+    padding: 1rem 2rem; /* Espaçamento interno */
 }
 
-.tituloUsuario{margin-left: 20px;}
-
-#perfil{
-
-    border-radius: 100px;
-    width: 9vw;
-
+/* Margem à esquerda no caixa do usuário */
+.tituloUsuario {
+    margin-left: 20px;
 }
 
+/* Estilo da imagem de perfil */
+#perfil {
+    border-radius: 100px; /* Deixa a imagem redonda */
+    width: 9vw; /* Largura proporcional à tela */
+}
 
-#formEmpresa{
+/* Estilo da imagem do botão de editar */
+.editImagem {
+    position: absolute; /* Posicionamento absoluto */
+    top: 29vh; /* Distância do topo */
+    left: 9vw; /* Distância da esquerda */
+}
 
-    display: flex;
+/* Estilos para as caixas centrais, irá fazer as caixas do form ficar um ao lado da outra */
+.caixasCentrais {
+    display: flex; /* Flexbox */
+    flex-direction: column; /* Alinha itens na vertical */
+    align-items: center; /* Alinha itens no centro */
+}
+
+/* PARTE DA CITAÇÃO DA LEI */
+
+/* Estilo do texto informativo sobre a Lei */
+.textoLei {
+    background: #D8ECF5 !important; /* Cor de fundo */
+    color: #3C71BD; /* Cor do texto */
+    padding: 20px 30px; /* Espaçamento interno */
+    border-radius: 6px; /* Bordas arredondadas */
+    width: 60vw; /* Largura proporcional */
+    text-align: center; /* Alinha o texto no centro */
+}
+/* ----- FORMULÁRIOS ----- */
+
+/* Estilos para o seção de formulário de empresa */
+#formEmpresa {
+    display: flex; /* Usa flexbox para alinhamento */
     margin-top: 20px;
-    background: #F9FAFC;
-    height: 100vh;
-
+    background: #F9FAFC; /* Cor de fundo */
+    height: 100vh; /* Ocupa toda a altura da tela */
 }
 
-#formEmpresa form{
-
-    background: #fff;
-    width: calc(95vw - 199px);
-    justify-content: space-around;
-    display:flex;
+/* Estilo do formulário */
+#formEmpresa form {
+    background: #fff; /* Cor de fundo */
+    width: calc(95vw - 199px); /* Largura proporcional ao tamanho da tela */
+    justify-content: space-around; /* Espaçamento entre os elementos */
+    display: flex; /* Flexbox */
     margin-top: 10px;
-
 }
 
-#formEmpresa form label{
-
-    margin: 10px 0;
-
-}
-.caixaInterna h1{
-
-    font-weight: 600;
-    font-size: 1.2em;
-    padding: 10px 0px 10px 40px;
-    border-bottom: 2px solid #E6E6E6;
-
-}
-.caixaInterna{
-
-    border: 2px solid #E6E6E6;
-    margin-top: 20px;
-    padding-bottom: 20px;
-    border-radius: 10px;
-}
-#formEmpresa input, #formEmpresa select{
-
-    border: 2px solid #CFCFCF;
-    border-radius: 8px;
-    padding-left: 10px;
-    cursor:auto;
-
+/* Estilos gerais para os rótulos do formulário */
+#formEmpresa form label {
+    margin: 10px 0; /* Espaçamento entre os elementos */
 }
 
-#formEmpresa input[type='radio']:first-child{margin-left:10px;}
-
-#formEmpresa input:not([type="radio"]):not([type="submit"]):not([type="reset"]), #formEmpresa select{
-
-
-    width: 30vw;
-    height: 6vh;
-
-}
-.linksInterno{
-    
-    margin-left: 1rem;
-    font-weight: 600;
-
-}
-.linksInterno ul li{
-
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-bottom: 10px;
-    padding: 10px 10px;
-
-}
-.caixasCentrais div{
-    background: #fff;
-
-}
-.linkSelecionado{
-
-    background: #718CB3;
-    color: #fff;
-    border-radius: 3px;
-
-}
-.caixasCentrais{
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+/* Estilos da caixa interna do formulário */
+.caixaInterna {
+    border: 2px solid #E6E6E6; /* Borda */
+    margin-top: 20px; /* Margem superior */
+    padding-bottom: 20px; /* Espaçamento inferior */
+    border-radius: 10px; /* Cantos arredondados */
 }
 
-
-.textoLei{
-
-    background: #D8ECF5 !important;
-    color: #3C71BD;
-    padding: 20px 30px;
-    border-radius: 6px;
-    width: 60vw;
-    text-align: center;
+/* Estilo do título dentro da caixa interna */
+.caixaInterna h1 {
+    font-weight: 600; /* Negrito */
+    font-size: 1.2em; /* Tamanho da fonte */
+    padding: 10px 0px 10px 40px; /* Espaçamento interno */
+    border-bottom: 2px solid #E6E6E6; /* Linha inferior */
 }
 
-#formEmpresa input[type='submit']{
-
-    margin-right: 20px;
-
+/* Estilos dos inputs e selects dentro de #formEmpresa */
+#formEmpresa input, #formEmpresa select {
+    border: 2px solid #CFCFCF; /* Borda suave */
+    border-radius: 8px; /* Cantos arredondados */
+    padding-left: 10px; /* Espaçamento interno à esquerda */
+    cursor: auto; /* Cursor padrão */
 }
+
+/* Estilo para o primeiro radio button */
+#formEmpresa input[type='radio']:first-child {
+    margin-left: 10px; /* Margem à esquerda */
+}
+
+/* Estilos para inputs não-radio, selects dentro de #formEmpresa */
+#formEmpresa input:not([type="radio"]):not([type="submit"]):not([type="reset"]), #formEmpresa select {
+    width: 30vw; /* Largura proporcional */
+    height: 6vh; /* Altura proporcional */
+}
+
+/* Estilo dos botões de submit e reset */
 #formEmpresa input[type='submit'],
-#formEmpresa input[type='reset']{
-
-    width: 190px;
-    height: 50px;
-    font-weight: 600;
-    color: #fff;
-    background: #718CB3;
-    cursor: pointer !important;
-    padding: 0 !important;
-
+#formEmpresa input[type='reset'] {
+    width: 190px; /* Largura fixa */
+    height: 50px; /* Altura fixa */
+    font-weight: 600; /* Negrito */
+    color: #fff; /* Cor do texto */
+    background: #718CB3; /* Cor de fundo */
+    cursor: pointer !important; /* Cursor de clique */
+    padding: 0 !important; /* Remove o padding padrão */
 }
 
-#botoes{
-
-    margin-top: 11vw;
-
-}
-.listImg{
-
-    margin-right: 10px;
-
+/* Estilo para o botão de submit */
+#formEmpresa input[type='submit'] {
+    margin-right: 20px; /* Margem à direita */
 }
 
-textarea{
-
-    border: 2px solid #CFCFCF;
-
+/* Estilo para o campo textarea */
+textarea {
+    border: 2px solid #CFCFCF; /* Borda suave */
 }
 
-.editBoxNome{
-
-    background: #fff;
-    color: #000;
-    position: absolute;
-    top: 5vw;
-    left: 30vw;
-    width: 45vw;
-    height: 37vh;
-    border: 4px solid #7999c7;
-
+/* Estilo do contêiner de botões */
+#botoes {
+    margin-top: 11vw; /* Margem superior */
 }
 
-.editBoxNome form{
+/* PARTE DA LISTA DE NAVEGAÇÃO */
 
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
+/* Estilo para os links de navegação interna */
+.linksInterno {
+    margin-left: 1rem; /* Margem à esquerda */
+    font-weight: 600; /* Negrito */
 }
 
-.editBoxNome label{
-
-    align-self: baseline;
-    margin-left: 9vw;
-    margin-bottom: 5px;
-
+/* Estilo de cada item da lista dentro de linksInterno */
+.linksInterno ul li {
+    display: flex; /* Flexbox para alinhamento */
+    flex-direction: row; /* Alinha itens na horizontal */
+    align-items: center; /* Alinha itens verticalmente no centro */
+    margin-bottom: 10px; /* Margem inferior */
+    padding: 10px 10px; /* Espaçamento interno */
 }
 
-.editBoxNome input[type='text']{
-
-    border: 2px solid gray;
-    width: 60%;
-    padding: 10px;
-
+/* Estilos para os links selecionados */
+.linkSelecionado {
+    background: #718CB3; /* Cor de fundo */
+    color: #fff; /* Cor do texto */
+    border-radius: 3px; /* Bordas arredondadas */
 }
 
-.botoes{margin-top: 15px;}
-
-.botoes .submitCancel{
-
-    background: #7999c7;
-    border-radius: 5px;
-    color: #fff;
-    padding: 10px;
-
+/* Estilo das imagens na lista */
+.listImg {
+    margin-right: 10px; /* Margem à direita */
 }
-.botoes .submitCancel:first-child{
 
-    margin-right: 20px;
 
+/* ----- ESTILOS DE CAIXA DE EDIÇÃO DE NOME ----- */
+
+/* Estilos para a caixa de edição do nome */
+.editBoxNome {
+    background: #fff; /* Cor de fundo */
+    box-shadow: 3px 3px 68px -8px #fff; /* Sombra ao redor da caixa */
+    color: #000; /* Cor do texto */
+    position: absolute; /* Posicionamento absoluto */
+    top: 5vw; /* Distância do topo */
+    left: 30vw; /* Distância da esquerda */
+    width: 45vw; /* Largura proporcional */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 150px; /* Bordas arredondadas */
+    border: 4px solid #7999c7; /* Cor da borda */
+    z-index: 999; /* Garante que a caixa apareça sobre outros elementos */
 }
-.editNome{
 
-    float: left;
-    margin-right: 10px;
-
+/* Estilo do formulário dentro da caixa de edição */
+.editBoxNome form {
+    display: flex; /* Flexbox */
+    height: 100%; /* Altura total */
+    flex-direction: column; /* Alinha itens na vertical */
+    justify-content: center; /* Alinha verticalmente ao centro */
+    align-items: center; /* Alinha horizontalmente ao centro */
 }
-.editImagem{
 
-    position: absolute;
-    top: 29vh;
-    left: 9vw;
+/* Estilo do título dentro da caixa de edição */
+.editBoxNome form h2 {
+    font-size: 1.2rem; /* Tamanho da fonte */
+}
 
+/* Estilo dos rótulos dentro da caixa de edição */
+.editBoxNome label {
+    align-self: baseline; /* Alinha à esquerda */
+    margin-left: 9vw; /* Margem à esquerda */
+    margin-bottom: 5px; /* Margem inferior */
+}
+
+/* Estilo dos inputs dentro da caixa de edição */
+.editBoxNome input[type='text'] {
+    border: 2px solid #7999c7; /* Cor da borda */
+    border-radius: 13px; /* Bordas arredondadas */
+    cursor: auto; /* Cursor padrão */
+    width: 60%; /* Largura relativa */
+    padding: 10px; /* Espaçamento interno */
+}
+
+/* Estilo dos botões dentro da caixa de edição */
+
+.botoes{margin-top: 20px;}
+.botoes .submitCancel {
+    background: #7999c7; /* Cor de fundo */
+    border-radius: 19px; /* Bordas arredondadas */
+    color: #fff; /* Cor do texto */
+    padding: 10px; /* Espaçamento interno */
+}
+
+/* Efeito de hover para os botões */
+.submitCancel:hover {
+    background: #6085b8; /* Cor de fundo quando o botão é hover */
+    transition: background 1s;
+}
+
+/* Margem à direita no primeiro botão dentro da caixa de edição */
+.botoes .submitCancel:first-child {
+    margin-right: 15px; /* Margem à direita */
+}
+
+/* Estilo do nome na visualização */
+.editNome {
+    float: left; /* Alinha à esquerda */
+    margin-right: 10px; /* Margem à direita */
+}
+
+/* ----- ESTILOS DA SOBREPOSIÇÃO ESCURA ----- */
+
+/* Estilo da sobreposição escura quando o nome está sendo editado */
+.dark-overlay {
+    position: fixed; /* Fixa a sobreposição */
+    top: 0; /* Começa do topo */
+    left: 0; /* Começa da esquerda */
+    width: 100%; /* Largura total */
+    height: 100%; /* Altura total */
+    background: rgba(0, 0, 0, 0.5); /* Fundo escuro com opacidade */
+    z-index: 999; /* Garante que a sobreposição apareça sobre outros elementos */
 }
