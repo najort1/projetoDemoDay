@@ -1,16 +1,23 @@
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import './empressaEdicao.css';
+import './caixasEdicoes.css';
 import React, { useState } from 'react';
 
 export function EdicaoEmpressa() {
     const [isEditing, setIsEditing] = useState(false); // Estado para controlar se estamos no modo de edição
     const [nome, setNome] = useState('Cachorro chupetão'); // Estado para o nome
     const [profissao, setProfissao] = useState('chupar chupeta'); // Estado para a profissão
-
+    const [isPhotoEditing, setIsPhotoEditing] = useState(false);
+    const [photoPerfil, setPhotoPerfil] = useState("https://i.pinimg.com/280x280_RS/e5/1d/04/e51d04c78c6c26bfa0ca7d7bb94af786.jpg");
+    const imgPadrao = "https://i.pinimg.com/280x280_RS/e5/1d/04/e51d04c78c6c26bfa0ca7d7bb94af786.jpg";
     // Função chamada quando o botão "editar" é clicado
     function editNome() {
         setIsEditing(true); // Ativa o modo de edição
+    }
+
+    function editPhoto() {
+        setIsPhotoEditing(true); // Ativa o modo de edição
     }
 
     // Função chamada quando o botão "Salvar" é clicado
@@ -24,24 +31,37 @@ export function EdicaoEmpressa() {
         setIsEditing(false); // Desativa o modo de edição após cancelar
     }
 
+    function cancelPhoto() {
+        setIsPhotoEditing(false);
+    }
+
+    function removePhoto() {
+        setPhotoPerfil(null); // Define como null para remover a foto de perfil
+    }
+
     return (
         <>
             <Header />
 
             {/* Adicionando a sobreposição escura quando estamos no modo de edição */}
             {isEditing && <div className="dark-overlay"></div>}
+            {isPhotoEditing && <div className="dark-overlay"></div>}
 
             <section className="perfil">
                 <div className="alinhamentoTitulo">
                     <div>
-                        <img src='https://i.pinimg.com/280x280_RS/e5/1d/04/e51d04c78c6c26bfa0ca7d7bb94af786.jpg' id='perfil' alt='perfilImg'/>
-                        <button className="editImagem"><box-icon name='edit'></box-icon></button>
+                        {/* Condicionando a exibição da imagem */}
+                        <img 
+                            src={photoPerfil || imgPadrao} // Exibe uma imagem padrão caso a foto seja removida
+                            className='foto-perfil' 
+                            alt='perfilImg'
+                        />
+                        <button className="editImagem" onClick={editPhoto}><box-icon name='edit'></box-icon></button>
                     </div>
                     <div className="tituloUsuario">
                         {/* Exibe o nome e profissão ou a caixa de edição */}
                         {isEditing ? (
-                            <div className='editBoxNome'>
-
+                            <div className='editBoxNome editBox'>
                                 <form onSubmit={altSub}>
                                     <h2>Editar</h2>
                                     <label htmlFor='nome'>Nome</label>
@@ -66,13 +86,52 @@ export function EdicaoEmpressa() {
                                     </div>
                                 </form>
                             </div>
-                        ) : (
-                            <>
-                                <h2 className="editNome">{nome}</h2>
-                                <button onClick={editNome}><box-icon name='edit'></box-icon></button>
-                                <h3>{profissao}</h3>
-                            </>
-                        )}
+                        ) : ('')}
+                        <>
+                            <h2 className="editNome">{nome}</h2>
+                            <button onClick={editNome}><box-icon name='edit'></box-icon></button>
+                            <h3>{profissao}</h3>
+                        </>
+
+                        {isPhotoEditing ? (
+                            <div className='editBox boxPhoto'>
+                                <div className='boxTitle'> 
+                                    <h2>Editar Foto</h2>
+                                    <button onClick={cancelPhoto}><box-icon type='solid' name='x-circle'></box-icon></button>
+                                </div>
+
+                                <div className='mainBox'>
+                                    <img src={photoPerfil || imgPadrao} alt='perfil' className='foto-perfil' />
+
+                                    <div className="btn-group">
+                                        {/* O input file escondido */}
+                                        <input 
+                                            type="file" 
+                                            id="fileUpload" 
+                                            onChange={(e) => {
+                                                const file = e.target.files[0];  // Acessa o primeiro arquivo selecionado
+                                                if (file) {
+                                                    const reader = new FileReader();
+                                                    reader.onloadend = () => {
+                                                        setPhotoPerfil(reader.result); // Atualiza o estado com a URL do arquivo selecionado
+                                                    };
+                                                    reader.readAsDataURL(file); // Lê o arquivo como uma URL base64
+                                                }
+                                            }}
+                                        />
+                                        {/* Botão personalizado que dispara o input file */}
+                                        <label htmlFor="fileUpload" className="custom-file-upload">
+                                            Editar
+                                        </label>
+
+                                        {/* Botão de remover */}
+                                        <button className="btn btn-warning" onClick={removePhoto}>Remover</button>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        ):('')}
                     </div>
                 </div>
             </section>
@@ -148,9 +207,7 @@ export function EdicaoEmpressa() {
                     </div>
                 </div>
             </section>
-
-       
+            
         </>
     );
 }
-

@@ -1,0 +1,256 @@
+
+/* EDIÇÃO FOTO */
+
+/* Estilos gerais para a caixa de edição de foto */
+.editBox.boxPhoto {
+    background-color: #fff; /* Fundo branco */
+    border-radius: 12px; /* Bordas arredondadas mais suaves */
+    padding: 30px; /* Espaçamento interno mais generoso */
+    border: none;
+    width: 100%;
+    max-width: 500px; /* Largura máxima para a caixa */
+    margin: 0 auto; /* Centraliza a caixa */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Sombra mais suave e profunda */
+    position: absolute;
+    z-index: 10;
+    transition: all 0.3s ease; /* Transição suave ao abrir */
+}
+
+.editBox.boxPhoto:hover {
+    transform: scale(1.05); /* Efeito de aumento quando passa o mouse */
+}
+
+/* Título da caixa de edição */
+.editBox.boxPhoto .boxTitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px; /* Maior espaço abaixo do título */
+}
+
+.editBox.boxPhoto .boxTitle h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte mais elegante */
+}
+
+/* Estilizando o botão do input file */
+.editBox.boxPhoto .btn-group input[type="file"] {
+    display: none; /* Esconde o botão padrão */
+}
+
+/* Criando um botão personalizado para o input file */
+.editBox.boxPhoto .btn-group .custom-file-upload {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #4caf50; /* Cor verde para o botão */
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-align: center;
+    width: auto;
+}
+
+/* Efeito de hover no botão personalizado */
+.editBox.boxPhoto .btn-group .custom-file-upload:hover {
+    background-color: #388e3c; /* Cor mais escura ao passar o mouse */
+    transform: scale(1.05); /* Leve aumento no botão */
+}
+
+/* Estilo do botão de remover */
+.editBox.boxPhoto .btn-group button {
+    padding: 12px 20px;
+    background-color: #f44336; /* Cor vermelha para o botão de remover */
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.editBox.boxPhoto .btn-group button:hover {
+    background-color: #d32f2f; /* Cor mais escura ao passar o mouse */
+    transform: scale(1.05); /* Leve aumento no botão */
+}
+
+
+.editBox.boxPhoto .boxTitle button {
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    color: #f44336; /* Vermelho vibrante para o botão de fechar */
+    cursor: pointer;
+    transition: color 0.3s ease; /* Transição suave para a cor */
+}
+
+.editBox.boxPhoto .boxTitle button:hover {
+    color: #e53935; /* Tom mais escuro de vermelho no hover */
+}
+
+/* Estilos para a imagem de perfil */
+.editBox.boxPhoto img.foto-perfil {
+    display: block;
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    border-radius: 50%; /* Imagem redonda */
+    margin: 0 auto 20px; /* Centraliza a imagem e adiciona margem inferior */
+    transition: transform 0.3s ease; /* Animação suave ao passar o mouse */
+}
+
+.editBox.boxPhoto img.foto-perfil:hover {
+    transform: scale(1.1); /* Aumenta a imagem um pouco ao passar o mouse */
+}
+
+/* Estilos para os botões de editar e remover */
+.editBox.boxPhoto .btn-group {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 12px;
+}
+
+.editBox.boxPhoto .btn-group input[type="file"] {
+    padding: 12px 16px;
+    background-color: #4caf50; /* Cor verde para o botão de editar */
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.editBox.boxPhoto .btn-group input[type="file"]:hover {
+    background-color: #388e3c; /* Cor mais escura quando passa o mouse */
+}
+
+.editBox.boxPhoto .btn-group button {
+    padding: 12px 16px;
+    background-color: #f44336; /* Cor vermelha para o botão de remover */
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.editBox.boxPhoto .btn-group button:hover {
+    background-color: #d32f2f; /* Cor mais escura quando passa o mouse */
+}
+
+/* Adicionando bordas suaves aos botões */
+.editBox.boxPhoto .btn-group input[type="file"],
+.editBox.boxPhoto .btn-group button {
+    border-radius: 50px; /* Borda arredondada dos botões */
+}
+
+/* Estilos para a sobreposição escura */
+.dark-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Sobreposição escura */
+    z-index: 9;
+}
+
+/* Efeito de transição para a caixa de edição */
+.editBox.boxPhoto {
+    opacity: 0;
+    animation: fadeIn 0.5s forwards; /* Animação de fade-in */
+}
+
+/* Animação de fade-in */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+/*EDIÇÃO DE NOME */
+
+/* Estilos para a caixa de edição do nome */
+.editBox {
+    background: #fff; /* Cor de fundo */
+    color: #000; /* Cor do texto */
+    position: absolute; /* Posicionamento absoluto */
+    top: 5vw; /* Distância do topo */
+    left: 30vw; /* Distância da esquerda */
+    width: 45vw; /* Largura proporcional */
+    padding: 20px; /* Espaçamento interno */
+    border-radius: 150px; /* Bordas arredondadas */
+    border: 4px solid #7999c7; /* Cor da borda */
+    z-index: 999; /* Garante que a caixa apareça sobre outros elementos */
+}
+
+/* Estilo do formulário dentro da caixa de edição */
+.editBoxNome form {
+    display: flex; /* Flexbox */
+    height: 100%; /* Altura total */
+    flex-direction: column; /* Alinha itens na vertical */
+    justify-content: center; /* Alinha verticalmente ao centro */
+    align-items: center; /* Alinha horizontalmente ao centro */
+}
+
+/* Estilo do título dentro da caixa de edição */
+.editBoxNome form h2 {
+    font-size: 1.2rem; /* Tamanho da fonte */
+}
+
+/* Estilo dos rótulos dentro da caixa de edição */
+.editBoxNome label {
+    align-self: baseline; /* Alinha à esquerda */
+    margin-left: 9vw; /* Margem à esquerda */
+    margin-bottom: 5px; /* Margem inferior */
+}
+
+/* Estilo dos inputs dentro da caixa de edição */
+.editBoxNome input[type='text'] {
+    border: 2px solid #7999c7; /* Cor da borda */
+    border-radius: 13px; /* Bordas arredondadas */
+    cursor: auto; /* Cursor padrão */
+    width: 60%; /* Largura relativa */
+    padding: 10px; /* Espaçamento interno */
+}
+
+/* Estilo dos botões dentro da caixa de edição */
+
+.botoes{margin-top: 20px;}
+.botoes .submitCancel {
+    background: #7999c7; /* Cor de fundo */
+    border-radius: 19px; /* Bordas arredondadas */
+    color: #fff; /* Cor do texto */
+    padding: 10px; /* Espaçamento interno */
+}
+
+/* Efeito de hover para os botões */
+.submitCancel:hover {
+    background: #6085b8; /* Cor de fundo quando o botão é hover */
+    transition: background 1s;
+}
+
+/* Margem à direita no primeiro botão dentro da caixa de edição */
+.botoes .submitCancel:first-child {
+    margin-right: 15px; /* Margem à direita */
+}
+
+/* Estilo do nome na visualização */
+.editNome {
+    float: left; /* Alinha à esquerda */
+    margin-right: 10px; /* Margem à direita */
+    font-size: 1.4em;
+}
+
