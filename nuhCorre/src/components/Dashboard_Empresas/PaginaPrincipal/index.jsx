@@ -76,25 +76,25 @@ useEffect(() => {
 
                             " />
 
-                            <button onClick={hide} className="text-white text-3xl">
+                            <button onClick={hide} className="text-white text-3xl hover:text-gray-300">
                                 <box-icon type='solid' name='x-circle'></box-icon>
                             </button>
                         </div>
                         <div className="flex flex-col items-center gap-4">
 
-                            <div className="nav-item flex flex-row items-center gap-2">
+                            <div className="nav-item flex flex-row items-center gap-2 hover:text-gray-300">
                                 <box-icon type='solid' name='home'></box-icon>
                                 <a href="#" className="text-white text-xl">Inicio</a>
                             </div>
-                            <div className="nav-item flex flex-row items-center gap-2">
+                            <div className="nav-item flex flex-row items-center gap-2 hover:text-gray-300">
                                 <box-icon name='file-plus' type='solid' ></box-icon>
                                 <a href="#" className="text-white text-xl">Nova vaga</a>
                             </div>
-                            <div className="nav-item flex flex-row items-center gap-2">
+                            <div className="nav-item flex flex-row items-center gap-2 hover:text-gray-300">
                                 <box-icon name='user-detail' type='solid' ></box-icon>
                                 <a href="#" className="text-white text-xl">Candidatos</a>
                             </div>
-                            <div className="nav-item flex flex-row items-center gap-2">
+                            <div className="nav-item flex flex-row items-center gap-2 hover:text-gray-300">
                                 <box-icon name='spreadsheet' ></box-icon>
                                 <a href="#" className="text-white text-xl">Vagas</a>
                             </div>
@@ -103,7 +103,7 @@ useEffect(() => {
 
                         <div className="flex flex-row justify-between items-center p-4">
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIMDsWFBoBCZUhHBwy7G9G65_pJ2SZngH5BQ&s" alt="Usuario logado" className="usuario-logado-foto rounded-full w-16 object-cover" />
-                            <button className="botao-sair text-white font-2xl font-bold">Sair</button>
+                            <button className="botao-sair text-white font-2xl font-bold hover:text-gray-300">Sair</button>
                         </div>
                     </div>
             )} 
@@ -118,7 +118,7 @@ useEffect(() => {
 
             <header className="header-dashboard flex flex-row w-full shadow-xl p-2 items-center">
 
-                <button className="abrir-side-bar" onClick={() => setVisible(true)} ><box-icon name='menu' size='lg'></box-icon></button>
+                <button className="abrir-side-bar hover:text-gray-300" onClick={() => setVisible(true)} ><box-icon name='menu' size='lg'></box-icon></button>
                 <h1 className="titulo-dashboard text-blue-800 text-2xl flex justify-center items-center font-bold m-auto">Dashboard</h1>
 
             </header>

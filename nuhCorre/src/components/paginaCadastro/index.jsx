@@ -4,7 +4,10 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Logo1 from '../../assets/camaleao.png';
 import Logo2 from '../../assets/logo.png';
-import Header from '../header/Header';
+import olhoAberto from '../../assets/olhoAberto.jpg.png'; // Caminho para o ícone de olho aberto
+import olhoFechado from '../../assets/olhoFechado.jpg'; // Caminho para o ícone de olho fechado
+
+
 
 const CadastroUsuario = () => {
 
@@ -246,39 +249,38 @@ const CadastroUsuario = () => {
     return (
         <>
 
-            <Header/>
 
             <main id= 'main-cadastrousuario'>
-                <div id='descricaoUsuario'>
 
-                    <div>
+                <div id='expliu'>
+                    <div className='opcoesHeaderCadastro'style={{fontSize:'19px', marginLeft:'1rem'}}>
+                        <a onClick='#'>Página Inicial </a>
+                        <a onClick='#'>Sou Empresa</a>
+                    </div>
 
-                        <img src={Logo1} alt='' style={{width:"180px"}}/>
+                    <div className='titulo_expliu'>
+                        <img src={Logo1} alt='' className= "logo-imageu"/>
                         <h2>Sobre a NuhCorre</h2>
                         <p>
                             A NuhCorre é lider em conectar talentos com<br/>
                             oportunidades. Nossa missão é criar um mercado de<br/>
                             trabalho mais inclusivo e acessivel para todos.
-
-                            <ul className="check-list">
-
-                                <li>Encontre canditados próximos a você! </li>
-                                <li>Presente em todo o Brasil</li>
-                                <li>Suporte personalizado para candidatos e empressas</li>
-
-                            </ul>
-
                         </p>
+                        <ul className="check-list">
+
+                            <li>Encontre vagas próximas a você! </li>
+                            <li>Presente em todo o Brasil.</li>
+                            <li>Suporte personalizado para candidatos e empresas.</li>
+                        </ul>
 
                     </div>
-
                 </div>
                 <div id="caixaCadastroUsuario">
-                    <div className='alinhamento'>
+                    <div className='alinhamentousuario'>
 
-                        <img src={Logo2} alt='' className='alinhamento' style={{width: '13vw'}}/>
-                        <h2 className='alinhamento' style={{marginBottom:'7px'}}>Olá candidato, Conecte-se conosco!</h2>
-                        <span className='alinhamento'>Cada pessoa importa, cada talento conta!</span>
+                        <img src={Logo2} alt='' className='alinhamentousuario' style={{width: '11vw'}}/>
+                        <h2 className='alinhamentousuarioP' style={{marginBottom:'10px'}}>Olá candidato, conecte-se conosco!</h2>
+                        <span className='alinhamentousuarioS'style={{marginBottom:'15px'}}>Cada pessoa importa, cada talento conta!</span>
 
                     </div>
                     
@@ -314,7 +316,7 @@ const CadastroUsuario = () => {
                         </div>
 
                         <div>
-                            <label htmlFor="senha">Senha:</label>
+                            <label htmlFor="senha">Crie uma senha:</label>
                             
                             <div style={{ position: 'relative' }}>
                                 <input
@@ -340,7 +342,15 @@ const CadastroUsuario = () => {
                                     }}
                                     value='Criar conta'
                                 >
-                                    {senhaVisivel ? '-' : '👁'} {/* Ícones para mostrar/esconder */}
+                                    
+                                    <img
+                                        src={senhaVisivel? olhoAberto : olhoFechado}
+                                        alt="Alternar visibilidade da senha"
+                                        style={{
+                                            width: '24px',
+                                            height: '24px',
+                                        }}
+                                    />
                                 </button>
                                 <span ref={erroSenha} className="erro"></span>
                             </div>

@@ -22,16 +22,17 @@
   100% { background-image: url('./assets/img4.jpg'); }
 }
 
-/* Estilização geral do botão */
-input, button{
+/* Lua ativa os estilos abaixo caso alguma pagina sua quebre o layout */
+
+/* input, button{
 
   border: none;
   outline: none;
   cursor: pointer;
 
-}
+} */
 
-a {
+/* a {
 
   color: white;
   font-size: 1em;
@@ -42,7 +43,7 @@ a:hover{
   
   padding-bottom: 5px;
   text-decoration: underline;
-}
+} */
 
 ul li {
 

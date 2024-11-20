@@ -7,7 +7,9 @@ import com.nuhcorre.nuhcorre.model.DTO.VagaRespostaDTO;
 import com.nuhcorre.nuhcorre.model.details.EmpresaUserDetails;
 import com.nuhcorre.nuhcorre.service.EmpresaService;
 import com.nuhcorre.nuhcorre.service.EnderecoService;
+import com.nuhcorre.nuhcorre.service.VagaDadosService;
 import com.nuhcorre.nuhcorre.service.VagaService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -20,16 +22,13 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/vaga")
+@RequiredArgsConstructor
 public class VagaController {
     private final VagaService vagaService;
     private final EmpresaService empresaService;
     private final EnderecoService enderecoService;
+    private final VagaDadosService vagaDadosService;
 
-    public VagaController(VagaService vagaService, EmpresaService empresaService, EnderecoService enderecoService) {
-        this.vagaService = vagaService;
-        this.empresaService = empresaService;
-        this.enderecoService = enderecoService;
-    }
 
     public Boolean validaEmpresa() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -273,6 +272,30 @@ public class VagaController {
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
+    }
+
+    @PostMapping("/{vagaId}/visualizar")
+    public ResponseEntity<?> registrarVisualizacao(@PathVariable long vagaId) {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+
+        if (!(principal instanceof Usuario)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não autenticado");
+        }
+
+        Usuario usuario = (Usuario) principal;
+        Long usuarioId = usuario.getId();
+
+
+
+        Boolean resultado_registro = vagaDadosService.registrarVisualizacao(vagaId, usuarioId);
+
+        if (!resultado_registro) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuario já visualizou !");
+        }
+
+        return ResponseEntity.ok("Visualização registrada com sucesso");
     }
 
 }
