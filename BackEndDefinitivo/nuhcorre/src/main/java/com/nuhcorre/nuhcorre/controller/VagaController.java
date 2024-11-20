@@ -1,12 +1,9 @@
 package com.nuhcorre.nuhcorre.controller;
 
+import com.nuhcorre.nuhcorre.model.*;
 import com.nuhcorre.nuhcorre.model.DTO.CadastrarVagaDTO;
 import com.nuhcorre.nuhcorre.model.DTO.EmpresaRespostaVagaDTO;
 import com.nuhcorre.nuhcorre.model.DTO.VagaRespostaDTO;
-import com.nuhcorre.nuhcorre.model.Empresa;
-import com.nuhcorre.nuhcorre.model.Endereco;
-import com.nuhcorre.nuhcorre.model.Usuario;
-import com.nuhcorre.nuhcorre.model.Vaga;
 import com.nuhcorre.nuhcorre.model.details.EmpresaUserDetails;
 import com.nuhcorre.nuhcorre.service.EmpresaService;
 import com.nuhcorre.nuhcorre.service.EnderecoService;
@@ -206,6 +203,76 @@ public class VagaController {
     @GetMapping("/buscar/cnpj/{cnpj}")
     public ResponseEntity<?> buscarVagasPorCnpjEmpresa(@PathVariable String cnpj) {
         return ResponseEntity.ok(vagaService.buscarVagasPorCnpjEmpresa(cnpj));
+    }
+
+    @PostMapping("/{vagaId}/candidatar")
+    public ResponseEntity<?> candidatarUsuario(@PathVariable Long vagaId) {
+        try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            Object principal = authentication.getPrincipal();
+
+            if (!(principal instanceof Usuario)) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não autenticado");
+            }
+
+            Usuario usuario = (Usuario) principal;
+            Long usuarioId = usuario.getId();
+
+            Vaga vaga = vagaService.buscarVagaPorId(vagaId);
+            if (vaga == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Vaga não encontrada");
+            }
+
+            if (vaga.getCandidaturas().stream().anyMatch(c -> Long.valueOf(c.getUsuario().getId()).equals(usuarioId))) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Usuário já está na lista de candidatos");
+            }
+
+            Candidatura candidatura = new Candidatura();
+            candidatura.setUsuario(usuario);
+            candidatura.setVaga(vaga);
+            vaga.getCandidaturas().add(candidatura);
+            vagaService.salvarVaga(vaga);
+
+            return ResponseEntity.ok("Usuário candidatado com sucesso");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{vagaId}/desistir")
+    public ResponseEntity<?> desistirCandidatura(@PathVariable Long vagaId) {
+        try {
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            Object principal = authentication.getPrincipal();
+
+            if (!(principal instanceof Usuario)) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não autenticado");
+            }
+
+            Usuario usuario = (Usuario) principal;
+            Long usuarioId = usuario.getId();
+
+            Vaga vaga = vagaService.buscarVagaPorId(vagaId);
+            if (vaga == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Vaga não encontrada");
+            }
+
+            Candidatura candidatura = vaga.getCandidaturas().stream()
+                    .filter(c -> Long.valueOf(c.getUsuario().getId()).equals(usuarioId))
+                    .findFirst()
+                    .orElse(null);
+
+            if (candidatura == null) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Usuário não está na lista de candidatos");
+            }
+
+            vaga.getCandidaturas().remove(candidatura);
+            vagaService.salvarVaga(vaga);
+
+            return ResponseEntity.ok("Usuário desistiu da candidatura com sucesso");
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
     }
 
 }

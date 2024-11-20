@@ -1,5 +1,7 @@
 package com.nuhcorre.nuhcorre.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -43,6 +45,7 @@ public class Usuario implements UserDetails {
     private String telefone;
 
     @ManyToMany(mappedBy = "usuarios")
+    @JsonBackReference
     private List<Vaga> vagas;
 
     @OneToMany(mappedBy = "usuario")
@@ -58,6 +61,9 @@ public class Usuario implements UserDetails {
 
     @OneToMany(mappedBy = "usuario")
     private List<Avaliacao> avaliacoes;
+
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Candidatura> candidaturas;
 
     private boolean isEmpresa;
 
@@ -100,4 +106,6 @@ public class Usuario implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+
 }
