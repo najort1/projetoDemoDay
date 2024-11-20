@@ -13,7 +13,7 @@
   background-size: cover;
 
 }
-
+.fotos{ background: linear-gradient(270deg, rgba(0, 0, 0, 0.31425070028011204) 50%, rgba(0, 0, 0, 0.3086484593837535) 50%);}
 /* Animação de fundo */
 @keyframes BgAnimation {
   0% { background-image: url('./assets/img1.jpeg'); }

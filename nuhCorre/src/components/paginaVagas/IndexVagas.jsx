@@ -12,8 +12,18 @@ export const Vagas = () => {
 
                 <form>
 
-                    <input type='text' placeholder='🔍Cargo, palavras-chaves ou empresa' required></input>
-                    <input type='text' placeholder='Cidade, estadoo ou região' required></input>
+                    <div class="input-container">
+                        <box-icon name="search-alt-2" color="#718cb3"></box-icon>
+                        <input type="text" placeholder="Cargo, palavras-chave ou empresa" required/>
+                        
+                    </div>
+
+                    <div class="input-container">
+                        <box-icon name='map-pin' color='#718cb3' ></box-icon>
+                        <input type='text' placeholder='Cidade, estadoo ou região' required></input>
+                        
+                    </div>
+                  
                     <input type='button' value='Achar vagas'></input>
 
                 </form>
@@ -70,7 +80,7 @@ export const Vagas = () => {
 
                                 </div>
                                 <button className='candidatar'>
-                                    <img  style={{display:'inline', verticalAlign:'sub'}}width="25" height="25" src="https://img.icons8.com/pastel-glyph/64/suitcase--v4.png" alt="suitcase--v4"/>
+                                    <box-icon name='briefcase-alt' color='#ffffff' ></box-icon>
                                     Candidatar-se
                                 </button>
 

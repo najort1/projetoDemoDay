@@ -13,7 +13,7 @@
 }
 
 /* Estilo da imagem de perfil */
-#perfil {
+.foto-perfil {
     border-radius: 100px; /* Deixa a imagem redonda */
     width: 9vw; /* Largura proporcional à tela */
 }
@@ -156,92 +156,4 @@ textarea {
 /* Estilo das imagens na lista */
 .listImg {
     margin-right: 10px; /* Margem à direita */
-}
-
-
-/* ----- ESTILOS DE CAIXA DE EDIÇÃO DE NOME ----- */
-
-/* Estilos para a caixa de edição do nome */
-.editBoxNome {
-    background: #fff; /* Cor de fundo */
-    box-shadow: 3px 3px 68px -8px #fff; /* Sombra ao redor da caixa */
-    color: #000; /* Cor do texto */
-    position: absolute; /* Posicionamento absoluto */
-    top: 5vw; /* Distância do topo */
-    left: 30vw; /* Distância da esquerda */
-    width: 45vw; /* Largura proporcional */
-    padding: 20px; /* Espaçamento interno */
-    border-radius: 150px; /* Bordas arredondadas */
-    border: 4px solid #7999c7; /* Cor da borda */
-    z-index: 999; /* Garante que a caixa apareça sobre outros elementos */
-}
-
-/* Estilo do formulário dentro da caixa de edição */
-.editBoxNome form {
-    display: flex; /* Flexbox */
-    height: 100%; /* Altura total */
-    flex-direction: column; /* Alinha itens na vertical */
-    justify-content: center; /* Alinha verticalmente ao centro */
-    align-items: center; /* Alinha horizontalmente ao centro */
-}
-
-/* Estilo do título dentro da caixa de edição */
-.editBoxNome form h2 {
-    font-size: 1.2rem; /* Tamanho da fonte */
-}
-
-/* Estilo dos rótulos dentro da caixa de edição */
-.editBoxNome label {
-    align-self: baseline; /* Alinha à esquerda */
-    margin-left: 9vw; /* Margem à esquerda */
-    margin-bottom: 5px; /* Margem inferior */
-}
-
-/* Estilo dos inputs dentro da caixa de edição */
-.editBoxNome input[type='text'] {
-    border: 2px solid #7999c7; /* Cor da borda */
-    border-radius: 13px; /* Bordas arredondadas */
-    cursor: auto; /* Cursor padrão */
-    width: 60%; /* Largura relativa */
-    padding: 10px; /* Espaçamento interno */
-}
-
-/* Estilo dos botões dentro da caixa de edição */
-
-.botoes{margin-top: 20px;}
-.botoes .submitCancel {
-    background: #7999c7; /* Cor de fundo */
-    border-radius: 19px; /* Bordas arredondadas */
-    color: #fff; /* Cor do texto */
-    padding: 10px; /* Espaçamento interno */
-}
-
-/* Efeito de hover para os botões */
-.submitCancel:hover {
-    background: #6085b8; /* Cor de fundo quando o botão é hover */
-    transition: background 1s;
-}
-
-/* Margem à direita no primeiro botão dentro da caixa de edição */
-.botoes .submitCancel:first-child {
-    margin-right: 15px; /* Margem à direita */
-}
-
-/* Estilo do nome na visualização */
-.editNome {
-    float: left; /* Alinha à esquerda */
-    margin-right: 10px; /* Margem à direita */
-}
-
-/* ----- ESTILOS DA SOBREPOSIÇÃO ESCURA ----- */
-
-/* Estilo da sobreposição escura quando o nome está sendo editado */
-.dark-overlay {
-    position: fixed; /* Fixa a sobreposição */
-    top: 0; /* Começa do topo */
-    left: 0; /* Começa da esquerda */
-    width: 100%; /* Largura total */
-    height: 100%; /* Altura total */
-    background: rgba(0, 0, 0, 0.5); /* Fundo escuro com opacidade */
-    z-index: 999; /* Garante que a sobreposição apareça sobre outros elementos */
 }
