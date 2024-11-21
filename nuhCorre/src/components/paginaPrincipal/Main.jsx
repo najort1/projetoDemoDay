@@ -86,16 +86,16 @@ export const PesquisaVagaTelaInicial = () => {
         <h1 className="titulo-container-principal font-bold text-md text-center text-2xl text-white">Conecte-se com Empregos Acessíveis para Todos</h1>
       </div>
 
-      <div className="container-inputs flex flex-row items-center gap-2">
+      <div className="container-inputs flex flex-col items-center gap-2 xl:flex-row">
 
-      <select name="Tipo" id="selecionado_tipo" className="opcoes-tipo h-12 w-20 rounded-[5px]" onChange={handleTipo}>
+      <select name="Tipo" id="selecionado_tipo" className="opcoes-tipo h-12 w-full rounded-[5px] xl:w-20" onChange={handleTipo}>
           <option value="Vagas">Vagas</option>
           <option value="Empresas">Empresas</option>      
       </select>
 
-      <input type="text" placeholder="Pesquise" className="input-pesquisa h-12 w-full rounded-[5px] px-[5px]" onChange={handlePesquisa}/>
+      <input type="text" placeholder="Pesquise" className="input-pesquisa h-16 w-full rounded-[5px] px-[5px] xl:h-12" onChange={handlePesquisa}/>
 
-      <select name="Estado" id="seleciona_estado" className="selecionar-estado h-12 w-24 rounded-[5px]" onChange={handleSelectCidade}>
+      <select name="Estado" id="seleciona_estado" className="selecionar-estado h-12 w-full rounded-[5px] xl:w-24" onChange={handleSelectCidade}>
 
         {estados.map((estado) => (
           <option value={estado.name}>{estado.name}</option>
@@ -105,7 +105,9 @@ export const PesquisaVagaTelaInicial = () => {
 
       <Button
       isIconOnly
-      className="botao-pesquisar bg-[#718CB3] flex items-center justify-center h-full w-24"
+      className="botao-pesquisar bg-[#718CB3] flex items-center justify-center h-1/4 w-full
+      xl:h-full xl:w-24
+      "
       ><box-icon name='search' color='white'></box-icon></Button>
 
       
