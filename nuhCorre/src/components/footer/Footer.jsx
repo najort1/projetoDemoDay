@@ -1,7 +1,14 @@
 import './styleFooter.css';
+import { useNavigate, useLocation } from 'react-router-dom';
 import boxicons from 'boxicons';
 
 function Footer(){
+
+    const navigate = useNavigate();
+
+    const navegarParaSobre = () => {
+        navigate('/sobre');
+      };
 
     return(
 
@@ -10,7 +17,7 @@ function Footer(){
             <div className="items-textuais flex flex-row gap-4 text-white font-bold text-sm hover:cursor-pointer">
 
                 <div className="item-footer">
-                    <p className="text-footer">Sobre</p>
+                    <p className="text-footer" onClick={navegarParaSobre}>Sobre</p>
                 </div>
 
                 <div className="item-footer">

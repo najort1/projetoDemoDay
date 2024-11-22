@@ -7,6 +7,7 @@ import { PesquisaVagaTelaInicial } from './components/paginaPrincipal/Main';
 import { Vagas } from './components/paginaVagas/IndexVagas';
 import DashBoardPrincipal from './components/Dashboard_Empresas/PaginaPrincipal';
 import LoginPageEm from './components/paginaloginempresa';
+import { Sobre } from './components/paginaSobre/sobre';
 
 const routes = [
   { path: "/", element: <PesquisaVagaTelaInicial /> },
@@ -18,6 +19,7 @@ const routes = [
   { path: "/vagas", element: <Vagas /> },
   { path: "/dashboard", element: <DashBoardPrincipal /> },
   { path: "/loginEmpresa", element: <LoginPageEm /> },
+  { path: "/sobre", element: <Sobre /> }
 ];
 
 export default routes;

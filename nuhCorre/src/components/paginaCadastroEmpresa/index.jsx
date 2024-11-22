@@ -220,6 +220,10 @@ const CadastroEmpresa = () => {
         }
     };
 
+    const paginaInicio = () => {
+        navigate('/');
+    };
+
     return (
         <>
 
@@ -227,7 +231,7 @@ const CadastroEmpresa = () => {
                 
             <div id="expli"> 
                 <div className="opcoesHeaderCadastro" style={{fontSize:'19px', marginLeft:'1rem'}}>
-                    <a onClick='#'>Página Inicial </a>
+                    <a onClick={paginaInicio}>Página Inicial </a>
                     <a onClick='#'>Sou Candidato</a>
                 </div>
                 <div className="titulo_expli">

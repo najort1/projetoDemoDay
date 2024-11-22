@@ -245,6 +245,11 @@ const CadastroUsuario = () => {
         }
     };
 
+     /* Navegação */
+    const paginaInicio = () => {
+        navigate('/');
+    };
+
 
     return (
         <>
@@ -254,7 +259,7 @@ const CadastroUsuario = () => {
 
                 <div id='expliu'>
                     <div className='opcoesHeaderCadastro'style={{fontSize:'19px', marginLeft:'1rem'}}>
-                        <a onClick='#'>Página Inicial </a>
+                        <a onClick={paginaInicio}>Página Inicial </a>
                         <a onClick='#'>Sou Empresa</a>
                     </div>
 

@@ -52,11 +52,15 @@ const LoginEmpresa = () => {
         }
     };
 
+    const paginaInicio = () => {
+        navigate('/');
+    };
+
     return (
         <main id='main-loginempresa'>
             <div id='expliu-loginempresa'>
                 <div className='opcoesHeaderLoginEmpresa' style={{ fontSize: '19px', marginLeft: '1rem' }}>
-                    <a href="#">Página Inicial</a>
+                    <a href="#" onClick={paginaInicio}>Página Inicial</a>
                     <a href="#">Sou Empresa</a>
                 </div>
 

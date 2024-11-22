@@ -7,30 +7,32 @@
   font-family: 'Quicksand', sans-serif;
 }
 
+/* Fundo do background */
 .fundo{
 
-  animation: BgAnimation 20s infinite;
+  animation: BgAnimation 20s infinite alternate;
   background-size: cover;
+  background-position: center;
 
 }
-.fotos{ background: linear-gradient(270deg, rgba(0, 0, 0, 0.31425070028011204) 50%, rgba(0, 0, 0, 0.3086484593837535) 50%);}
+.fotos{ background: linear-gradient(270deg, rgb(0 0 0 / 50%) 60%, rgb(0 0 0 / 50%) 60%);}
 /* Animação de fundo */
 @keyframes BgAnimation {
-  0% { background-image: url('./assets/img1.jpeg'); }
-  30% { background-image: url('./assets/img2.jpg'); }
-  60% { background-image: url('./assets/img3.jpg'); }
-  100% { background-image: url('./assets/img4.jpg'); }
+  0% { background-image: url('./assets/image1.jpeg'); }
+  30% { background-image: url('./assets/image2.jpeg'); }
+  60% { background-image: url('./assets/image3.jpeg'); }
+  100% { background-image: url('./assets/image4.jpeg'); }
 }
 
 /* Lua ativa os estilos abaixo caso alguma pagina sua quebre o layout */
 
-/* input, button{
+/*input, button{
 
   border: none;
   outline: none;
   cursor: pointer;
 
-} */
+} 
 
 /* a {
 
