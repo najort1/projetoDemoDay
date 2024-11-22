@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 import Camaleao from "../../assets/camaleao.png";
@@ -64,6 +63,11 @@ const Login = () => {
     }
 
     setErrors(errors);
+  };
+
+  /* Navegação */
+  const paginaInicio = () => {
+    navigate('/');
   };
 
   return (
@@ -247,7 +251,7 @@ const Login = () => {
                     </DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
-                <h1 className="texto-header text-bold font-white">
+                <h1 className="texto-header text-bold font-white" onClick={paginaInicio}>
                   Página inicial
                 </h1>
               </div>
@@ -410,7 +414,7 @@ const Login = () => {
                   </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
-              <h1 className="texto-header text-bold font-white text-2xl">
+              <h1 className="texto-header text-bold font-white text-2xl" onClick={paginaInicio}>
                 Página inicial
               </h1>
             </div>

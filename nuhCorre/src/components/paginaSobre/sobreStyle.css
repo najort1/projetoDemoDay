@@ -1,0 +1,168 @@
+/* Estilos para as seções com largura total */
+.section-info {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  padding: 4rem 2rem; /* Aumentando o padding para dar mais espaço */
+  margin-bottom: 4rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%; /* Garantir que ocupe 100% da largura */
+  max-width: 100%; /* Remover qualquer limitação de largura */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Adicionando a classe 'active' quando a seção se tornar visível */
+.section-info.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Estilo para a seção Missão */
+.missao {
+  background-color: #E7F3F5;  /* Azul claro e suave */
+  border-left: 8px solid #4DA6B0; /* Azul mais profundo */
+}
+
+.missao .section-title {
+  font-size: 2.5rem;
+  color: #34495e;  /* Azul escuro */
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.missao .section-description {
+  color: #7f8c8d;
+  font-size: 1.25rem;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Estilo para a seção Visão */
+.visao {
+  background-color: #F2E0A1;  /* Amarelo suave */
+  border-left: 8px solid #F1C40F;  /* Amarelo dourado */
+}
+
+.visao .section-title {
+  font-size: 2.5rem;
+  color: #34495e;  /* Azul escuro */
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.visao .section-description {
+  color: #7f8c8d;
+  font-size: 1.25rem;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Estilo para a seção Valores */
+.valores {
+  background-color: #F6E1E1;  /* Rosa muito suave */
+  border-left: 8px solid #E74C3C;  /* Vermelho suave */
+}
+
+.valores .section-title {
+  font-size: 2.5rem;
+  color: #34495e;  /* Azul escuro */
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.valores .section-description {
+  color: #7f8c8d;
+  font-size: 1.25rem;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.valores ul {
+  margin-left: 1.5rem;
+  list-style-type: disc;
+  text-align: left;
+}
+
+/* Estilo para a seção Equipe */
+.equipe {
+  background-color: #E4F5D4;  /* Verde menta suave */
+  border-left: 8px solid #2ecc71; /* Verde mais vibrante */
+}
+
+.equipe .section-title {
+  font-size: 2.5rem;
+  color: #34495e;  /* Azul escuro */
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.equipe .section-description {
+  color: #7f8c8d;
+  font-size: 1.25rem;
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.team-members {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
+  margin-top: 20px;
+}
+
+.member {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  width: 250px; /* Largura maior para membros da equipe */
+  text-align: center;
+}
+
+.member-img {
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+
+.member-name {
+  font-weight: bold;
+  color: #34495e;  /* Azul escuro */
+}
+
+.member-role {
+  font-size: 1rem;
+  color: #7f8c8d;
+}
+
+/* Estilo da grid de membros */
+.team-members {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Primeira linha com 4 membros */
+  grid-template-rows: auto auto; /* Duas linhas para os membros */
+  gap: 2rem; /* Espaçamento entre os membros */
+  justify-items: center; /* Centraliza os itens dentro de cada célula */
+  padding: 0 2rem; /* Adicionando espaçamento lateral */
+}
+
+.team-members > .member:nth-child(n+5) {
+  justify-self: center; /* Centraliza os itens na segunda linha */
+}
+
+/* Estilo de responsividade para telas pequenas */
+@media (max-width: 768px) {
+  .team-members {
+    grid-template-columns: repeat(2, 1fr); /* 2 membros por linha em telas pequenas */
+    gap: 1.5rem;
+  }
+}
