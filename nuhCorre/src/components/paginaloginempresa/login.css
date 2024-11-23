@@ -140,7 +140,7 @@ input:not(:focus)::placeholder {
 .logo-image-loginempresa {
     width: 170px; /* Defina a largura desejada */
     height: auto; /* Ajusta a altura proporcionalmente */
-    margin-top: 8rem;
+    margin-top: 4rem;
     margin-bottom: 0.5cm;
     margin-left: 17rem;
 }
@@ -154,6 +154,7 @@ input:not(:focus)::placeholder {
 .opcoesHeaderLoginEmpresa {
     display: flex;
     gap: 2em;
+   
 }
 
 .alinhamentoLoginEmpresaTexto {

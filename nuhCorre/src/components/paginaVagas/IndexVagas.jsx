@@ -3,10 +3,10 @@ import Header from '../header/Header';
 import Footer from '../footer/Footer';
 export const Vagas = () => {
 
-    return(
+    return (
 
         <>
-            <Header/>
+            <Header />
 
             <section id='pesquisaVagas'>
 
@@ -14,16 +14,16 @@ export const Vagas = () => {
 
                     <div class="input-container">
                         <box-icon name="search-alt-2" color="#718cb3"></box-icon>
-                        <input type="text" placeholder="Cargo, palavras-chave ou empresa" required/>
-                        
+                        <input type="text" placeholder="Cargo, palavras-chave ou empresa" required />
+
                     </div>
 
                     <div class="input-container">
                         <box-icon name='map-pin' color='#718cb3' ></box-icon>
-                        <input type='text' placeholder='Cidade, estadoo ou região' required></input>
-                        
+                        <input type='text' placeholder='Cidade, estado ou região' required></input>
+
                     </div>
-                  
+
                     <input type='button' value='Achar vagas'></input>
 
                 </form>
@@ -68,13 +68,13 @@ export const Vagas = () => {
 
                                 <div className='seguraTitulo'>
 
-                                    <h2>Desenvolvedor Frontend</h2>
+                                    <h2>Desenvolvedor Backend</h2>
                                     <div>
 
-                                        Accenture - Recife, PE<br/>
-                                        R$ 2.000 - R$4.000 • Hibrido • CLT
+                                        NaveGuard - Recife, PE<br />
+                                        R$ 1.000 - R$2.000 • Hibrido • CLT
 
-                                        <div className='stylePreenchido'>PCD</div>
+                                        <div className='stylePreenchido'>LGBTQIA+</div>
 
                                     </div>
 
@@ -85,14 +85,52 @@ export const Vagas = () => {
                                 </button>
 
                             </div>
-                            
+
                             <p>
-                                A Accenture procura um Desenvolvedor Frontend para criar interfaces responsivas usando HTML, CSS e JavaScript. É <br/>
-                                necessário experiência com frameworks como React, Angular ou Vue.js. Oferece trabalho remoto e oportunidades de <br/>
-                                crescimento. Se você ama tecnologia e design, venha fazer parte da nossa equipe!
+                                O NaveGuard está em busca de um Desenvolvedor Backend apaixonado por tecnologia para se juntar
+                                à nossa equipe em um ambiente dinâmico e inovador. Se você é um profissional com experiência
+                                em construção de soluções escaláveis e eficientes, e está pronto para fazer a diferença em
+                                projetos desafiadores, queremos te conhecer!
                             </p>
 
                         </div>
+
+                    </div>
+                    <div class='styleBox'>
+
+                        <div className='principalVaga'>
+
+                            <div className='horizontalNomeBotao'>
+
+                                <div className='seguraTitulo'>
+
+                                    <h2>Desenvolvedor Backend</h2>
+                                    <div>
+
+                                        Teia Cultural - Recife, PE<br />
+                                        R$ 1.500 - R$2.100 • Remoto • CLT
+
+                                        <div className='stylePreenchido'>PCD+</div>
+
+                                    </div>
+
+                                </div>
+                                <button className='candidatar'>
+                                    <box-icon name='briefcase-alt' color='#ffffff' ></box-icon>
+                                    Candidatar-se
+                                </button>
+
+                            </div>
+
+                            <p>
+
+                                Teia Cultural está em busca de um Desenvolvedor Backend para integrar nossa equipe!
+                                Se você é apaixonado por tecnologia e quer fazer a diferença em projetos que fortalecem o setor cultural,
+                                essa é a oportunidade perfeita para você se juntar a um time criativo e engajado.
+                            </p>
+
+                        </div>
+
 
 
                     </div>
@@ -100,7 +138,7 @@ export const Vagas = () => {
                 </div>
                 <div className='vertical styleBox'>
 
-                    <h2>Grupos/<br/>Vulnerabilidades</h2>
+                    <h2>Grupos</h2>
                     <ul>
 
                         <li>PCD</li>
@@ -116,12 +154,12 @@ export const Vagas = () => {
 
             </section>
 
-            <Footer/>
-        
+            <Footer />
+
         </>
 
 
     )
 
-    
+
 }

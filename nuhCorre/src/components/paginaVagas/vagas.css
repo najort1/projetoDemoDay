@@ -44,6 +44,8 @@ body{
 
 }
 
+h2
+
 /* Caixa de vagas */
 
 .styleBox{/* estilo geral das caixas */
@@ -111,9 +113,10 @@ body{
     font-weight: 600;
     padding: 5px;
     text-align: center;
-    width: 68px;
+    width: 5.8rem;
 
 }
+
 
 /* Caixa que ficará ao lado */
 

@@ -59,7 +59,7 @@ const LoginEmpresa = () => {
     return (
         <main id='main-loginempresa'>
             <div id='expliu-loginempresa'>
-                <div className='opcoesHeaderLoginEmpresa' style={{ fontSize: '19px', marginLeft: '1rem' }}>
+                <div className='opcoesHeaderLoginEmpresa' style={{ fontSize: '19px', marginLeft: '21rem' }}>
                     <a href="#" onClick={paginaInicio}>Página Inicial</a>
                     <a href="#">Sou Empresa</a>
                 </div>
