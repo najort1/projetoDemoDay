@@ -9,8 +9,8 @@ export function EdicaoEmpressa() {
     const [nome, setNome] = useState('Cachorro chupetão'); // Estado para o nome
     const [profissao, setProfissao] = useState('chupar chupeta'); // Estado para a profissão
     const [isPhotoEditing, setIsPhotoEditing] = useState(false);
-    const [photoPerfil, setPhotoPerfil] = useState("https://i.pinimg.com/280x280_RS/e5/1d/04/e51d04c78c6c26bfa0ca7d7bb94af786.jpg");
-    const imgPadrao = "https://i.pinimg.com/280x280_RS/e5/1d/04/e51d04c78c6c26bfa0ca7d7bb94af786.jpg";
+    const [photoPerfil, setPhotoPerfil] = useState("https://i.pinimg.com/enabled_lo_mid/736x/5c/95/31/5c9531d05f919414e9dff0c974388f67.jpg");
+    const imgPadrao = "https://i.pinimg.com/enabled_lo_mid/736x/5c/95/31/5c9531d05f919414e9dff0c974388f67.jpg";
     // Função chamada quando o botão "editar" é clicado
     function editNome() {
         setIsEditing(true); // Ativa o modo de edição
@@ -56,7 +56,7 @@ export function EdicaoEmpressa() {
                             className='foto-perfil' 
                             alt='perfilImg'
                         />
-                        <button className="editImagem" onClick={editPhoto}><box-icon name='edit'></box-icon></button>
+                        <button className="editImagem" onClick={editPhoto}><box-icon name='edit' type='solid' color='#ffffff' ></box-icon></button>
                     </div>
                     <div className="tituloUsuario">
                         {/* Exibe o nome e profissão ou a caixa de edição */}
@@ -89,7 +89,7 @@ export function EdicaoEmpressa() {
                         ) : ('')}
                         <>
                             <h2 className="editNome">{nome}</h2>
-                            <button onClick={editNome}><box-icon name='edit'></box-icon></button>
+                            <button onClick={editNome}><box-icon name='edit' type='solid' color='#ffffff' ></box-icon></button>
                             <h3>{profissao}</h3>
                         </>
 
@@ -102,6 +102,8 @@ export function EdicaoEmpressa() {
 
                                 <div className='mainBox'>
                                     <img src={photoPerfil || imgPadrao} alt='perfil' className='foto-perfil' />
+                                    
+                                    <span id='msgEdit'>Use uma foto no perfil para as empresas e pessoas conhece-lo.</span>
 
                                     <div className="btn-group">
                                         {/* O input file escondido */}
@@ -149,7 +151,7 @@ export function EdicaoEmpressa() {
                 <div className='caixasCentrais'>
                     <div className="textoLei">Seus dados pessoais estarão protegidos, nos termos da Lei 13.460/2017.</div>
                     <div className="caixaInterna">
-                        <h1>Informaçoes Pessoais</h1>
+                        <h1>Dados Pessoais</h1>
 
                         {/* Formulário de edição de informações */}
                         <form>
