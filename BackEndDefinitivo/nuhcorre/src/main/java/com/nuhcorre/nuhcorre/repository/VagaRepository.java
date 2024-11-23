@@ -14,4 +14,5 @@ public interface VagaRepository extends JpaRepository<Vaga, Long> {
     List<Vaga> findByDescricaoContaining(String descricao);
     List<Vaga> findByEmpresaCnpj(String cnpj); // Corrigido para usar cnpj
     Optional<Vaga> findByTituloAndEmpresaCnpj(String titulo, String empresaId);
+
 }

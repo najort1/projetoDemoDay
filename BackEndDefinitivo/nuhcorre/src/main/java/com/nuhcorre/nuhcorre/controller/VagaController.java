@@ -1,9 +1,7 @@
 package com.nuhcorre.nuhcorre.controller;
 
 import com.nuhcorre.nuhcorre.model.*;
-import com.nuhcorre.nuhcorre.model.DTO.CadastrarVagaDTO;
-import com.nuhcorre.nuhcorre.model.DTO.EmpresaRespostaVagaDTO;
-import com.nuhcorre.nuhcorre.model.DTO.VagaRespostaDTO;
+import com.nuhcorre.nuhcorre.model.DTO.*;
 import com.nuhcorre.nuhcorre.model.details.EmpresaUserDetails;
 import com.nuhcorre.nuhcorre.service.EmpresaService;
 import com.nuhcorre.nuhcorre.service.EnderecoService;
@@ -17,7 +15,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @RestController
@@ -204,6 +204,12 @@ public class VagaController {
         return ResponseEntity.ok(vagaService.buscarVagasPorCnpjEmpresa(cnpj));
     }
 
+    @GetMapping("/buscar/empresa/{cnpj}")
+    public ResponseEntity<?> buscarVagasPorEmpresa(@PathVariable String cnpj) {
+        return ResponseEntity.ok(vagaService.buscarVagasPorCnpjEmpresa(cnpj));
+    }
+
+
     @PostMapping("/{vagaId}/candidatar")
     public ResponseEntity<?> candidatarUsuario(@PathVariable Long vagaId) {
         try {
@@ -297,5 +303,48 @@ public class VagaController {
 
         return ResponseEntity.ok("Visualização registrada com sucesso");
     }
+
+    @GetMapping("/{vagaId}/visualizacoes")
+    public ResponseEntity<VisualizacoesPorAnoEMesDTO> getVisualizacoesPorAnoEMes(@PathVariable long vagaId) {
+        Map<Integer, Map<Integer, Long>> visualizacoes = vagaDadosService.getVisualizacoesPorAnoEMes(vagaId);
+        return ResponseEntity.ok(new VisualizacoesPorAnoEMesDTO(visualizacoes));
+    }
+
+    @GetMapping("/minhas-vagas")
+    public ResponseEntity<?> getVagasDaEmpresaLogada() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+
+        if (principal instanceof EmpresaUserDetails) {
+            Empresa empresa = ((EmpresaUserDetails) principal).getEmpresa();
+            List<Vaga> vagas = vagaService.buscarVagasPorCnpjEmpresa(empresa.getCnpj());
+            return ResponseEntity.ok(vagas. stream().map(vaga -> {
+                EmpresaRespostaVagaDTO empresaRespostaVagaDTO = new EmpresaRespostaVagaDTO(
+                        empresa.getCnpj(),
+                        empresa.getNome(),
+                        empresa.getEmail(),
+                        empresa.getTelefone()
+                );
+                return new VagaRespostaDTO(
+                        vaga.getId(),
+                        vaga.getTitulo(),
+                        vaga.getDescricao(),
+                        vaga.getRequisitos(),
+                        vaga.getBeneficios(),
+                        vaga.getSalario(),
+                        vaga.getCargaHoraria(),
+                        vaga.getDataCadastro(),
+                        vaga.getDataExpiracao(),
+                        vaga.isStatus(),
+                        vaga.getEndereco(),
+                        empresaRespostaVagaDTO
+                );
+            }).collect(Collectors.toList()));
+        }
+
+        return ResponseEntity.status(401).build();
+    }
+
+
 
 }

@@ -22,12 +22,14 @@ import {
   DropdownItem,
 } from "@nextui-org/react";
 import boxicons from "boxicons";
+import axios from "axios";
 
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ email: "", password: "" });
+  const [erroApi, setErroApi] = useState("");
 
   const navigate = useNavigate();
 
@@ -43,10 +45,10 @@ const Login = () => {
   };
 
   const validatePassword = (password) => {
-    return password.length > 6 && /[a-zA-Z]/.test(password);
+    return password.length > 4 && /[a-zA-Z]/.test(password);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     let valid = true;
     let errors = { email: "", password: "" };
@@ -63,6 +65,30 @@ const Login = () => {
     }
 
     setErrors(errors);
+
+    if (valid){
+
+      const respostaLogin = await axios.post('http://localhost:8080/auth/login/email', {
+        email: email,
+        senha: password
+      },{
+        validateStatus: function (status) {
+          return status <= 500;
+        }
+      });
+
+      if(respostaLogin.status === 200){
+        localStorage.setItem('token', respostaLogin.data.token);
+        return;
+      }else{
+        console.log("erro")
+        setErroApi(respostaLogin.data.detail);
+      }
+
+    }else{
+      setErroApi("Preencha os campos corretamente");
+    }
+
   };
 
   /* Navegação */
@@ -126,6 +152,7 @@ const Login = () => {
                     Cadastre-se
                   </span>
                 </h2>
+                <p className="erro-api text-center font-bold text-red-400">{erroApi}</p>
               </div>
             </div>
           </div>
@@ -184,6 +211,8 @@ const Login = () => {
                         Cadastre-se
                       </span>
                     </h2>
+                    <p className="erro-api text-center font-bold text-red-400">{erroApi}</p>
+
                   </div>
                 </form>
               </div>
@@ -191,35 +220,6 @@ const Login = () => {
 
             <div className="container-informacoes-projeto w-[50%] bg-[#718CB3] flex flex-col h-dvh">
               <div className="header-container-infos flex flex-row gap-4 text-white font-medium justify-end">
-                <Dropdown>
-                  <DropdownTrigger>
-                    <h1 className="text-white text-bold">Sou usuário</h1>
-                  </DropdownTrigger>
-                  <DropdownMenu>
-                    <DropdownItem onClick={navegarParaCadastroUsuario}>
-                      <div className="item-dropdown-usuario flex items-center gap-2">
-                        <box-icon
-                          name="user-plus"
-                          color="#000000"
-                          size="sm"
-                          type="solid"
-                        ></box-icon>
-                        <p className="text-black font-bold">Cadastro</p>
-                      </div>
-                    </DropdownItem>
-                    <DropdownItem onClick={navegarParaLoginUsuario}>
-                      <div className="item-dropdown-usuario flex items-center gap-2">
-                        <box-icon
-                          name="door-open"
-                          color="#000000"
-                          size="sm"
-                          type="solid"
-                        ></box-icon>
-                        <p className="text-black font-bold">Login</p>
-                      </div>
-                    </DropdownItem>
-                  </DropdownMenu>
-                </Dropdown>
                 <Dropdown>
                   <DropdownTrigger>
                     <h1 className="text-white text-white text-bold">
@@ -347,6 +347,8 @@ const Login = () => {
                       Cadastre-se
                     </span>
                   </h2>
+                  <p className="erro-api text-center font-bold text-red-400">{erroApi}</p>
+
                 </div>
               </form>
             </div>
@@ -356,36 +358,7 @@ const Login = () => {
             <div className="header-container-infos flex flex-row gap-4 text-white font-medium justify-end mr-8">
               <Dropdown>
                 <DropdownTrigger>
-                  <h1 className="text-white text-bold text-2xl">Sou usuário</h1>
-                </DropdownTrigger>
-                <DropdownMenu>
-                  <DropdownItem onClick={navegarParaCadastroUsuario}>
-                    <div className="item-dropdown-usuario flex items-center gap-2">
-                      <box-icon
-                        name="user-plus"
-                        color="#000000"
-                        size="sm"
-                        type="solid"
-                      ></box-icon>
-                      <p className="text-black font-bold">Cadastro</p>
-                    </div>
-                  </DropdownItem>
-                  <DropdownItem onClick={navegarParaLoginUsuario}>
-                    <div className="item-dropdown-usuario flex items-center gap-2">
-                      <box-icon
-                        name="door-open"
-                        color="#000000"
-                        size="sm"
-                        type="solid"
-                      ></box-icon>
-                      <p className="text-black font-bold ">Login</p>
-                    </div>
-                  </DropdownItem>
-                </DropdownMenu>
-              </Dropdown>
-              <Dropdown>
-                <DropdownTrigger>
-                  <h1 className="text-white text-white text-bold text-2xl">
+                  <h1 className="text-white text-white text-bold text-xl">
                     Sou empresa
                   </h1>
                 </DropdownTrigger>
@@ -414,7 +387,7 @@ const Login = () => {
                   </DropdownItem>
                 </DropdownMenu>
               </Dropdown>
-              <h1 className="texto-header text-bold font-white text-2xl" onClick={paginaInicio}>
+              <h1 className="texto-header text-bold font-white text-xl" onClick={paginaInicio}>
                 Página inicial
               </h1>
             </div>

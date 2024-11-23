@@ -42,27 +42,21 @@ public class ApplicationConfiguration {
             String tipoLogin;
 
             if (ValidaCPF.isCPF(username)) {
-                logger.info("CPF VALIDO DEFININDO TIPO DE LOGIN");
                 tipoLogin = "cpf";
                 tipoUsuario = "usuario";
             } else if (ValidaCNPJ.isCNPJ(username)) {
-                logger.info("CNPJ VALIDO DEFININDO TIPO DE LOGIN");
                 tipoLogin = "cnpj";
                 tipoUsuario = "empresa";
             } else {
-                logger.info("EMAIL DEFININDO TIPO DE LOGIN");
                 tipoLogin = "email";
                 tipoUsuario = "usuario";
             }
 
             if (tipoUsuario.equals("usuario")) {
-                logger.info("TIPO DE USUARIO: USUARIO");
                 if (tipoLogin.equals("cpf")) {
-                    logger.info("TIPO DE LOGIN: CPF");
                     return usuarioRepository.findByCpf(username)
                             .orElseThrow(() -> new UsernameNotFoundException("CPF não encontrado"));
                 } else {
-                    logger.info("TIPO DE LOGIN: EMAIL");
                     return usuarioRepository.findByEmail(username)
                             .map(usuario -> (UserDetails) usuario)
                             .or(() -> empresaRepository.findByEmail(username).map(EmpresaUserDetails::new))

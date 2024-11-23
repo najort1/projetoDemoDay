@@ -7,6 +7,7 @@ import com.nuhcorre.nuhcorre.repository.VagaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,8 +44,7 @@ public class VagaService {
         return vagaRepository.findByDescricaoContaining(descricao);
     }
 
-
-    public Iterable<Vaga> buscarVagasPorCnpjEmpresa(String cnpj) {
+    public List<Vaga> buscarVagasPorCnpjEmpresa(String cnpj) {
         return vagaRepository.findByEmpresaCnpj(cnpj);
     }
 
