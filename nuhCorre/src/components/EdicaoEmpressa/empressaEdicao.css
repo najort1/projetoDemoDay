@@ -16,6 +16,7 @@
 .foto-perfil {
     border-radius: 100px; /* Deixa a imagem redonda */
     width: 9vw; /* Largura proporcional à tela */
+    border:3px solid #b8b8b8;
 }
 
 /* Estilo da imagem do botão de editar */

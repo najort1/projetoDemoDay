@@ -36,6 +36,14 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte mais elegante */
 }
 
+#msgEdit{
+
+    color: #000;
+    margin: 10px 0;
+    display: block;
+
+}
+
 /* Estilizando o botão do input file */
 .editBox.boxPhoto .btn-group input[type="file"] {
     display: none; /* Esconde o botão padrão */
@@ -96,6 +104,7 @@
 
 /* Estilos para a imagem de perfil */
 .editBox.boxPhoto img.foto-perfil {
+    border: 4px solid #5b82bbd1;
     display: block;
     width: 100%;
     max-width: 180px;
@@ -185,14 +194,13 @@
 /* Estilos para a caixa de edição do nome */
 .editBox {
     background: #fff; /* Cor de fundo */
+    border-radius: 12px;
     color: #000; /* Cor do texto */
     position: absolute; /* Posicionamento absoluto */
     top: 5vw; /* Distância do topo */
     left: 30vw; /* Distância da esquerda */
     width: 45vw; /* Largura proporcional */
     padding: 20px; /* Espaçamento interno */
-    border-radius: 150px; /* Bordas arredondadas */
-    border: 4px solid #7999c7; /* Cor da borda */
     z-index: 999; /* Garante que a caixa apareça sobre outros elementos */
 }
 
