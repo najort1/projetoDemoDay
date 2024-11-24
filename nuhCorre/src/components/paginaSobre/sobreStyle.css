@@ -1,3 +1,31 @@
+.sobre{
+
+  animation: BgAnimation 20s infinite alternate;
+  background-size: 100% 100%;
+  background-position: center;
+  width: 99vw;
+  height: 80vh;
+
+}
+.gradient{
+
+  background: linear-gradient(270deg, rgb(0 0 0 / 50%) 60%, rgb(0 0 0 / 50%) 60%);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #fff;
+
+}
+@keyframes BgAnimation {
+  0% { background-image: url('../../assets/image1.jpeg'); }
+  30% { background-image: url('../../assets/image2.jpeg'); }
+  60% { background-image: url('../../assets/image3.jpeg'); }
+  100% { background-image: url('../../assets/image4.jpeg'); }
+}
+
 /* Estilos para as seções com largura total */
 .section-info {
   opacity: 0;
@@ -11,6 +39,16 @@
   max-width: 100%; /* Remover qualquer limitação de largura */
   margin-left: auto;
   margin-right: auto;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.animate-blink {
+  animation: blink 1s infinite;
 }
 
 /* Adicionando a classe 'active' quando a seção se tornar visível */

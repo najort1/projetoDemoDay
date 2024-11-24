@@ -70,6 +70,9 @@ export function EdicaoEmpressa() {
                                         name='nome' 
                                         value={nome} 
                                         onChange={(e) => setNome(e.target.value)} // Atualiza o nome no estado
+                                        className="input-pesquisa h-[64px] w-full rounded-[5px] px-[5px] focus:outline-none
+                                        focus:border-b-4 focus:border-b-[#1797f5] transition-all duration-300 ease-in-out"
+                                        
                                     />
 
                                     <label htmlFor='profissao'>Profissão</label>
@@ -78,11 +81,18 @@ export function EdicaoEmpressa() {
                                         name='profissao' 
                                         value={profissao} 
                                         onChange={(e) => setProfissao(e.target.value)} // Atualiza a profissão no estado
+                                        className="input-pesquisa h-[64px] w-full rounded-[5px] px-[5px] focus:outline-none
+                                        focus:border-b-4 focus:border-b-[#1797f5] transition-all duration-300 ease-in-out"
                                     />
 
                                     <div className='botoes'>
-                                        <input type='submit' className='submitCancel' value='Salvar alterações' />
-                                        <input type='button' onClick={altCancel} className='submitCancel' value='Cancelar' />
+
+                                        <input type='submit' className='submitCancel "bg-[#718CB3] h-[64px] w-24 border-0 focus:outline-none
+                                        transition-all duration-300 ease-in-out transform hover:scale-105"' value='Salvar' />
+
+                                        <input type='button' onClick={altCancel} className='submitCancel "bg-[#718CB3] h-[64px] w-24 border-0 focus:outline-none
+                                        transition-all duration-300 ease-in-out transform hover:scale-105"' value='Cancelar' />
+
                                     </div>
                                 </form>
                             </div>
@@ -142,7 +152,7 @@ export function EdicaoEmpressa() {
                 <nav className="linksInterno">
                     <ul>
                         <li><box-icon name='home'></box-icon> Página Inicial</li>
-                        <li className="linkSelecionado"><box-icon name='cog'></box-icon> Informações Pessoais</li>
+                        <li className="linkSelecionado"><box-icon name='cog' color='white'></box-icon> Informações Pessoais</li>
                         <li><img className='listImg' width="25" height="25" src="https://img.icons8.com/pixels/32/conference-call.png" alt="conference-call"/> Perfil</li>
                         <li><img className='listImg' width="25" height="25" src="https://img.icons8.com/android/24/news.png" alt="news"/> Vagas</li>
                     </ul>
@@ -157,7 +167,7 @@ export function EdicaoEmpressa() {
                         <form>
                             <div>
                                 <label htmlFor='email'>Email corporativo</label>
-                                <input type='email' name='email' />
+                                <input type='email' name='email'/>
 
                                 <label htmlFor='cnpj'>CNPJ</label>
                                 <input type='text' name='cnpj' />
@@ -182,8 +192,11 @@ export function EdicaoEmpressa() {
                                 </div>
 
                                 <div id='botoes'>
-                                    <input type='submit' value='Salvar informações' />
-                                    <input type='reset' value='Limpar campos' />
+                                    <input type='submit' value='Salvar informações' className="bg-[#718CB3] h-[64px] w-24 border-0 focus:outline-none
+                                     transition-all duration-300 ease-in-out transform hover:scale-105" />
+                                    <input type='reset' value='Limpar campos' className="bg-[#718CB3] h-[64px] w-24 border-0 focus:outline-none
+                                     transition-all duration-300 ease-in-out transform hover:scale-105" />
+                                     
                                 </div>
                             </div>
 

@@ -92,6 +92,19 @@
     cursor: auto; /* Cursor padrão */
 }
 
+#formEmpresa input:focus{
+
+    outline: none;
+    border-bottom: 3px solid #1797f5;
+
+}
+#formEmpresa select:focus, #formEmpresa textarea:focus{
+
+    outline: none;
+    border: 3px solid #1797f5;
+
+}
+
 /* Estilo para o primeiro radio button */
 #formEmpresa input[type='radio']:first-child {
     margin-left: 10px; /* Margem à esquerda */
@@ -110,10 +123,21 @@
     height: 50px; /* Altura fixa */
     font-weight: 600; /* Negrito */
     color: #fff; /* Cor do texto */
-    background: #718CB3; /* Cor de fundo */
     cursor: pointer !important; /* Cursor de clique */
     padding: 0 !important; /* Remove o padding padrão */
 }
+
+#formEmpresa input[type='submit']:focus,
+#formEmpresa input[type='reset']:focus {border: none;}
+
+#formEmpresa input[type='submit']:hover,
+#formEmpresa input[type='reset']:hover {
+
+    background-color: #4b7abb;
+    transition: background 0.2s ease;
+    
+  }
+  
 
 /* Estilo para o botão de submit */
 #formEmpresa input[type='submit'] {
@@ -147,9 +171,15 @@ textarea {
     padding: 10px 10px; /* Espaçamento interno */
 }
 
+.linksInterno ul li:hover{
+
+    background: #9aa9bd;
+
+}
+
 /* Estilos para os links selecionados */
 .linkSelecionado {
-    background: #718CB3; /* Cor de fundo */
+    background: #7e95b5; /* Cor de fundo */
     color: #fff; /* Cor do texto */
     border-radius: 3px; /* Bordas arredondadas */
 }
