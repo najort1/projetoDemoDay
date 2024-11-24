@@ -199,7 +199,7 @@
     position: absolute; /* Posicionamento absoluto */
     top: 5vw; /* Distância do topo */
     left: 30vw; /* Distância da esquerda */
-    width: 45vw; /* Largura proporcional */
+    width: 30vw; /* Largura proporcional */
     padding: 20px; /* Espaçamento interno */
     z-index: 999; /* Garante que a caixa apareça sobre outros elementos */
 }
@@ -210,27 +210,28 @@
     height: 100%; /* Altura total */
     flex-direction: column; /* Alinha itens na vertical */
     justify-content: center; /* Alinha verticalmente ao centro */
-    align-items: center; /* Alinha horizontalmente ao centro */
+    align-items: center;
+    
 }
 
 /* Estilo do título dentro da caixa de edição */
 .editBoxNome form h2 {
-    font-size: 1.2rem; /* Tamanho da fonte */
+    font-size: 1.3rem; /* Tamanho da fonte */
+    font-weight: 600;
 }
 
 /* Estilo dos rótulos dentro da caixa de edição */
 .editBoxNome label {
     align-self: baseline; /* Alinha à esquerda */
-    margin-left: 9vw; /* Margem à esquerda */
+    margin-left: 5%; /* Margem à esquerda */
     margin-bottom: 5px; /* Margem inferior */
 }
 
 /* Estilo dos inputs dentro da caixa de edição */
 .editBoxNome input[type='text'] {
-    border: 2px solid #7999c7; /* Cor da borda */
     border-radius: 13px; /* Bordas arredondadas */
     cursor: auto; /* Cursor padrão */
-    width: 60%; /* Largura relativa */
+    width: 90%; /* Largura relativa */
     padding: 10px; /* Espaçamento interno */
 }
 
@@ -251,7 +252,7 @@
 }
 
 /* Margem à direita no primeiro botão dentro da caixa de edição */
-.botoes .submitCancel:first-child {
+.botoes input:first-child {
     margin-right: 15px; /* Margem à direita */
 }
 

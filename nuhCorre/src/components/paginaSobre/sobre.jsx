@@ -39,11 +39,22 @@ export const Sobre = () => {
 
       <div className="container-about w-full min-h-screen flex flex-col items-center bg-[#F0F4F8] p-8">
         {/* Título da Página */}
-        <div className="titulo-container flex flex-col items-center gap-4 mb-8">
-          <h1 className="titulo-container-principal text-3xl font-bold text-center text-[#1a2a3a]">Sobre Nós</h1>
-          <p className="descricao text-lg text-center text-[#6a6a6a] max-w-2xl">
-            Somos uma plataforma comprometida em conectar pessoas a oportunidades de emprego acessíveis, com foco na inclusão e acessibilidade no mercado de trabalho.
-          </p>
+        <div className="sobre titulo-container flex flex-col items-center gap-4 mb-8">
+          <div className="gradient">
+            <h1 className="titulo-container-principal text-3xl font-bold text-center ">Sobre Nós</h1>
+            <p className="descricao text-lg text-center max-w-2xl">
+              Somos uma plataforma comprometida em conectar pessoas a oportunidades de emprego acessíveis, com foco na inclusão e acessibilidade no mercado de trabalho.
+            </p>
+
+            <div className="animate-blink text-6xl">
+              <box-icon
+                name="chevron-down"
+                type="solid"
+                color="#ffffff"
+                className="hover:text-yellow-400 transition-colors duration-500"
+              ></box-icon>
+            </div>
+          </div>
         </div>
 
         {/* Seções */}
