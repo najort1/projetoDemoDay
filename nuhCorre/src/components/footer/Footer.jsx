@@ -25,13 +25,8 @@ function Footer(){
                 </div>
 
                 <div className="item-footer">
-                    <p className="text-footer">Suporte</p>
-                </div>
-
-                <div className="item-footer">
                     <p className="text-footer">Política de Privacidade</p>
                 </div>
-
 
             </div>
 

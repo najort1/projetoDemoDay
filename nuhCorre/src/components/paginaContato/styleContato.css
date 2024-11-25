@@ -1,0 +1,198 @@
+
+.deco{
+
+    background-image:url('https://editorajuma.com.br/wp-content/uploads/Prodam-SP.jpg');
+    width: 100vw;
+    height: 50vh;
+
+}
+  /* Layout da Página */
+  .contact-container {
+    display: flex;
+    flex-direction: column; /* Colocando os itens em coluna */
+    height: 100vh;
+  }
+  
+  /* Menu Lateral (não será exibido, já que estamos usando seu header) */
+  .sidebar {
+    width: 250px;
+    background-color: #111;
+    color: #fff;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    animation: slideIn 0.5s ease-in-out;
+  }
+  
+  .sidebar h2 {
+    font-size: 2rem;
+    color: #fff;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    padding: 15px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .sidebar ul li:hover {
+    background-color: #e91e63;
+    transform: translateX(10px);
+  }
+  
+  .sidebar ul li span {
+    padding-left: 10px;
+  }
+  
+  /* Conteúdo principal */
+  .contact-content {
+    margin-top: 80px; /* Para dar espaço para o Header */
+    padding: 40px;
+    width: 100%;
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .contact-header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  
+  .contact-header p {
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 30px;
+  }
+  
+  /* Estilos para o formulário de contato */
+  .contact-form {
+    background-color: #fff;
+    padding: 40px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 700px;
+    margin-bottom: 30px;
+    animation: zoomIn 0.5s ease-in-out;
+  }
+  
+  .input-group {
+    margin-bottom: 20px;
+  }
+  
+  .input-group label {
+    font-size: 1.1rem;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .input-group input,
+  .input-group textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+    transition: border 0.3s ease-in-out;
+  }
+  
+  .input-group input:focus,
+  .input-group textarea:focus {
+    border-color: #e91e63;
+    outline: none;
+  }
+  
+  .submit-btn {
+    background-color: #e91e63;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .submit-btn:hover {
+    background-color: #c2185b;
+    transform: scale(1.05);
+  }
+  
+  /* Informações de Contato */
+  .contact-info {
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    max-width: 700px;
+  }
+  
+  .contact-info h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .contact-info p {
+    font-size: 1.2rem;
+    color: #555;
+    margin: 10px 0;
+  }
+  
+  .contact-info svg {
+    margin-right: 10px;
+    color: #e91e63;
+  }
+  
+  /* Animações */
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes zoomIn {
+    from {
+      transform: scale(0.8);
+    }
+    to {
+      transform: scale(1);
+    }
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .contact-content {
+      margin-top: 60px;
+    }
+  
+    .contact-form {
+      padding: 20px;
+    }
+  
+    .contact-container {
+      flex-direction: column;
+    }
+  }
+  
