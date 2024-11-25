@@ -1,7 +1,13 @@
+#imgMissao{
+
+  width: 15%;
+
+}
+
 /* Seção Sobre - Efeito Parallax */
 .sobre {
   position: relative;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url('../../assets/image2.jpeg');
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url('../../assets/image2.jpg');
   background-attachment: fixed;
   background-position: center center;
   background-size: cover;
@@ -84,14 +90,17 @@
 
 /* Efeito de Fade In quando a seção fica visível */
 .section-info {
+  display: flex;
+  flex-direction: row;
   opacity: 0;
   transform: translateY(50px);
   transition: opacity 0.8s ease, transform 0.8s ease;
   padding: 6rem 3rem;
   margin-bottom: 3rem;
   border-radius: 8px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  /*box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);*/
   width: 100vw;
+  justify-content: space-between;
 }
 
 .section-info.active {
@@ -99,14 +108,9 @@
   transform: translateY(0);
 }
 
-/* Efeitos nas seções - Missão */
-.missao {
-  background-color: #E3F2F8;
-  border-left: 8px solid #3498db;
-}
-
 .missao .section-title {
   font-size: 2.5rem;
+  font-weight: 600;
   color: #2c3e50;
   text-align: center;
   margin-bottom: 1rem;
@@ -127,39 +131,36 @@
 
 /* Efeitos nas seções - Visão */
 .visao {
-  background-color: #F9F9F9;
-  border-left: 8px solid #f39c12;
+  background-color: #4682B4;
+  color: #fff;
+  border-left: 8px solid #285579;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
 
 .visao .section-title {
   font-size: 2.5rem;
-  color: #2c3e50;
   text-align: center;
+  font-weight: 600;
   margin-bottom: 1rem;
 }
 
 .visao .section-description {
-  color: #7f8c8d;
   font-size: 1.25rem;
   text-align: center;
   margin: 0 auto;
   max-width: 900px;
 }
 
-/* Efeitos nas seções - Valores */
-.valores {
-  background-color: #F6E1E1;
-  border-left: 8px solid #E74C3C;
-}
-
 .valores .section-title {
   font-size: 2.5rem;
   color: #2c3e50;
   text-align: center;
+  font-weight: 600;
   margin-bottom: 1rem;
 }
 
 .valores .section-description {
+  display: flex;
   color: #7f8c8d;
   font-size: 1.25rem;
   text-align: center;
@@ -173,16 +174,24 @@
   margin: 2rem auto;
   padding-left: 2rem;
 }
+.valores ul li{
 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
 /* Efeitos nas seções - Equipe */
 .equipe {
   background-color: #E4F5D4;
   border-left: 8px solid #2ecc71;
+  margin-bottom: 0;
 }
 
 .equipe .section-title {
   font-size: 2.5rem;
   color: #2c3e50;
+  font-weight: 600;
   text-align: center;
   margin-bottom: 1rem;
 }
@@ -256,6 +265,13 @@
 
 /* Responsividade para dispositivos menores */
 @media (max-width: 768px) {
+
+  .section-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .team-members {
     flex-direction: column;
     gap: 1.5rem;
@@ -263,10 +279,48 @@
   .member {
     width: 100%;
   }
+  .team-members .box-members {
+    display: flex;
+    gap: 1em;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .valores .section-description{
+
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2em;
+    padding: 0;
+
+  }
 }
 
+@media (max-width: 1000px) {
+
+  .equipe{
+
+    display: flex;
+    flex-direction: column;
+
+  }
+  .member {
+    width: 100%;
+  }
 
 
+}
+.valoresBox{
+
+  background: #fff;
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
 
 
 

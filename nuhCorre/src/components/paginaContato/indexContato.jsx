@@ -25,13 +25,11 @@ export const Contato = () => {
   };
 
   return (
-    <div className="contact-container">
+    <>
+    <Header />
     
-      <Header/>
+    <div className="contact-container">
 
-        <div className='deco'></div>
-        
-      {/* Conteúdo da Página */}
       <div className="contact-content">
         <div className="contact-header">
           <h1>Entre em Contato</h1>
@@ -47,6 +45,7 @@ export const Contato = () => {
                 type="text"
                 id="nome"
                 name="nome"
+                placeholder="Digite seu nome"
                 value={formData.nome}
                 onChange={handleChange}
                 required
@@ -59,6 +58,7 @@ export const Contato = () => {
                 type="email"
                 id="email"
                 name="email"
+                placeholder="Digite seu e-mail"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -71,6 +71,7 @@ export const Contato = () => {
                 id="mensagem"
                 name="mensagem"
                 rows="5"
+                placeholder="Digite sua mensagem"
                 value={formData.mensagem}
                 onChange={handleChange}
                 required
@@ -81,15 +82,22 @@ export const Contato = () => {
           </form>
         </div>
 
-        {/* Informações de Contato */}
-        <div className="contact-info">
-          <h2>Formas alternativas de contato</h2>
-          <p><FaPhoneAlt /> (11) 1234-5678</p>
-          <p><FaEnvelope /> contato@exemplo.com</p>
-          <p><FaMapMarkerAlt /> Rua Exemplo, 123, São Paulo, SP</p>
-        </div>
       </div>
-      <Footer/>
+
     </div>
+    <div id='contatosAmais'>
+
+      <div className="contact-info">
+        <h2>Formas alternativas de contato</h2>
+        <p><FaPhoneAlt /> (11) 1234-5678</p>
+        <p><FaEnvelope /> contato@exemplo.com</p>
+        <p><FaMapMarkerAlt /> Rua Exemplo, 123, São Paulo, SP</p>
+      </div>
+
+
+    </div>
+    <Footer/>
+    
+    </>
   );
 };

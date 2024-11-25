@@ -2,7 +2,8 @@ import { useEffect, useRef } from "react";
 import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import "./sobreStyle.css";
-
+import missao from "../../assets/missao.png"
+import visao from "../../assets/vision.png"
 export const Sobre = () => {
   const sectionRefs = {
     missao: useRef(null),
@@ -74,34 +75,67 @@ export const Sobre = () => {
 
         {/* Seções */}
         <div className="section-info missao" ref={sectionRefs.missao}>
-          <h2 className="section-title">Missão</h2>
-          <p className="section-description">
-            Oferecer uma plataforma inclusiva que facilite a busca por empregos, promovendo acessibilidade a todos, independentemente de suas limitações.
-          </p>
+          <div>
+
+            <h2 className="section-title">Missão</h2>
+            <p className="section-description">
+              Oferecer uma plataforma inclusiva que facilite a busca por empregos, promovendo acessibilidade a todos, independentemente de suas limitações.
+            </p>
+
+          </div>
+          
+          <img src={missao} id='imgMissao'/>
         </div>
 
         <div className="section-info visao" ref={sectionRefs.visao}>
-          <h2 className="section-title">Visão</h2>
-          <p className="section-description">
-            Ser referência nacional em plataformas inclusivas de empregos, com a missão de gerar uma sociedade mais acessível e justa para todos.
-          </p>
+          <div>
+
+            <h2 className="section-title">Visão</h2>
+            <p className="section-description">
+              Ser referência nacional em plataformas inclusivas de empregos, com a missão de gerar uma sociedade mais acessível e justa para todos.
+            </p>
+
+          </div>
+
+          <img src={visao} style={{order:'-1'}} id='imgMissao'/>
+          
         </div>
 
         <div className="section-info valores" ref={sectionRefs.valores}>
           <h2 className="section-title">Valores</h2>
           <ul className="section-description list-disc mx-auto max-w-xl">
-            <li>Inclusão e diversidade</li>
-            <li>Transparência e ética</li>
-            <li>Empoderamento das pessoas</li>
-            <li>Responsabilidade social</li>
+            <li>
+
+                <div className='valoresBox'>
+                  <img width="48" height="48" src="https://img.icons8.com/fluency/48/diversity--v1.png" alt="diversity--v1"/>
+                </div>Inclusão e diversidade</li>
+
+            <li>
+              <div className='valoresBox'>
+                <img width="100" height="100" src="https://img.icons8.com/clouds/100/handshake.png" alt="handshake"/>
+              </div>Transparência e ética</li>
+
+            <li>
+              <div className='valoresBox'><img width="100" height="100" src="https://img.icons8.com/clouds/100/people-working-together.png" alt="people-working-together"/></div>
+              Empoderamento das pessoas</li>
+
+            <li>
+              <div className='valoresBox'><img width="100" height="100" src="https://img.icons8.com/bubbles/100/earth-planet.png" alt="earth-planet"/></div>
+              Responsabilidade social</li>
           </ul>
+
         </div>
 
         <div className="section-info equipe" ref={sectionRefs.equipe}>
-          <h2 className="section-title">Nossa Equipe</h2>
-          <p className="section-description mb-8">
-            Nossa equipe é formada por profissionais apaixonados pela missão de tornar o mundo mais acessível.
-          </p>
+          <div>
+
+            <h2 className="section-title">Nossa Equipe</h2>
+            <p className="section-description mb-8">
+              Nossa equipe é formada por profissionais apaixonados pela missão de tornar o mundo mais acessível.
+            </p>
+
+          </div>
+          
           <div className="team-members">
             {/* Primeira Linha */}
             <div className="box-members">
