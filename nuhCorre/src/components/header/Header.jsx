@@ -1,10 +1,9 @@
 import "./styleHeader.css"; 
 import { useNavigate, useLocation } from 'react-router-dom';
 import logo from '../../assets/logo.png';
-import {Image} from "@nextui-org/react";
+import { Image } from "@nextui-org/react";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
 import boxicons from "boxicons";
-
 
 function Header() {
   const navigate = useNavigate();
@@ -12,6 +11,10 @@ function Header() {
 
   // Verifica se a página atual é "CadastroEmpresa"
   const isCadastroEmpresaPage = location.pathname === '/cadastroEmpresa';
+  const isHomePage = location.pathname === '/';
+  const isContatoPage = location.pathname === '/contato';
+  const isCadastroUsuarioPage = location.pathname === '/cadastro';
+  const isLoginPage = location.pathname === '/login';
 
   const navegarParaOLogin = () => {
     navigate('/login');
@@ -40,30 +43,39 @@ function Header() {
   const navegarParaContato = () => {
     navigate('/contato');
   };
+
   return (
     <header className="pagina-principal 
       top-0 left-0 w-full h-20 bg-[#5b82bbd1] flex justify-between items-center p-4
     ">
-
       <div className="logo flex items-center gap-2">
-            <Image
-              isZoomed
-              width={150}
-              alt="NuhCorre"
-              src={logo}
-              onClick={navegarParaPaginaPrincipal}
-          />
+        <Image
+          isZoomed
+          width={150}
+          alt="NuhCorre"
+          src={logo}
+          onClick={navegarParaPaginaPrincipal}
+        />
       </div>
 
       <div className="tipos-usuarios">
         <ul className="flex items-center gap-4">
-          <li className="hover:cursor-pointer" onClick={navegarParaPaginaPrincipal}>
+          <li 
+            className={`hover:cursor-pointer ${isHomePage ? 'link-ativo' : ''}`} 
+            onClick={navegarParaPaginaPrincipal}
+          >
             <a href="#" className="text-white font-bold text-lg">Inicio</a>
           </li>
-          <li className="hover:cursor-pointer" onClick={navegarParaContato}>
+          <li 
+            className={`hover:cursor-pointer ${isContatoPage ? 'link-ativo' : ''}`} 
+            onClick={navegarParaContato}
+          >
             <a href="#" className="text-white font-bold text-lg">Contato</a>
           </li>
-          <li className="hover:cursor-pointer" onClick={cadastroUsuario}>
+          <li 
+            className={`hover:cursor-pointer ${isCadastroUsuarioPage ? 'link-ativo' : ''}`} 
+            onClick={cadastroUsuario}
+          >
             <Dropdown>
               <DropdownTrigger>
                 <a href="#" className="text-white font-bold text-lg">Sou usuário</a>
@@ -74,7 +86,6 @@ function Header() {
                     <box-icon name='user-plus' color='#000000' size='md' type='solid' ></box-icon>
                     <p className="text-black font-bold text-lg">Cadastro</p>
                   </div>
-
                 </DropdownItem>
                 <DropdownItem onClick={navegarParaOLogin}>
                   <div className="item-dropdown-usuario flex items-center gap-2">
@@ -85,7 +96,10 @@ function Header() {
               </DropdownMenu>
             </Dropdown>
           </li>
-          <li className="hover:cursor-pointer" onClick={cadastroEmpresa}>
+          <li 
+            className={`hover:cursor-pointer ${isCadastroEmpresaPage ? 'link-ativo' : ''}`} 
+            onClick={cadastroEmpresa}
+          >
             <Dropdown>
               <DropdownTrigger>
                 <a href="#" className="text-white font-bold text-lg">Sou empresa</a>
@@ -106,10 +120,8 @@ function Header() {
               </DropdownMenu>
             </Dropdown>
           </li>
-          </ul>
+        </ul>
       </div>
-
-
     </header>
   );
 }
