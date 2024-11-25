@@ -36,6 +36,10 @@ function Header() {
   const paginaLoginEmpresa = () => {
     navigate('/loginEmpresa');
   };
+
+  const navegarParaContato = () => {
+    navigate('/contato');
+  };
   return (
     <header className="pagina-principal 
       top-0 left-0 w-full h-20 bg-[#5b82bbd1] flex justify-between items-center p-4
@@ -55,6 +59,9 @@ function Header() {
         <ul className="flex items-center gap-4">
           <li className="hover:cursor-pointer" onClick={navegarParaPaginaPrincipal}>
             <a href="#" className="text-white font-bold text-lg">Inicio</a>
+          </li>
+          <li className="hover:cursor-pointer" onClick={navegarParaContato}>
+            <a href="#" className="text-white font-bold text-lg">Contato</a>
           </li>
           <li className="hover:cursor-pointer" onClick={cadastroUsuario}>
             <Dropdown>
