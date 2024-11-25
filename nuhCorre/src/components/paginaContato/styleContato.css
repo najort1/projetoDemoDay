@@ -1,198 +1,206 @@
-
-.deco{
-
-    background-image:url('https://editorajuma.com.br/wp-content/uploads/Prodam-SP.jpg');
-    width: 100vw;
-    height: 50vh;
-
+/* Layout da Página */
+.contact-container {
+  display: flex;
+  flex-direction: column; /* Colocando os itens em coluna */
+  min-height: 100vh; /* Garante que a altura mínima seja a altura da tela */
+  background-image: url('../../assets/fundo.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 60px; /* Espaço para o footer */
 }
-  /* Layout da Página */
-  .contact-container {
-    display: flex;
-    flex-direction: column; /* Colocando os itens em coluna */
-    height: 100vh;
-  }
-  
-  /* Menu Lateral (não será exibido, já que estamos usando seu header) */
-  .sidebar {
-    width: 250px;
-    background-color: #111;
-    color: #fff;
-    padding: 20px;
-    position: fixed;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    animation: slideIn 0.5s ease-in-out;
-  }
-  
-  .sidebar h2 {
-    font-size: 2rem;
-    color: #fff;
-    margin-bottom: 20px;
-  }
-  
-  .sidebar ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .sidebar ul li {
-    padding: 15px;
-    cursor: pointer;
-    font-size: 1.2rem;
-    transition: background-color 0.3s, transform 0.3s;
-  }
-  
-  .sidebar ul li:hover {
-    background-color: #e91e63;
-    transform: translateX(10px);
-  }
-  
-  .sidebar ul li span {
-    padding-left: 10px;
-  }
-  
-  /* Conteúdo principal */
+
+/* Conteúdo principal */
+.contact-content {
+  margin-top: 80px; /* Espaço para o Header */
+  padding: 40px;
+  width: 100%;
+  /*background-color: rgba(255, 255, 255, 0.8); /* Fundo branco semi-transparente */
+  border-radius: 10px;
+  animation: fadeIn 0.5s ease-in-out;
+  flex-grow: 1; /* Faz o conteúdo crescer para preencher o espaço disponível */
+}
+
+/* Cabeçalho de contato */
+.contact-header h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+  text-align: center; /* Alinha o título no centro */
+}
+
+.contact-header p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 30px;
+  text-align: center; /* Alinha o subtítulo no centro */
+}
+
+/* Estilos para o formulário de contato */
+.contact-form {
+  background-color: #fff;
+  padding: 40px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  max-width: 700px;
+  margin: 0 auto 30px auto; /* Centraliza o formulário na página */
+  animation: zoomIn 0.5s ease-in-out;
+}
+
+/* Input e Textarea */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  font-size: 1.1rem;
+  color: #555;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  transition: border 0.3s ease-in-out;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: #9f1ee9;
+  outline: none;
+}
+
+
+.submit-btn{background-image: linear-gradient(to right, #F09819 0%, #EDDE5D  51%, #F09819  100%)}
+.submit-btn {
+   margin: 10px;
+   padding: 15px 45px;
+   text-align: center;
+   text-transform: uppercase;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 20px #eee;
+   border-radius: 10px;
+   display: block;
+   width: 100%;
+ }
+
+ .submit-btn:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+ }
+
+
+/* Responsividade */
+@media (max-width: 768px) {
   .contact-content {
-    margin-top: 80px; /* Para dar espaço para o Header */
-    padding: 40px;
-    width: 100%;
-    animation: fadeIn 0.5s ease-in-out;
+    margin-top: 60px;
+    padding: 20px;
   }
-  
-  .contact-header h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-  }
-  
-  .contact-header p {
-    font-size: 1.2rem;
-    color: #666;
-    margin-bottom: 30px;
-  }
-  
-  /* Estilos para o formulário de contato */
+
   .contact-form {
-    background-color: #fff;
-    padding: 40px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    max-width: 700px;
-    margin-bottom: 30px;
-    animation: zoomIn 0.5s ease-in-out;
+    padding: 20px;
   }
-  
-  .input-group {
-    margin-bottom: 20px;
-  }
-  
-  .input-group label {
-    font-size: 1.1rem;
-    color: #555;
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .input-group input,
-  .input-group textarea {
-    width: 100%;
-    padding: 12px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 5px;
-    transition: border 0.3s ease-in-out;
-  }
-  
-  .input-group input:focus,
-  .input-group textarea:focus {
-    border-color: #e91e63;
-    outline: none;
-  }
-  
+
   .submit-btn {
-    background-color: #e91e63;
-    color: #fff;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
+    width: 100%;
   }
-  
-  .submit-btn:hover {
-    background-color: #c2185b;
-    transform: scale(1.05);
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
   }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Contatos alternativos */
+#contatosAmais {
+  background: linear-gradient(90deg, #e6944d, #ee8076, #d97b9d); /* Gradiente suave */
+  height: auto; /* Ajusta a altura para o conteúdo */
+  padding: 40px 20px; /* Adiciona espaçamento interno */
+  display: flex;
+  flex-direction: column; /* Coloca os itens em coluna */
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
   
-  /* Informações de Contato */
+}
+
+.contact-info {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+  text-align: center; /* Centraliza os textos */
+}
+
+.contact-info h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 600;
+}
+
+.contact-info p {
+  font-size: 1.1rem;
+  color: #555;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.contact-info svg {
+  margin-right: 10px;
+  color: #9f1ee9; /* Cor dos ícones */
+  font-size: 1.5rem; /* Tamanho maior para os ícones */
+}
+
+@media (max-width: 768px) {
+  /* Ajustes para telas menores */
+  #contatosAmais {
+    padding: 20px;
+    height: auto;
+  }
+
   .contact-info {
-    background-color: #fff;
-    padding: 30px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    max-width: 700px;
+    padding: 20px;
   }
-  
+
   .contact-info h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 1.8rem;
   }
-  
+
   .contact-info p {
-    font-size: 1.2rem;
-    color: #555;
-    margin: 10px 0;
+    font-size: 1rem;
   }
-  
+
   .contact-info svg {
-    margin-right: 10px;
-    color: #e91e63;
+    font-size: 1.3rem; /* Ajusta os ícones para telas menores */
   }
-  
-  /* Animações */
-  @keyframes slideIn {
-    from {
-      transform: translateX(-100%);
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  @keyframes zoomIn {
-    from {
-      transform: scale(0.8);
-    }
-    to {
-      transform: scale(1);
-    }
-  }
-  
-  /* Responsividade */
-  @media (max-width: 768px) {
-    .contact-content {
-      margin-top: 60px;
-    }
-  
-    .contact-form {
-      padding: 20px;
-    }
-  
-    .contact-container {
-      flex-direction: column;
-    }
-  }
-  
+}
