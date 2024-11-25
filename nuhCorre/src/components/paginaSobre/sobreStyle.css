@@ -7,7 +7,7 @@
 /* Seção Sobre - Efeito Parallax */
 .sobre {
   position: relative;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url('../../assets/image2.jpg');
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)), url('../../assets/sobreFundo.jpg');
   background-attachment: fixed;
   background-position: center center;
   background-size: cover;

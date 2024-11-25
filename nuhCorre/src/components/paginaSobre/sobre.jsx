@@ -4,6 +4,8 @@ import Header from "../header/Header";
 import "./sobreStyle.css";
 import missao from "../../assets/missao.png"
 import visao from "../../assets/vision.png"
+import seta from "../../assets/seta.png"
+
 export const Sobre = () => {
   const sectionRefs = {
     missao: useRef(null),
@@ -63,12 +65,7 @@ export const Sobre = () => {
             </p>
 
             <div className="seta animate-blink text-6xl">
-              <box-icon
-                name="chevron-down"
-                type="solid"
-                color="#ffffff"
-                className="hover:text-yellow-400 transition-colors duration-500"
-              ></box-icon>
+              <img src={seta} alt=''/>
             </div>
           </div>
         </div>

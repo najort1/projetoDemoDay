@@ -92,3 +92,9 @@
   background: #fff;
 
 }
+
+/* Estilos para links ativos */
+.link-ativo {
+  text-decoration: underline;
+  font-weight: bold; /* Para dar mais ênfase ao link */
+}
