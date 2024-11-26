@@ -180,3 +180,34 @@ span{
     margin-top: 8rem;
     margin-bottom: 0.5cm;
 }
+
+@media (max-width: 1121px) {
+
+    main#main-cadastroempresa{
+
+        flex-direction: column;
+    
+    }
+
+    #expli, #caixaCadastroEmpresa{
+        width: 100vw;
+        padding-bottom: 20px;
+    }
+
+    #expli h2 {
+        font-size: 1.5rem;
+    }
+    #expli p {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 768px){
+
+    .alinhamentoEmpresa{
+
+        width: auto !important;
+
+    }
+
+}

@@ -27,7 +27,7 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    margin: 0 auto;
+    margin-top: 10vh;
     padding: 3em;
     position: relative;
     top: 0.2em;
@@ -35,6 +35,8 @@
     backdrop-filter: blur(30px);
     box-shadow: 0px 0px 30px rgba(227, 228, 237, 0.37);
     border: 2px solid rgba(255, 255, 255, 0.18);
+    height: 40%;
+    padding: 0 10px;
  
 }
 
@@ -75,6 +77,12 @@
 
 }
 
+.pesquisa select{
+
+  width: 37vw;
+
+}
+
 .pesquisa input[type="text"]{width: 20em;}
 
 /* Botão de envio de pesquisa */
@@ -83,7 +91,7 @@
     background-color: #7692B9;
     color: white;
     font-weight: 700;
-    width: 7em;
+
 
   }
   
@@ -94,3 +102,67 @@
     
   }
   
+/* Container principal */
+.container-inputs {
+  display: flex;
+  flex-direction: row; /* Colocar os campos na mesma linha por padrão */
+  gap: 1em; /* Espaçamento entre os campos */
+  justify-content: space-between; /* Ajuste para garantir que os campos se distribuem corretamente */
+}
+
+/* Ajuste nos campos de pesquisa */
+input, button {
+  width: 100%; /* Garantir que os campos ocupem toda a largura disponível */
+  box-sizing: border-box; /* Garantir que o padding não afete a largura */
+}
+
+/* Adicionando a responsividade para dispositivos menores */
+@media screen and (max-width: 768px) {
+
+  .container{
+
+    height: auto;
+    padding: 36px;
+
+  }
+  .container-inputs {
+    flex-direction: column; /* Muda a direção dos itens para coluna em telas pequenas */
+    gap: 1em; /* Mais espaçamento entre os campos */
+    padding-top: 20px;
+  }
+
+  .opcoes-tipo,
+  .input-pesquisa,
+  .selecionar-estado {
+    width: 100%; /* Os campos vão ocupar toda a largura disponível */
+    height: 50px; /* Ajusta a altura dos campos */
+  }
+
+  .botao-pesquisar {
+    
+    height: 50px; /* Ajusta a altura do botão */
+  }
+
+  
+}
+
+@media screen and (max-width: 480px) {
+  
+  .container-inputs {
+    flex-direction: column; /* Garante que a direção dos campos será coluna em telas ainda menores */
+    gap: 0.8em; /* Menos espaço entre os campos em telas pequenas */
+  }
+
+  .opcoes-tipo,
+  .input-pesquisa,
+  .selecionar-estado {
+    width: 100%; /* Os campos ocupam 100% da largura disponível */
+    height: 45px; /* Altura otimizada para telas muito pequenas */
+  }
+
+  .botao-pesquisar {
+    width: 100%; /* O botão vai ocupar toda a largura disponível */
+    height: 45px; /* Ajusta a altura do botão em telas pequenas */
+  }
+}
+
