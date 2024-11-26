@@ -188,3 +188,35 @@ input:not(:focus)::placeholder {
     margin: 15px 0;
     margin-right: 2.8rem;
 }
+
+
+@media (max-width: 1121px) {
+
+    main#main-loginempresa {
+ 
+        flex-direction: column;
+    
+    }
+ 
+    #expliu-loginempresa, #caixaLoginEmpresa{
+        width: 100vw;
+        padding-bottom: 20px;
+    }
+ 
+    #expliu-loginempresa h2 {
+        font-size: 1.5rem;
+    }
+    #expliu-loginempresa p {
+        font-size: 1em;
+    }
+ }
+ 
+ @media (max-width: 768px){
+ 
+    .alinhamentoLoginEmpresaLogo{
+ 
+        width: auto !important;
+ 
+    }
+ 
+ }

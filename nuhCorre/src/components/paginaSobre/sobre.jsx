@@ -54,7 +54,7 @@ export const Sobre = () => {
   return (
     <>
       <Header />
-
+      {/* Imagem de fundo de <a href="https://pixabay.com/pt/users/geralt-9301/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6188940">Gerd Altmann</a> por <a href="https://pixabay.com/pt//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6188940">Pixabay</a> */}
       <div className="container-about w-full min-h-screen flex flex-col items-center bg-[#F0F4F8]">
         {/* Título da Página */}
         <div className="sobre titulo-container flex flex-col items-center gap-4 mb-8">
@@ -65,7 +65,7 @@ export const Sobre = () => {
             </p>
 
             <div className="seta animate-blink text-6xl">
-              <img src={seta} alt=''/>
+              <img src={seta} alt='<a href="https://www.flaticon.com/br/icones-gratis/seta-para-baixo" title="seta para baixo ícones">Seta para baixo ícones criados por Ayub Irawan - Flaticon</a>'/>
             </div>
           </div>
         </div>
@@ -144,7 +144,7 @@ export const Sobre = () => {
               </div>
               <div className="member" ref={(el) => (memberRefs.current[1] = el)}>
                 <img src="https://via.placeholder.com/150" alt="Membro 2" className="rounded-full mx-auto mb-4"/>
-                <p className="member-name">Leticia</p>
+                <p className="member-name">Letícia</p>
                 <p className="member-role">Designer <br/>Full-stack</p>
               </div>
               <div className="member" ref={(el) => (memberRefs.current[2] = el)}>
@@ -166,7 +166,7 @@ export const Sobre = () => {
               <div className="member" ref={(el) => (memberRefs.current[4] = el)}>
                 <img src="https://via.placeholder.com/150" alt="Membro 5" className="rounded-full mx-auto mb-4"/>
                 <p className="font-semibold text-[#2c3e50]">Valleska</p>
-                <p className="text-[#7f8c8d]">PO<br/>Full-stack</p>
+                <p className="text-[#7f8c8d]">Scrum Master<br/>Full-stack</p>
               </div>
               <div className="member" ref={(el) => (memberRefs.current[5] = el)}>
                 <img src="https://via.placeholder.com/150" alt="Membro 6" className="rounded-full mx-auto mb-4"/>
