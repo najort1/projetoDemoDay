@@ -314,11 +314,6 @@ const CadastroUsuario = () => {
                             <input type="date" name="dataNascimento" required />
                             <span ref={erroData} className="erro"></span>
                         </div>
-                        <div>
-                            <label htmlFor="cpf">CPF:</label>
-                            <input type="text" name="cpf" required pattern="^\d{3}\.\d{3}\.\d{3}-\d{2}$" placeholder="XXX.XXX.XXX-XX" />
-                            <span ref={erroCpf} className="erro"></span>
-                        </div>
 
                         <div>
                             <label htmlFor="senha">Crie uma senha:</label>

@@ -6,6 +6,7 @@ import camaleao from '../../assets/camaleao.png';
 import Logo from '../../assets/logo.png';
 import olhoAberto from '../../assets/olhoAberto.jpg.png'; // Caminho para o ícone de olho aberto
 import olhoFechado from '../../assets/olhoFechado.jpg'; // Caminho para o ícone de olho fechado
+import CadastroUsuario from '../paginaCadastro';
 
 const CadastroEmpresa = () => {
 
@@ -152,24 +153,30 @@ const CadastroEmpresa = () => {
     // Formatação do CNPJ
     const formatarCNPJ = (cnpj) => {
         cnpj = cnpj.replace(/\D/g, ''); // Remove caracteres não numéricos
-        return cnpj.replace(/(\d{2})(\d)/, '$1.$2')
-                    .replace(/(\d{3})(\d)/, '$1.$2')
-                    .replace(/(\d{3})(\d)/, '$1/$2')
-                    .replace(/(\d{4})(\d{1,2})$/, '$1-$2');
+        if (cnpj.length > 14) cnpj = cnpj.slice(0, 14); // Limita a 14 números
+        return cnpj
+            .replace(/(\d{2})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d)/, '$1/$2')
+            .replace(/(\d{4})(\d{1,2})$/, '$1-$2');
     };
+    
 
     // Formatação do telefone
     const formatarTelefone = (telefone) => {
         telefone = telefone.replace(/\D/g, ''); // Remove caracteres não numéricos
+        if (telefone.length > 11) telefone = telefone.slice(0, 11); // Limita a 11 números
         if (telefone.length <= 10) {
-            return telefone.replace(/(\d{2})(\d)/, '($1) $2')
-                           .replace(/(\d{4})(\d)/, '$1-$2');
+            return telefone
+                .replace(/(\d{2})(\d)/, '($1) $2')
+                .replace(/(\d{4})(\d)/, '$1-$2');
         } else {
-            return telefone.replace(/(\d{2})(\d)/, '($1) $2')
-                           .replace(/(\d{5})(\d)/, '$1-$2')
-                           .replace(/(\d{4})(\d{2})$/, '$1-$2');
+            return telefone
+                .replace(/(\d{2})(\d)/, '($1) $2')
+                .replace(/(\d{5})(\d)/, '$1-$2');
         }
     };
+    
 
     useEffect(() => {
         errorHandling();
@@ -179,7 +186,7 @@ const CadastroEmpresa = () => {
             inputs.forEach((element) => {
                 element.removeEventListener('focus', () => {});
                 element.removeEventListener('blur', () => {});
-                if (element.name === 'cpf') {
+                if (element.name === 'cnpj') {
                     element.removeEventListener('input', () => {});
                 }
                 if (element.name === 'telefone') {
@@ -189,41 +196,36 @@ const CadastroEmpresa = () => {
         };
     }, );
 
-    const handleCadastro = async () => {
+    const handleCadastro = async (e) => {
+        e.preventDefault(); // Impede o envio padrão do formulário
         const form = document.querySelector('form');
         const formData = new FormData(form);
     
         const data = {};
-    
         formData.forEach((value, key) => {
             data[key] = value;
         });
     
         try {
             const response = await axios.post('http://localhost:8080/auth/empresa/cadastrar', data);
-            const repostaJson = response.data;
-    
             if (response.status === 201) {
-                const bearer = repostaJson.token;
-                localStorage.setItem('token', bearer);
+                const repostaJson = response.data;
+                localStorage.setItem('token', repostaJson.token);
                 alert('Usuário cadastrado com sucesso!');
                 navigate('/vagas');
             } else {
-                alert(`${repostaJson.detail}`);
+                alert(`${response.data.detail}`);
             }
         } catch (error) {
-            if (error.response && error.response.data) {
-                alert(error.response.data.detail);
-            } else {
-                alert('Erro ao cadastrar usuário.');
-            }
+            alert(error.response?.data?.detail || 'Erro ao cadastrar usuário.');
         }
     };
+    
 
     const paginaInicio = () => {
         navigate('/');
     };
-
+    
     return (
         <>
 
@@ -231,8 +233,8 @@ const CadastroEmpresa = () => {
                 
             <div id="expli"> 
                 <div className="opcoesHeaderCadastro" style={{fontSize:'19px', marginLeft:'1rem'}}>
-                    <a onClick={paginaInicio}>Página Inicial </a>
-                    <a onClick='#'>Sou Candidato</a>
+                    <a onClick={paginaInicio} style={{cursor: 'pointer'}}>Página Inicial </a>
+                    <a onClick={CadastroUsuario} style={{cursor: 'pointer'}}>Sou Candidato</a>
                 </div>
                 <div className="titulo_expli">
                     <img src={camaleao} alt="" className="logo-image" />
@@ -273,9 +275,22 @@ const CadastroEmpresa = () => {
 
                     <div>
                         <label htmlFor="telefone">Telefone:</label>
-                        <input type="tel" name="telefone" pattern="^\(\d{2}\) \d{4,5}-\d{4}$" required placeholder="(XX) XXXX-XXXX" />
+                        <input 
+                            type="tel" 
+                            name="telefone" 
+                            required 
+                            placeholder="(XX) XXXXX-XXXX" 
+                            maxLength="15" // Formato máximo: "(99) 99999-9999"
+                            onInput={(e) => {
+                                e.target.value = formatarTelefone(e.target.value);
+                                if (e.target.value.replace(/\D/g, '').length > 11) {
+                                    e.target.value = e.target.value.slice(0, 15); // Garante corte do excesso
+                                }
+                            }}
+                        />
                         <span ref={erroTelefone} className="erro"></span>
                     </div>
+
                     
                     <div>
                         <label htmlFor="cnpj">CNPJ:</label>
@@ -283,11 +298,19 @@ const CadastroEmpresa = () => {
                             type="text" 
                             name="cnpj" 
                             required 
-                            pattern="^\d{2}\.\d{3}\.\d{3}/\d{4}-\d{2}$" 
-                            placeholder="cnpj" 
+                            placeholder="XX.XXX.XXX/XXXX-XX" 
+                            maxLength="18" // Formato com pontuações ocupa 18 caracteres
+                            onInput={(e) => {
+                                e.target.value = formatarCNPJ(e.target.value);
+                                if (e.target.value.replace(/\D/g, '').length > 14) {
+                                    e.target.value = e.target.value.slice(0, 18); // Garante corte do excesso
+                                }
+                            }}
                         />
                         <span ref={erroCNPJ} className="erro"></span>
                     </div>
+
+
 
                     <div>
                         <label htmlFor="senha">Crie sua senha:</label>
