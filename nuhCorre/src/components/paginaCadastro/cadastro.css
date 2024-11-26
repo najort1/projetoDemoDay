@@ -5,7 +5,7 @@ main#main-cadastrousuario{
 
 } 
 
-.alinhamento{
+.alinhamentousuario{
 
     align-items: center;
     display: flex;
@@ -22,6 +22,20 @@ main#main-cadastrousuario{
     padding: 100px;
     width: 50vw;
 
+}
+
+.opcoesHeaderUsuario{
+    margin-top: 1em;
+    display: flex;
+    gap: 2em;
+}
+
+.titulo_expliu {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 #caixaCadastroUsuario div{margin: 10px 0;}
@@ -47,26 +61,28 @@ main#main-cadastrousuario{
 
 #caixaCadastroUsuario form input,
 #caixaCadastroUsuario select{
-
-    border-radius: 4px;
+    border-radius: 15px;
+    /*background: #171717c0;*/
     background: #fff;
-    border: 1px solid #565656;
+    border: 2px solid #2F6FCC;
+    box-shadow: 3px 6px 6px rgba(0, 0, 0, 0.362);
     color: #000;
     font-size: 1em;
     font-weight: 500;
-    height: 50px;
+    height: 50px !important;
     line-height: 1.5;
+    /*margin-bottom: 15px;*/
     margin: 5px 0;
     outline: none;
     padding: 0 15px;
-    width: 100%;
+    width: 100% !important;
 
 }
 
 #caixaCadastroUsuario span{
 
     margin-bottom: 20px;
-    color: #000;
+    color: gray;
 
 }
 
@@ -109,7 +125,7 @@ input:not(:focus)::placeholder {
 
 #caixaCadastroUsuario input[type='submit']:hover{
 
-    background: #334ed8;
+    background: #3f5c88 !important;
     transition: background 1s;
 
 }
@@ -143,4 +159,53 @@ input:not(:focus)::placeholder {
     display: block;
     margin: 15px 0;
 
+}
+
+#expliu {
+    width: 50vw;
+    background: #718CB3;
+    color: #fff;
+    padding-left: 2rem;
+    justify-content: space-around;
+
+}
+
+#expliu p {
+    margin-top: 10px;
+    font-size: 1.2em;
+    margin-left: 1.1rem;
+}
+
+#expliu h2{
+    
+    font-weight: bold;
+    font-size: 2rem;
+    margin-right: 11rem;
+
+}
+#expliu ul li{
+
+    display: block;
+    margin: 15px 0;
+    margin-right: 2.8rem;
+    
+}
+
+.logo-imageu {
+    width: 170px; /* Defina a largura desejada */
+    height: auto; /* Ajusta a altura proporcionalmente */
+    margin-top: 8rem;
+    margin-bottom: 0.5cm;
+}
+
+.alinhamentousuarioP{
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-right: 0.6rem;
+}
+
+.alinhamentousuarioS{
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-right: 0.6rem;
 }

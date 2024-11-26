@@ -1,16 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./mainStyle.css";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
-import { Dropdown } from 'primereact/dropdown';
-import boxicons from "boxicons";
-import { code } from "@nextui-org/react";
-import { InputText } from "primereact/inputtext";
-import { FloatLabel } from "primereact/floatlabel";
-import {Button} from "@nextui-org/react";
+import { Button } from "@nextui-org/react";
 
 export const PesquisaVagaTelaInicial = () => {
-
   // Estados dos campos com valores padrão
   const [tipo, setTipo] = useState("Tipo");
   const [cidade, setCidade] = useState("Cidade");
@@ -63,58 +57,76 @@ export const PesquisaVagaTelaInicial = () => {
     { name: 'Sergipe', code: 'SE' },
     { name: 'Tocantins', code: 'TO' }
   ];
-  
+
+  // Adicionar animação ao carregar a página
+  useEffect(() => {
+    document.querySelector('.container').classList.add('fade-in');
+  }, []);
+
   return (
     <>
       <Header />
 
-      <div className="fotos w-full h-full min-h-screen"></div>
+      {/* Div das fotos de fundo */}
+      <div className="fotos w-full min-h-screen"></div>
 
-      <div className="container absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#AAB9CE] w-[100%] h-[40%] flex flex-col justify-evenly p-2 shadow-2xl rounded-xl
+      <div
+        className="container absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#AAB9CE]
+        w-[100%] h-[40%] flex flex-col justify-evenly p-2 shadow-2xl rounded-xl xl:w-[57%] xl:h-[40%] md:w-[80%] px-[10px] fade-in">
 
+        {/* Caixa de titulo */}
+        <div className="titulo-container flex flex-col items-center gap-2">
+          <h1 className="titulo-container-principal font-bold text-md text-center text-3xl text-white">
+            Conecte-se com Empregos Acessíveis para Todos
+          </h1>
+        </div>
 
-      
-      xl:w-[40%] xl:h-[30%]
-      md:w-[80%]
-      
-      ">
+        <div className="container-inputs flex flex-row items-center gap-2">
+          {/* Select Tipo */}
+          <select
+            name="Tipo"
+            id="selecionado_tipo"
+            className="opcoes-tipo h-[64px] w-20 rounded-[5px] transition-all duration-300 ease-in-out 
+            focus:ring-2 focus:ring-[#1797f5] border-0 focus:outline-none"
+            onChange={handleTipo}
+          >
+            <option value="Vagas">Vagas</option>
+            <option value="Empresas">Empresas</option>
+          </select>
 
+          {/* Input Pesquisa */}
+          <input
+            type="text"
+            className="input-pesquisa h-[64px] w-full rounded-[5px] px-[5px] border-0 focus:outline-none
+             focus:border-b-4 focus:border-b-[#1797f5] transition-all duration-300 ease-in-out"
+             placeholder="Pesquisa"
+          />
 
-      <div className="titulo-container flex flex-col items-center gap-2">
-        <h1 className="titulo-container-principal font-bold text-md text-center text-2xl text-black">Conecte-se com Empregos Acessíveis para Todos</h1>
+          {/* Select Cidade */}
+          <select
+            name="Estado"
+            id="seleciona_estado"
+            className="selecionar-estado h-[64px] w-24 rounded-[5px] border-0 focus:outline-none focus:ring-2
+             focus:ring-[#1797f5] transition-all duration-300 ease-in-out"
+            onChange={handleSelectCidade}
+          >
+            {estados.map((estado) => (
+              <option value={estado.name} key={estado.code}>
+                {estado.name}
+              </option>
+            ))}
+          </select>
+
+          {/* Botão de Pesquisa */}
+          <Button
+            isIconOnly
+            className="botao-pesquisar bg-[#718CB3] flex items-center justify-center h-[64px] w-24 border-0 focus:outline-none transition-all duration-300 ease-in-out transform hover:scale-105"
+          >
+            <box-icon name="search" color="white"></box-icon>
+          </Button>
+
+        </div>
       </div>
-
-      <div className="container-inputs flex flex-row items-center gap-2">
-
-      <select name="Tipo" id="selecionado_tipo" className="opcoes-tipo h-12 w-20" onChange={handleTipo}>
-          <option value="Vagas">Vagas</option>
-          <option value="Empresas">Empresas</option>      
-      </select>
-
-      <input type="text" placeholder="Pesquise" className="input-pesquisa h-12 w-full" onChange={handlePesquisa}/>
-
-      <select name="Estado" id="seleciona_estado" className="selecionar-estado h-12 w-24" onChange={handleSelectCidade}>
-
-        {estados.map((estado) => (
-          <option value={estado.name}>{estado.name}</option>
-        ))}
-
-      </select>
-
-      <Button
-      isIconOnly
-      className="botao-pesquisar bg-[#718CB3] flex items-center justify-center h-full w-24"
-      ><box-icon name='search' color='white'></box-icon></Button>
-
-      
-
-      </div>
-
-
-
-      </div>
-
-
 
       <Footer/>
     </>

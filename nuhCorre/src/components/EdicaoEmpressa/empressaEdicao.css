@@ -1,153 +1,190 @@
-.alinhamentoTitulo{
-
-    display: flex;
-    align-items: center;
-    padding: 1rem 2rem;
-    background: #5b82bbd1;
-    color: #fff;
-
+/* Alinhamento do título na seção de perfil */
+.alinhamentoTitulo {
+    align-items: center; /* Alinha itens verticalmente no centro */
+    background: #5b82bbd1; /* Cor de fundo */
+    color: #fff; /* Cor do texto */
+    display: flex; /* Usa o modelo flexbox */
+    padding: 1rem 2rem; /* Espaçamento interno */
 }
 
-.tituloUsuario{margin-left: 20px;}
-
-#perfil{
-
-    border-radius: 100px;
-    width: 9vw;
-
+/* Margem à esquerda no caixa do usuário */
+.tituloUsuario {
+    margin-left: 20px;
 }
 
+/* Estilo da imagem de perfil */
+.foto-perfil {
+    border-radius: 100px; /* Deixa a imagem redonda */
+    width: 9vw; /* Largura proporcional à tela */
+    border:3px solid #b8b8b8;
+}
 
-#formEmpresa{
+/* Estilo da imagem do botão de editar */
+.editImagem {
+    position: absolute; /* Posicionamento absoluto */
+    top: 29vh; /* Distância do topo */
+    left: 9vw; /* Distância da esquerda */
+}
 
-    display: flex;
+/* Estilos para as caixas centrais, irá fazer as caixas do form ficar um ao lado da outra */
+.caixasCentrais {
+    display: flex; /* Flexbox */
+    flex-direction: column; /* Alinha itens na vertical */
+    align-items: center; /* Alinha itens no centro */
+}
+
+/* PARTE DA CITAÇÃO DA LEI */
+
+/* Estilo do texto informativo sobre a Lei */
+.textoLei {
+    background: #D8ECF5 !important; /* Cor de fundo */
+    color: #3C71BD; /* Cor do texto */
+    padding: 20px 30px; /* Espaçamento interno */
+    border-radius: 6px; /* Bordas arredondadas */
+    width: 60vw; /* Largura proporcional */
+    text-align: center; /* Alinha o texto no centro */
+}
+/* ----- FORMULÁRIOS ----- */
+
+/* Estilos para o seção de formulário de empresa */
+#formEmpresa {
+    display: flex; /* Usa flexbox para alinhamento */
     margin-top: 20px;
-    background: #F9FAFC;
-    height: 100vh;
-
+    background: #F9FAFC; /* Cor de fundo */
+    height: 100vh; /* Ocupa toda a altura da tela */
 }
 
-#formEmpresa form{
-
-    background: #fff;
-    width: calc(95vw - 199px);
-    justify-content: space-around;
-    display:flex;
+/* Estilo do formulário */
+#formEmpresa form {
+    background: #fff; /* Cor de fundo */
+    width: calc(95vw - 199px); /* Largura proporcional ao tamanho da tela */
+    justify-content: space-around; /* Espaçamento entre os elementos */
+    display: flex; /* Flexbox */
     margin-top: 10px;
+}
+
+/* Estilos gerais para os rótulos do formulário */
+#formEmpresa form label {
+    margin: 10px 0; /* Espaçamento entre os elementos */
+}
+
+/* Estilos da caixa interna do formulário */
+.caixaInterna {
+    border: 2px solid #E6E6E6; /* Borda */
+    margin-top: 20px; /* Margem superior */
+    padding-bottom: 20px; /* Espaçamento inferior */
+    border-radius: 10px; /* Cantos arredondados */
+}
+
+/* Estilo do título dentro da caixa interna */
+.caixaInterna h1 {
+    font-weight: 600; /* Negrito */
+    font-size: 1.2em; /* Tamanho da fonte */
+    padding: 10px 0px 10px 40px; /* Espaçamento interno */
+    border-bottom: 2px solid #E6E6E6; /* Linha inferior */
+}
+
+/* Estilos dos inputs e selects dentro de #formEmpresa */
+#formEmpresa input, #formEmpresa select {
+    border: 2px solid #CFCFCF; /* Borda suave */
+    border-radius: 8px; /* Cantos arredondados */
+    padding-left: 10px; /* Espaçamento interno à esquerda */
+    cursor: auto; /* Cursor padrão */
+}
+
+#formEmpresa input:focus{
+
+    outline: none;
+    border-bottom: 3px solid #1797f5;
+
+}
+#formEmpresa select:focus, #formEmpresa textarea:focus{
+
+    outline: none;
+    border: 3px solid #1797f5;
 
 }
 
-#formEmpresa form label{
-
-    margin: 10px 0;
-
-}
-.caixaInterna h1{
-
-    padding: 10px 0px 10px 40px;
-    border-bottom: 2px solid #E6E6E6;
-
-}
-.caixaInterna{
-
-    border: 2px solid #E6E6E6;
-    margin-top: 20px;
-    padding-bottom: 20px;
-    border-radius: 10px;
-}
-#formEmpresa input, #formEmpresa select{
-
-    border: 2px solid #CFCFCF;
-    border-radius: 8px;
-    padding-left: 10px;
-    cursor:auto;
-
+/* Estilo para o primeiro radio button */
+#formEmpresa input[type='radio']:first-child {
+    margin-left: 10px; /* Margem à esquerda */
 }
 
-#formEmpresa input[type='radio']:first-child{margin-left:10px;}
-
-#formEmpresa input:not([type="radio"]):not([type="submit"]):not([type="reset"]), #formEmpresa select{
-
-
-    width: 30vw;
-    height: 6vh;
-
-}
-.linksInterno{
-    
-    margin-left: 1rem;
-    font-weight: 600;
-
-}
-.linksInterno ul li{
-
-    display: block;
-    margin-bottom: 10px;
-    padding: 10px 10px;
-
-}
-.caixasCentrais div{
-    background: #fff;
-
-}
-.linkSelecionado{
-
-    background: #718CB3;
-    color: #fff;
-    border-radius: 3px;
-
-}
-.caixasCentrais{
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+/* Estilos para inputs não-radio, selects dentro de #formEmpresa */
+#formEmpresa input:not([type="radio"]):not([type="submit"]):not([type="reset"]), #formEmpresa select {
+    width: 30vw; /* Largura proporcional */
+    height: 6vh; /* Altura proporcional */
 }
 
-
-.textoLei{
-
-    background: #D8ECF5 !important;
-    color: #3C71BD;
-    padding: 20px 30px;
-    border-radius: 6px;
-    width: 60vw;
-    text-align: center;
-}
-
-#formEmpresa input[type='submit']{
-
-    margin-right: 20px;
-
-}
+/* Estilo dos botões de submit e reset */
 #formEmpresa input[type='submit'],
-#formEmpresa input[type='reset']{
+#formEmpresa input[type='reset'] {
+    width: 190px; /* Largura fixa */
+    height: 50px; /* Altura fixa */
+    font-weight: 600; /* Negrito */
+    color: #fff; /* Cor do texto */
+    cursor: pointer !important; /* Cursor de clique */
+    padding: 0 !important; /* Remove o padding padrão */
+}
 
-    width: 190px;
-    height: 50px;
-    font-weight: 600;
-    color: #fff;
-    background: #718CB3;
-    cursor: pointer !important;
-    padding: 0 !important;
+#formEmpresa input[type='submit']:focus,
+#formEmpresa input[type='reset']:focus {border: none;}
+
+#formEmpresa input[type='submit']:hover,
+#formEmpresa input[type='reset']:hover {
+
+    background-color: #4b7abb;
+    transition: background 0.2s ease;
+    
+  }
+  
+
+/* Estilo para o botão de submit */
+#formEmpresa input[type='submit'] {
+    margin-right: 20px; /* Margem à direita */
+}
+
+/* Estilo para o campo textarea */
+textarea {
+    border: 2px solid #CFCFCF; /* Borda suave */
+}
+
+/* Estilo do contêiner de botões */
+#botoes {
+    margin-top: 11vw; /* Margem superior */
+}
+
+/* PARTE DA LISTA DE NAVEGAÇÃO */
+
+/* Estilo para os links de navegação interna */
+.linksInterno {
+    margin-left: 1rem; /* Margem à esquerda */
+    font-weight: 600; /* Negrito */
+}
+
+/* Estilo de cada item da lista dentro de linksInterno */
+.linksInterno ul li {
+    display: flex; /* Flexbox para alinhamento */
+    flex-direction: row; /* Alinha itens na horizontal */
+    align-items: center; /* Alinha itens verticalmente no centro */
+    margin-bottom: 10px; /* Margem inferior */
+    padding: 10px 10px; /* Espaçamento interno */
+}
+
+.linksInterno ul li:hover{
+
+    background: #9aa9bd;
 
 }
 
-#botoes{
-
-    margin-top: 11vw;
-
+/* Estilos para os links selecionados */
+.linkSelecionado {
+    background: #7e95b5; /* Cor de fundo */
+    color: #fff; /* Cor do texto */
+    border-radius: 3px; /* Bordas arredondadas */
 }
-.listImg{
 
-    display: inline;
-    vertical-align: sub;
-    margin-right: 10px;
-
-}
-textarea{
-
-    border: 2px solid #CFCFCF;
-
+/* Estilo das imagens na lista */
+.listImg {
+    margin-right: 10px; /* Margem à direita */
 }

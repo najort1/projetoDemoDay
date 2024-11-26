@@ -1,0 +1,206 @@
+/* Layout da Página */
+.contact-container {
+  display: flex;
+  flex-direction: column; /* Colocando os itens em coluna */
+  min-height: 100vh; /* Garante que a altura mínima seja a altura da tela */
+  background-image: url('../../assets/fundo.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  padding-bottom: 60px; /* Espaço para o footer */
+}
+
+/* Conteúdo principal */
+.contact-content {
+  margin-top: 80px; /* Espaço para o Header */
+  padding: 40px;
+  width: 100%;
+  /*background-color: rgba(255, 255, 255, 0.8); /* Fundo branco semi-transparente */
+  border-radius: 10px;
+  animation: fadeIn 0.5s ease-in-out;
+  flex-grow: 1; /* Faz o conteúdo crescer para preencher o espaço disponível */
+}
+
+/* Cabeçalho de contato */
+.contact-header h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #333;
+  text-align: center; /* Alinha o título no centro */
+}
+
+.contact-header p {
+  font-size: 1.2rem;
+  color: #666;
+  margin-bottom: 30px;
+  text-align: center; /* Alinha o subtítulo no centro */
+}
+
+/* Estilos para o formulário de contato */
+.contact-form {
+  background-color: #fff;
+  padding: 40px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  max-width: 700px;
+  margin: 0 auto 30px auto; /* Centraliza o formulário na página */
+  animation: zoomIn 0.5s ease-in-out;
+}
+
+/* Input e Textarea */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  font-size: 1.1rem;
+  color: #555;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group textarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+  transition: border 0.3s ease-in-out;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: #9f1ee9;
+  outline: none;
+}
+
+
+.submit-btn{background-image: linear-gradient(to right, #F09819 0%, #EDDE5D  51%, #F09819  100%)}
+.submit-btn {
+   margin: 10px;
+   padding: 15px 45px;
+   text-align: center;
+   text-transform: uppercase;
+   transition: 0.5s;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 20px #eee;
+   border-radius: 10px;
+   display: block;
+   width: 100%;
+ }
+
+ .submit-btn:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+ }
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .contact-content {
+    margin-top: 60px;
+    padding: 20px;
+  }
+
+  .contact-form {
+    padding: 20px;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+}
+
+/* Animações */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Contatos alternativos */
+#contatosAmais {
+  background: linear-gradient(90deg, #e6944d, #ee8076, #d97b9d); /* Gradiente suave */
+  height: auto; /* Ajusta a altura para o conteúdo */
+  padding: 40px 20px; /* Adiciona espaçamento interno */
+  display: flex;
+  flex-direction: column; /* Coloca os itens em coluna */
+  justify-content: center;
+  align-items: center;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  
+}
+
+.contact-info {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+  text-align: center; /* Centraliza os textos */
+}
+
+.contact-info h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 600;
+}
+
+.contact-info p {
+  font-size: 1.1rem;
+  color: #555;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.contact-info svg {
+  margin-right: 10px;
+  color: #9f1ee9; /* Cor dos ícones */
+  font-size: 1.5rem; /* Tamanho maior para os ícones */
+}
+
+@media (max-width: 768px) {
+  /* Ajustes para telas menores */
+  #contatosAmais {
+    padding: 20px;
+    height: auto;
+  }
+
+  .contact-info {
+    padding: 20px;
+  }
+
+  .contact-info h2 {
+    font-size: 1.8rem;
+  }
+
+  .contact-info p {
+    font-size: 1rem;
+  }
+
+  .contact-info svg {
+    font-size: 1.3rem; /* Ajusta os ícones para telas menores */
+  }
+}

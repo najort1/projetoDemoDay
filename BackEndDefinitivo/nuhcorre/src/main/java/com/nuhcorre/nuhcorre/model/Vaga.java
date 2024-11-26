@@ -6,20 +6,8 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -76,7 +64,11 @@ public class Vaga {
             joinColumns = @JoinColumn(name = "vaga_id"),
             inverseJoinColumns = @JoinColumn(name = "usuario_id")
     )
+    @JsonManagedReference
     private List<Usuario> usuarios;
+
+    @OneToMany(mappedBy = "vaga", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Candidatura> candidaturas;
 
     @ManyToOne
     @JoinColumn(name = "endereco_id")
@@ -91,4 +83,9 @@ public class Vaga {
         }
         dataCadastro = new Date();
     }
+
+    public void adicionarCandidato(Usuario usuario) {
+        this.usuarios.add(usuario);
+    }
+
 }

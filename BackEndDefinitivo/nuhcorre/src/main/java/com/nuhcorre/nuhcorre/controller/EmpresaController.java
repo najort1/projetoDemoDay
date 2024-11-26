@@ -1,12 +1,11 @@
 package com.nuhcorre.nuhcorre.controller;
 
 
+import com.nuhcorre.nuhcorre.repository.VagaRepository;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
 
 import com.nuhcorre.nuhcorre.model.DTO.EmpresaLoginDTO;
 import com.nuhcorre.nuhcorre.model.DTO.EmpresaRespostaLoginDTO;
@@ -21,10 +20,12 @@ public class EmpresaController {
 
     private final JwtService jwtService;
     private final AuthenticationService authenticationService;
+    private final VagaRepository vagaRepository;
 
-    public EmpresaController(JwtService jwtService, AuthenticationService authenticationService) {
+    public EmpresaController(JwtService jwtService, AuthenticationService authenticationService, VagaRepository vagaRepository) {
         this.jwtService = jwtService;
         this.authenticationService = authenticationService;
+        this.vagaRepository = vagaRepository;
     }
 
     @PostMapping("/login/{tipoLogin}")
@@ -47,7 +48,6 @@ public class EmpresaController {
         String token = jwtService.generateToken(empresaCadastrada);
         return ResponseEntity.ok(new EmpresaRespostaLoginDTO(empresaCadastrada.getNome(), empresaCadastrada.getCnpj(), token));
     }
-
 
 
 }

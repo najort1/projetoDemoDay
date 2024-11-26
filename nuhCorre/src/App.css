@@ -7,31 +7,34 @@
   font-family: 'Quicksand', sans-serif;
 }
 
+/* Fundo do background */
 .fundo{
 
-  animation: BgAnimation 20s infinite;
+  animation: BgAnimation 20s infinite alternate;
   background-size: cover;
+  background-position: center;
 
 }
-
+.fotos{ background: linear-gradient(270deg, rgb(0 0 0 / 50%) 60%, rgb(0 0 0 / 50%) 60%);}
 /* Animação de fundo */
 @keyframes BgAnimation {
-  0% { background-image: url('./assets/img1.jpeg'); }
-  30% { background-image: url('./assets/img2.jpg'); }
-  60% { background-image: url('./assets/img3.jpg'); }
-  100% { background-image: url('./assets/img5.jpg'); }
+  0% { background-image: url('./assets/image1.jpg'); }
+  30% { background-image: url('./assets/image2.jpg'); }
+  60% { background-image: url('./assets/image3.jpg'); }
+  100% { background-image: url('./assets/image4.jpg'); }
 }
 
-/* Estilização geral do botão */
-input, button{
+/* Lua ativa os estilos abaixo caso alguma pagina sua quebre o layout */
+
+/*input, button{
 
   border: none;
   outline: none;
   cursor: pointer;
 
-}
+} 
 
-a {
+/* a {
 
   color: white;
   font-size: 1em;
@@ -42,7 +45,7 @@ a:hover{
   
   padding-bottom: 5px;
   text-decoration: underline;
-}
+} */
 
 ul li {
 

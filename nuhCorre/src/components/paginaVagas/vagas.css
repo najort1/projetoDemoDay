@@ -44,6 +44,8 @@ body{
 
 }
 
+h2
+
 /* Caixa de vagas */
 
 .styleBox{/* estilo geral das caixas */
@@ -97,6 +99,9 @@ body{
     border-radius: 6px;
     font-weight: 600;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.329);
+    display: flex;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center;
 
 }
 
@@ -108,9 +113,10 @@ body{
     font-weight: 600;
     padding: 5px;
     text-align: center;
-    width: 68px;
+    width: 5.8rem;
 
 }
+
 
 /* Caixa que ficará ao lado */
 
@@ -128,3 +134,21 @@ body{
     margin: 20px 0;
 
 }
+
+
+/* Icones noes inputs */
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+  }
+  
+  .input-container box-icon {
+    position: absolute;
+    right: 10px;
+    font-size: 20px; /* Ajuste o tamanho do ícone */
+    padding-right: 10px;
+  }
+  
