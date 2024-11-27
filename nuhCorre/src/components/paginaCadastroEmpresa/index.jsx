@@ -224,6 +224,13 @@ const CadastroEmpresa = () => {
         navigate('/');
     };
 
+<<<<<<< Updated upstream
+=======
+    const paginaCandidato = () => {
+        navigate('/cadastro');
+    };
+    
+>>>>>>> Stashed changes
     return (
         <>
 
@@ -231,8 +238,13 @@ const CadastroEmpresa = () => {
                 
             <div id="expli"> 
                 <div className="opcoesHeaderCadastro" style={{fontSize:'19px', marginLeft:'1rem'}}>
+<<<<<<< Updated upstream
                     <a onClick={paginaInicio}>Página Inicial </a>
                     <a onClick='#'>Sou Candidato</a>
+=======
+                    <a onClick={paginaInicio} style={{cursor: 'pointer'}}>Página Inicial </a>
+                    <a onClick={paginaCandidato} style={{cursor: 'pointer'}}>Sou Candidato</a>
+>>>>>>> Stashed changes
                 </div>
                 <div className="titulo_expli">
                     <img src={camaleao} alt="" className="logo-image" />
