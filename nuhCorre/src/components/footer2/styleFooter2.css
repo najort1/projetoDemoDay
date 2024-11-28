@@ -1,0 +1,28 @@
+/* Adiciona sublinhado aos links ativos */
+.link-ativo-footer {
+    text-decoration: underline;
+  }
+
+@media (max-width: 768px) {
+
+  footer{
+
+    height: auto !important;
+
+  }
+  .items-textuais{
+
+    flex-direction: column !important;
+    align-items: center;
+  
+  }
+  .flex {
+      flex-direction: column;
+  }
+
+  .items-redes-sociais{
+
+    margin-top: 20px;
+
+  }
+}

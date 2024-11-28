@@ -6,12 +6,23 @@ import Logo1 from '../../assets/camaleao.png';
 import Logo2 from '../../assets/logo.png';
 import olhoAberto from '../../assets/olhoAberto.jpg.png';
 import olhoFechado from '../../assets/olhoFechado.jpg';
+import Footer from "../footer2/Footer2";
+import {
+    Dropdown,
+    DropdownTrigger,
+    DropdownMenu,
+    DropdownItem,
+  } from "@nextui-org/react";
+  import boxicons from "boxicons";
+
 
 const LoginEmpresa = () => {
     const [emailCnpj, setEmailCnpj] = useState('');
     const [senha, setSenha] = useState('');
     const [senhaVisivel, setSenhaVisivel] = useState(false);
     const navigate = useNavigate();
+    const navegarParaCadastroUsuario = () => { navigate('/cadastro') };
+    const navegarParaLoginUsuario = () => { navigate('/login') };
 
     const toggleSenhaVisivel = () => {
         setSenhaVisivel(!senhaVisivel);
@@ -39,7 +50,7 @@ const LoginEmpresa = () => {
                 const bearer = response.data.token;
                 localStorage.setItem('token', bearer);
                 alert('Login realizado com sucesso!');
-                navigate('/dashboard'); // Ajuste a rota para onde deseja redirecionar após o login
+                navigate('/dashboard'); 
             } else {
                 alert('Erro ao realizar login. Verifique suas credenciais.');
             }
@@ -57,24 +68,58 @@ const LoginEmpresa = () => {
     };
 
     return (
+        <>
         <main id='main-loginempresa'>
             <div id='expliu-loginempresa'>
-                <div className='opcoesHeaderLoginEmpresa' style={{ fontSize: '19px', marginLeft: '21rem' }}>
-                    <a href="#" onClick={paginaInicio}>Página Inicial</a>
-                    <a href="#">Sou Empresa</a>
-                </div>
+            <div className="header-container-infos flex flex-row gap-4 text-white font-medium justify-end ml-8
+                ">
+              <Dropdown>
+                <DropdownTrigger>
+                  <h1 className="text-white text-white text-bold text-xl">
+                    Sou usuário
+                  </h1>
+                </DropdownTrigger>
+                <DropdownMenu>
+                  <DropdownItem onClick={navegarParaCadastroUsuario}>
+                    <div className="item-dropdown-usuario flex items-center gap-2">
+                      <box-icon
+                        name="user-plus"
+                        color="#000000"
+                        size="sm"
+                        type="solid"
+                      ></box-icon>
+                      <p className="text-black font-bold text-sm">Cadastro</p>
+                    </div>
+                  </DropdownItem>
+                  <DropdownItem onClick={navegarParaLoginUsuario}>
+                    <div className="item-dropdown-usuario flex items-center gap-2">
+                      <box-icon
+                        name="door-open"
+                        color="#000000"
+                        size="sm"
+                        type="solid"
+                      ></box-icon>
+                      <p className="text-black font-bold text-sm">Login</p>
+                    </div>
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+              <h1 className="texto-header text-bold font-white text-xl" onClick={paginaInicio}>
+                Página inicial
+              </h1>
+            </div>
 
-                <div className='titulo_expliu-loginempresa'>
+                <div className='expliu-loginempresa'>
                     <img src={Logo1} alt='' className="logo-image-loginempresa" />
                     <h2>Bem-vindo à NuhCorre </h2>
                     <p>
-                        Conecte-se com talentos e encontre as melhores soluções<br />
-                        para sua empresa. Faça parte da nossa rede de sucesso!
+                        Conecte-se com talentos e encontre as melhores <br/>soluções
+                        para sua empresa. Faça parte da nossa<br/> rede de sucesso!
                     </p>
                     <ul className="check-list-loginempresa">
-                        <li>Encontre os melhores talentos para sua equipe.</li>
-                        <li>Facilidade e segurança no gerenciamento de vagas.</li>
-                        <li>Suporte personalizado para candidatos e empresas.</li>
+                        <li>✔ Encontre os melhores talentos para sua equipe.</li>
+                        <li>✔ Facilidade e segurança no gerenciamento de vagas.</li>
+                        <li>✔ Suporte personalizado para candidatos e empresas.</li>
                     </ul>
                 </div>
             </div>
@@ -129,6 +174,9 @@ const LoginEmpresa = () => {
                                     style={{
                                         width: '24px',
                                         height: '24px',
+                                        position: 'relative',
+                                        marginLeft: '93%',
+                                        
                                     }}
                                 />
                             </button>
@@ -136,10 +184,12 @@ const LoginEmpresa = () => {
                     </div>
 
                     <input type="submit" value="Entrar" />
-                    <a href="/recuperar-senha" style={{ color: '#000', textAlign: 'center', display: 'block' }}>Esqueceu sua senha? <span style={{ color: '#718CB3' }}>Recupere aqui</span></a>
+                    <a href="/recuperar-senha" style={{ color: '#000', textAlign: 'center', display: 'block' }}>Esqueceu sua senha? <span style={{ color: '#425BD6' }}>Recupere aqui</span></a>
                 </form>
             </div>
         </main>
+        <Footer/>
+        </>
     );
 };
 

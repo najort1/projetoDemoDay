@@ -7,6 +7,14 @@ import Logo from '../../assets/logo.png';
 import olhoAberto from '../../assets/olhoAberto.jpg.png'; // Caminho para o ícone de olho aberto
 import olhoFechado from '../../assets/olhoFechado.jpg'; // Caminho para o ícone de olho fechado
 import CadastroUsuario from '../paginaCadastro';
+import Footer from "../footer2/Footer2";
+import {
+    Dropdown,
+    DropdownTrigger,
+    DropdownMenu,
+    DropdownItem,
+  } from "@nextui-org/react";
+  import boxicons from "boxicons";
 
 const CadastroEmpresa = () => {
 
@@ -19,13 +27,23 @@ const CadastroEmpresa = () => {
     const erroTelefone = useRef(null);
     const errovulnerabilidade = useRef(null);
     const navigate = useNavigate();
-
+    const navegarParaCadastroUsuario = () => { navigate('/cadastro') };
+    const navegarParaLoginUsuario = () => { navigate('/login') };
     // Estados para animação para visibilidade da senha
     const [senha, setSenha] = useState('');
     const [senhaVisivel, setSenhaVisivel] = useState(false);
+    const [mostrarRequisitos, setMostrarRequisitos] = useState(false);
 
     const toggleSenhaVisivel = () => {
         setSenhaVisivel(!senhaVisivel);
+    };
+
+    const handleFocusSenha = () => {
+        setMostrarRequisitos(true); // Vai mostrar quando apertarem no input senha
+    };
+
+    const handleBlurSenha = () => {
+        setMostrarRequisitos(false); // Vai esconder quando forem apertar em outro input
     };
 
     // Estilização para quando dá erro em algum campo
@@ -60,7 +78,7 @@ const CadastroEmpresa = () => {
                     case 'name':
                         if (element.validity.valueMissing) {
                             errorStyling('Preencha o campo.', erroNome.current, element, true);
-                        } else if(element.validity.patternMismatch) {
+                        } else if (element.validity.patternMismatch) {
                             errorStyling('Preencha apenas com letras.', erroNome.current, element, true);
                         } else {
                             errorStyling(undefined, erroNome.current, element, false);
@@ -160,7 +178,7 @@ const CadastroEmpresa = () => {
             .replace(/(\d{3})(\d)/, '$1/$2')
             .replace(/(\d{4})(\d{1,2})$/, '$1-$2');
     };
-    
+
 
     // Formatação do telefone
     const formatarTelefone = (telefone) => {
@@ -176,7 +194,7 @@ const CadastroEmpresa = () => {
                 .replace(/(\d{5})(\d)/, '$1-$2');
         }
     };
-    
+
 
     useEffect(() => {
         errorHandling();
@@ -184,28 +202,28 @@ const CadastroEmpresa = () => {
         return () => {
             const inputs = Array.from(document.querySelectorAll('input')).slice(0, -1);
             inputs.forEach((element) => {
-                element.removeEventListener('focus', () => {});
-                element.removeEventListener('blur', () => {});
+                element.removeEventListener('focus', () => { });
+                element.removeEventListener('blur', () => { });
                 if (element.name === 'cnpj') {
-                    element.removeEventListener('input', () => {});
+                    element.removeEventListener('input', () => { });
                 }
                 if (element.name === 'telefone') {
-                    element.removeEventListener('input', () => {});
+                    element.removeEventListener('input', () => { });
                 }
             });
         };
-    }, );
+    },);
 
     const handleCadastro = async (e) => {
         e.preventDefault(); // Impede o envio padrão do formulário
         const form = document.querySelector('form');
         const formData = new FormData(form);
-    
+
         const data = {};
         formData.forEach((value, key) => {
             data[key] = value;
         });
-    
+
         try {
             const response = await axios.post('http://localhost:8080/auth/empresa/cadastrar', data);
             if (response.status === 201) {
@@ -220,143 +238,193 @@ const CadastroEmpresa = () => {
             alert(error.response?.data?.detail || 'Erro ao cadastrar usuário.');
         }
     };
-    
+
 
     const paginaInicio = () => {
         navigate('/');
     };
-    
+
     return (
         <>
 
             <main id='main-cadastroempresa'>
-                
-            <div id="expli"> 
-                <div className="opcoesHeaderCadastro" style={{fontSize:'19px', marginLeft:'1rem'}}>
-                    <a onClick={paginaInicio} style={{cursor: 'pointer'}}>Página Inicial </a>
-                    <a onClick={CadastroUsuario} style={{cursor: 'pointer'}}>Sou Candidato</a>
-                </div>
-                <div className="titulo_expli">
-                    <img src={camaleao} alt="" className="logo-image" />
-                    <h2>Sobre a NuhCorre</h2>
-                    <p>
-                        A NuhCorre é líder em conectar talentos com<br/> oportunidades.
-                        Nossa missão é criar um mercado<br/> de trabalho 
-                        mais inclusivo e acessível para todos.<br/>
-                    </p>
-                    <ul className="check-list">
-                        <li>Encontre candidatos próximos a sua empresa!</li>
-                        <li>Filtros de vagas personalizados.</li>
-                        <li>Suporte personalizado para candidatos e empresas.</li>
-                    </ul>
-                </div>
+
+                <div id="expli">
+                <div className="header-container-infos flex flex-row gap-4 text-white font-medium justify-start ml-8
+                mt-6">
+              <Dropdown>
+                <DropdownTrigger>
+                  <h1 className="text-white text-white text-bold text-xl">
+                    Sou usuário
+                  </h1>
+                </DropdownTrigger>
+                <DropdownMenu>
+                  <DropdownItem onClick={navegarParaCadastroUsuario}>
+                    <div className="item-dropdown-usuario flex items-center gap-2">
+                      <box-icon
+                        name="user-plus"
+                        color="#000000"
+                        size="sm"
+                        type="solid"
+                      ></box-icon>
+                      <p className="text-black font-bold text-sm">Cadastro</p>
+                    </div>
+                  </DropdownItem>
+                  <DropdownItem onClick={navegarParaLoginUsuario}>
+                    <div className="item-dropdown-usuario flex items-center gap-2">
+                      <box-icon
+                        name="door-open"
+                        color="#000000"
+                        size="sm"
+                        type="solid"
+                      ></box-icon>
+                      <p className="text-black font-bold text-sm">Login</p>
+                    </div>
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
+              <h1 className="texto-header text-bold font-white text-xl" onClick={paginaInicio}>
+                Página inicial
+              </h1>
             </div>
-
-            <div id="caixaCadastroEmpresa">
-                <div className="alinhamentoEmpresa">
-                    <img src={Logo} alt='' className="alinhamentoEmpresa" style={{width: '11vw'}} />
-                    <h2 className="alinhamentoEmpresaP" style={{marginBottom:'10px'}}>Olá empresa, conecte-se conosco!</h2>
-                    <span className="alinhamentoEmpresaS" style={{marginBottom:'15px'}}>Inclusão começa com oportunidades!</span>
+                    <div className="titulo_expli">
+                        <img src={camaleao} alt="" className="logo-image" />
+                        <h2>Sobre a NuhCorre</h2>
+                        <p>
+                            A NuhCorre é líder em conectar talentos com<br /> oportunidades.
+                            Nossa missão é criar um mercado<br /> de trabalho
+                            mais inclusivo e acessível para todos.<br />
+                        </p>
+                        <ul className="check-list">
+                            <li>Encontre candidatos próximos a sua empresa!</li>
+                            <li>Filtros de vagas personalizados.</li>
+                            <li>Suporte personalizado para candidatos e empresas.</li>
+                        </ul>
+                    </div>
                 </div>
-                
-                <form>
 
-                    <div>
-                        <label htmlFor="name">Nome fantasia:</label>
-                        <input type="text" name="nome" required pattern="^([a-zA-ZÀ-ÖØ-öø-ÿ]|\s)*$" placeholder="Nome" />
-                        <span ref={erroNome} className="erro"></span>
+                <div id="caixaCadastroEmpresa">
+                    <div className="alinhamentoEmpresa">
+                        <img src={Logo} alt='' className="alinhamentoEmpresa" style={{ width: '11vw' }} />
+                        <h2 className="alinhamentoEmpresaP" style={{ marginBottom: '10px' }}>Olá empresa, conecte-se conosco!</h2>
+                        <span className="alinhamentoEmpresaS" style={{ marginBottom: '15px' }}>Inclusão começa com oportunidades!</span>
                     </div>
 
-                    <div>
-                        <label htmlFor="email">Email:</label>
-                        <input type="email" name="email" required pattern="^[a-zA-Z0-9_]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" placeholder="Email" />
-                        <span ref={erroEmail} className="erro"></span>
-                    </div>
+                    <form>
 
-                    <div>
-                        <label htmlFor="telefone">Telefone:</label>
-                        <input 
-                            type="tel" 
-                            name="telefone" 
-                            required 
-                            placeholder="(XX) XXXXX-XXXX" 
-                            maxLength="15" // Formato máximo: "(99) 99999-9999"
-                            onInput={(e) => {
-                                e.target.value = formatarTelefone(e.target.value);
-                                if (e.target.value.replace(/\D/g, '').length > 11) {
-                                    e.target.value = e.target.value.slice(0, 15); // Garante corte do excesso
-                                }
-                            }}
-                        />
-                        <span ref={erroTelefone} className="erro"></span>
-                    </div>
-
-                    
-                    <div>
-                        <label htmlFor="cnpj">CNPJ:</label>
-                        <input 
-                            type="text" 
-                            name="cnpj" 
-                            required 
-                            placeholder="XX.XXX.XXX/XXXX-XX" 
-                            maxLength="18" // Formato com pontuações ocupa 18 caracteres
-                            onInput={(e) => {
-                                e.target.value = formatarCNPJ(e.target.value);
-                                if (e.target.value.replace(/\D/g, '').length > 14) {
-                                    e.target.value = e.target.value.slice(0, 18); // Garante corte do excesso
-                                }
-                            }}
-                        />
-                        <span ref={erroCNPJ} className="erro"></span>
-                    </div>
-
-
-
-                    <div>
-                        <label htmlFor="senha">Crie sua senha:</label>
-                        <div style={{ position: 'relative' }}>
-                            <input
-                                type={senhaVisivel ? 'text' : 'password'}
-                                name="senha"
-                                value={senha}
-                                onChange={(e) => setSenha(e.target.value)}
-                                required
-                                placeholder="Senha"
-                                pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$"
-                            />
-                            <button
-                                type="button"
-                                onClick={toggleSenhaVisivel}
-                                style={{
-                                    position: 'absolute',
-                                    right: '10px',
-                                    top: '50%',
-                                    transform: 'translateY(-50%)',
-                                    background: 'none',
-                                    border: 'none',
-                                    cursor: 'pointer',
-                                }}
-                            >
-                                <img
-                                    src={senhaVisivel ? olhoAberto : olhoFechado}
-                                    alt="Alternar visibilidade da senha"
-                                    style={{
-                                        width: '24px',
-                                        height: '24px',
-                                        marginRight:'10px'
-                                    }}
-                                />
-                            </button>
+                        <div>
+                            <label htmlFor="name">Nome fantasia:</label>
+                            <input type="text" name="nome" required pattern="^([a-zA-ZÀ-ÖØ-öø-ÿ]|\s)*$" placeholder="Nome" />
+                            <span ref={erroNome} className="erro"></span>
                         </div>
-                        <span ref={erroSenha} className="erro"></span>
-                    </div>
 
-                    <input style={{marginTop:'10px'}} type="submit" onClick={handleCadastro} />
-                    <a href='' style={{color: '#000', textAlign:'center', display: 'block', marginTop:'15px'}}>Já tem uma conta? <span style={{color: '#425BD6'}}>Faça login</span></a>
-                </form>
-            </div>
-        </main>
+                        <div>
+                            <label htmlFor="email">Email:</label>
+                            <input type="email" name="email" required pattern="^[a-zA-Z0-9_]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" placeholder="Email" />
+                            <span ref={erroEmail} className="erro"></span>
+                        </div>
 
+                        <div>
+                            <label htmlFor="telefone">Telefone:</label>
+                            <input
+                                type="tel"
+                                name="telefone"
+                                required
+                                placeholder="(XX) XXXXX-XXXX"
+                                maxLength="15" // Formato máximo: "(99) 99999-9999"
+                                onInput={(e) => {
+                                    e.target.value = formatarTelefone(e.target.value);
+                                    if (e.target.value.replace(/\D/g, '').length > 11) {
+                                        e.target.value = e.target.value.slice(0, 15); // Garante corte do excesso
+                                    }
+                                }}
+                            />
+                            <span ref={erroTelefone} className="erro"></span>
+                        </div>
+
+
+                        <div>
+                            <label htmlFor="cnpj">CNPJ:</label>
+                            <input
+                                type="text"
+                                name="cnpj"
+                                required
+                                placeholder="XX.XXX.XXX/XXXX-XX"
+                                maxLength="18" // Formato com pontuações ocupa 18 caracteres
+                                onInput={(e) => {
+                                    e.target.value = formatarCNPJ(e.target.value);
+                                    if (e.target.value.replace(/\D/g, '').length > 14) {
+                                        e.target.value = e.target.value.slice(0, 18); // Garante corte do excesso
+                                    }
+                                }}
+                            />
+                            <span ref={erroCNPJ} className="erro"></span>
+                        </div>
+
+
+
+                        <div>
+                            <label htmlFor="senha">Crie sua senha:</label>
+                            <div style={{ position: 'relative' }}>
+                                <input
+                                    type={senhaVisivel ? 'text' : 'password'}
+                                    name="senha"
+                                    value={senha}
+                                    onChange={(e) => setSenha(e.target.value)}
+                                    required
+                                    placeholder="Senha"
+                                    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$"
+                                    onFocus={handleFocusSenha}
+                                    onBlur={handleBlurSenha}
+                                />
+                                <button
+                                    type="button"
+                                    onClick={toggleSenhaVisivel}
+                                    style={{
+                                        position: 'absolute',
+                                        right: '10px',
+                                        top: '50%',
+                                        transform: 'translateY(-50%)',
+                                        background: 'none',
+                                        border: 'none',
+                                        cursor: 'pointer',
+                                    }}
+                                >
+                                    <img
+                                        src={senhaVisivel ? olhoAberto : olhoFechado}
+                                        alt="Alternar visibilidade da senha"
+                                        style={{
+                                            width: '24px',
+                                            height: '24px',
+                                            position: 'relative',
+                                            marginLeft: '93%',
+                                        }}
+                                    />
+                                </button>
+                            </div>
+                            <span ref={erroSenha} className="erro"></span>
+
+                            {mostrarRequisitos && (
+                                <div className="senha-requisitos" style={{ marginTop: '10px', fontSize: '14px' }}>
+                                    <p><strong>A senha deve conter:</strong></p>
+                                    <ul>
+                                        <li style={{ color: /[a-z]/.test(senha) ? 'green' : 'red' }}>Pelo menos uma letra minúscula</li>
+                                        <li style={{ color: /[A-Z]/.test(senha) ? 'green' : 'red' }}>Pelo menos uma letra maiúscula</li>
+                                        <li style={{ color: /\d/.test(senha) ? 'green' : 'red' }}>Pelo menos um número</li>
+                                        <li style={{ color: /[$*&@#]/.test(senha) ? 'green' : 'red' }}>Pelo menos um caractere especial ($, *, &, @, #)</li>
+                                        <li style={{ color: senha.length >= 8 && senha.length <= 20 ? 'green' : 'red' }}>Ter entre 8 e 20 caracteres</li>
+                                    </ul>
+                                </div>
+                            )}
+
+                        </div>
+
+                        <input style={{ marginTop: '10px' }} type="submit" onClick={handleCadastro} />
+                        <a href='' style={{ color: '#000', textAlign: 'center', display: 'block', marginTop: '15px' }}>Já tem uma conta? <span style={{ color: '#425BD6' }}>Faça login</span></a>
+                    </form>
+                </div>
+            </main>
+        <Footer/>
         </>
     );
 };

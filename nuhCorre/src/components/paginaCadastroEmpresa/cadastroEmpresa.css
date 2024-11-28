@@ -175,11 +175,24 @@ span{
 /* Estilos para a lista com o símbolo de check */
 
 .logo-image {
-    width: 170px; /* Defina a largura desejada */
-    height: auto; /* Ajusta a altura proporcionalmente */
+    width: 170px; 
+    height: auto; 
     margin-top: 8rem;
     margin-bottom: 0.5cm;
 }
+
+.senha-requisitos ul {
+    list-style-type: disc; 
+    display: block; 
+    margin: 0; 
+}
+
+.senha-requisitos li {
+    margin-bottom: 5px; 
+    display: list-item; 
+}
+
+
 
 @media (max-width: 1121px) {
 
