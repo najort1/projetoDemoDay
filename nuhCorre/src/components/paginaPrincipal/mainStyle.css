@@ -111,10 +111,13 @@
 }
 
 /* Ajuste nos campos de pesquisa */
-input, button {
-  width: 100%; /* Garantir que os campos ocupem toda a largura disponível */
-  box-sizing: border-box; /* Garantir que o padding não afete a largura */
-}
+
+/* LUA ATIVA O CODIGO ABAIXO CASO QUEBRE ALGUMA COISA */
+
+/* input, button {
+  width: 100%;
+  box-sizing: border-box;
+} */
 
 /* Adicionando a responsividade para dispositivos menores */
 @media screen and (max-width: 768px) {

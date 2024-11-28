@@ -183,7 +183,8 @@ public class VagaController {
                     vaga.getDataExpiracao(),
                     vaga.isStatus(),
                     vaga.getEndereco(),
-                    empresaRespostaVagaDTO
+                    empresaRespostaVagaDTO,
+                    vaga.getCandidaturas().size()
             );
         }).collect(Collectors.toList());
         return ResponseEntity.ok(vagasDTO);
@@ -310,6 +311,28 @@ public class VagaController {
         return ResponseEntity.ok(new VisualizacoesPorAnoEMesDTO(visualizacoes));
     }
 
+    @GetMapping("/{vagaId}/candidatos")
+    public ResponseEntity<?> listarCandidatosPorVaga(@PathVariable Long vagaId) {
+        Vaga vaga = vagaService.buscarVagaPorId(vagaId);
+        if (vaga == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Vaga não encontrada");
+        }
+
+        List<RespostaUsuariosCandidatados> candidatosDTO = vaga.getCandidaturas().stream()
+                .map(candidatura -> {
+                    Usuario usuario = candidatura.getUsuario();
+                    return new RespostaUsuariosCandidatados(
+                            usuario.getNome(),
+                            usuario.getEmail(),
+                            usuario.getCpf(),
+                            usuario.getTelefone()
+                    );
+                })
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(candidatosDTO);
+    }
+
     @GetMapping("/minhas-vagas")
     public ResponseEntity<?> getVagasDaEmpresaLogada() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -325,6 +348,8 @@ public class VagaController {
                         empresa.getEmail(),
                         empresa.getTelefone()
                 );
+
+
                 return new VagaRespostaDTO(
                         vaga.getId(),
                         vaga.getTitulo(),
@@ -337,7 +362,8 @@ public class VagaController {
                         vaga.getDataExpiracao(),
                         vaga.isStatus(),
                         vaga.getEndereco(),
-                        empresaRespostaVagaDTO
+                        empresaRespostaVagaDTO,
+                        vaga.getCandidaturas().size()
                 );
             }).collect(Collectors.toList()));
         }

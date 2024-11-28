@@ -16,6 +16,7 @@ public record VagaRespostaDTO(
         Date dataExpiracao,
         boolean status,
         Endereco endereco,
-        EmpresaRespostaVagaDTO empresa
+        EmpresaRespostaVagaDTO empresa,
+        Integer candidaturas
 ) {
 }

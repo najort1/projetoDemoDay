@@ -24,6 +24,7 @@ public class VagaService {
         return vagaRepository.findById(id).orElse(null);
     }
 
+
     public void deletarVagaPorId(Long id) {
         vagaRepository.deleteById(id);
     }

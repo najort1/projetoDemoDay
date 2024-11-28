@@ -34,8 +34,6 @@ public class Usuario implements UserDetails {
     @NotEmpty(message = "O campo nome é obrigatório")
     private String nome;
 
-    @NotEmpty(message = "O campo cpf é obrigatório")
-    @Column(unique = true)
     private String cpf;
 
     @Temporal(TemporalType.DATE)

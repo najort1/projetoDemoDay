@@ -15,6 +15,9 @@ import {
   isDesktop,
 } from "react-device-detect";
 
+import olhoFechado from "../../assets/olhoFechado.jpg";
+import olhoAberto from "../../assets/olhoAberto.jpg.png";
+
 import {
   Dropdown,
   DropdownTrigger,
@@ -30,6 +33,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ email: "", password: "" });
   const [erroApi, setErroApi] = useState("");
+  const [mostrarSenha, setMostrarSenha] = useState(false);
 
   const navigate = useNavigate();
 
@@ -51,16 +55,16 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let valid = true;
-    let errors = { email: "", password: "" };
+    let errors = {};
 
     if (!validateEmail(email)) {
-      errors.email = "Email inválido";
+      errors.email = " * Email inválido";
       valid = false;
     }
 
     if (!validatePassword(password)) {
       errors.password =
-        "A senha deve ter mais de 6 caracteres e conter pelo menos uma letra";
+        "* A senha deve ter mais de 6 caracteres e conter pelo menos uma letra";
       valid = false;
     }
 
@@ -124,16 +128,26 @@ const Login = () => {
                     type="text"
                     placeholder="Email"
                     onChange={(e) => setEmail(e.target.value)}
-                    className={`input-login h-12 border rounded-xl border-solid ${errors.email ? 'border-red-500 shadow-md shadow-red-500' : 'border-sky-500'}`}
+                    className={`input-login h-12 border rounded-xl border-2 border-solid ${errors.email ? 'border-red-500 shadow-md shadow-red-500' : 'border-sky-500'}`}
                   />
                   {errors.email && <p className="text-red-500">{errors.email}</p>}
-                  <input
-                    type="password"
-                    placeholder="Senha"
-                    onChange={(e) => setPassword(e.target.value)}
-                    className={`input-login h-12 border rounded-xl border-solid ${errors.password ? 'border-red-500 shadow-md shadow-red-500' : 'border-sky-500'}`}
-                  />
+                  
+                  <div className="relative">
+                    <input
+                      type={mostrarSenha ? "text" : "password"}
+                      placeholder="Senha"
+                      onChange={(e) => setPassword(e.target.value)}
+                      className={`input-login h-12 border rounded-xl border-2 border-solid w-full ${errors.password ? 'border-red-500 shadow-md shadow-red-500' : 'border-sky-500'}`}
+                    />
+                    <img
+                      src={mostrarSenha ? olhoAberto : olhoFechado}
+                      alt="olho"
+                      onClick={() => setMostrarSenha(!mostrarSenha)}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer w-4"
+                    />
+                  </div>
                   {errors.password && <p className="text-red-500">{errors.password}</p>}
+                  
                   <button
                     type="submit"
                     className="botao-login h-12 rounded-xl bg-[#5B82BB] text-white font-bold"
@@ -172,7 +186,7 @@ const Login = () => {
               </div>
               <div className="form-login w-full h-full p-4">
                 <form className="flex flex-col gap-4 items-center w-full" onSubmit={handleSubmit}>
-                  <div className="form-input flex flex-col gap-2 w-[100%]">
+                  <div className="form-input flex flex-col gap- w-[100%]">
                     <label htmlFor="email" className="text-black">
                       Email
                     </label>
@@ -180,23 +194,27 @@ const Login = () => {
                       type="text"
                       placeholder="Digite seu email"
                       onChange={(e) => setEmail(e.target.value)}
-                      className={`input-login h-12 p-2 border-sky-500 border rounded-xl border-solid ${errors.email ? 'border-red-500 shadow-md shadow-red-500' : 'border-sky-500'}`}
+                      className={`input-login shadow-xl h-12 p-2 border-sky-500 border rounded-xl border-2 border-solid ${errors.email ? 'border-red-400' : 'border-sky-500'}`}
                     />
-                    {errors.email && <p className="text-red-500">{errors.email}</p>}
                   </div>
 
-                  <div className="form-input flex flex-col gap-2 w-[100%]">
-                    <label htmlFor="senha" className="text-black">
-                      Senha
-                    </label>
-                    <input
-                      type="password"
-                      placeholder="Digite sua senha"
-                      onChange={(e) => setPassword(e.target.value)}
-                      className={`input-login h-12 p-2 border-sky-500 border rounded-xl border-solid ${errors.password ? 'border-red-500 shadow-md shadow-red-500' : 'border-sky-500'}`}
-                    />
-                    {errors.password && <p className="text-red-500">{errors.password}</p>}
-                  </div>
+                  <div className="relative w-[100%]">
+                    <label htmlFor="senha" className="text-black">Senha </label>
+                      <input
+                        type={mostrarSenha ? "text" : "password"}
+                        placeholder="Digite sua senha"
+                        name="senha"
+                        onChange={(e) => setPassword(e.target.value)}
+                        className={`input-login shadow-xl w-full h-12 p-2 border-sky-500 border rounded-xl  border-2 border-solid ${errors.password ? 'border-red-400' : 'border-sky-500'}`}
+                      />
+                      <img
+                        src={mostrarSenha ? olhoAberto : olhoFechado}
+                        alt="olho"
+                        onClick={() => setMostrarSenha(!mostrarSenha)}
+                        className="absolute right-4 top-2/3 transform -translate-y-1/2 cursor-pointer w-4"
+                      />
+
+                </div>
 
                   <button
                     type="submit"
@@ -211,7 +229,12 @@ const Login = () => {
                         Cadastre-se
                       </span>
                     </h2>
-                    <p className="erro-api text-center font-bold text-red-400">{erroApi}</p>
+                    <div className="erros flex flex-col gap-4 items-center justify-center">
+                      <p className="erro-api text-center font-bold text-red-400">{erroApi}</p>
+                      <p className="erro-api text-center font-bold text-red-400">{errors.email}</p>
+                      <p className="erro-api text-center font-bold text-red-400">{errors.password}</p>
+                    </div>
+
 
                   </div>
                 </form>
@@ -228,7 +251,7 @@ const Login = () => {
                   </DropdownTrigger>
                   <DropdownMenu>
                     <DropdownItem onClick={navegarParaCadastroEmpresa}>
-                      <div className="item-dropdown-usuario flex items-center gap-2">
+                      <div className="item-dropdown-usuario flex flex-row items-center gap-2">
                         <box-icon
                           name="user-plus"
                           color="#000000"
@@ -239,7 +262,7 @@ const Login = () => {
                       </div>
                     </DropdownItem>
                     <DropdownItem onClick={navegarParaLoginEmpresa}>
-                      <div className="item-dropdown-usuario flex items-center gap-2">
+                      <div className="item-dropdown-usuario flex flex-row items-center gap-2">
                         <box-icon
                           name="door-open"
                           color="#000000"
@@ -271,19 +294,19 @@ const Login = () => {
                 </p>
 
                 <ul className="qualidades-nuh-corre">
-                  <li className="item-qualidade-nuh-corre flex gap-2 text-white font-medium">
+                  <li className="item-qualidade-nuh-corre flex flex-row gap-2 text-white font-medium">
                     <span className="check">✓</span>
                     <p className="texto">
                       Encontre canditados próximos a você!
                     </p>
                   </li>
 
-                  <li className="item-qualidade-nuh-corre flex gap-2 text-white font-medium">
+                  <li className="item-qualidade-nuh-corre flex flex-row gap-2 text-white font-medium">
                     <span className="check">✓</span>
                     <p className="texto">Presente em todo o Brasil</p>
                   </li>
 
-                  <li className="item-qualidade-nuh-corre flex gap-2 text-white font-medium">
+                  <li className="item-qualidade-nuh-corre flex flex-row gap-2 text-white font-medium">
                     <span className="check">✓</span>
                     <p className="texto">
                       Supore personalizado para candidatos e empresa
@@ -316,24 +339,27 @@ const Login = () => {
                     type="text"
                     placeholder="Digite seu email"
                     onChange={(e) => setEmail(e.target.value)}
-                    className={`input-login h-12 p-2 border-sky-500 border rounded-xl border-solid ${errors.email ? 'border-red-500 shadow-md shadow-red-500' : 'border-sky-500 shadow-md'}`}
+                    className={`input-login h-12 p-2 shadow-md border-sky-500 border rounded-xl border-2 border-solid ${errors.email ? 'border-red-400 shadow-md' : 'border-sky-500'}`}
                   />
-                  {errors.email && <p className="text-red-500">{errors.email}</p>}
+                  {errors.email && <p className="text-red-500 text-center">{errors.email}</p>}
                 </div>
 
-                <div className="form-input flex flex-col gap-2 w-[50%]">
-                  <label htmlFor="senha" className="text-black">
-                    Senha
-                  </label>
-                  <input
-                    type="password"
-                    placeholder="Digite sua senha"
-                    onChange={(e) => setPassword(e.target.value)}
-                    className={`input-login h-12 p-2 border-sky-500 border rounded-xl border-solid ${errors.password ? 'border-red-500 shadow-md shadow-red-500' : 'border-sky-500 shadow-md'}`}
-                  />
-                  {errors.password && <p className="text-red-500">{errors.password}</p>}
-                </div>
-
+                <div className="relative w-[50%]">
+                    <input
+                      type={mostrarSenha ? "text" : "password"}
+                      placeholder="Senha"
+                      onChange={(e) => setPassword(e.target.value)}
+                      className={`input-login h-12 border rounded-xl border-2 border-solid w-full ${errors.password ? 'border-red-500 shadow-md' : 'border-sky-500'}`}
+                    />
+                    <img
+                      src={mostrarSenha ? olhoAberto : olhoFechado}
+                      alt="olho"
+                      onClick={() => setMostrarSenha(!mostrarSenha)}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer w-4"
+                    />
+              </div>
+              {errors.password && <p className="text-red-500 w-64 text-center">{errors.password}</p>}
+    
                 <button
                   type="submit"
                   className="botao-login h-12 rounded-xl bg-[#5B82BB] text-white font-bold w-[50%]"
