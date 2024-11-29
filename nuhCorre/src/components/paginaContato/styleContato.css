@@ -136,7 +136,7 @@
 
 /* Contatos alternativos */
 #contatosAmais {
-  background: linear-gradient(90deg, #e6944d, #ee8076, #d97b9d); /* Gradiente suave */
+  background: #7999c7;
   height: auto; /* Ajusta a altura para o conteúdo */
   padding: 40px 20px; /* Adiciona espaçamento interno */
   display: flex;

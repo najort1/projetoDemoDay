@@ -186,7 +186,7 @@ export function EdicaoEmpressa() {
                                 </select>
 
                                 <div style={{ fontWeight: 600 }}>
-                                    <label>A empresa possui políticas de inclusão?</label>
+                                    <label id='labelEmpresa'>A empresa possui políticas de inclusão?</label>
                                     <input type='radio' name='inclusao' /> Não
                                     <input type='radio' name='inclusao' style={{ marginLeft: '40px' }} /> Sim
                                 </div>

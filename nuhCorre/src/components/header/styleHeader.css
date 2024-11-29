@@ -121,6 +121,7 @@
   border-radius: 5px 5px 25px 25px;
   margin: 120px 10vw 0 0;
   background: transparent;
+  top: -15px;
 
 }
 
@@ -240,6 +241,14 @@
   background: #ff9a74 !important;
 
 }
+@media (min-width: 770px) {
+
+  .logo{
+
+    width: 31vw;
+  }
+
+}
 @media (min-width: 768px) {
   .nav {
     display: none;
@@ -256,6 +265,7 @@
 
   .pagina-principal {
     flex-direction: row !important;
+    justify-content: space-around !important;
   }
 
   .tipos-usuarios {
