@@ -15,7 +15,7 @@
 /* Estilo da imagem de perfil */
 .foto-perfil {
     border-radius: 100px; /* Deixa a imagem redonda */
-    width: 9vw; /* Largura proporcional à tela */
+    width: 133px; /* Largura proporcional à tela */
     border:3px solid #b8b8b8;
 }
 
@@ -187,4 +187,60 @@ textarea {
 /* Estilo das imagens na lista */
 .listImg {
     margin-right: 10px; /* Margem à direita */
+}
+
+
+@media (max-width: 500px){
+
+    .foto-perfil{
+
+        width: 25vw;
+
+    }
+    .tituloUsuario{
+
+        font-size: 0.8em;
+
+    }
+
+}
+
+@media (max-width: 1200px){
+
+    /* Parte do form */
+    #formEmpresa{
+
+        flex-direction: column;
+
+    }
+
+    #formEmpresa form{
+
+        width: 90vw;
+
+    }
+
+    #labelEmpresa{
+
+        font-size: 0.9em;
+
+    }
+
+    .caixaInterna div{
+
+        width: 45%;
+    }
+
+    #formEmpresa input:not([type="radio"]):not([type="submit"]):not([type="reset"]),
+    #formEmpresa select,
+    textarea {
+        width: 100%;
+        height: 30px;
+    }
+
+    textarea{
+
+        height: 200px;
+
+    }
 }
