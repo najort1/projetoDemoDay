@@ -12,6 +12,7 @@ import { Contato } from './components/paginaContato/indexContato';
 import NotFound from './components/PageNotFound';
 import { Perfil } from './components/paginaPerfil/perfil';
 import CadastrarVaga from './components/Dashboard_Empresas/CadastrarVaga';
+import Candidatos from './components/Dashboard_Empresas/Candidatos';
 
 const routes = [
   { path: "/", element: <PesquisaVagaTelaInicial /> },
@@ -27,6 +28,7 @@ const routes = [
   { path: "/contato", element: <Contato/> },
   { path: "/perfil", element: <Perfil/> },
   { path: "/cadastrar-vaga", element: <CadastrarVaga/> },
+  { path: "/candidatos", element: <Candidatos/> },
   { path: "*", element: <NotFound /> }
 ];
 
