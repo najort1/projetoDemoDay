@@ -40,16 +40,16 @@ const LoginEmpresa = () => {
         }
 
         const data = {
-            emailCnpj,
-            senha
+            email: isEmailValid ? emailCnpj : '',
+            cnpj: isCnpjValid ? emailCnpj : '',
+            senha: senha,
         };
 
         try {
-            const response = await axios.post('http://localhost:8080/auth/login', data);
+            const response = await axios.post('http://localhost:8080/auth/empresa/login/email', data);
             if (response.status === 200) {
                 const bearer = response.data.token;
                 localStorage.setItem('token', bearer);
-                alert('Login realizado com sucesso!');
                 navigate('/dashboard'); 
             } else {
                 alert('Erro ao realizar login. Verifique suas credenciais.');
