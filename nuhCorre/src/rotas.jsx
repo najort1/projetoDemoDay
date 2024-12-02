@@ -11,6 +11,7 @@ import { Sobre } from './components/paginaSobre/sobre';
 import { Contato } from './components/paginaContato/indexContato';
 import NotFound from './components/PageNotFound';
 import { Perfil } from './components/paginaPerfil/perfil';
+import CadastrarVaga from './components/Dashboard_Empresas/CadastrarVaga';
 
 const routes = [
   { path: "/", element: <PesquisaVagaTelaInicial /> },
@@ -25,6 +26,7 @@ const routes = [
   { path: "/sobre", element: <Sobre /> },
   { path: "/contato", element: <Contato/> },
   { path: "/perfil", element: <Perfil/> },
+  { path: "/cadastrar-vaga", element: <CadastrarVaga/> },
   { path: "*", element: <NotFound /> }
 ];
 
