@@ -4,10 +4,13 @@ import logo from '../../assets/logo.png';
 import { Image } from "@nextui-org/react";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
 import boxicons from "boxicons";
+import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
+import useDarkMode from "../../hooks/useDarkMode";
 
 function Header() {
   const navigate = useNavigate();
   const location = useLocation();
+  const isDarkMode = useDarkMode();
 
   // Verifica se a página atual é "CadastroEmpresa"
   const isCadastroEmpresaPage = location.pathname === '/cadastroEmpresa';
@@ -56,6 +59,7 @@ function Header() {
           src={logo}
           onClick={navegarParaPaginaPrincipal}
         />
+        <ThemeSwitcher />
       </div>
 
       <div className="tipos-usuarios">
@@ -83,14 +87,14 @@ function Header() {
               <DropdownMenu>
                 <DropdownItem onClick={cadastroUsuario}>
                   <div className="item-dropdown-usuario flex items-center gap-2">
-                    <box-icon name='user-plus' color='#000000' size='md' type='solid' ></box-icon>
-                    <p className="text-black font-bold text-lg">Cadastro</p>
+                    {!isDarkMode ? (<box-icon name='user-plus' color='#000000' size='md' type='solid' ></box-icon>) : ( <box-icon name='user-plus' color='#ffffff' size='md' type='solid' ></box-icon>)}
+                    <p className="text-black font-bold text-lg dark:text-white">Cadastro</p>
                   </div>
                 </DropdownItem>
                 <DropdownItem onClick={navegarParaOLogin}>
                   <div className="item-dropdown-usuario flex items-center gap-2">
-                    <box-icon name='door-open' color='#000000' size='md' type='solid' ></box-icon>
-                    <p className="text-black font-bold text-lg">Login</p>
+                    {!isDarkMode ? (<box-icon name='door-open' color='#000000' size='md' type='solid' ></box-icon>) : (<box-icon name='door-open' color='#ffffff' size='md' type='solid' ></box-icon>)}
+                    <p className="text-black font-bold text-lg dark:text-white">Login</p>
                   </div>
                 </DropdownItem>
               </DropdownMenu>
@@ -107,14 +111,14 @@ function Header() {
               <DropdownMenu>
                 <DropdownItem onClick={cadastroEmpresa}>
                   <div className="item-dropdown-empresa flex items-center gap-2">
-                    <box-icon name='user-plus' color='#000000' size='md' type='solid' ></box-icon>
-                    <p className="text-black font-bold text-lg">Cadastro</p>
+                    {!isDarkMode ? (<box-icon name='user-plus' color='#000000' size='md' type='solid' ></box-icon>) : (<box-icon name='user-plus' color='#ffffff' size='md' type='solid' ></box-icon>)}
+                    <p className="text-black font-bold text-lg dark:text-white">Cadastro</p>
                   </div>
                 </DropdownItem>
                 <DropdownItem onClick={paginaLoginEmpresa}>
                   <div className="item-dropdown-empresa flex items-center gap-2">
-                    <box-icon name='door-open' color='#000000' size='md' type='solid' ></box-icon>
-                    <p className="text-black font-bold text-lg">Login</p>
+                    {!isDarkMode ? (<box-icon name='door-open' color='#000000' size='md' type='solid' ></box-icon>) : (<box-icon name='door-open' color='#ffffff' size='md' type='solid' ></box-icon>)}
+                    <p className="text-black font-bold text-lg dark:text-white">Login</p>
                   </div>
                 </DropdownItem>
               </DropdownMenu>
