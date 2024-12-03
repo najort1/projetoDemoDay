@@ -67,6 +67,10 @@ const LoginEmpresa = () => {
         navigate('/');
     };
 
+    const paginaCadastroLogin = () => {
+        navigate('/cadastroEmpresa');
+    };
+
     return (
         <>
         <main id='main-loginempresa'>
@@ -174,8 +178,7 @@ const LoginEmpresa = () => {
                                     style={{
                                         width: '24px',
                                         height: '24px',
-                                        position: 'relative',
-                                        marginLeft: '93%',
+                                        position: 'relative'
                                         
                                     }}
                                 />

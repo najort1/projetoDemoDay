@@ -10,7 +10,6 @@ import LoginPageEm from './components/paginaloginempresa';
 import { Sobre } from './components/paginaSobre/sobre';
 import { Contato } from './components/paginaContato/indexContato';
 import NotFound from './components/PageNotFound';
-import { Perfil } from './components/paginaPerfil/perfil';
 
 const routes = [
   { path: "/", element: <PesquisaVagaTelaInicial /> },
@@ -24,7 +23,6 @@ const routes = [
   { path: "/loginEmpresa", element: <LoginPageEm /> },
   { path: "/sobre", element: <Sobre /> },
   { path: "/contato", element: <Contato/> },
-  { path: "/perfil", element: <Perfil/> },
   { path: "*", element: <NotFound /> }
 ];
 

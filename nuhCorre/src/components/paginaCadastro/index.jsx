@@ -6,8 +6,7 @@ import Logo1 from '../../assets/camaleao.png';
 import Logo2 from '../../assets/logo.png';
 import olhoAberto from '../../assets/olhoAberto.jpg.png'; // Caminho para o ícone de olho aberto
 import olhoFechado from '../../assets/olhoFechado.jpg'; // Caminho para o ícone de olho fechado
-
-
+import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
 
 const CadastroUsuario = () => {
 
@@ -249,7 +248,18 @@ const CadastroUsuario = () => {
     const paginaInicio = () => {
         navigate('/');
     };
+    
+    const paginaLogin = () => {
+        navigate('/login');
+    };
 
+    const paginaLoginEmpresa = () => {
+        navigate('/loginEmpresa');
+    };
+
+    const cadastroEmpresa = () => {
+        navigate('/cadastroEmpresa');
+    };
 
     return (
         <>
@@ -260,7 +270,25 @@ const CadastroUsuario = () => {
                 <div id='expliu'>
                     <div className='opcoesHeaderCadastro'style={{fontSize:'19px', marginLeft:'1rem'}}>
                         <a onClick={paginaInicio}>Página Inicial </a>
-                        <a onClick='#'>Sou Empresa</a>
+                        <Dropdown>
+                            <DropdownTrigger>
+                                <a href="#" className="text-white font-bold text-lg">Sou empresa</a>
+                            </DropdownTrigger>
+                            <DropdownMenu>
+                                <DropdownItem onClick={cadastroEmpresa}>
+                                <div className="item-dropdown-empresa flex items-center gap-2">
+                                    <box-icon name='user-plus' color='#000000' size='md' type='solid' ></box-icon>
+                                    <p className="text-black font-bold text-lg">Cadastro</p>
+                                </div>
+                                </DropdownItem>
+                                <DropdownItem onClick={paginaLoginEmpresa}>
+                                <div className="item-dropdown-empresa flex items-center gap-2">
+                                    <box-icon name='door-open' color='#000000' size='md' type='solid' ></box-icon>
+                                    <p className="text-black font-bold text-lg">Login</p>
+                                </div>
+                                </DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
                     </div>
 
                     <div className='titulo_expliu'>
@@ -357,7 +385,7 @@ const CadastroUsuario = () => {
                         </div>
 
                         <input type="submit" onClick={handleCadastro} />
-                        <a href='' style={{color: '#000', textAlign:'center', display: 'block'}}>Já tem uma conta? <span style={{color: '#718CB3'}}>Faça login</span></a>
+                        <a href='' style={{color: '#000', textAlign:'center', display: 'block'}}>Já tem uma conta? <span style={{color: '#718CB3'}} onClick={paginaLogin}>Faça login</span></a>
                     </form>
                 </div>
             </main>
