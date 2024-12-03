@@ -49,6 +49,10 @@ public class Usuario implements UserDetails {
     @OneToMany(mappedBy = "usuario")
     private List<Endereco> enderecos;
 
+    @OneToOne(mappedBy = "usuario")
+    private Imagem imagem;
+
+
     @ManyToMany
     @JoinTable(
             name = "usuario_vulnerabilidade",
