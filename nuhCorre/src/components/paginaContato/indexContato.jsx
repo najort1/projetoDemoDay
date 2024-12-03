@@ -89,9 +89,9 @@ export const Contato = () => {
 
       <div className="contact-info">
         <h2>Formas alternativas de contato</h2>
-        <p><FaPhoneAlt /> (11) 1234-5678</p>
+        <p><FaPhoneAlt /> (81) 91234-5678</p>
         <p><FaEnvelope /> contato@exemplo.com</p>
-        <p><FaMapMarkerAlt /> Rua Exemplo, 123, São Paulo, SP</p>
+        <p><FaMapMarkerAlt /> Rua Exemplo, 123, Pernambuco, PE</p>
       </div>
 
 

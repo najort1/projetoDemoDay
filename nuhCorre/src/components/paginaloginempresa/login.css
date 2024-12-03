@@ -9,9 +9,7 @@ main#main-loginempresa {
     background: #718CB3;
     color: #fff;
     padding-right: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    
 }
 
 

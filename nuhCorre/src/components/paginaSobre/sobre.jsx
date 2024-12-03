@@ -5,7 +5,13 @@ import "./sobreStyle.css";
 import missao from "../../assets/missao.png"
 import visao from "../../assets/vision.png"
 import seta from "../../assets/seta.png"
-
+import vall from "../../assets/Vall.jpg"
+import edu from "../../assets/edu.jpg"
+import rosa from "../../assets/rosa.jpg"
+import fill from "../../assets/Fill.jpg"
+import gio from "../../assets/gio.jpg"
+import ewer from "../../assets/Ewer.jpg"
+import lua from "../../assets/lua.jpeg"
 export const Sobre = () => {
   const sectionRefs = {
     missao: useRef(null),
@@ -138,23 +144,23 @@ export const Sobre = () => {
             <div className="box-members">
 
               <div className="member" ref={(el) => (memberRefs.current[0] = el)}>
-                <img src="https://via.placeholder.com/150" alt="Membro 1" className="rounded-full mx-auto mb-4"/>
+                <img src={lua} alt="Membro 1" className="rounded-full mx-auto mb-4"/>
                 <p className="member-name">Luana Maria</p>
                 <p className="member-role">Designer <br/>Front-end</p>
               </div>
               <div className="member" ref={(el) => (memberRefs.current[1] = el)}>
-                <img src="https://via.placeholder.com/150" alt="Membro 2" className="rounded-full mx-auto mb-4"/>
-                <p className="member-name">Letícia</p>
+                <img src={rosa} alt="Membro 2" className="rounded-full mx-auto mb-4"/>
+                <p className="member-name">Letícia Rosa</p>
                 <p className="member-role">Designer <br/>Full-stack</p>
               </div>
               <div className="member" ref={(el) => (memberRefs.current[2] = el)}>
-                <img src="https://via.placeholder.com/150" alt="Membro 3" className="rounded-full mx-auto mb-4"/>
-                <p className="font-semibold text-[#2c3e50]">Giovana</p>
-                <p className="text-[#7f8c8d]">Designer<br/>Front-end</p>
+                <img src={gio} alt="Membro 3" className="rounded-full mx-auto mb-4"/>
+                <p className="font-semibold text-[#2c3e50]">Giovanna Saraiva</p>
+                <p className="text-[#7f8c8d]">Designer<br/>Full-stack</p>
               </div>
               <div className="member" ref={(el) => (memberRefs.current[3] = el)}>
-                <img src="https://via.placeholder.com/150" alt="Membro 4" className="rounded-full mx-auto mb-4"/>
-                <p className="font-semibold text-[#2c3e50]">Fillipe</p>
+                <img src={fill} alt="Membro 4" className="rounded-full mx-auto mb-4"/>
+                <p className="font-semibold text-[#2c3e50]">Fillipe Eduardo</p>
                 <p className="text-[#7f8c8d]">Full-stack</p>
               </div>
 
@@ -164,18 +170,18 @@ export const Sobre = () => {
 
               {/* Segunda Linha */}
               <div className="member" ref={(el) => (memberRefs.current[4] = el)}>
-                <img src="https://via.placeholder.com/150" alt="Membro 5" className="rounded-full mx-auto mb-4"/>
-                <p className="font-semibold text-[#2c3e50]">Valleska</p>
+                <img src={vall} alt="Membro 5" className="rounded-full mx-auto mb-4"/>
+                <p className="font-semibold text-[#2c3e50]">Valleska Souza</p>
                 <p className="text-[#7f8c8d]">Scrum Master<br/>Full-stack</p>
               </div>
               <div className="member" ref={(el) => (memberRefs.current[5] = el)}>
-                <img src="https://via.placeholder.com/150" alt="Membro 6" className="rounded-full mx-auto mb-4"/>
-                <p className="font-semibold text-[#2c3e50]">Eduardo</p>
-                <p className="text-[#7f8c8d]">CEO<br/>Full-stack</p>
+                <img src={edu} alt="Membro 6" className="rounded-full mx-auto mb-4"/>
+                <p className="font-semibold text-[#2c3e50]">Eduardo Oliveira</p>
+                <p className="text-[#7f8c8d]">Product Owner<br/>Full-stack</p>
               </div>
               <div className="member" ref={(el) => (memberRefs.current[6] = el)}>
-                <img src="https://via.placeholder.com/150" alt="Membro 7" className="rounded-full mx-auto mb-4"/>
-                <p className="font-semibold text-[#2c3e50]">Ewerton</p>
+                <img src={ewer} alt="Membro 7" className="rounded-full mx-auto mb-4"/>
+                <p className="font-semibold text-[#2c3e50]">Ewerton Monteiro</p>
                 <p className="text-[#7f8c8d]">Financeiro<br/>Full-stack</p>
               </div>
 
