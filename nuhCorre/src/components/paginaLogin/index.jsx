@@ -100,6 +100,10 @@ const Login = () => {
     navigate('/');
   };
 
+   const paginaCadastro = () => {
+    navigate('/cadastro');
+  };
+
   return (
     <>
       {isMobile && !isTablet && (
@@ -162,7 +166,7 @@ const Login = () => {
               <div className="texto-cadastro flex justify-center items-center flex-col font-bold">
                 <h2 className="texto">
                   Ainda não tem uma conta?{" "}
-                  <span className="cadastre-se text-blue-800 hover:cursor-pointer">
+                  <span onClick={paginaCadastro} className="cadastre-se text-blue-800 hover:cursor-pointer">
                     Cadastre-se
                   </span>
                 </h2>
@@ -369,7 +373,7 @@ const Login = () => {
                 <div className="texto-cadastro flex justify-center items-center flex-col font-bold">
                   <h2 className="texto">
                     Ainda não tem uma conta?{" "}
-                    <span className="cadastre-se text-blue-800 hover:cursor-pointer">
+                    <span onClick={paginaCadastro} className="cadastre-se text-blue-800 hover:cursor-pointer">
                       Cadastre-se
                     </span>
                   </h2>
