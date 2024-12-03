@@ -7,6 +7,7 @@ import Logo2 from '../../assets/logo.png';
 import olhoAberto from '../../assets/olhoAberto.jpg.png'; // Caminho para o ícone de olho aberto
 import olhoFechado from '../../assets/olhoFechado.jpg'; // Caminho para o ícone de olho fechado
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
+import Footer2 from '../footer2/Footer2';
 
 const CadastroUsuario = () => {
 
@@ -268,7 +269,7 @@ const CadastroUsuario = () => {
             <main id= 'main-cadastrousuario'>
 
                 <div id='expliu'>
-                    <div className='opcoesHeaderCadastro'style={{fontSize:'19px', marginLeft:'1rem'}}>
+                    <div className='opcoesHeaderCadastro'style={{fontSize:'19px', marginLeft:'1rem', marginTop:'1rem'}}>
                         <a onClick={paginaInicio}>Página Inicial </a>
                         <Dropdown>
                             <DropdownTrigger>
@@ -389,7 +390,7 @@ const CadastroUsuario = () => {
                     </form>
                 </div>
             </main>
-
+            <Footer2/>
         </>
     );
 };

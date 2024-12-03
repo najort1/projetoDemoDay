@@ -7,7 +7,7 @@ import Logo from '../../assets/logo.png';
 import olhoAberto from '../../assets/olhoAberto.jpg.png'; // Caminho para o ícone de olho aberto
 import olhoFechado from '../../assets/olhoFechado.jpg'; // Caminho para o ícone de olho fechado
 import CadastroUsuario from '../paginaCadastro';
-import Footer from "../footer2/Footer2";
+import Footer2 from "../footer2/Footer2";
 import {
     Dropdown,
     DropdownTrigger,
@@ -427,7 +427,7 @@ const CadastroEmpresa = () => {
                     </form>
                 </div>
             </main>
-        <Footer/>
+        <Footer2/>
         </>
     );
 };

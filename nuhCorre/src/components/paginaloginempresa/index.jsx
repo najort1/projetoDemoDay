@@ -6,7 +6,7 @@ import Logo1 from '../../assets/camaleao.png';
 import Logo2 from '../../assets/logo.png';
 import olhoAberto from '../../assets/olhoAberto.jpg.png';
 import olhoFechado from '../../assets/olhoFechado.jpg';
-import Footer from "../footer2/Footer2";
+import Footer2 from "../footer2/Footer2";
 import {
     Dropdown,
     DropdownTrigger,
@@ -74,8 +74,8 @@ const LoginEmpresa = () => {
     return (
         <>
         <main id='main-loginempresa'>
-            <div id='expliu-loginempresa'>
-            <div className="header-container-infos flex flex-row gap-4 text-white font-medium justify-end ml-8
+            <div id='expliu-loginempresa' className='container-informacoes-projeto w-[50%] bg-[#718CB3] flex flex-col h-dvh'>
+            <div className="header-container-infos flex flex-row gap-4 text-white font-medium justify-end ml-8 mt-4
                 ">
               <Dropdown>
                 <DropdownTrigger>
@@ -191,7 +191,7 @@ const LoginEmpresa = () => {
                 </form>
             </div>
         </main>
-        <Footer/>
+        <Footer2/>
         </>
     );
 };
