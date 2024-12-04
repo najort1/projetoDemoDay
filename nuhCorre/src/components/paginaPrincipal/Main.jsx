@@ -76,7 +76,7 @@ export const PesquisaVagaTelaInicial = () => {
 
         {/* Caixa de titulo */}
         <div className="titulo-container flex flex-col items-center gap-2">
-          <h1 className="titulo-container-principal font-bold text-md text-center text-3xl text-white">
+          <h1 className="dark:text-white titulo-container-principal font-bold text-md text-center text-3xl text-white">
             Conecte-se com Empregos Acessíveis para Todos
           </h1>
         </div>

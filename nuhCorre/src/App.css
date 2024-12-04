@@ -19,10 +19,13 @@
 /* Animação de fundo */
 @keyframes BgAnimation {
   0% { background-image: url('./assets/image1.jpg'); }
-  20% { background-image: url('./assets/image5.jpg'); } /*Imagem de <a href="https://pixabay.com/pt/users/fatherfab-8486812/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=3279475">Samuel Bolarinwa</a> por <a href="https://pixabay.com/pt//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=3279475">Pixabay</a>*/
-  40% { background-image: url('./assets/image2.jpg'); }
-  60% { background-image: url('./assets/image6.jpg'); }/*Imagem de <a href="https://pixabay.com/pt/users/javad_esmaeili-16826276/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7262808">Javad Esmaeili</a> por <a href="https://pixabay.com/pt//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7262808">Pixabay</a>*/
+  10% { background-image: url('./assets/image5.jpg'); } /*Imagem de <a href="https://pixabay.com/pt/users/fatherfab-8486812/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=3279475">Samuel Bolarinwa</a> por <a href="https://pixabay.com/pt//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=3279475">Pixabay</a>*/
+  25% { background-image: url('./assets/image2.jpg'); }
+  40% { background-image: url('./assets/image7.jpeg'); }
+  50% { background-image: url('./assets/image6.jpg'); }/*Imagem de <a href="https://pixabay.com/pt/users/javad_esmaeili-16826276/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7262808">Javad Esmaeili</a> por <a href="https://pixabay.com/pt//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7262808">Pixabay</a>*/
+  65% { background-image: url('./assets/image8.jpg'); }
   80% { background-image: url('./assets/image3.jpg'); }
+  90% { background-image: url('./assets/image9.jpg'); }
   100% { background-image: url('./assets/image4.jpg'); }
 }
 
