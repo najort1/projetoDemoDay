@@ -40,7 +40,8 @@ public class SecurityConfig implements WebMvcConfigurer {
                                 "/auth/**",
                                 "/swagger-ui/**",
                                 "/v3/api-docs/**",
-                                "/vaga/buscar/**").permitAll()
+                                "/vaga/buscar/**",
+                                "/vulnerabilidades/listar").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

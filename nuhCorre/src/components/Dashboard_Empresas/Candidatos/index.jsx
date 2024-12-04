@@ -5,6 +5,7 @@ import axios from "axios";
 import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, cn} from "@nextui-org/react";
 import { useNavigate } from "react-router-dom";
 import SideBar from "../SideBar";
+import imagemUsuarioDefault from "../../../assets/camaleao.png"
 
 const Candidatos = () => {
   const [visible, setVisible] = useState(false);
@@ -14,6 +15,16 @@ const Candidatos = () => {
   const [vagaSelecionada, setVagaSelecionada] = useState(1);
   const [candidatos, setCandidatos] = useState([]);
   const [vagas, setVagas] = useState([]);
+  const [showModalInformacoesUsuario, setShowModalInformacoesUsuario] = useState(false);
+
+  const [nomeCandidato, setNomeCandidato] = useState("");
+  const [emailCandidato, setEmailCandidato] = useState("");
+  const [telefoneCandidato, setTelefoneCandidato] = useState("");
+  const [imagemCandidato, setImagemCandidato] = useState("");
+  const [cpfCandidato, setCpfCandidato] = useState("");
+  const [dataNascimentoCandidato, setDataNascimentoCandidato] = useState("");
+  const [enderecosCandidato, setEnderecosCandidato] = useState([]);
+  const [vulnerabilidadesCandidato, setVulnerabilidadesCandidato] = useState([]);
 
   const RedirectCadastrarNovaVaga = () => {
     navigate("/cadastrar-vaga");
@@ -24,35 +35,96 @@ const Candidatos = () => {
     setVagaSelecionada(selectedVagaId);
   };
 
-  const fetchUltimasCandidaturas = async () => {
-    const response = await axios.get(
-      `http://localhost:8080/vaga/${vagaSelecionada}/candidatos`,
-      {
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-        validateStatus: (status) => status <= 500,
-      }
-    );
-
-    let resposta = JSON.stringify(response.data);
-
-    if (resposta.includes("JWT expired at")) {
+  const fetchImagemUsuario = async (id) => {
+    const response = await axios.get(`http://localhost:8080/imagem/usuario/${id}`, {
+      responseType: "blob",
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      validateStatus: (status) => status <= 500,
+    });
+    
+    if (JSON.stringify(response.data).includes("JWT expired at")) {
       setShowModal(true);
       return;
     }
 
-    const data = response.data.length
-      ? response.data.map((candidato) => ({
+    if(response.status === 404){
+      return imagemUsuarioDefault;
+    }
+
+    const urlCreator = window.URL || window.webkitURL;
+    setImagemCandidato(urlCreator.createObjectURL(response.data));
+    return urlCreator.createObjectURL(response.data);
+
+
+
+    
+  };
+
+    
+
+const fetchUltimasCandidaturas = async () => {
+  const response = await axios.get(
+    `http://localhost:8080/vaga/${vagaSelecionada}/candidatos`,
+    {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      validateStatus: (status) => status <= 500,
+    }
+  );
+
+  let resposta = JSON.stringify(response.data);
+
+  if (resposta.includes("JWT expired at")) {
+    setShowModal(true);
+    return;
+  }
+
+  const data = response.data.length
+    ? await Promise.all(
+        response.data.map(async (candidato) => ({
+          id: candidato.id,
           nome: candidato.nome,
           telefone: candidato.telefone,
           email: candidato.email,
-          imagem: candidato.imagem,
+          imagem: await fetchImagemUsuario(candidato.id),
         }))
-      : [{ nome: "Nenhum candidato", telefone: "Nenhum candidato" }];
+      )
+    : [{ nome: "Nenhum candidato", telefone: "Nenhum candidato" }];
 
-    setCandidatos(data);
+  setCandidatos(data);
+};
+
+  const fetchInformacoesUsuario = async (id) => {
+    const response = await axios.get(`http://localhost:8080/dados/informacoes/${id}`, {
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+      validateStatus: (status) => status <= 500,
+    });
+
+    if (JSON.stringify(response.data).includes("JWT expired at")) {
+      setShowModal(true);
+      return;
+    }
+
+    
+    if(response.status === 200){
+      setNomeCandidato(response.data.nome);
+      setEmailCandidato(response.data.email);
+      setTelefoneCandidato(response.data.telefone);
+      setCpfCandidato(response.data.cpf);
+      setDataNascimentoCandidato(response.data.dataNascimento);
+      setEnderecosCandidato(response.data.enderecos);
+      setVulnerabilidadesCandidato(response.data.vulnerabilidades);
+      setShowModalInformacoesUsuario(true);
+    }
+
+
   };
+
 
   const fetchVagasCadastradas = async () => {
     try {
@@ -94,7 +166,7 @@ const Candidatos = () => {
 
   const modal = () => {
     return (
-      <div className="modal-container fixed inset-0 flex items-center justify-center">
+      <div className="modal-container fixed inset-0 flex items-center justify-center z-50">
         <div className="overlay fixed inset-0 bg-black opacity-50"></div>
         <div className="modal flex flex-col items-center justify-center gap-4 p-4 bg-white shadow-2xl rounded-md z-10">
           <h1 className="titulo-modal text-2xl font-bold">Sessão Expirada</h1>
@@ -116,11 +188,75 @@ const Candidatos = () => {
     );
   };
 
+  const modalInformacoesUsuario = () => {
+    return (
+      <div className="modal-container fixed inset-0 flex items-center justify-center z-50">
+        <div className="overlay fixed inset-0 bg-black opacity-50 overflow-auto"></div>
+        <div className="modal flex
+        w-[90%]
+        md:w-[50%]
+        xl:w-[30%]
+        
+        flex-col items-center justify-center gap-4 p-4 bg-white shadow-2xl rounded-md border-2 z-10">
+          <h1 className="titulo-modal text-2xl font-bold">Dados de {nomeCandidato}</h1>
+          <button
+            className="botao-modal bg-blue-800 text-white p-2 rounded-md"
+            onClick={() => {
+              setShowModalInformacoesUsuario(false);
+            }}
+          >
+            Fechar
+          </button>
+  
+          <div className="informacoes-usuario flex flex-col gap-4">
+            <div className="imagem-usuario">
+              <img src={imagemCandidato} alt="Imagem do usuário" className="w-20 h-20 rounded-full" />
+            </div>
+  
+            <div className="dados-usuario flex flex-col gap-4">
+              <p className="paragrafo-modal text-blue-800 font-bold">Nome: {nomeCandidato}</p>
+              <p className="paragrafo-modal text-blue-800 font-bold">Email: {emailCandidato}</p>
+              <p className="paragrafo-modal text-blue-800 font-bold">Telefone: {telefoneCandidato}</p>
+              <p className="paragrafo-modal text-blue-800 font-bold">CPF: {cpfCandidato}</p>
+              <p className="paragrafo-modal text-blue-800 font-bold">Data de Nascimento: {dataNascimentoCandidato}</p>
+              <p className="paragrafo-modal text-blue-800 font-bold">Endereços:</p>
+              <ul className="lista-enderecos flex flex-col h-12 overflow-auto">
+
+                {enderecosCandidato && enderecosCandidato.length > 0 ? (
+                  enderecosCandidato.map((endereco, index) => (
+                    <li key={index} className="item-endereco">
+                      {endereco.rua}, {endereco.numero} - {endereco.cidade} - {endereco.estado} - {endereco.cep}
+                    
+                    </li>
+                  ))
+                ) : (
+                  <li className="item-endereco">Nenhum endereço cadastrado</li>
+                )}
+              </ul>
+              <p className="paragrafo-modal text-blue-800 font-bold">Vulnerabilidades:</p>
+              <ul className="lista-vulnerabilidades flex flex-col h-12 overflow-auto">
+                {vulnerabilidadesCandidato && vulnerabilidadesCandidato.length > 0 ? (
+                  vulnerabilidadesCandidato.map((vulnerabilidade, index) => (
+                    <li key={index} className="item-vulnerabilidade">
+                      {vulnerabilidade.nome}
+                    </li>
+                  ))
+                ) : (
+                  <li className="item-vulnerabilidade">Nenhuma vulnerabilidade cadastrada</li>
+                )}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
       <SideBar visible={visible} setVisible={setVisible} />
       {showModal && modal()}
-
+      {showModalInformacoesUsuario && modalInformacoesUsuario()}
       <header className="header-dashboard flex flex-row w-full shadow-xl p-2 items-center">
         <button
           className="abrir-side-bar hover:text-gray-300"
@@ -179,7 +315,7 @@ const Candidatos = () => {
             {candidatos.map((candidato, index) => (
                 <div
                 className="candidato-card flex flex-row items-center justify-around md:justify-between p-4"
-                key={index}
+                key={candidato.id}
               >
                 <img
                   src={candidato.imagem}
@@ -205,6 +341,19 @@ const Candidatos = () => {
         </Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="Dropdown menu with icons">
+
+      <DropdownItem
+          key="new"
+          color="secondary"
+          onClick={() => fetchInformacoesUsuario(candidato.id)}
+        >
+            <div className="acao-candidato flex flex-row items-center justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <box-icon type='solid' name='user-check' ></box-icon>
+                <p className="paragrafo-drop font-bold text-black">Informações</p>
+            </div>
+
+        </DropdownItem>
+
         <DropdownItem
           key="new"
           color="primary"

@@ -41,6 +41,7 @@ public class JwtService {
         if (userDetails instanceof Usuario) {
             extraClaims.put("nomeUsuario", ((Usuario) userDetails).getNome());
             extraClaims.put("cpfUsuario", ((Usuario) userDetails).getCpf());
+            extraClaims.put("usuarioId", ((Usuario) userDetails).getId());
         } else if (userDetails instanceof EmpresaUserDetails) {
             Empresa empresa = ((EmpresaUserDetails) userDetails).getEmpresa();
             extraClaims.put("nomeEmpresa", empresa.getNome());

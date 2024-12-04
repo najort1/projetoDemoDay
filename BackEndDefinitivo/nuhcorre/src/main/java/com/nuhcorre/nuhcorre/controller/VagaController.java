@@ -322,6 +322,7 @@ public class VagaController {
                 .map(candidatura -> {
                     Usuario usuario = candidatura.getUsuario();
                     return new RespostaUsuariosCandidatados(
+                            usuario.getId(),
                             usuario.getNome(),
                             usuario.getEmail(),
                             usuario.getCpf(),

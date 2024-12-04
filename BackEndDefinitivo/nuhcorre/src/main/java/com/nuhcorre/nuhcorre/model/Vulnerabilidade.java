@@ -17,6 +17,7 @@ public class Vulnerabilidade {
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
         private String nome;
+        private String descricao;
 
         @ManyToMany(mappedBy = "vulnerabilidades")
         private List<Usuario> usuarios;
