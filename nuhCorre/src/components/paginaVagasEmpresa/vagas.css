@@ -1,31 +1,7 @@
-/* Centraliza o formulário na página */ 
-form {
-    max-width: 700px; /* Tamanho máximo do formulário */
-    margin: 0 auto; /* Centraliza o formulário horizontalmente */
-    padding: 20px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Estiliza o layout global */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-}
-
 /* Ajuste para o Sidebar (se estiver desalinhado) */
 .sidebar {
-    width: 300px; /* Ajuste o tamanho conforme necessário */
-    background-color: #2c3e50; /* Cor de fundo */
+    width: 300px;
+    background-color: #2c3e50;
     color: white;
     position: fixed;
     top: 0;
@@ -50,9 +26,69 @@ body {
     font-weight: bold;
 }
 
-.main-content {
-    margin-left: 270px; /* Espaço para a sidebar */
-    width: calc(100% - 270px);
-    padding: 20px;
-    box-sizing: border-box;
+/* Caixa principal que segura tudo */
+.form-container {
+    height: 100vh;
+    transition: margin-left 0.3s ease; /* animação de transição */
 }
+
+/* Ajusta a posição do formulário quando o sidebar está visível */
+.form-container.form-expanded {
+    margin-left: 300px; /* Largura do Sidebar */
+}
+
+/* O titulo da página */
+.form-container h1,
+#detalhVagas {
+    color: #718CB3;
+    font-weight: 600;
+    font-size: 1.7em;
+}
+
+#detalhVagas {
+    font-size: 1.3em;
+}
+
+.form-container {
+    margin-top: 20px;
+}
+
+/* Caixa do form */
+.form-container form {
+    border: 2px solid #E8EAEC;
+    width: 50vw;
+    border-radius: 10px;
+}
+
+/* Ajeitar espaçamentos dos titulos das perguntas */
+.form-container form .titulosInputs {
+    font-size: 1em;
+    color: #718CB3;
+    font-weight: 600;
+}
+
+/* Ajeitar as caixas de perguntas */
+.form-container form input {
+    border: 2px solid #E8EAEC;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/* Estilo do botão para alternar o Sidebar */
+.toggle-sidebar-btn {
+   
+    background-color: #2c3e50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 1000;
+  }
+  
+  /* Alteração de estilo para o botão quando o menu estiver aberto */
+  .toggle-sidebar-btn:hover {
+    background-color: #34495e;
+  }
+  
