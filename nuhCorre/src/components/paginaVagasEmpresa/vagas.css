@@ -1,0 +1,121 @@
+
+.formulario-enviar-vaga {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.formulario-enviar-input label{
+    .container-opcoes {
+  position: relative;
+}
+
+.opcao {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+}
+
+.formulario-enviar-input input,
+.formulario-enviar-input select,
+.formulario-enviar-input textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.formulario-enviar-input input:focus,
+.formulario-enviar-input select:focus,
+.formulario-enviar-input textarea:focus {
+    border-color: #007bff;
+    background-color: #fff;
+    outline: none;
+}
+
+.formulario-enviar-input textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.botao-cadastrar-vaga{
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.botao-cadastrar-vaga:hover {
+    background-color: #0056b3;
+}
+
+.formulario-enviar-input fieldset {
+    border: none;
+    margin-bottom: 20px;
+}
+
+.formulario-enviar-input legend {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.formulario-enviar-input fieldset .options-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.options-group input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.options-group label {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.range-group {
+    display: flex;
+    gap: 15px;
+}
+
+.range-group input {
+    width: calc(50% - 7.5px);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    form {
+        padding: 15px;
+    }
+
+    .options-group {
+        flex-direction: column;
+    }
+
+    .range-group input {
+        width: 100%;
+    }
+}
