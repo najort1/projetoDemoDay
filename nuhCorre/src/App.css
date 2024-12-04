@@ -8,13 +8,16 @@
 }
 
 /* Fundo do background */
-.fundo{
+.fotos{
 
   animation: BgAnimation 20s infinite;
-  background-size: cover;
+  background-size: cover !important;
   background-position: center;
-
+  background-repeat: no-repeat !important;
+  filter: brightness(0.5)
 }
+
+
 .fotos{ background: linear-gradient(270deg, rgb(0 0 0 / 50%) 60%, rgb(0 0 0 / 50%) 60%);}
 /* Animação de fundo */
 @keyframes BgAnimation {

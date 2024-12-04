@@ -38,6 +38,15 @@ main#main-loginempresa {
     font-weight: bold;
 }
 
+.expliu-loginempresa{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+}
+
 .alinhamentoLoginEmpresa span {
     font-size: 0.9em;
     color: gray;
