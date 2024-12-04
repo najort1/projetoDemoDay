@@ -192,24 +192,168 @@ public class VagaController {
 
     @GetMapping("/buscar/titulo/{titulo}")
     public ResponseEntity<?> buscarVagasPorTitulo(@PathVariable String titulo) {
-        return ResponseEntity.ok(vagaService.buscarVagasPorTitulo(titulo));
+        List<Vaga> vagas = (List<Vaga>) vagaService.buscarVagasPorTitulo(titulo);
+        List<VagaRespostaDTO> vagasDTO = vagas.stream().map(vaga -> {
+            Empresa empresa = vaga.getEmpresa();
+            EmpresaRespostaVagaDTO empresaRespostaVagaDTO = null;
+            if (empresa != null) {
+                empresaRespostaVagaDTO = new EmpresaRespostaVagaDTO(
+                        empresa.getCnpj(),
+                        empresa.getNome(),
+                        empresa.getEmail(),
+                        empresa.getTelefone()
+                );
+            }
+            return new VagaRespostaDTO(
+                    vaga.getId(),
+                    vaga.getTitulo(),
+                    vaga.getDescricao(),
+                    vaga.getRequisitos(),
+                    vaga.getBeneficios(),
+                    vaga.getSalario(),
+                    vaga.getCargaHoraria(),
+                    vaga.getDataCadastro(),
+                    vaga.getDataExpiracao(),
+                    vaga.isStatus(),
+                    vaga.getEndereco(),
+                    empresaRespostaVagaDTO,
+                    vaga.getCandidaturas().size()
+            );
+        }).collect(Collectors.toList());
+        return ResponseEntity.ok(vagasDTO);
     }
 
     @GetMapping("/buscar/descricao/{descricao}")
     public ResponseEntity<?> buscarVagasPorDescricao(@PathVariable String descricao) {
-        return ResponseEntity.ok(vagaService.buscarVagasPorDescricao(descricao));
+        List<Vaga> vagas = (List<Vaga>) vagaService.buscarVagasPorDescricao(descricao);
+        List<VagaRespostaDTO> vagasDTO = vagas.stream().map(vaga -> {
+            Empresa empresa = vaga.getEmpresa();
+            EmpresaRespostaVagaDTO empresaRespostaVagaDTO = null;
+            if (empresa != null) {
+                empresaRespostaVagaDTO = new EmpresaRespostaVagaDTO(
+                        empresa.getCnpj(),
+                        empresa.getNome(),
+                        empresa.getEmail(),
+                        empresa.getTelefone()
+                );
+            }
+            return new VagaRespostaDTO(
+                    vaga.getId(),
+                    vaga.getTitulo(),
+                    vaga.getDescricao(),
+                    vaga.getRequisitos(),
+                    vaga.getBeneficios(),
+                    vaga.getSalario(),
+                    vaga.getCargaHoraria(),
+                    vaga.getDataCadastro(),
+                    vaga.getDataExpiracao(),
+                    vaga.isStatus(),
+                    vaga.getEndereco(),
+                    empresaRespostaVagaDTO,
+                    vaga.getCandidaturas().size()
+            );
+        }).collect(Collectors.toList());
+        return ResponseEntity.ok(vagasDTO);
     }
 
     @GetMapping("/buscar/cnpj/{cnpj}")
     public ResponseEntity<?> buscarVagasPorCnpjEmpresa(@PathVariable String cnpj) {
-        return ResponseEntity.ok(vagaService.buscarVagasPorCnpjEmpresa(cnpj));
+        List<Vaga> vagas = (List<Vaga>) vagaService.buscarVagasPorCnpjEmpresa(cnpj);
+        List<VagaRespostaDTO> vagasDTO = vagas.stream().map(vaga -> {
+            Empresa empresa = vaga.getEmpresa();
+            EmpresaRespostaVagaDTO empresaRespostaVagaDTO = null;
+            if (empresa != null) {
+                empresaRespostaVagaDTO = new EmpresaRespostaVagaDTO(
+                        empresa.getCnpj(),
+                        empresa.getNome(),
+                        empresa.getEmail(),
+                        empresa.getTelefone()
+                );
+            }
+            return new VagaRespostaDTO(
+                    vaga.getId(),
+                    vaga.getTitulo(),
+                    vaga.getDescricao(),
+                    vaga.getRequisitos(),
+                    vaga.getBeneficios(),
+                    vaga.getSalario(),
+                    vaga.getCargaHoraria(),
+                    vaga.getDataCadastro(),
+                    vaga.getDataExpiracao(),
+                    vaga.isStatus(),
+                    vaga.getEndereco(),
+                    empresaRespostaVagaDTO,
+                    vaga.getCandidaturas().size()
+            );
+        }).collect(Collectors.toList());
+        return ResponseEntity.ok(vagasDTO);
     }
 
-    @GetMapping("/buscar/empresa/{cnpj}")
-    public ResponseEntity<?> buscarVagasPorEmpresa(@PathVariable String cnpj) {
-        return ResponseEntity.ok(vagaService.buscarVagasPorCnpjEmpresa(cnpj));
+    @GetMapping("/buscar/estado/{estado}")
+    public ResponseEntity<?> buscarVagasPorEstado(@PathVariable String estado) {
+        List<Vaga> vagas = (List<Vaga>) vagaService.buscarPorEstado(estado);
+        List<VagaRespostaDTO> vagasDTO = vagas.stream().map(vaga -> {
+            Empresa empresa = vaga.getEmpresa();
+            EmpresaRespostaVagaDTO empresaRespostaVagaDTO = null;
+            if (empresa != null) {
+                empresaRespostaVagaDTO = new EmpresaRespostaVagaDTO(
+                        empresa.getCnpj(),
+                        empresa.getNome(),
+                        empresa.getEmail(),
+                        empresa.getTelefone()
+                );
+            }
+            return new VagaRespostaDTO(
+                    vaga.getId(),
+                    vaga.getTitulo(),
+                    vaga.getDescricao(),
+                    vaga.getRequisitos(),
+                    vaga.getBeneficios(),
+                    vaga.getSalario(),
+                    vaga.getCargaHoraria(),
+                    vaga.getDataCadastro(),
+                    vaga.getDataExpiracao(),
+                    vaga.isStatus(),
+                    vaga.getEndereco(),
+                    empresaRespostaVagaDTO,
+                    vaga.getCandidaturas().size()
+            );
+        }).collect(Collectors.toList());
+        return ResponseEntity.ok(vagasDTO);
     }
 
+    @GetMapping("/buscar/estado/{estado}/titulo/{titulo}")
+    public ResponseEntity<?> buscarVagasPorEstadoETitulo(@PathVariable String estado, @PathVariable String titulo) {
+        List<Vaga> vagas = (List<Vaga>) vagaService.buscarPorEstadoETitulo(estado, titulo);
+        List<VagaRespostaDTO> vagasDTO = vagas.stream().map(vaga -> {
+            Empresa empresa = vaga.getEmpresa();
+            EmpresaRespostaVagaDTO empresaRespostaVagaDTO = null;
+            if (empresa != null) {
+                empresaRespostaVagaDTO = new EmpresaRespostaVagaDTO(
+                        empresa.getCnpj(),
+                        empresa.getNome(),
+                        empresa.getEmail(),
+                        empresa.getTelefone()
+                );
+            }
+            return new VagaRespostaDTO(
+                    vaga.getId(),
+                    vaga.getTitulo(),
+                    vaga.getDescricao(),
+                    vaga.getRequisitos(),
+                    vaga.getBeneficios(),
+                    vaga.getSalario(),
+                    vaga.getCargaHoraria(),
+                    vaga.getDataCadastro(),
+                    vaga.getDataExpiracao(),
+                    vaga.isStatus(),
+                    vaga.getEndereco(),
+                    empresaRespostaVagaDTO,
+                    vaga.getCandidaturas().size()
+            );
+        }).collect(Collectors.toList());
+        return ResponseEntity.ok(vagasDTO);
+    }
 
     @PostMapping("/{vagaId}/candidatar")
     public ResponseEntity<?> candidatarUsuario(@PathVariable Long vagaId) {
