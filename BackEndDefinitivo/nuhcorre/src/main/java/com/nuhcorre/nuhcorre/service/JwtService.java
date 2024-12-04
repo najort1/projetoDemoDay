@@ -1,5 +1,8 @@
 package com.nuhcorre.nuhcorre.service;
 
+import com.nuhcorre.nuhcorre.model.Empresa;
+import com.nuhcorre.nuhcorre.model.Usuario;
+import com.nuhcorre.nuhcorre.model.details.EmpresaUserDetails;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -33,7 +36,20 @@ public class JwtService {
     }
 
     public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
+        Map<String, Object> extraClaims = new HashMap<>();
+
+        if (userDetails instanceof Usuario) {
+            extraClaims.put("nomeUsuario", ((Usuario) userDetails).getNome());
+            extraClaims.put("cpfUsuario", ((Usuario) userDetails).getCpf());
+        } else if (userDetails instanceof EmpresaUserDetails) {
+            Empresa empresa = ((EmpresaUserDetails) userDetails).getEmpresa();
+            extraClaims.put("nomeEmpresa", empresa.getNome());
+            extraClaims.put("cnpjEmpresa", empresa.getCnpj());
+        } else if (userDetails instanceof Empresa) {
+            extraClaims.put("nomeEmpresa", ((Empresa) userDetails).getNome());
+            extraClaims.put("cnpjEmpresa", ((Empresa) userDetails).getCnpj());
+        }
+        return buildToken(extraClaims, userDetails, jwtExpiration);
     }
 
     public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {

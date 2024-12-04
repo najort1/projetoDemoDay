@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import logo from '../../../assets/logo.png';
 import { Avatar } from 'primereact/avatar';
 import {Slider} from "@nextui-org/react";
+import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
@@ -19,6 +20,11 @@ const [visualizacaoTotal, setVisualizacaoTotal] = useState(0);
 const [vagaTitulos, setVagaTitulos] = useState([]);
 const [vagaSelecionada, setVagaSelecionada] = useState(1);
 const [showModal, setShowModal] = useState(false);
+const [candidatos, setCandidatos] = useState([]);
+const [nomeEmpresa,setNomeEmpresa] = useState("");
+const [vagas, setVagas] = useState([]);
+const [maximoCandidatos, setMaximoCandidatos] = useState(0);
+
 
 const navigate = useNavigate();
 
@@ -80,6 +86,7 @@ const fetchVagasCadastradas = async () => {
 
         const titulos = response.data.map(vaga => vaga.titulo);
         const ids = response.data.map(vaga => vaga.id);
+        const candidaturas  = response.data.map(vaga => vaga.candidaturas);
         setVagaSelecionada(ids[0]);
         geraGrafico();
         const vagasFormatadas = []
@@ -89,9 +96,41 @@ const fetchVagasCadastradas = async () => {
         }
 
         setVagaTitulos(vagasFormatadas);
+        setVagas(response.data);
+        setMaximoCandidatos(Math.max(...candidaturas));
+        
 
 }
 
+
+const fetchUltimasCandidaturas = async () => {
+
+
+    const response = await axios.get(`http://localhost:8080/vaga/${vagaSelecionada}/candidatos`, {
+        headers: {
+          'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+      });
+
+    let resposta = JSON.stringify(response.data);
+
+    if(resposta.includes('JWT expired at')){
+        setShowModal(true);
+        return;
+    }
+
+    const data = response.data;
+    const formattedData = data.map((candidato) => {
+        return {
+            nome: candidato.nome,
+            telefone: candidato.telefone,
+        }
+    });
+
+    setCandidatos(formattedData);
+
+
+}
 
 const fetchData = async () => {
     try {
@@ -161,6 +200,10 @@ const fetchData = async () => {
     useEffect(() => {
         fetchVagasCadastradas();
         fetchData();
+        fetchUltimasCandidaturas();
+        const usuario = jwtDecode(localStorage.getItem('token'));
+        setNomeEmpresa(usuario.nomeEmpresa);
+
     }
     , [vagaSelecionada]);
 
@@ -171,58 +214,66 @@ const fetchData = async () => {
         {showModal && modal()}
         
 
-        <Sidebar visible={visible} onHide={() => setVisible(false)} className="w-[60%] h-full relative shadow-2xl bg-[#718CB3] xl:w-[15%] overflow-auto
-        md:w-[30%]
-        "
-            content={({closeIcon, hide})  => (
-                    
-                    <div className="h-full flex flex-col justify-between">
-                        <div className="flex justify-between items-center p-4 md:justify-center">
-                            
-                            <img src={logo} alt="Logo" className="w-full h-24 object-cover
-                            md:w-[90%]
+        <Sidebar 
+    visible={visible} 
+    onHide={() => setVisible(false)} 
+    className="w-[60%] h-full relative shadow-2xl xl:w-[15%] overflow-auto
+    md:w-[30%] backdrop-blur-md"
+    content={({ closeIcon, hide }) => (
+        <div className="h-full flex flex-col justify-between text-white">
+            {/* Logo e botão fechar */}
+            <div className="flex justify-between items-center p-4 md:justify-center">
+                <img 
+                    src={logo} 
+                    alt="Logo" 
+                    className="w-full h-24 object-cover md:w-[90%]" 
+                />
+                <button 
+                    onClick={hide} 
+                    className="text-3xl hover:text-gray-300 transition-colors"
+                >
+                    <box-icon type='solid' name='x-circle'></box-icon>
+                </button>
+            </div>
 
-                            " />
+            {/* Itens de navegação */}
+            <div className="flex flex-col items-center gap-6">
+                <div className="nav-item flex items-center gap-3 text-lg font-medium hover:text-gray-300 transition-colors">
+                    <box-icon type='solid' name='home'></box-icon>
+                    <a href="#" className="text-black">Início</a>
+                </div>
+                <div className="nav-item flex items-center gap-3 text-lg font-medium hover:text-gray-300 transition-colors">
+                    <box-icon name='file-plus' type='solid'></box-icon>
+                    <a href="#" className="text-black">Nova vaga</a>
+                </div>
+                <div className="nav-item flex items-center gap-3 text-lg font-medium hover:text-gray-300 transition-colors">
+                    <box-icon name='user-detail' type='solid'></box-icon>
+                    <a href="#" className="text-black">Candidatos</a>
+                </div>
+                <div className="nav-item flex items-center gap-3 text-lg font-medium hover:text-gray-300 transition-colors">
+                    <box-icon name='spreadsheet'></box-icon>
+                    <a href="#" className="text-black">Vagas</a>
+                </div>
+            </div>
 
-                            <button onClick={hide} className="text-white text-3xl hover:text-gray-300">
-                                <box-icon type='solid' name='x-circle'></box-icon>
-                            </button>
-                        </div>
-                        <div className="flex flex-col items-center gap-4">
+            {/* Informações do usuário e botão sair */}
+            <div className="flex justify-between items-center p-4">
+                <img 
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIMDsWFBoBCZUhHBwy7G9G65_pJ2SZngH5BQ&s" 
+                    alt="Usuário logado" 
+                    className="rounded-full w-16 object-cover border-2 border-white" 
+                />
+                <button 
+                    className="text-lg text-black font-bold hover:text-gray-300 transition-colors"
+                >
+                    Sair
+                </button>
+            </div>
+        </div>
+    )}
+>
+</Sidebar>
 
-                            <div className="nav-item flex flex-row items-center gap-2 hover:text-gray-300">
-                                <box-icon type='solid' name='home'></box-icon>
-                                <a href="#" className="text-white text-xl">Inicio</a>
-                            </div>
-                            <div className="nav-item flex flex-row items-center gap-2 hover:text-gray-300">
-                                <box-icon name='file-plus' type='solid' ></box-icon>
-                                <a href="#" className="text-white text-xl">Nova vaga</a>
-                            </div>
-                            <div className="nav-item flex flex-row items-center gap-2 hover:text-gray-300">
-                                <box-icon name='user-detail' type='solid' ></box-icon>
-                                <a href="#" className="text-white text-xl">Candidatos</a>
-                            </div>
-                            <div className="nav-item flex flex-row items-center gap-2 hover:text-gray-300">
-                                <box-icon name='spreadsheet' ></box-icon>
-                                <a href="#" className="text-white text-xl">Vagas</a>
-                            </div>
-
-                        </div>
-
-                        <div className="flex flex-row justify-between items-center p-4">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIMDsWFBoBCZUhHBwy7G9G65_pJ2SZngH5BQ&s" alt="Usuario logado" className="usuario-logado-foto rounded-full w-16 object-cover" />
-                            <button className="botao-sair text-white font-2xl font-bold hover:text-gray-300">Sair</button>
-                        </div>
-                    </div>
-            )} 
-            >
-
-              
-
-            
-
-
-            </Sidebar>
 
             <header className="header-dashboard flex flex-row w-full shadow-xl p-2 items-center">
 
@@ -232,12 +283,17 @@ const fetchData = async () => {
 
 
                 <div className="selecionar-vaga">
-                    <select name="vagas" id="vagas" className="bg-white border-2 border-blue-500 rounded-md p-2" onChange={handleMudarVaga}>
+                    <label className="flex flex-row items-center gap-2" >
+                        Selecione a vaga
+
+<select name="vagas" id="vagas" className="bg-white border-2 border-blue-500 rounded-md p-2" onChange={handleMudarVaga}>
                     {vagaTitulos.map((vaga) => (
                         <option value={vaga.id} key={vaga.id}>{vaga.id} - {vaga.titulo}</option>
                     ))}
 
                     </select>
+                    </label>
+
                 </div>
 
 
@@ -246,13 +302,13 @@ const fetchData = async () => {
             <main className="main-dashboard flex flex-col items-center gap-4 p-4">
                     
                     <div className="flex flex-row items-center gap-4">
-                        <h1 className="text-2xl font-bold">Bem vindo, <span className="text-blue-800">Fulano</span></h1>
+                        <h1 className="text-2xl font-bold">Bem vindo, <span className="text-blue-800">{nomeEmpresa}</span></h1>
                     </div>
     
                     <div className="flex flex-row items-center gap-4">
                         <div className="card flex flex-col items-center gap-4 p-4 shadow-md bg-white border-2 border-blue-500">
                             <h1 className="titulo-card text-2xl font-bold text-center">Total candidatos</h1>
-                            <h1 className="numero-card text-4xl font-bold">100</h1>
+                            <h1 className="numero-card text-4xl font-bold">{candidatos.length}</h1>
                         </div>
                         <div className="card flex flex-col items-center gap-4 p-4 shadow-md bg-white border-2 border-blue-500">
                             <h1 className="titulo-card text-2xl font-bold text-center">Visualizações totais</h1>
@@ -291,49 +347,25 @@ const fetchData = async () => {
 
                     <div className="atividade-recente flex flex-col gap-4">
                         
-                        <div className="atividade flex flex-row justify-between
-                        
-                        xl:justify-evenly
-                        ">
-                            <div className="informacoes-usuario flex flex-row">
-                                <box-icon name='user' ></box-icon>
-                                <div className="nome-funcao flex flex-col">
-                                    <h1 className="nome font-bold">Fulano</h1>
-                                    <p className="descricao text-gray-400 text-sm">Programador front-end</p>
+                        {candidatos.map((candidato) => (
+                            <div key={candidato.telefone} className="atividade flex flex-row justify-between
+                            xl:justify-evenly
+                            ">
+                                <div className="informacoes-usuario flex flex-row">
+                                    <box-icon name='user' ></box-icon>
+                                    <div className="nome-funcao flex flex-col">
+                                        <h1 className="nome font-bold">{candidato.nome}</h1>
+                                        <p className="telefone text-gray-400 text-sm">{candidato.telefone}</p>
+                                    </div>
+                                </div>
+                                <div className="acao-usuario">
+                                    <p className="acao border-2 rounded-xl p-1 border-gray-400">Novo candidato</p>
                                 </div>
                             </div>
-                            <div className="acao-usuario">
-                                <p className="acao border-2 rounded-xl p-1 border-gray-400">Novo candidato</p>
-                            </div>
-                        </div>
-                        <div className="atividade flex flex-row justify-between
-                        xl:justify-evenly
-                        ">
-                            <div className="informacoes-usuario flex flex-row">
-                                <box-icon name='user' ></box-icon>
-                                <div className="nome-funcao flex flex-col">
-                                    <h1 className="nome font-bold">Fulano</h1>
-                                    <p className="descricao text-gray-400 text-sm">Programador front-end</p>
-                                </div>
-                            </div>
-                            <div className="acao-usuario">
-                                <p className="acao border-2 rounded-xl p-1 border-gray-400">Novo candidato</p>
-                            </div>
-                        </div>
-                        <div className="atividade flex flex-row justify-between
-                        xl:justify-evenly
-                        ">
-                            <div className="informacoes-usuario flex flex-row">
-                                <box-icon name='user' ></box-icon>
-                                <div className="nome-funcao flex flex-col">
-                                    <h1 className="nome font-bold">Fulano</h1>
-                                    <p className="descricao text-gray-400 text-sm">Programador front-end</p>
-                                </div>
-                            </div>
-                            <div className="acao-usuario">
-                                <p className="acao border-2 rounded-xl p-1 border-gray-400">Novo candidato</p>
-                            </div>
-                        </div>
+                        ))}
+
+
+
 
                     </div>
 
@@ -348,8 +380,9 @@ const fetchData = async () => {
 
                     <div className="vagas-em-destaque flex flex-col gap-4">
                             
-                            <div className="vaga-em-destaque flex flex-col gap-4">
-                                <h1 className="titulo-vaga font-bold">Vaga para programador front-end</h1>
+                        {vagas.map((vaga) => (
+                         <div key={vaga.id} className="vaga-em-destaque flex flex-col gap-4">
+                                <h1 className="titulo-vaga font-bold">{vaga.titulo}</h1>
 
                                 <div className="slider-candidatos flex flex-row gap-4 items-center">
                                     <Slider 
@@ -357,45 +390,17 @@ const fetchData = async () => {
                                         aria-label="Player progress" 
                                         color="primary"
                                         hideThumb={true}
-                                        value={110}
-                                        maxValue={120}
+                                        value={vaga.candidaturas}
+                                        maxValue={maximoCandidatos}
                                         className="max-w-md"
                                     />
-                                    <p className="candidatos font-bold text-center">100 candidatos</p>
+                                    <p className="candidatos font-bold text-center">{maximoCandidatos}</p>
                                 </div>
 
-       
+
                             </div>
-                            <div className="vaga-em-destaque flex flex-col gap-4">
-                                <h1 className="titulo-vaga font-bold">Vaga para programador front-end</h1>
-                                <div className="slider-candidatos flex flex-row gap-4 items-center">
-                                    <Slider 
-                                    isDisabled
-                                        aria-label="Player progress" 
-                                        color="primary"
-                                        hideThumb={true}
-                                        value={80}
-                                        maxValue={120}
-                                        className="max-w-md"
-                                    />
-                                    <p className="candidatos font-bold text-center">80 candidatos</p>
-                                </div>
-                            </div>
-                            <div className="vaga-em-destaque flex flex-col gap-4">
-                                <h1 className="titulo-vaga font-bold">Vaga para programador front-end</h1>
-                                <div className="slider-candidatos flex flex-row gap-4 items-center">
-                                    <Slider 
-                                    isDisabled
-                                        aria-label="Player progress" 
-                                        color="primary"
-                                        hideThumb={true}
-                                        value={40}
-                                        maxValue={120}
-                                        className="max-w-md"
-                                    />
-                                    <p className="candidatos font-bold text-center">40 candidatos</p>
-                                </div>
-                            </div>
+                        ))}
+
                             
                         </div>
 

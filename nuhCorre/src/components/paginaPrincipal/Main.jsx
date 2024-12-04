@@ -72,7 +72,7 @@ export const PesquisaVagaTelaInicial = () => {
 
       <div
         className="container absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#AAB9CE]
-        w-[100%] h-[40%] flex flex-col justify-evenly p-2 shadow-2xl rounded-xl xl:w-[57%] xl:h-[40%] md:w-[80%] px-[10px] fade-in">
+        w-[100%] flex flex-col justify-evenly shadow-2xl rounded-xl xl:w-[57%] xl:h-[40%] md:w-[80%] fade-in">
 
         {/* Caixa de titulo */}
         <div className="titulo-container flex flex-col items-center gap-2">
@@ -81,13 +81,13 @@ export const PesquisaVagaTelaInicial = () => {
           </h1>
         </div>
 
-        <div className="container-inputs flex flex-row items-center gap-2">
+        <div className="container-inputs">
           {/* Select Tipo */}
           <select
             name="Tipo"
             id="selecionado_tipo"
-            className="opcoes-tipo h-[64px] w-20 rounded-[5px] transition-all duration-300 ease-in-out 
-            focus:ring-2 focus:ring-[#1797f5] border-0 focus:outline-none"
+            className="opcoes-tipo h-[64px] rounded-[5px] transition-all duration-300 ease-in-out 
+                    focus:ring-2 focus:ring-[#1797f5] border-0 focus:outline-none"
             onChange={handleTipo}
           >
             <option value="Vagas">Vagas</option>
@@ -98,16 +98,17 @@ export const PesquisaVagaTelaInicial = () => {
           <input
             type="text"
             className="input-pesquisa h-[64px] w-full rounded-[5px] px-[5px] border-0 focus:outline-none
-             focus:border-b-4 focus:border-b-[#1797f5] transition-all duration-300 ease-in-out"
-             placeholder="Pesquisa"
+                    focus:border-b-4 focus:border-b-[#1797f5] transition-all duration-300 ease-in-out"
+            placeholder="Pesquisa"
+            onChange={handlePesquisa}
           />
 
           {/* Select Cidade */}
           <select
             name="Estado"
             id="seleciona_estado"
-            className="selecionar-estado h-[64px] w-24 rounded-[5px] border-0 focus:outline-none focus:ring-2
-             focus:ring-[#1797f5] transition-all duration-300 ease-in-out"
+            className="selecionar-estado h-[64px] rounded-[5px] border-0 focus:outline-none focus:ring-2
+                    focus:ring-[#1797f5] transition-all duration-300 ease-in-out"
             onChange={handleSelectCidade}
           >
             {estados.map((estado) => (
@@ -120,12 +121,12 @@ export const PesquisaVagaTelaInicial = () => {
           {/* Botão de Pesquisa */}
           <Button
             isIconOnly
-            className="botao-pesquisar bg-[#718CB3] flex items-center justify-center h-[64px] w-24 border-0 focus:outline-none transition-all duration-300 ease-in-out transform hover:scale-105"
+            className="botao-pesquisar md:w-1/5 bg-[#718CB3] flex items-center justify-center w-[100%] h-[64px] border-0 focus:outline-none transition-all duration-300 ease-in-out transform hover:scale-105"
           >
             <box-icon name="search" color="white"></box-icon>
           </Button>
-
         </div>
+
       </div>
 
       <Footer/>

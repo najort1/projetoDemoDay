@@ -54,7 +54,7 @@ public class AuthenticationService {
             throw new IllegalArgumentException("O campo senha é obrigatório");
         }
 
-        verificarEmailECPFExistentes(registroUsuarioDTO.email(), registroUsuarioDTO.cpf());
+        verificarEmailECPFExistentes(registroUsuarioDTO.email());
         Usuario usuario = criarUsuario(registroUsuarioDTO);
         return usuarioRepository.save(usuario);
     }
@@ -134,12 +134,9 @@ public class AuthenticationService {
         ));
     }
 
-    private void verificarEmailECPFExistentes(String email, String cpf) {
+    private void verificarEmailECPFExistentes(String email) {
         if (usuarioRepository.findByEmail(email).isPresent()) {
             throw new RuntimeException("Email já cadastrado");
-        }
-        if (usuarioRepository.findByCpf(cpf).isPresent()) {
-            throw new RuntimeException("CPF já cadastrado");
         }
     }
 
@@ -156,7 +153,6 @@ public class AuthenticationService {
         Usuario usuario = new Usuario();
         usuario.setNome(registroUsuarioDTO.nome());
         usuario.setEmail(registroUsuarioDTO.email());
-        usuario.setCpf(registroUsuarioDTO.cpf());
         usuario.setSenha(passwordEncoder.encode(registroUsuarioDTO.senha()));
         usuario.setTelefone(registroUsuarioDTO.telefone());
 

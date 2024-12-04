@@ -122,6 +122,65 @@ function Header() {
           </li>
         </ul>
       </div>
+      <nav className="nav">
+        <input id="menu" type="checkbox" />
+        <label htmlFor="menu">Menu</label>
+        <ul className="menu">
+          {/* Link "Inicio" */}
+          <li
+            className={`hover:cursor-pointer ${isHomePage ? 'link-ativo' : ''}`}
+            onClick={navegarParaPaginaPrincipal}
+          >
+            <a href="#" className="text-white font-bold text-lg">Inicio</a>
+          </li>
+          <li className={`hover:cursor-pointer ${isCadastroUsuarioPage ? 'link-ativo' : ''}`} onClick={cadastroUsuario}>
+            <Dropdown>
+              <DropdownTrigger>
+                  <a href="#" className="text-white font-bold text-lg">Usuário</a>
+                </DropdownTrigger>
+              <DropdownMenu>
+                <DropdownItem onClick={cadastroUsuario}>
+                  <div className="item-dropdown-usuario flex items-center gap-2">
+                    <box-icon name='user-plus' color='#000000' size='md' type='solid' ></box-icon>
+                    <p className="text-black font-bold text-lg">Cadastro</p>
+                  </div>
+                </DropdownItem>
+                <DropdownItem onClick={navegarParaOLogin}>
+                  <div className="item-dropdown-usuario flex items-center gap-2">
+                    <box-icon name='door-open' color='#000000' size='md' type='solid' ></box-icon>
+                    <p className="text-black font-bold text-lg">Login</p>
+                  </div>
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </li>
+          <li className={`hover:cursor-pointer ${isCadastroEmpresaPage ? 'link-ativo' : ''}`} onClick={cadastroEmpresa}>
+            <Dropdown>
+              <DropdownTrigger>
+                <a href="#" className="text-white font-bold text-lg">Empresa</a>
+              </DropdownTrigger>
+              <DropdownMenu>
+                <DropdownItem onClick={cadastroEmpresa}>
+                  <div className="item-dropdown-empresa flex items-center gap-2">
+                    <box-icon name='user-plus' color='#000000' size='md' type='solid'></box-icon>
+                    <p className="text-black font-bold text-lg">Cadastro</p>
+                  </div>
+                </DropdownItem>
+                <DropdownItem onClick={paginaLoginEmpresa}>
+                  <div className="item-dropdown-empresa flex items-center gap-2">
+                    <box-icon name='door-open' color='#000000' size='md' type='solid'></box-icon>
+                    <p className="text-black font-bold text-lg">Login</p>
+                  </div>
+                </DropdownItem>
+              </DropdownMenu>
+            </Dropdown>
+          </li>
+          <li className={`hover:cursor-pointer ${isContatoPage ? 'link-ativo' : ''}`}onClick={navegarParaContato}>
+            <a href="#" className="text-white font-bold text-lg">Contato</a>
+          </li>
+        </ul>
+      </nav>
+
     </header>
   );
 }

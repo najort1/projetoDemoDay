@@ -30,13 +30,6 @@ public class EmpresaController {
 
     @PostMapping("/login/{tipoLogin}")
     public ResponseEntity<EmpresaRespostaLoginDTO> loginUsuario(@RequestBody EmpresaLoginDTO empresaLoginDTO, @PathVariable String tipoLogin) {
-        System.out.println("Recebido no Postman:");
-        System.out.println("empresaLoginDTO: " + empresaLoginDTO);
-        System.out.println("tipoLogin: " + tipoLogin);
-        System.out.println("empresaLoginDTO.cnpj(): " + empresaLoginDTO.cnpj());
-        System.out.println("empresaLoginDTO.email(): " + empresaLoginDTO.email());
-        System.out.println("empresaLoginDTO.senha(): " + empresaLoginDTO.senha());
-
         Empresa empresa = authenticationService.loginEmpresa(empresaLoginDTO, tipoLogin);
         String token = jwtService.generateToken(empresa);
         return ResponseEntity.ok(new EmpresaRespostaLoginDTO(empresa.getNome(), empresa.getCnpj(), token));

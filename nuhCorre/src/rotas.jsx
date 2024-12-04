@@ -9,6 +9,7 @@ import DashBoardPrincipal from './components/Dashboard_Empresas/PaginaPrincipal'
 import LoginPageEm from './components/paginaloginempresa';
 import { Sobre } from './components/paginaSobre/sobre';
 import { Contato } from './components/paginaContato/indexContato';
+import NotFound from './components/PageNotFound';
 
 const routes = [
   { path: "/", element: <PesquisaVagaTelaInicial /> },
@@ -16,12 +17,13 @@ const routes = [
   { path: "/cadastro", element: <CadastroUsuario /> },
   { path: "/cadastroEmpresa", element: <CadastroEmpresa /> },
   { path: "/edicaoEmpressa", element: <EdicaoEmpressa /> },
-  { path: "/editarPerfilCandidato", element: <EditarPerfilCandidato /> },
+  { path: "/editar-perfil-candidato", element: <EditarPerfilCandidato /> },
   { path: "/vagas", element: <Vagas /> },
   { path: "/dashboard", element: <DashBoardPrincipal /> },
   { path: "/loginEmpresa", element: <LoginPageEm /> },
   { path: "/sobre", element: <Sobre /> },
-  { path: "/contato", element: <Contato/> }
+  { path: "/contato", element: <Contato/> },
+  { path: "*", element: <NotFound /> }
 ];
 
 export default routes;

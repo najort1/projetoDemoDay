@@ -209,3 +209,35 @@ input:not(:focus)::placeholder {
     font-size: 0.9rem;
     margin-right: 0.6rem;
 }
+
+
+@media (max-width: 1121px) {
+
+    main#main-cadastrousuario {
+
+        flex-direction: column;
+    
+    }
+
+    #expliu, #caixaCadastroUsuario{
+        width: 100vw;
+        padding-bottom: 20px;
+    }
+
+    #expliu h2 {
+        font-size: 1.5rem;
+    }
+    #expliu p {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 768px){
+
+    .alinhamentousuario{
+
+        width: auto !important;
+
+    }
+
+}
