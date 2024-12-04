@@ -64,6 +64,10 @@ public class Empresa implements UserDetails {
     @JsonBackReference
     private List<Avaliacao> avaliacoes;
 
+    // Empresa.java
+    @OneToOne(mappedBy = "empresa")
+    private Imagem imagem;
+
     @PrePersist
     public void prePersist() {
         setDataCadastro(new Date());

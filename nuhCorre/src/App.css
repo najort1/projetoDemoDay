@@ -10,7 +10,7 @@
 /* Fundo do background */
 .fundo{
 
-  animation: BgAnimation 20s infinite alternate;
+  animation: BgAnimation 20s infinite;
   background-size: cover;
   background-position: center;
 
@@ -19,8 +19,10 @@
 /* Animação de fundo */
 @keyframes BgAnimation {
   0% { background-image: url('./assets/image1.jpg'); }
-  30% { background-image: url('./assets/image2.jpg'); }
-  60% { background-image: url('./assets/image3.jpg'); }
+  20% { background-image: url('./assets/image5.jpg'); } /*Imagem de <a href="https://pixabay.com/pt/users/fatherfab-8486812/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=3279475">Samuel Bolarinwa</a> por <a href="https://pixabay.com/pt//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=3279475">Pixabay</a>*/
+  40% { background-image: url('./assets/image2.jpg'); }
+  60% { background-image: url('./assets/image6.jpg'); }/*Imagem de <a href="https://pixabay.com/pt/users/javad_esmaeili-16826276/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7262808">Javad Esmaeili</a> por <a href="https://pixabay.com/pt//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=7262808">Pixabay</a>*/
+  80% { background-image: url('./assets/image3.jpg'); }
   100% { background-image: url('./assets/image4.jpg'); }
 }
 

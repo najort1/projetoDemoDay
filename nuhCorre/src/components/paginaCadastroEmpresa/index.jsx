@@ -7,7 +7,7 @@ import Logo from '../../assets/logo.png';
 import olhoAberto from '../../assets/olhoAberto.jpg.png'; // Caminho para o ícone de olho aberto
 import olhoFechado from '../../assets/olhoFechado.jpg'; // Caminho para o ícone de olho fechado
 import CadastroUsuario from '../paginaCadastro';
-import Footer from "../footer2/Footer2";
+import Footer2 from "../footer2/Footer2";
 import {
     Dropdown,
     DropdownTrigger,
@@ -244,6 +244,9 @@ const CadastroEmpresa = () => {
         navigate('/');
     };
 
+    const paginaLoginEmpresa = () => {
+        navigate('/loginEmpresa');
+    };
     return (
         <>
 
@@ -396,8 +399,8 @@ const CadastroEmpresa = () => {
                                         style={{
                                             width: '24px',
                                             height: '24px',
-                                            position: 'relative',
-                                            marginLeft: '93%',
+                                            position: 'relative'
+                                            
                                         }}
                                     />
                                 </button>
@@ -420,11 +423,11 @@ const CadastroEmpresa = () => {
                         </div>
 
                         <input style={{ marginTop: '10px' }} type="submit" onClick={handleCadastro} />
-                        <a href='' style={{ color: '#000', textAlign: 'center', display: 'block', marginTop: '15px' }}>Já tem uma conta? <span style={{ color: '#425BD6' }}>Faça login</span></a>
+                        <a href='' style={{ color: '#000', textAlign: 'center', display: 'block', marginTop: '15px' }}>Já tem uma conta? <span style={{ color: '#425BD6' }} onClick={paginaLoginEmpresa}>Faça login</span></a>
                     </form>
                 </div>
             </main>
-        <Footer/>
+        <Footer2/>
         </>
     );
 };

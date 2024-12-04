@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import Header from "../header/Header";
-import Footer from "../footer/Footer";
+import Footer2 from "../footer2/Footer2";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 import Camaleao from "../../assets/camaleao.png";
@@ -100,6 +100,10 @@ const Login = () => {
     navigate('/');
   };
 
+   const paginaCadastro = () => {
+    navigate('/cadastro');
+  };
+
   return (
     <>
       {isMobile && !isTablet && (
@@ -162,7 +166,7 @@ const Login = () => {
               <div className="texto-cadastro flex justify-center items-center flex-col font-bold">
                 <h2 className="texto">
                   Ainda não tem uma conta?{" "}
-                  <span className="cadastre-se text-blue-800 hover:cursor-pointer">
+                  <span onClick={paginaCadastro} className="cadastre-se text-blue-800 hover:cursor-pointer">
                     Cadastre-se
                   </span>
                 </h2>
@@ -242,7 +246,7 @@ const Login = () => {
             </div>
 
             <div className="container-informacoes-projeto w-[50%] bg-[#718CB3] flex flex-col h-dvh">
-              <div className="header-container-infos flex flex-row gap-4 text-white font-medium justify-end">
+              <div className="header-container-infos flex flex-row gap-4 text-white font-medium justify-end mt-4">
                 <Dropdown>
                   <DropdownTrigger>
                     <h1 className="text-white text-white text-bold">
@@ -369,7 +373,7 @@ const Login = () => {
                 <div className="texto-cadastro flex justify-center items-center flex-col font-bold">
                   <h2 className="texto">
                     Ainda não tem uma conta?{" "}
-                    <span className="cadastre-se text-blue-800 hover:cursor-pointer">
+                    <span onClick={paginaCadastro} className="cadastre-se text-blue-800 hover:cursor-pointer">
                       Cadastre-se
                     </span>
                   </h2>
@@ -381,7 +385,7 @@ const Login = () => {
           </div>
 
           <div className="container-informacoes-projeto w-[50%] bg-[#718CB3] flex flex-col h-dvh">
-            <div className="header-container-infos flex flex-row gap-4 text-white font-medium justify-end mr-8">
+            <div className="header-container-infos flex flex-row gap-4 text-white font-medium justify-end mr-8 mt-4">
               <Dropdown>
                 <DropdownTrigger>
                   <h1 className="text-white text-white text-bold text-xl">
@@ -453,6 +457,8 @@ const Login = () => {
           </div>
         </div>
       </BrowserView>
+
+      <Footer2/>
     </>
   );
 };
