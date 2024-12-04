@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SideBar from "../Dashboard_Empresas/SideBar";
+import "./vagas.css";
 
 function FormularioDeVagas() {
   const [dadosForm, setDadosForm] = useState({
@@ -15,7 +16,7 @@ function FormularioDeVagas() {
   });
 
   const [erros, setErros] = useState({});
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false); // Inicialmente o menu está fechado
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -63,11 +64,20 @@ function FormularioDeVagas() {
   return (
     <div className="dashboard-container">
       <SideBar visible={visible} setVisible={setVisible} />
-      <div className="form-container">
+      
+      {/* Botão para alternar a visibilidade do SideBar */}
+      <button
+        className="toggle-sidebar-btn"
+        onClick={() => setVisible((prev) => !prev)}
+      >
+        {visible ? "Fechar Menu" : "Abrir Menu"}
+      </button>
+
+      <div className={`form-container ${visible ? 'form-expanded' : ''}`}>
         <h1>Anunciar Nova Vaga</h1>
         <form onSubmit={handleSubmit}>
           <fieldset>
-            <legend>Detalhes da vaga</legend>
+            <legend id='detalhVagas'>Detalhes da vaga</legend>
             <div>
               <label htmlFor="titulo">Título da vaga:</label>
               <input
@@ -80,9 +90,8 @@ function FormularioDeVagas() {
               />
               {erros.titulo && <span className="error">{erros.titulo}</span>}
             </div>
-
             <div>
-              <label htmlFor="nomeEmpresa">Nome da Empresa:</label>
+              <label className="titulosInputs" htmlFor="nomeEmpresa">Nome da Empresa:</label>
               <input
                 type="text"
                 id="nomeEmpresa"
@@ -95,7 +104,7 @@ function FormularioDeVagas() {
             </div>
 
             <div>
-              <label htmlFor="localizacao">Localização:</label>
+              <label className="titulosInputs" htmlFor="localizacao">Localização:</label>
               <input
                 type="text"
                 id="localizacao"
@@ -108,7 +117,7 @@ function FormularioDeVagas() {
 
             <div className="row-group">
               <div>
-                <label>Tipo de Vaga:</label>
+                <label className="titulosInputs">Tipo de Vaga:</label>
                 {["CLT", "PJ", "Temporário", "Estágio", "Freelance"].map((tipo) => (
                   <div key={tipo}>
                     <input
@@ -124,17 +133,16 @@ function FormularioDeVagas() {
               </div>
 
               <div>
-                <label>Modelo de Trabalho:</label>
+                <label className="titulosInputs">Modelo de Trabalho:</label>
                 <input type="text" disabled placeholder="Adicionar opções futuramente" />
               </div>
             </div>
           </fieldset>
 
           <fieldset>
-            <legend>Faixa Salarial</legend>
-            <div className="range-group">
+            <legend className="titulosInputs">Faixa Salarial</legend>
+            <div className="range-group flex">
               <div>
-                <label htmlFor="salarioMinimo">Mínimo:</label>
                 <input
                   type="number"
                   id="salarioMinimo"
@@ -145,7 +153,6 @@ function FormularioDeVagas() {
                 />
               </div>
               <div>
-                <label htmlFor="salarioMaximo">Máximo:</label>
                 <input
                   type="number"
                   id="salarioMaximo"
@@ -159,7 +166,7 @@ function FormularioDeVagas() {
           </fieldset>
 
           <fieldset>
-            <legend>Grupos Vulneráveis (selecione todos que se aplicam)</legend>
+            <legend className="titulosInputs">Grupos Vulneráveis (selecione todos que se aplicam)</legend>
             <div className="options-group">
               {[
                 "PCD",
@@ -185,7 +192,7 @@ function FormularioDeVagas() {
           </fieldset>
 
           <fieldset>
-            <legend>Nível de Experiência</legend>
+            <legend className="titulosInputs">Nível de Experiência</legend>
             <div>
               <label htmlFor="nivelExperiencia">Selecione o nível:</label>
               <select
@@ -203,7 +210,7 @@ function FormularioDeVagas() {
           </fieldset>
 
           <div>
-            <label htmlFor="descricao">Descrição da Vaga:</label>
+            <label className="titulosInputs" htmlFor="descricao">Descrição da Vaga:</label>
             <textarea
               id="descricao"
               name="descricao"
