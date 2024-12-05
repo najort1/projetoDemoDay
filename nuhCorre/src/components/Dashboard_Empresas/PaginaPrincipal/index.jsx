@@ -162,9 +162,12 @@ const DashBoardPrincipal = () => {
         }))
       );
 
-      const totalVisualizacoes = Object.values(data)
-        .flat()
-        .reduce((acc, curr) => acc + curr, 0);
+      const totalVisualizacoes = Object.values(formattedData).reduce(
+        (acc, item) => acc + item.count,
+        0
+      )
+
+        
       setVisualizacaoTotal(totalVisualizacoes);
       setData(formattedData);
     } catch (error) {

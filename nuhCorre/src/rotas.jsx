@@ -13,6 +13,8 @@ import NotFound from './components/PageNotFound';
 import CadastrarVaga from './components/Dashboard_Empresas/CadastrarVaga';
 import Candidatos from './components/Dashboard_Empresas/Candidatos';
 import FormularioDeVagas from './components/paginaVagasEmpresa';
+
+
 const routes = [
   { path: "/", element: <PesquisaVagaTelaInicial /> },
   { path: "/login", element: <LoginPage /> },
