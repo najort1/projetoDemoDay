@@ -254,7 +254,7 @@ const CadastroEmpresa = () => {
 
                 <div id="expli">
                 <div className="header-container-infos flex flex-row gap-4 text-white font-medium justify-start ml-8
-                mt-6">
+                mt-4">
               <Dropdown>
                 <DropdownTrigger>
                   <h1 className="text-white text-white text-bold text-xl">

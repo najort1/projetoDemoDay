@@ -25,9 +25,18 @@ const CadastroUsuario = () => {
     //Estados para animação para visibilidade da senha
     const [senha, setSenha] = useState('');
     const [senhaVisivel, setSenhaVisivel] = useState(false);
+    const [mostrarRequisitos, setMostrarRequisitos] = useState(false);
 
     const toggleSenhaVisivel = () => {
         setSenhaVisivel(!senhaVisivel);
+    };
+
+    const handleFocusSenha = () => {
+        setMostrarRequisitos(true); // Vai mostrar quando apertarem no input senha
+    };
+
+    const handleBlurSenha = () => {
+        setMostrarRequisitos(false); // Vai esconder quando forem apertar em outro input
     };
 
     //Estilização para quando dá erro em algum campo
@@ -71,9 +80,9 @@ const CadastroUsuario = () => {
 
                         if (element.validity.valueMissing) {
                             errorStyling('Preencha o campo.', erroNome.current, element, true);
-                        } else if(element.validity.patternMismatch) {
+                        } else if (element.validity.patternMismatch) {
                             errorStyling('Preencha apenas com letras.', erroNome.current, element, true);
-                        }else{
+                        } else {
                             errorStyling(undefined, erroNome.current, element, false);
                         }
 
@@ -124,7 +133,7 @@ const CadastroUsuario = () => {
 
                             errorStyling('Preencha apenas caracteres.', errovulnerabilidade.current, element, true);
 
-                        }else{
+                        } else {
 
                             errorStyling(undefined, errovulnerabilidade.current, element, false);
 
@@ -179,8 +188,8 @@ const CadastroUsuario = () => {
     const formatarCPF = (cpf) => {
         cpf = cpf.replace(/\D/g, ''); // Remove caracteres não numéricos
         return cpf.replace(/(\d{3})(\d)/, '$1.$2')
-                  .replace(/(\d{3})(\d)/, '$1.$2')
-                  .replace(/(\d{3})(\d{2})$/, '$1-$2');
+            .replace(/(\d{3})(\d)/, '$1.$2')
+            .replace(/(\d{3})(\d{2})$/, '$1-$2');
     };
 
     //Formatação do número de telefone
@@ -188,11 +197,11 @@ const CadastroUsuario = () => {
         telefone = telefone.replace(/\D/g, ''); // Remove caracteres não numéricos
         if (telefone.length <= 10) {
             return telefone.replace(/(\d{2})(\d)/, '($1) $2')
-                           .replace(/(\d{4})(\d)/, '$1-$2');
+                .replace(/(\d{4})(\d)/, '$1-$2');
         } else {
             return telefone.replace(/(\d{2})(\d)/, '($1) $2')
-                           .replace(/(\d{5})(\d)/, '$1-$2')
-                           .replace(/(\d{4})(\d{2})$/, '$1-$2');
+                .replace(/(\d{5})(\d)/, '$1-$2')
+                .replace(/(\d{4})(\d{2})$/, '$1-$2');
         }
     };
 
@@ -202,32 +211,32 @@ const CadastroUsuario = () => {
         return () => {
             const inputs = Array.from(document.querySelectorAll('input')).slice(0, -1);
             inputs.forEach((element) => {
-                element.removeEventListener('focus', () => {});
-                element.removeEventListener('blur', () => {});
+                element.removeEventListener('focus', () => { });
+                element.removeEventListener('blur', () => { });
                 if (element.name === 'cpf') {
-                    element.removeEventListener('input', () => {});
+                    element.removeEventListener('input', () => { });
                 }
                 if (element.name === 'telefone') {
-                    element.removeEventListener('input', () => {});
+                    element.removeEventListener('input', () => { });
                 }
             });
         };
-    }, );
+    },);
 
     const handleCadastro = async () => {
         const form = document.querySelector('form');
         const formData = new FormData(form);
-    
+
         const data = {};
-    
+
         formData.forEach((value, key) => {
             data[key] = value;
         });
-    
+
         try {
             const response = await axios.post('http://localhost:8080/auth/cadastrar', data);
             const repostaJson = response.data;
-    
+
             if (response.status === 201) {
                 const bearer = repostaJson.token;
                 localStorage.setItem('token', bearer);
@@ -245,11 +254,11 @@ const CadastroUsuario = () => {
         }
     };
 
-     /* Navegação */
+    /* Navegação */
     const paginaInicio = () => {
         navigate('/');
     };
-    
+
     const paginaLogin = () => {
         navigate('/login');
     };
@@ -266,10 +275,10 @@ const CadastroUsuario = () => {
         <>
 
 
-            <main id= 'main-cadastrousuario'>
+            <main id='main-cadastrousuario'>
 
                 <div id='expliu'>
-                    <div className='opcoesHeaderCadastro'style={{fontSize:'19px', marginLeft:'1rem', marginTop:'1rem'}}>
+                    <div className='opcoesHeaderCadastro' style={{ fontSize: '19px', marginLeft: '1rem', marginTop: '1rem' }}>
                         <a onClick={paginaInicio}>Página Inicial </a>
                         <Dropdown>
                             <DropdownTrigger>
@@ -277,27 +286,27 @@ const CadastroUsuario = () => {
                             </DropdownTrigger>
                             <DropdownMenu>
                                 <DropdownItem onClick={cadastroEmpresa}>
-                                <div className="item-dropdown-empresa flex items-center gap-2">
-                                    <box-icon name='user-plus' color='#000000' size='md' type='solid' ></box-icon>
-                                    <p className="text-black font-bold text-lg">Cadastro</p>
-                                </div>
+                                    <div className="item-dropdown-empresa flex items-center gap-2">
+                                        <box-icon name='user-plus' color='#000000' size='md' type='solid' ></box-icon>
+                                        <p className="text-black font-bold text-lg">Cadastro</p>
+                                    </div>
                                 </DropdownItem>
                                 <DropdownItem onClick={paginaLoginEmpresa}>
-                                <div className="item-dropdown-empresa flex items-center gap-2">
-                                    <box-icon name='door-open' color='#000000' size='md' type='solid' ></box-icon>
-                                    <p className="text-black font-bold text-lg">Login</p>
-                                </div>
+                                    <div className="item-dropdown-empresa flex items-center gap-2">
+                                        <box-icon name='door-open' color='#000000' size='md' type='solid' ></box-icon>
+                                        <p className="text-black font-bold text-lg">Login</p>
+                                    </div>
                                 </DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     </div>
 
                     <div className='titulo_expliu'>
-                        <img src={Logo1} alt='' className= "logo-imageu"/>
+                        <img src={Logo1} alt='' className="logo-imageu" />
                         <h2>Sobre a NuhCorre</h2>
                         <p>
-                            A NuhCorre é lider em conectar talentos com<br/>
-                            oportunidades. Nossa missão é criar um mercado de<br/>
+                            A NuhCorre é lider em conectar talentos com<br />
+                            oportunidades. Nossa missão é criar um mercado de<br />
                             trabalho mais inclusivo e acessivel para todos.
                         </p>
                         <ul className="check-list">
@@ -312,12 +321,12 @@ const CadastroUsuario = () => {
                 <div id="caixaCadastroUsuario">
                     <div className='alinhamentousuario'>
 
-                        <img src={Logo2} alt='' className='alinhamentousuario' style={{width: '11vw'}}/>
-                        <h2 className='alinhamentousuarioP' style={{marginBottom:'10px'}}>Olá candidato, conecte-se conosco!</h2>
-                        <span className='alinhamentousuarioS'style={{marginBottom:'15px'}}>Cada pessoa importa, cada talento conta!</span>
+                        <img src={Logo2} alt='' className='alinhamentousuario' style={{ width: '11vw' }} />
+                        <h2 className='alinhamentousuarioP' style={{ marginBottom: '10px' }}>Olá candidato, conecte-se conosco!</h2>
+                        <span className='alinhamentousuarioS' style={{ marginBottom: '15px' }}>Cada pessoa importa, cada talento conta!</span>
 
                     </div>
-                    
+
                     <form>
 
                         <div>
@@ -346,7 +355,7 @@ const CadastroUsuario = () => {
 
                         <div>
                             <label htmlFor="senha">Crie uma senha:</label>
-                            
+
                             <div style={{ position: 'relative' }}>
                                 <input
                                     type={senhaVisivel ? 'text' : 'password'}
@@ -371,9 +380,9 @@ const CadastroUsuario = () => {
                                     }}
                                     value='Criar conta'
                                 >
-                                    
+
                                     <img
-                                        src={senhaVisivel? olhoAberto : olhoFechado}
+                                        src={senhaVisivel ? olhoAberto : olhoFechado}
                                         alt="Alternar visibilidade da senha"
                                         style={{
                                             width: '24px',
@@ -381,16 +390,30 @@ const CadastroUsuario = () => {
                                         }}
                                     />
                                 </button>
-                                <span ref={erroSenha} className="erro"></span>
                             </div>
+                            <span ref={erroSenha} className="erro"></span>
+
+                            {mostrarRequisitos && (
+                                <div className="senha-requisitos" style={{ marginTop: '10px', fontSize: '14px' }}>
+                                    <p><strong>A senha deve conter:</strong></p>
+                                    <ul>
+                                        <li style={{ color: /[a-z]/.test(senha) ? 'green' : 'red' }}>Pelo menos uma letra minúscula</li>
+                                        <li style={{ color: /[A-Z]/.test(senha) ? 'green' : 'red' }}>Pelo menos uma letra maiúscula</li>
+                                        <li style={{ color: /\d/.test(senha) ? 'green' : 'red' }}>Pelo menos um número</li>
+                                        <li style={{ color: /[$*&@#]/.test(senha) ? 'green' : 'red' }}>Pelo menos um caractere especial ($, *, &, @, #)</li>
+                                        <li style={{ color: senha.length >= 8 && senha.length <= 20 ? 'green' : 'red' }}>Ter entre 8 e 20 caracteres</li>
+                                    </ul>
+                                </div>
+                            )}
+
                         </div>
 
                         <input type="submit" onClick={handleCadastro} />
-                        <a href='' style={{color: '#000', textAlign:'center', display: 'block'}}>Já tem uma conta? <span style={{color: '#718CB3'}} onClick={paginaLogin}>Faça login</span></a>
+                        <a href='' style={{ color: '#000', textAlign: 'center', display: 'block' }}>Já tem uma conta? <span style={{ color: '#718CB3' }} onClick={paginaLogin}>Faça login</span></a>
                     </form>
                 </div>
             </main>
-            <Footer2/>
+            <Footer2 />
         </>
     );
 };

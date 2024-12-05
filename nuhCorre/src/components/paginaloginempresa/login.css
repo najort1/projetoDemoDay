@@ -11,10 +11,18 @@ main#main-loginempresa {
     padding-right: 2rem;
     
 }
+.expliu-loginempresa{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+}
 
 
 #caixaLoginEmpresa {
-    background: #fff;
+    background: url('../../assets/back.svg');
     border: 2px solid rgba(255, 255, 255, 0.2);
     color: #000;
     width: 50vw;
