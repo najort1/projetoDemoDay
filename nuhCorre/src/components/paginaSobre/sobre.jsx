@@ -59,7 +59,6 @@ export const Sobre = () => {
 
   return (
     <>
-      <Header />
       {/* Imagem de fundo de <a href="https://pixabay.com/pt/users/geralt-9301/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6188940">Gerd Altmann</a> por <a href="https://pixabay.com/pt//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6188940">Pixabay</a> */}
       <div className="container-about w-full min-h-screen flex flex-col items-center bg-[#F0F4F8]">
         {/* Título da Página */}
@@ -191,8 +190,6 @@ export const Sobre = () => {
           </div>
         </div>
       </div>
-
-      <Footer />
     </>
   );
 };

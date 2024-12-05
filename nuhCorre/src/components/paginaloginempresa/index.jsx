@@ -23,6 +23,7 @@ const LoginEmpresa = () => {
     const navigate = useNavigate();
     const navegarParaCadastroUsuario = () => { navigate('/cadastro') };
     const navegarParaLoginUsuario = () => { navigate('/login') };
+    const [erro, setErro] = useState('');
 
     const toggleSenhaVisivel = () => {
         setSenhaVisivel(!senhaVisivel);
@@ -52,11 +53,11 @@ const LoginEmpresa = () => {
                 localStorage.setItem('token', bearer);
                 navigate('/dashboard'); 
             } else {
-                alert('Erro ao realizar login. Verifique suas credenciais.');
+                setErro(response.data.detail);
             }
         } catch (error) {
             if (error.response && error.response.data) {
-                alert(error.response.data.detail || 'Erro ao realizar login.');
+                setErro(error.response.data.detail);
             } else {
                 alert('Erro de conexão com o servidor.');
             }
@@ -188,6 +189,8 @@ const LoginEmpresa = () => {
 
                     <input type="submit" value="Entrar" />
                     <a href="/recuperar-senha" style={{ color: '#000', textAlign: 'center', display: 'block' }}>Esqueceu sua senha? <span style={{ color: '#425BD6' }}>Recupere aqui</span></a>
+                    <p className="erro-realizar-login text-red-400 font-bold text-center">{erro}</p>
+
                 </form>
             </div>
         </main>

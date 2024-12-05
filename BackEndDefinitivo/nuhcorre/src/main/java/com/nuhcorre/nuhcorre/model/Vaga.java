@@ -68,10 +68,12 @@ public class Vaga {
     private List<Usuario> usuarios;
 
     @OneToMany(mappedBy = "vaga", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonBackReference
     private List<Candidatura> candidaturas;
 
     @ManyToOne
     @JoinColumn(name = "endereco_id")
+    @JsonManagedReference
     private Endereco endereco;
 
     @PrePersist

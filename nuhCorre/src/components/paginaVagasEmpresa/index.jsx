@@ -74,11 +74,11 @@ function FormularioDeVagas() {
       </button>
 
       <div className={`form-container ${visible ? 'form-expanded' : ''}`}>
-        <h1>Anunciar Nova Vaga</h1>
-        <form onSubmit={handleSubmit}>
+      
+        <form onSubmit={handleSubmit} className="formulario-enviar-vaga">
           <fieldset>
-            <legend id='detalhVagas'>Detalhes da vaga</legend>
-            <div>
+            <h1 id='detalheVagas'>Detalhes da vaga</h1>
+            <div className="formulario-enviar-input">
               <label htmlFor="titulo">Título da vaga:</label>
               <input
                 type="text"
@@ -90,7 +90,7 @@ function FormularioDeVagas() {
               />
               {erros.titulo && <span className="error">{erros.titulo}</span>}
             </div>
-            <div>
+            <div className="formulario-enviar-input">
               <label className="titulosInputs" htmlFor="nomeEmpresa">Nome da Empresa:</label>
               <input
                 type="text"
@@ -103,10 +103,10 @@ function FormularioDeVagas() {
               {erros.nomeEmpresa && <span className="error">{erros.nomeEmpresa}</span>}
             </div>
 
-            <div>
+            <div className="formulario-enviar-input">
               <label className="titulosInputs" htmlFor="localizacao">Localização:</label>
               <input
-                type="text"
+                type="text" 
                 id="localizacao"
                 name="localizacao"
                 placeholder="Cidade, Estado ou Remoto"
@@ -119,8 +119,8 @@ function FormularioDeVagas() {
               <div>
                 <label className="titulosInputs">Tipo de Vaga:</label>
                 {["CLT", "PJ", "Temporário", "Estágio", "Freelance"].map((tipo) => (
-                  <div key={tipo}>
-                    <input
+                  <div key={tipo} className="row-group-item">
+                    <input className="radio-item-one"
                       type="radio"
                       name="tipoVaga"
                       value={tipo}
@@ -132,7 +132,7 @@ function FormularioDeVagas() {
                 ))}
               </div>
 
-              <div>
+              <div className="formulario-enviar-input">
                 <label className="titulosInputs">Modelo de Trabalho:</label>
                 <input type="text" disabled placeholder="Adicionar opções futuramente" />
               </div>
@@ -141,8 +141,8 @@ function FormularioDeVagas() {
 
           <fieldset>
             <legend className="titulosInputs">Faixa Salarial</legend>
-            <div className="range-group flex">
-              <div>
+            <div className="range-group">
+              <div className="formulario-enviar-input">
                 <input
                   type="number"
                   id="salarioMinimo"
@@ -152,7 +152,7 @@ function FormularioDeVagas() {
                   onChange={handleChange}
                 />
               </div>
-              <div>
+              <div className="formulario-enviar-input">
                 <input
                   type="number"
                   id="salarioMaximo"
@@ -167,7 +167,7 @@ function FormularioDeVagas() {
 
           <fieldset>
             <legend className="titulosInputs">Grupos Vulneráveis (selecione todos que se aplicam)</legend>
-            <div className="options-group">
+            <div className="options-group-three">
               {[
                 "PCD",
                 "Mães",
@@ -178,7 +178,7 @@ function FormularioDeVagas() {
                 "Imigrantes e Refugiados",
               ].map((grupo) => (
                 <label key={grupo}>
-                  <input
+                  <input className="options-group-two"
                     type="checkbox"
                     name="gruposVulneraveis"
                     value={grupo}
@@ -193,7 +193,7 @@ function FormularioDeVagas() {
 
           <fieldset>
             <legend className="titulosInputs">Nível de Experiência</legend>
-            <div>
+            <div className="formulario-enviar-input">
               <label htmlFor="nivelExperiencia">Selecione o nível:</label>
               <select
                 id="nivelExperiencia"
@@ -209,7 +209,7 @@ function FormularioDeVagas() {
             </div>
           </fieldset>
 
-          <div>
+          <div className="formulario-enviar-input">
             <label className="titulosInputs" htmlFor="descricao">Descrição da Vaga:</label>
             <textarea
               id="descricao"
@@ -220,7 +220,7 @@ function FormularioDeVagas() {
             />
           </div>
 
-          <button type="submit">Publicar Vaga</button>
+          <button type="submit" className="botao-cadastrar-vaga">Publicar Vaga</button>
         </form>
       </div>
     </div>

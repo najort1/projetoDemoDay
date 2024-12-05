@@ -1,94 +1,200 @@
-/* Ajuste para o Sidebar (se estiver desalinhado) */
-.sidebar {
-    width: 300px;
-    background-color: #2c3e50;
-    color: white;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
+#detalheVagas{
+    color: #7999c7;
+    font-weight: bold;
+    
+}
+.formulario-enviar-vaga {
+    max-width: 1000px;
+    margin: 20px auto;
     padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+}
+.toggle-sidebar-btn{
+    background-color:#7999c7;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.formulario-enviar-input label{
+    font-weight: bold;
+    color:#7999c7;}
+
+    .container-opcoes {
+  position: relative;
 }
 
-.sidebar ul {
-    list-style: none;
-    padding: 0;
+.opcao {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+   
+
+.formulario-enviar-input input,
+.formulario-enviar-input select,
+.formulario-enviar-input textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #f9f9f9;      
+    box-sizing: border-box;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    
 }
 
-.sidebar ul li {
-    margin: 15px 0;
+.formulario-enviar-input input:focus,
+.formulario-enviar-input select:focus,
+.formulario-enviar-input textarea:focus {
+    border-color: #007bff;
+    background-color: #fff;
+    outline: none;
 }
 
-.sidebar ul li a {
+.formulario-enviar-input textarea {
+    height: 120px;
+    resize: vertical;
+}
+
+.botao-cadastrar-vaga{
+    background-color: #007bff;
     color: white;
-    text-decoration: none;
+    padding: 12px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.botao-cadastrar-vaga:hover {
+    background-color: #0056b3;
+}
+
+.formulario-enviar-input fieldset {
+    border: none;
+    margin-bottom: 20px;
+}
+
+.formulario-enviar-input legend {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.formulario-enviar-input fieldset .options-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.options-group input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+.options-group label {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
+.range-group {
+    display: flex;
+    color: #7999c7;
+    font-weight: bold;
+    gap: 15px;
+}
+.row-group label{
+    color: #7999c7;
+    font-weight: bold;
+}
+.titulosInputs {
+    font-size: 20px;
+    color: #7999c7;
     font-weight: bold;
 }
 
-/* Caixa principal que segura tudo */
-.form-container {
-    height: 100vh;
-    transition: margin-left 0.3s ease; /* animação de transição */
+.range-group input {
+    width: calc(50% - 7.5px);
+    
 }
 
-/* Ajusta a posição do formulário quando o sidebar está visível */
-.form-container.form-expanded {
-    margin-left: 300px; /* Largura do Sidebar */
+/* Responsividade */
+@media (max-width: 768px) {
+    form {
+        padding: 15px;
+    }
+
+    .options-group {
+        
+        flex-direction: column;
+    }
+
+    .range-group input {
+        width: 100%;
+    }
 }
 
-/* O titulo da página */
-.form-container h1,
-#detalhVagas {
-    color: #718CB3;
-    font-weight: 600;
-    font-size: 1.7em;
+.options-group-two{
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2PX solid #7999c7;    
+    margin-right: 10px;
+}
+.options-group-two:checked {
+    background-color: #7999c7;
+    border-color: #007bff;
+}
+.options-group-two:checked::before{
+    font-size: 15px;
+    display:flex;
+    content: '✔';
+    color: black;
+    justify-content: center;
+    position:relative;
+    bottom: 3px;
 }
 
-#detalhVagas {
-    font-size: 1.3em;
+
+
+.radio-item-one {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2PX solid #7999c7;    
+    border-radius: 100%;
+    margin-right: 10px;
 }
 
-.form-container {
-    margin-top: 20px;
+.radio-item-one:checked{
+    background-color: #7999c7;
+    border-color: #7999c7;
+    
 }
 
-/* Caixa do form */
-.form-container form {
-    border: 2px solid #E8EAEC;
-    width: 50vw;
-    border-radius: 10px;
+.row-group-item {
+     color:#7999c7;
+     
 }
-
-/* Ajeitar espaçamentos dos titulos das perguntas */
-.form-container form .titulosInputs {
-    font-size: 1em;
-    color: #718CB3;
-    font-weight: 600;
-}
-
-/* Ajeitar as caixas de perguntas */
-.form-container form input {
-    border: 2px solid #E8EAEC;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-/* Estilo do botão para alternar o Sidebar */
-.toggle-sidebar-btn {
+.options-group-three{
+    color: #7999c7;
    
-    background-color: #2c3e50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1em;
-    cursor: pointer;
-    border-radius: 5px;
-    z-index: 1000;
-  }
-  
-  /* Alteração de estilo para o botão quando o menu estiver aberto */
-  .toggle-sidebar-btn:hover {
-    background-color: #34495e;
-  }
-  
+}

@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface VagaDadosRepository extends JpaRepository<VagaDados, Long> {
-    Optional<VagaDados> findByVagaIdAndUsuarioId(long vagaId, long usuarioId);
-    Optional<VagaDados> existsByVagaIdAndUsuarioId(long vagaId, long usuarioId);
+    boolean existsByVagaIdAndUsuarioId(long vagaId, long usuarioId);
 
     void deleteByVagaIdAndUsuarioId(long vagaId, long usuarioId);
 

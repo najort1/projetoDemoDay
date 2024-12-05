@@ -335,7 +335,7 @@ const Login = () => {
             </div>
             <div className="form-login p-4 w-full">
               <form className="flex flex-col gap-4 items-center w-full" onSubmit={handleSubmit}>
-                <div className="form-input flex flex-col gap-2 w-[50%]">
+                <div className="form-input flex flex-col gap-2 w-[73%]">
                   <label htmlFor="email" className="text-black">
                     Email
                   </label>
@@ -343,17 +343,17 @@ const Login = () => {
                     type="text"
                     placeholder="Digite seu email"
                     onChange={(e) => setEmail(e.target.value)}
-                    className={`input-login h-12 p-2 shadow-md border-sky-500 border rounded-xl border-2 border-solid ${errors.email ? 'border-red-400 shadow-md' : 'border-sky-500'}`}
+                    className={`input-login h-12 p-2 shadow-md border-[#2F6FCC] border rounded-xl border-2 border-solid ${errors.email ? 'border-red-400 shadow-md' : 'border-sky-500'}`}
                   />
                   {errors.email && <p className="text-red-500 text-center">{errors.email}</p>}
                 </div>
 
-                <div className="relative w-[50%]">
+                <div className="relative w-[73%]">
                     <input
                       type={mostrarSenha ? "text" : "password"}
                       placeholder="Senha"
                       onChange={(e) => setPassword(e.target.value)}
-                      className={`input-login h-12 border rounded-xl border-2 border-solid w-full ${errors.password ? 'border-red-500 shadow-md' : 'border-sky-500'}`}
+                      className={`input-login h-12 border rounded-xl border-2 border-solid w-full ${errors.password ? 'border-red-500 shadow-md' : 'border-[#2F6FCC]'}`}
                     />
                     <img
                       src={mostrarSenha ? olhoAberto : olhoFechado}
@@ -366,7 +366,7 @@ const Login = () => {
     
                 <button
                   type="submit"
-                  className="botao-login h-12 rounded-xl bg-[#5B82BB] text-white font-bold w-[50%]"
+                  className="botao-login h-12 rounded-xl bg-[#718CB3] text-white font-bold w-[73%]"
                 >
                   Entrar
                 </button>
@@ -424,10 +424,10 @@ const Login = () => {
 
             <div className="explica-o-nuhcorre flex flex-col justify-center h-full">
               <div className="imagem-projeto flex mt-8 ml-8 flex justify-center items-center">
-                <Image width={200} alt="NuhCorre" src={Camaleao}></Image>
+                <Image width={170} alt="NuhCorre" src={Camaleao}></Image>
               </div>
               <h1 className="titulo-informacoes-projeto text-white font-bold text-4xl mb-4 ml-[20%]">
-                Sobre a NuhCorre
+                Bem-vindo à NuhCorre
               </h1>
               <p className="texto text-white font-medium mb-8 w-[50%] ml-[20%]">
                 A NuhCorre é lider em conectar talentos com oportunidades. Nossa
@@ -438,7 +438,7 @@ const Login = () => {
               <ul className="qualidades-nuh-corre ml-[20%]">
                 <li className="item-qualidade-nuh-corre flex gap-1 text-white font-medium">
                   <span className="check">✓</span>
-                  <p className="texto">Encontre canditados próximos a você!</p>
+                  <p className="texto">Encontre vagas próximas a você!</p>
                 </li>
 
                 <li className="item-qualidade-nuh-corre flex gap-1 text-white font-medium">

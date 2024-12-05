@@ -3,12 +3,91 @@ import "./mainStyle.css";
 import Header from "../header/Header";
 import Footer from "../footer/Footer";
 import { Button } from "@nextui-org/react";
+import axios from "axios";
+import { Vagas } from "../paginaVagas/IndexVagas";
+import { Sobre } from "../paginaSobre/sobre";
+import { Navigate, useNavigate } from "react-router-dom";
+
+
+
 
 export const PesquisaVagaTelaInicial = () => {
   // Estados dos campos com valores padrão
-  const [tipo, setTipo] = useState("Tipo");
-  const [cidade, setCidade] = useState("Cidade");
+  const [tipo, setTipo] = useState("Vagas");
+  const [estado, setCidade] = useState("PE");
   const [pesquisa, setPesquisa] = useState("");
+  const [vagas, setVagas] = useState([]);
+  const [pesquisou, setPesquisou] = useState(false);
+
+  const navigate = useNavigate();
+  
+
+  const handlePesquisaVaga = async () => {
+
+    if (tipo === "Vagas" && pesquisa === "") {
+      const vagas = await fetchAllVagas();
+      setVagas(vagas);
+      setPesquisou(true);
+      navigate('/vagas', { state: { vagas } });
+    }else if (tipo === "Vagas" && pesquisa !== "" && estado === "PE") {
+      const vagas = await fetchVagasPorTitulo();
+      setVagas(vagas);
+      setPesquisou(true);
+      navigate('/vagas', { state: { vagas } });
+    }else if (tipo === "Vagas" && pesquisa !== "" && estado !== "PE") {
+      const vagas = await fetchVagasPorTituloEEstado();
+      setVagas(vagas);
+      setPesquisou(true);
+      navigate('/vagas', { state: { vagas } });
+    }else{
+      navigate('/');
+    }
+
+  };
+  
+
+
+  const fetchAllVagas = async () => {
+    const resposta = await axios.get("http://localhost:8080/vaga/buscar/todas", {
+      validateStatus: (status) => status <= 500,
+    });
+  
+    if (resposta.status === 200) {
+      return resposta.data; // Retorna os dados
+    } else {
+      console.log("Erro ao buscar vagas");
+      return [];
+    }
+  };
+  
+  const fetchVagasPorTitulo = async () => {
+    const resposta = await axios.get(`http://localhost:8080/vaga/buscar/titulo/${pesquisa}`, {
+      validateStatus: (status) => status <= 500,
+    });
+  
+    if (resposta.status === 200) {
+      return resposta.data;
+    } else {
+      console.log("Erro ao buscar vagas");
+      return [];
+    }
+  };
+  
+  const fetchVagasPorTituloEEstado = async () => {
+    const resposta = await axios.get(
+      `http://localhost:8080/vaga/buscar/estado/${estado}/titulo/${pesquisa}`,
+      { validateStatus: (status) => status <= 500 }
+    );
+  
+    if (resposta.status === 200) {
+      return resposta.data;
+    } else {
+      console.log("Erro ao buscar vagas");
+      return [];
+    }
+  };
+  
+
 
   // Estado do select do tipo
   const handleTipo = (event) => {
@@ -25,6 +104,7 @@ export const PesquisaVagaTelaInicial = () => {
   // Estado do select da cidade
   const handleSelectCidade = (event) => {
     const value = event.target.value;
+    console.log(value)
     setCidade(value);
   };
 
@@ -65,6 +145,7 @@ export const PesquisaVagaTelaInicial = () => {
 
   return (
     <>
+      
       <Header />
 
       {/* Div das fotos de fundo */}
@@ -102,33 +183,34 @@ export const PesquisaVagaTelaInicial = () => {
             placeholder="Pesquisa"
             onChange={handlePesquisa}
           />
+        <select
+          name="Estado"
+          id="seleciona_estado"
+          className="selecionar-estado h-[64px] rounded-[5px] border-0 focus:outline-none focus:ring-2
+                          focus:ring-[#1797f5] transition-all duration-300 ease-in-out"
+          onChange={handleSelectCidade}
+        >
+          {estados.map((estado) => (
+            <option value={estado.code} key={estado.code}>
+              {estado.name}
+            </option>
+          ))}
+        </select>
 
-          {/* Select Cidade */}
-          <select
-            name="Estado"
-            id="seleciona_estado"
-            className="selecionar-estado h-[64px] rounded-[5px] border-0 focus:outline-none focus:ring-2
-                    focus:ring-[#1797f5] transition-all duration-300 ease-in-out"
-            onChange={handleSelectCidade}
-          >
-            {estados.map((estado) => (
-              <option value={estado.name} key={estado.code}>
-                {estado.name}
-              </option>
-            ))}
-          </select>
 
           {/* Botão de Pesquisa */}
           <Button
             isIconOnly
             className="botao-pesquisar md:w-1/5 bg-[#718CB3] flex items-center justify-center w-[100%] h-[64px] border-0 focus:outline-none transition-all duration-300 ease-in-out transform hover:scale-105"
+            onClick={handlePesquisaVaga}
           >
             <box-icon name="search" color="white"></box-icon>
           </Button>
         </div>
 
       </div>
-
+      
+      <Sobre />
       <Footer/>
     </>
   );
