@@ -252,9 +252,9 @@ const CadastroEmpresa = () => {
 
             <main id='main-cadastroempresa'>
 
-                <div id="expli">
+                <div id="expli" className='dark:bg-[#5b82bbd1]'>
                 <div className="header-container-infos flex flex-row gap-4 text-white font-medium justify-start ml-8
-                mt-4">
+                mt-4 dark:bg-[#5b82bbd1]">
               <Dropdown>
                 <DropdownTrigger>
                   <h1 className="text-white text-white text-bold text-xl">
@@ -290,7 +290,7 @@ const CadastroEmpresa = () => {
                 Página inicial
               </h1>
             </div>
-                    <div className="titulo_expli">
+                    <div className="titulo_expli dark:bg-[#5b82bbd1]">
                         <img src={camaleao} alt="" className="logo-image" />
                         <h2>Sobre a NuhCorre</h2>
                         <p>
@@ -424,6 +424,7 @@ const CadastroEmpresa = () => {
 
                         <input style={{ marginTop: '10px' }} type="submit" onClick={handleCadastro} />
                         <a href='' style={{ color: '#000', textAlign: 'center', display: 'block', marginTop: '15px' }}>Já tem uma conta? <span style={{ color: '#425BD6' }} onClick={paginaLoginEmpresa}>Faça login</span></a>
+                        <span className='campoVazio '>Preencha o campo</span>
                     </form>
                 </div>
             </main>

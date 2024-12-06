@@ -277,7 +277,7 @@ const CadastroUsuario = () => {
 
             <main id='main-cadastrousuario'>
 
-                <div id='expliu'>
+                <div id='expliu' className='dark:bg-[#5b82bbd1]'>
                     <div className='opcoesHeaderCadastro' style={{ fontSize: '19px', marginLeft: '1rem', marginTop: '1rem' }}>
                         <a onClick={paginaInicio}>Página Inicial </a>
                         <Dropdown>
@@ -301,7 +301,7 @@ const CadastroUsuario = () => {
                         </Dropdown>
                     </div>
 
-                    <div className='titulo_expliu'>
+                    <div className='titulo_expliu dark:bg-[#5b82bbd1]'>
                         <img src={Logo1} alt='' className="logo-imageu" />
                         <h2>Sobre a NuhCorre</h2>
                         <p>

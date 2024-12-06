@@ -12,8 +12,11 @@ import fill from "../../assets/Fill.jpg"
 import gio from "../../assets/gio.jpg"
 import ewer from "../../assets/Ewer.jpg"
 import lua from "../../assets/lua.jpeg"
+
 export const Sobre = () => {
+  
   const sectionRefs = {
+    sobre: useRef(null),
     missao: useRef(null),
     visao: useRef(null),
     valores: useRef(null),
@@ -22,65 +25,65 @@ export const Sobre = () => {
 
   const memberRefs = useRef([]);
 
-  // Adicionando animação de entrada nas seções e membros quando eles estão visíveis
+  // Função que verifica se a seção ou membro está visível
+  const isInViewport = (element) => {
+    const rect = element.getBoundingClientRect();
+    return rect.top < window.innerHeight * 0.8; // 80% da altura da tela
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       // Verificando as seções principais
-      for (const sectionKey in sectionRefs) {
+      Object.keys(sectionRefs).forEach((sectionKey) => {
         const section = sectionRefs[sectionKey].current;
         if (section) {
-          const sectionTop = section.getBoundingClientRect().top;
-          if (sectionTop < window.innerHeight * 0.8) {
-            section.classList.add("active");
+          if (isInViewport(section)) {
+            section.classList.add("sobre-visible");
           } else {
-            section.classList.remove("active");
+            section.classList.remove("sobre-visible");
           }
         }
-      }
+      });
 
       // Verificando os membros da equipe
-      memberRefs.current.forEach((member, index) => {
-        if (member) {
-          const memberTop = member.getBoundingClientRect().top;
-          if (memberTop < window.innerHeight * 0.8) {
-            member.classList.add("active");
-          } else {
-            member.classList.remove("active");
-          }
+      memberRefs.current.forEach((member) => {
+        if (member && isInViewport(member)) {
+          member.classList.add("active");
+        } else {
+          member.classList.remove("active");
         }
       });
     };
 
     window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Para verificar se as seções estão visíveis logo ao carregar a página
+    handleScroll(); // Para verificar as seções quando a página for carregada
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
-      {/* Imagem de fundo de <a href="https://pixabay.com/pt/users/geralt-9301/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6188940">Gerd Altmann</a> por <a href="https://pixabay.com/pt//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6188940">Pixabay</a> */}
+        {/* Imagem de fundo de <a href="https://pixabay.com/pt/users/geralt-9301/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6188940">Gerd Altmann</a> por <a href="https://pixabay.com/pt//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=6188940">Pixabay</a> */}
       <div className="container-about w-full min-h-screen flex flex-col items-center bg-[#F0F4F8]">
-        {/* Título da Página */}
-        <div className="sobre titulo-container flex flex-col items-center gap-4 mb-8">
+          {/* Título da Página */}
+          <div className="sobre titulo-container flex flex-col items-center gap-4 sobre-fade-in" ref={sectionRefs.sobre}>
           <div className="gradient">
-            <h1 className="titulo-container-principal text-3xl font-bold text-center ">Sobre Nós</h1>
+            <h1 className="titulo-container-principal text-3xl font-bold text-center">Sobre Nós</h1>
             <p className="descricao text-lg text-center max-w-2xl">
               Somos uma plataforma comprometida em conectar pessoas a oportunidades de emprego acessíveis, com foco na inclusão e acessibilidade no mercado de trabalho.
             </p>
-
             <div className="seta animate-blink text-6xl">
-              <img src={seta} alt='<a href="https://www.flaticon.com/br/icones-gratis/seta-para-baixo" title="seta para baixo ícones">Seta para baixo ícones criados por Ayub Irawan - Flaticon</a>'/>
+              <img src={seta} alt="Seta para baixo" />
             </div>
           </div>
         </div>
 
         {/* Seções */}
-        <div className="section-info missao" ref={sectionRefs.missao}>
+        <div className="section-info missao dark:bg-black" ref={sectionRefs.missao}>
           <div>
 
-            <h2 className="section-title">Missão</h2>
-            <p className="section-description">
+            <h2 className="section-title dark:text-white">Missão</h2>
+            <p className="section-description dark:text-white">
               Oferecer uma plataforma inclusiva que facilite a busca por empregos, promovendo acessibilidade a todos, independentemente de suas limitações.
             </p>
 
@@ -89,7 +92,7 @@ export const Sobre = () => {
           <img src={missao} id='imgMissao'/>
         </div>
 
-        <div className="section-info visao" ref={sectionRefs.visao}>
+        <div className="section-info visao dark:bg-[#003b6c]" ref={sectionRefs.visao}>
           <div>
 
             <h2 className="section-title">Visão</h2>
@@ -103,36 +106,36 @@ export const Sobre = () => {
           
         </div>
 
-        <div className="section-info valores" ref={sectionRefs.valores}>
-          <h2 className="section-title">Valores</h2>
+        <div className="section-info valores dark:bg-[#505050]" ref={sectionRefs.valores}>
+          <h2 className="section-title dark:text-white">Valores</h2>
           <ul className="section-description list-disc mx-auto max-w-xl">
-            <li>
+            <li className='dark:text-white'>
 
                 <div className='valoresBox'>
                   <img width="48" height="48" src="https://img.icons8.com/fluency/48/diversity--v1.png" alt="diversity--v1"/>
                 </div>Inclusão e diversidade</li>
 
-            <li>
+            <li className='dark:text-white'>
               <div className='valoresBox'>
                 <img width="100" height="100" src="https://img.icons8.com/clouds/100/handshake.png" alt="handshake"/>
               </div>Transparência e ética</li>
 
-            <li>
+            <li className='dark:text-white'>
               <div className='valoresBox'><img width="100" height="100" src="https://img.icons8.com/clouds/100/people-working-together.png" alt="people-working-together"/></div>
               Empoderamento das pessoas</li>
 
-            <li>
+            <li className='dark:text-white'>
               <div className='valoresBox'><img width="100" height="100" src="https://img.icons8.com/bubbles/100/earth-planet.png" alt="earth-planet"/></div>
               Responsabilidade social</li>
           </ul>
 
         </div>
 
-        <div className="section-info equipe" ref={sectionRefs.equipe}>
+        <div className="section-info equipe dark:bg-[#848e7a]" ref={sectionRefs.equipe}>
           <div>
 
-            <h2 className="section-title">Nossa Equipe</h2>
-            <p className="section-description mb-8">
+            <h2 className="section-title dark:text-white">Nossa Equipe</h2>
+            <p className="section-description mb-8 dark:text-white">
               Nossa equipe é formada por profissionais apaixonados pela missão de tornar o mundo mais acessível.
             </p>
 

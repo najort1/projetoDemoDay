@@ -28,7 +28,7 @@ export const Contato = () => {
     <>
     <Header />
     
-    <div className="contact-container">
+    <div className="contact-container dark:bg-[url('../../assets/.png')] bg-cover bg-center">
 
       <div className="contact-content">
         <div className="contact-header">
