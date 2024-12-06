@@ -1,6 +1,6 @@
 import "./styleHeader.css"; 
 import { useNavigate, useLocation } from 'react-router-dom';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logoBranca.png';
 import { Image } from "@nextui-org/react";
 import { Dropdown, DropdownTrigger, DropdownMenu, DropdownItem } from "@nextui-org/react";
 import boxicons from "boxicons";

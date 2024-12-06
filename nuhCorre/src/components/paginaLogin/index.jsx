@@ -120,7 +120,7 @@ const Login = () => {
                 "
           >
             <div className="container-login">
-              <div className="logo-login flex justify-center items-center flex-col font-bold gap-2 mb-6">
+              <div className="logo-login flex justify-center items-center flex-col font-bold gap-2 mb-6 bg-[#718CB3] dark:bg-[#5b82bbd1]">
                 <Image isZoomed width={150} alt="NuhCorre" src={Logo}></Image>
                 <h2 className="texto">Acesse sua conta</h2>
                 <h3 className="texto-usuario text-gray-400">
@@ -199,7 +199,7 @@ const Login = () => {
                       type="text"
                       placeholder="Digite seu email"
                       onChange={(e) => setEmail(e.target.value)}
-                      className={`input-login shadow-xl h-12 p-2 border-sky-500 border rounded-xl border-2 border-solid ${errors.email ? 'border-red-400' : 'border-sky-500'}`}
+                      className={`dark:text-white dark:bg-black input-login shadow-xl h-12 p-2 border-sky-500 border rounded-xl border-2 border-solid ${errors.email ? 'border-red-400' : 'border-sky-500'}`}
                     />
                   </div>
 
@@ -210,7 +210,7 @@ const Login = () => {
                         placeholder="Digite sua senha"
                         name="senha"
                         onChange={(e) => setPassword(e.target.value)}
-                        className={`input-login shadow-xl w-full h-12 p-2 border-sky-500 border rounded-xl  border-2 border-solid ${errors.password ? 'border-red-400' : 'border-sky-500'}`}
+                        className={`dark:text-white dark:bg-black input-login shadow-xl w-full h-12 p-2 border-sky-500 border rounded-xl  border-2 border-solid ${errors.password ? 'border-red-400' : 'border-sky-500'}`}
                       />
                       <img
                         src={mostrarSenha ? olhoAberto : olhoFechado}
@@ -239,7 +239,6 @@ const Login = () => {
                       <p className="erro-api text-center font-bold text-red-400">{errors.email}</p>
                       <p className="erro-api text-center font-bold text-red-400">{errors.password}</p>
                     </div>
-
 
                   </div>
                 </form>
@@ -288,7 +287,7 @@ const Login = () => {
                 <Image width={150} alt="NuhCorre" src={Camaleao}></Image>
               </div>
 
-              <div className="explica-o-nuhcorre flex flex-col gap-4 ml-4 dark:bg-[#5b82bbd1]">
+              <div className="explica-o-nuhcorre flex flex-col gap-4 ml-4 bg-[#718CB3] dark:bg-[#5b82bbd1]">
                 <h1 className="titulo-informacoes-projeto text-white font-bold text-2xl mb-2">
                   Sobre a NuhCorre
                 </h1>
@@ -344,7 +343,7 @@ const Login = () => {
                     type="text"
                     placeholder="Digite seu email"
                     onChange={(e) => setEmail(e.target.value)}
-                    className={`input-login h-12 p-2 shadow-md border-[#2F6FCC] border rounded-xl border-2 border-solid ${errors.email ? 'border-red-400 shadow-md' : 'border-sky-500'}`}
+                    className={`dark:text-white dark:bg-black input-login h-12 p-2 shadow-md border-[#2F6FCC] border rounded-xl border-2 border-solid ${errors.email ? 'border-red-400 shadow-md' : 'border-sky-500'}`}
                   />
                   {errors.email && <p className="text-red-500 text-center">{errors.email}</p>}
                 </div>
@@ -354,7 +353,7 @@ const Login = () => {
                       type={mostrarSenha ? "text" : "password"}
                       placeholder="Senha"
                       onChange={(e) => setPassword(e.target.value)}
-                      className={`input-login h-12 border rounded-xl border-2 border-solid w-full ${errors.password ? 'border-red-500 shadow-md' : 'border-[#2F6FCC]'}`}
+                      className={`dark:text-white dark:bg-black input-login h-12 border rounded-xl border-2 border-solid w-full ${errors.password ? 'border-red-500 shadow-md' : 'border-[#2F6FCC]'}`}
                     />
                     <img
                       src={mostrarSenha ? olhoAberto : olhoFechado}
@@ -385,8 +384,8 @@ const Login = () => {
             </div>
           </div>
 
-          <div className="container-informacoes-projeto w-[50%] bg-[#718CB3] flex flex-col h-dvh dark:bg-[#5b82bbd1]">
-            <div className="header-container-infos flex flex-row gap-4 text-white font-medium justify-end mr-8 mt-4 dark:bg-[#5b82bbd1]">
+          <div className="container-informacoes-projeto w-[50%] bg-[#718CB3] flex flex-col h-dvh bg-[#718CB3] dark:bg-[#5b82bbd1]">
+            <div className="header-container-infos flex flex-row gap-4 text-white font-medium justify-end mr-8 mt-4">
               <Dropdown>
                 <DropdownTrigger>
                   <h1 className="text-white text-white text-bold text-xl">
@@ -423,7 +422,7 @@ const Login = () => {
               </h1>
             </div>
 
-            <div className="explica-o-nuhcorre flex flex-col justify-center h-full dark:bg-[#5b82bbd1]">
+            <div className="explica-o-nuhcorre flex flex-col justify-center h-full">
               <div className="imagem-projeto flex mt-8 ml-8 flex justify-center items-center">
                 <Image width={170} alt="NuhCorre" src={Camaleao}></Image>
               </div>

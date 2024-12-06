@@ -252,9 +252,9 @@ const CadastroEmpresa = () => {
 
             <main id='main-cadastroempresa'>
 
-                <div id="expli" className='dark:bg-[#5b82bbd1]'>
+                <div id="expli" className='bg-[#718CB3] dark:bg-[#5b82bbd1]'>
                 <div className="header-container-infos flex flex-row gap-4 text-white font-medium justify-start ml-8
-                mt-4 dark:bg-[#5b82bbd1]">
+                mt-4">
               <Dropdown>
                 <DropdownTrigger>
                   <h1 className="text-white text-white text-bold text-xl">
@@ -290,7 +290,7 @@ const CadastroEmpresa = () => {
                 Página inicial
               </h1>
             </div>
-                    <div className="titulo_expli dark:bg-[#5b82bbd1]">
+                    <div className="titulo_expli">
                         <img src={camaleao} alt="" className="logo-image" />
                         <h2>Sobre a NuhCorre</h2>
                         <p>
@@ -317,19 +317,20 @@ const CadastroEmpresa = () => {
 
                         <div>
                             <label htmlFor="name">Nome fantasia:</label>
-                            <input type="text" name="nome" required pattern="^([a-zA-ZÀ-ÖØ-öø-ÿ]|\s)*$" placeholder="Nome" />
+                            <input type="text" name="nome" required pattern="^([a-zA-ZÀ-ÖØ-öø-ÿ]|\s)*$" className='dark:bg-black dark:text-white' placeholder="Nome" />
                             <span ref={erroNome} className="erro"></span>
                         </div>
 
                         <div>
                             <label htmlFor="email">Email:</label>
-                            <input type="email" name="email" required pattern="^[a-zA-Z0-9_]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" placeholder="Email" />
+                            <input type="email" name="email" required pattern="^[a-zA-Z0-9_]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" className='dark:text-white dark:bg-black' placeholder="Email" />
                             <span ref={erroEmail} className="erro"></span>
                         </div>
 
                         <div>
                             <label htmlFor="telefone">Telefone:</label>
                             <input
+                                className='dark:bg-black dark:text-white'
                                 type="tel"
                                 name="telefone"
                                 required
@@ -349,6 +350,7 @@ const CadastroEmpresa = () => {
                         <div>
                             <label htmlFor="cnpj">CNPJ:</label>
                             <input
+                                className='dark:bg-black dark:text-white'
                                 type="text"
                                 name="cnpj"
                                 required
@@ -379,6 +381,7 @@ const CadastroEmpresa = () => {
                                     pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$"
                                     onFocus={handleFocusSenha}
                                     onBlur={handleBlurSenha}
+                                    className='dark:bg-black'
                                 />
                                 <button
                                     type="button"
@@ -424,7 +427,6 @@ const CadastroEmpresa = () => {
 
                         <input style={{ marginTop: '10px' }} type="submit" onClick={handleCadastro} />
                         <a href='' style={{ color: '#000', textAlign: 'center', display: 'block', marginTop: '15px' }}>Já tem uma conta? <span style={{ color: '#425BD6' }} onClick={paginaLoginEmpresa}>Faça login</span></a>
-                        <span className='campoVazio '>Preencha o campo</span>
                     </form>
                 </div>
             </main>

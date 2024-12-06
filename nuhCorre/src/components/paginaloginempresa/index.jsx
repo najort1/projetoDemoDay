@@ -75,7 +75,7 @@ const LoginEmpresa = () => {
     return (
         <>
         <main id='main-loginempresa'>
-            <div id='expliu-loginempresa' className='container-informacoes-projeto w-[50%] bg-[#718CB3] flex flex-col h-dvh'>
+            <div id='expliu-loginempresa' className='container-informacoes-projeto w-[50%] bg-[#718CB3] flex flex-col h-dvh bg-[#718CB3] dark:bg-[#5b82bbd1]'>
             <div className="header-container-infos flex flex-row gap-4 text-white font-medium justify-end ml-8 mt-4
                 ">
               <Dropdown>
@@ -146,6 +146,7 @@ const LoginEmpresa = () => {
                             onChange={(e) => setEmailCnpj(e.target.value)}
                             required
                             placeholder="Email ou CNPJ"
+                            className='dark:text-white dark:bg-black'
                         />
                     </div>
 
@@ -159,6 +160,7 @@ const LoginEmpresa = () => {
                                 onChange={(e) => setSenha(e.target.value)}
                                 required
                                 placeholder="Digite sua senha"
+                                className='dark:text-white dark:bg-black'
                             />
                             <button
                                 type="button"

@@ -49,11 +49,9 @@ form{width: 100%;}
 #caixaCadastroEmpresa select{
 
     border-radius: 15px;
-    /*background: #171717c0;*/
-    background: #fff;
+    /*background: #fff;*/
     border: 2px solid #2F6FCC;
     box-shadow: 3px 6px 6px rgba(0, 0, 0, 0.362);
-    color: #000;
     font-size: 1em;
     font-weight: 500;
     height: 50px !important;
@@ -132,7 +130,6 @@ span{
 
 #expli {
     width: 50vw;
-    background: #718CB3;
     color: #fff;
     padding-left: 2rem;
     justify-content: space-around;

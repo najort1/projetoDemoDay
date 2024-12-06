@@ -274,10 +274,9 @@ const CadastroUsuario = () => {
     return (
         <>
 
-
             <main id='main-cadastrousuario'>
 
-                <div id='expliu' className='dark:bg-[#5b82bbd1]'>
+                <div id='expliu' className='bg-[#718CB3] dark:bg-[#5b82bbd1]'>
                     <div className='opcoesHeaderCadastro' style={{ fontSize: '19px', marginLeft: '1rem', marginTop: '1rem' }}>
                         <a onClick={paginaInicio}>Página Inicial </a>
                         <Dropdown>
@@ -301,7 +300,7 @@ const CadastroUsuario = () => {
                         </Dropdown>
                     </div>
 
-                    <div className='titulo_expliu dark:bg-[#5b82bbd1]'>
+                    <div className='titulo_expliu'>
                         <img src={Logo1} alt='' className="logo-imageu" />
                         <h2>Sobre a NuhCorre</h2>
                         <p>
@@ -331,25 +330,25 @@ const CadastroUsuario = () => {
 
                         <div>
                             <label htmlFor="name">Nome completo:</label>
-                            <input type="text" name="nome" required pattern="^([a-zA-ZÀ-ÖØ-öø-ÿ]|\s)*$" placeholder="Nome completo" />
+                            <input type="text" name="nome" required pattern="^([a-zA-ZÀ-ÖØ-öø-ÿ]|\s)*$" placeholder="Nome completo" className='dark:text-white dark:bg-black'/>
                             <span ref={erroNome} className="erro"></span>
                         </div>
 
                         <div>
                             <label htmlFor="email">Email:</label>
-                            <input type="email" name="email" required pattern="^[a-zA-Z0-9_]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" placeholder="Email" />
+                            <input type="email" name="email" required pattern="^[a-zA-Z0-9_]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" className='dark:text-white dark:bg-black' placeholder="Email" />
                             <span ref={erroEmail} className="erro"></span>
                         </div>
 
                         <div>
                             <label htmlFor="telefone">Telefone:</label>
-                            <input type="tel" name="telefone" pattern="^\(\d{2}\) \d{4,5}-\d{4}$" required placeholder="(XX) XXXX-XXXX" />
+                            <input type="tel" name="telefone" pattern="^\(\d{2}\) \d{4,5}-\d{4}$" className='dark:bg-black dark:text-white' required placeholder="(XX) XXXX-XXXX" />
                             <span ref={erroTelefone} className="erro"></span>
                         </div>
 
                         <div>
                             <label htmlFor="dataNascimento">Nascimento:</label>
-                            <input type="date" name="dataNascimento" required />
+                            <input type="date" name="dataNascimento" className='dark:text-white dark:bg-black' required />
                             <span ref={erroData} className="erro"></span>
                         </div>
 
@@ -364,6 +363,7 @@ const CadastroUsuario = () => {
                                     onChange={(e) => setSenha(e.target.value)}
                                     required
                                     placeholder="Senha"
+                                    className='dark:bg-black dark:text-white'
                                     pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,}$"
                                 />
                                 <button
@@ -379,6 +379,7 @@ const CadastroUsuario = () => {
                                         cursor: 'pointer',
                                     }}
                                     value='Criar conta'
+                                    
                                 >
 
                                     <img
