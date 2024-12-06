@@ -201,8 +201,6 @@ export function EdicaoEmpressa() {
                             </div>
 
                             <div>
-                                <label htmlFor='senha'>Senha</label>
-                                <input type='password' name='senha' />
 
                                 <label htmlFor='telefone'>Telefone</label>
                                 <input type='tel' name='telefone' />

@@ -27,6 +27,7 @@ public class Vaga {
     @NotEmpty(message = "O campo título é obrigatório")
     private String titulo;
 
+    @Lob
     @NotEmpty(message = "O campo descrição é obrigatório")
     private String descricao;
 

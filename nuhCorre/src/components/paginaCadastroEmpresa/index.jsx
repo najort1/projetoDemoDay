@@ -224,6 +224,8 @@ const CadastroEmpresa = () => {
             data[key] = value;
         });
 
+        data.cnpj = data.cnpj.replace(/\D/g, '');
+
         try {
             const response = await axios.post('http://localhost:8080/auth/empresa/cadastrar', data);
             if (response.status === 201) {
@@ -245,7 +247,7 @@ const CadastroEmpresa = () => {
     };
 
     const paginaLoginEmpresa = () => {
-        navigate('/loginEmpresa');
+        navigate('/login-Empresa');
     };
     return (
         <>

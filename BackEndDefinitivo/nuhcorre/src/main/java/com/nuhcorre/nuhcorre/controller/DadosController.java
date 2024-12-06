@@ -1,12 +1,21 @@
 package com.nuhcorre.nuhcorre.controller;
 
 
+import com.nuhcorre.nuhcorre.model.DTO.EmpresaDTO;
 import com.nuhcorre.nuhcorre.model.DTO.EnderecoDTO;
 import com.nuhcorre.nuhcorre.model.DTO.UsuarioDTO;
 import com.nuhcorre.nuhcorre.model.DTO.VulnerabilidadeDTO;
+import com.nuhcorre.nuhcorre.model.Empresa;
+import com.nuhcorre.nuhcorre.model.Endereco;
 import com.nuhcorre.nuhcorre.model.Usuario;
+import com.nuhcorre.nuhcorre.model.details.EmpresaUserDetails;
+import com.nuhcorre.nuhcorre.service.EmpresaService;
 import com.nuhcorre.nuhcorre.service.UsuarioService;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,9 +26,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class DadosController {
 
     private final UsuarioService usuarioService;
+    private final EmpresaService empresaService;
 
-    public DadosController(UsuarioService usuarioService) {
+    public DadosController(UsuarioService usuarioService, EmpresaService empresaService) {
         this.usuarioService = usuarioService;
+        this.empresaService = empresaService;
     }
 
     @GetMapping("/informacoes/{id}")
@@ -49,6 +60,44 @@ public class DadosController {
                 )).toList()
         );
         return ResponseEntity.ok(usuarioDTO);
+    }
+
+    @Transactional
+    @GetMapping("/empresa-logada")
+    public ResponseEntity<EmpresaDTO> getEmpresaLogada() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+
+        if (principal instanceof EmpresaUserDetails) {
+            String cnpj = ((EmpresaUserDetails) principal).getEmpresa().getCnpj();
+            Empresa empresa = empresaService.findById(cnpj);
+            if (empresa == null) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
+            EmpresaDTO empresaDTO = new EmpresaDTO(
+                    empresa.getCnpj(),
+                    empresa.getNome(),
+                    empresa.getTelefone(),
+                    empresa.getEmail(),
+                    empresa.getDescricao(),
+                    empresa.getCategoria(),
+                    empresa.getDataCadastro(),
+                    empresa.isAtivo(),
+                    empresa.isVerificado(),
+                    empresa.isPremium(),
+                    empresa.getEnderecos().stream().map(endereco -> new EnderecoDTO(
+                            endereco.getId(),
+                            endereco.getCep(),
+                            endereco.getCidade(),
+                            endereco.getEstado(),
+                            endereco.getRua(),
+                            endereco.getNumero()
+                    )).toList()
+            );
+            return ResponseEntity.ok(empresaDTO);
+        }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
 }

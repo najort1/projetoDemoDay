@@ -1,13 +1,15 @@
 package com.nuhcorre.nuhcorre.controller;
 
+import com.nuhcorre.nuhcorre.model.DTO.*;
+import com.nuhcorre.nuhcorre.model.Endereco;
 import com.nuhcorre.nuhcorre.repository.VagaRepository;
-import com.nuhcorre.nuhcorre.model.DTO.EmpresaLoginDTO;
-import com.nuhcorre.nuhcorre.model.DTO.EmpresaRespostaLoginDTO;
-import com.nuhcorre.nuhcorre.model.DTO.RegistroEmpresaDTO;
 import com.nuhcorre.nuhcorre.model.Empresa;
 import com.nuhcorre.nuhcorre.service.AuthenticationService;
 import com.nuhcorre.nuhcorre.service.JwtService;
+import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -33,6 +35,7 @@ public class EmpresaController {
     public ResponseEntity<EmpresaRespostaLoginDTO> cadastrarUsuario(@RequestBody RegistroEmpresaDTO registroEmpresaDTO) {
         return ResponseEntity.ok(gerarRespostaLogin(authenticationService.cadastrarEmpresa(registroEmpresaDTO)));
     }
+
 
     private EmpresaRespostaLoginDTO gerarRespostaLogin(Empresa empresa) {
         String token = jwtService.generateToken(empresa);

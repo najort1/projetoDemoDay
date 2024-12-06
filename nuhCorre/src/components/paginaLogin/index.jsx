@@ -40,8 +40,8 @@ const Login = () => {
 
   const navegarParaLoginUsuario = () => { navigate('/login') };
   const navegarParaCadastroUsuario = () => { navigate('/cadastro') };
-  const navegarParaCadastroEmpresa = () => { navigate('/cadastroEmpresa') };
-  const navegarParaLoginEmpresa = () => { navigate('/loginEmpresa') };
+  const navegarParaCadastroEmpresa = () => { navigate('/cadastro-Empresa') };
+  const navegarParaLoginEmpresa = () => { navigate('/login-Empresa') };
 
 
   const validateEmail = (email) => {

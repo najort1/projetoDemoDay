@@ -19,18 +19,18 @@ const routes = [
   { path: "/", element: <PesquisaVagaTelaInicial /> },
   { path: "/login", element: <LoginPage /> },
   { path: "/cadastro", element: <CadastroUsuario /> },
-  { path: "/cadastroEmpresa", element: <CadastroEmpresa /> },
-  { path: "/edicaoEmpressa", element: <EdicaoEmpressa /> },
+  { path: "/cadastro-empresa", element: <CadastroEmpresa /> },
+  { path: "/edicao-empressa", element: <EdicaoEmpressa /> },
   { path: "/editar-perfil-candidato", element: <EditarPerfilCandidato /> },
   { path: "/vagas", element: <Vagas /> },
   { path: "/dashboard", element: <DashBoardPrincipal /> },
-  { path: "/loginEmpresa", element: <LoginPageEm /> },
+  { path: "/login-empresa", element: <LoginPageEm /> },
   { path: "/sobre", element: <Sobre /> },
   { path: "/contato", element: <Contato/> },
   { path: "/cadastrar-vaga", element: <CadastrarVaga/> },
   { path: "/candidatos", element: <Candidatos/> },
   { path: "*", element: <NotFound /> },
-  { path: "/Formulario-de-vagas", element: <FormularioDeVagas/>},
+  { path: "/formulario-de-vagas", element: <FormularioDeVagas/>},
 ];
 
 export default routes;

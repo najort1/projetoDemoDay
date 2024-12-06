@@ -13,7 +13,7 @@ function Header() {
   const isDarkMode = useDarkMode();
 
   // Verifica se a página atual é "CadastroEmpresa"
-  const isCadastroEmpresaPage = location.pathname === '/cadastroEmpresa';
+  const isCadastroEmpresaPage = location.pathname === '/cadastro-Empresa';
   const isHomePage = location.pathname === '/';
   const isContatoPage = location.pathname === '/contato';
   const isCadastroUsuarioPage = location.pathname === '/cadastro';
@@ -28,7 +28,7 @@ function Header() {
   };
 
   const cadastroEmpresa = () => {
-    navigate('/cadastroEmpresa');
+    navigate('/cadastro-Empresa');
   };
 
   const navegarParaPaginaPrincipal = () => {
@@ -36,11 +36,11 @@ function Header() {
   };
 
   const edicaoEmpressa = () => {
-    navigate('/edicaoEmpressa');
+    navigate('/edicao-Empressa');
   };
 
   const paginaLoginEmpresa = () => {
-    navigate('/loginEmpresa');
+    navigate('/login-Empresa');
   };
 
   const navegarParaContato = () => {

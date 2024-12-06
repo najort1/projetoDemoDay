@@ -101,13 +101,8 @@ public class EnderecoController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Endereço não encontrado.");
             }
             if (endereco.getEmpresa().getCnpj().trim().equals(empresa.getCnpj().trim())) {
-                System.out.println("Empresa encontrou o endereço");
                 return ResponseEntity.ok(endereco);
             }
-
-            System.out.println("Empresa não encontrou o endereço");
-            System.out.println("Empresa: " + empresa.getCnpj());
-            System.out.println("Endereço: " + endereco.getEmpresa().getCnpj());
 
         }
 

@@ -264,11 +264,11 @@ const CadastroUsuario = () => {
     };
 
     const paginaLoginEmpresa = () => {
-        navigate('/loginEmpresa');
+        navigate('/login-Empresa');
     };
 
     const cadastroEmpresa = () => {
-        navigate('/cadastroEmpresa');
+        navigate('/cadastro-Empresa');
     };
 
     return (

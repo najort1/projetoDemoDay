@@ -69,7 +69,7 @@ const LoginEmpresa = () => {
     };
 
     const paginaCadastroLogin = () => {
-        navigate('/cadastroEmpresa');
+        navigate('/cadastro-Empresa');
     };
 
     return (
