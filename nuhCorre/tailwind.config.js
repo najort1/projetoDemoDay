@@ -9,7 +9,12 @@ export default {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'img-clara': "url('/src/assets/fundo.png')",  // Imagem do fundo claro
+        'img-escuro': "url('/src/assets/bgEscuro.png')"  // Imagem do fundo escuro
+      },
+    },
   },
   darkMode: "class",
   plugins: [nextui()]

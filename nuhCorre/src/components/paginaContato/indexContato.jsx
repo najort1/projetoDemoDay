@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
 import './styleContato.css';
 import Header from '../header/Header';
@@ -24,80 +24,86 @@ export const Contato = () => {
     alert('Mensagem enviada com sucesso!');
   };
 
+  useEffect(() => {
+    // Detecta automaticamente o modo escuro com base nas preferências do sistema.
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (prefersDarkMode) {
+      document.documentElement.classList.add('dark');
+    }
+  }, []);
+
   return (
     <>
-    <Header />
-    
-    <div className="contact-container dark:bg-[url('../../assets/.png')] bg-cover bg-center">
+      <Header />
+      {/* Definindo as imagens de fundo com base no modo escuro ou claro */}
+      <div className="contact-container bg-img-clara dark:bg-img-escuro bg-cover bg-center">
+        <div className="contact-content">
+          <div className="contact-header">
+            <h1 className='dark:text-white'>Entre em Contato</h1>
+            <p className='dark:text-[#ababab]'>Tem alguma dúvida? Envie sua mensagem!</p>
+          </div>
 
-      <div className="contact-content">
-        <div className="contact-header">
-          <h1>Entre em Contato</h1>
-          <p>Tem alguma dúvida? Envie sua mensagem!</p>
+          {/* Formulário de Contato */}
+          <div className="contact-form dark:bg-[#6a6a6a]">
+            <form onSubmit={handleSubmit}>
+              <div className="input-group">
+                <label htmlFor="nome" className='dark:text-white'>Nome</label>
+                <input
+                  type="text"
+                  id="nome"
+                  name="nome"
+                  placeholder="Digite seu nome"
+                  value={formData.nome}
+                  onChange={handleChange}
+                  required
+                  className='dark:border-2 dark:border-white'
+                />
+              </div>
+
+              <div className="input-group">
+                <label htmlFor="email" className='dark:text-white'>E-mail</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Digite seu e-mail"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className='dark:border-2 dark:border-white'
+                />
+              </div>
+
+              <div className="input-group">
+                <label htmlFor="mensagem" className='dark:text-white'>Mensagem</label>
+                <textarea
+                  id="mensagem"
+                  name="mensagem"
+                  rows="5"
+                  placeholder="Digite sua mensagem"
+                  value={formData.mensagem}
+                  onChange={handleChange}
+                  required
+                  className='dark:border-2 dark:border-white'
+                />
+              </div>
+
+              <button type="submit" className="submit-btn">Enviar</button>
+            </form>
+          </div>
         </div>
-
-        {/* Formulário de Contato */}
-        <div className="contact-form">
-          <form onSubmit={handleSubmit}>
-            <div className="input-group">
-              <label htmlFor="nome">Nome</label>
-              <input
-                type="text"
-                id="nome"
-                name="nome"
-                placeholder="Digite seu nome"
-                value={formData.nome}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="input-group">
-              <label htmlFor="email">E-mail</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Digite seu e-mail"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="input-group">
-              <label htmlFor="mensagem">Mensagem</label>
-              <textarea
-                id="mensagem"
-                name="mensagem"
-                rows="5"
-                placeholder="Digite sua mensagem"
-                value={formData.mensagem}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <button type="submit" className="submit-btn">Enviar</button>
-          </form>
-        </div>
-
       </div>
 
-    </div>
-    <div id='contatosAmais'>
-
-      <div className="contact-info">
-        <h2>Formas alternativas de contato</h2>
-        <p><FaPhoneAlt /> (81) 91234-5678</p>
-        <p><FaEnvelope /> contato@exemplo.com</p>
-        <p><FaMapMarkerAlt /> Rua Exemplo, 123, Pernambuco, PE</p>
+      <div className='bg-[#7999c7] dark:bg-[#4b6b99]'id="contatosAmais">
+        <div className="contact-info dark:bg-[#313131]">
+          <h2 className='dark:text-white'>Formas alternativas de contato</h2>
+          <p className='dark:text-white'><FaPhoneAlt  /> (81) 91234-5678</p>
+          <p className='dark:text-white'><FaEnvelope /> contato@exemplo.com</p>
+          <p className='dark:text-white'><FaMapMarkerAlt /> Rua Exemplo, 123, Pernambuco, PE</p>
+        </div>
       </div>
 
-
-    </div>
-    <Footer/>
-    
+      <Footer />
     </>
   );
 };

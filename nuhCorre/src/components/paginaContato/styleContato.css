@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column; /* Colocando os itens em coluna */
   min-height: 100vh; /* Garante que a altura mínima seja a altura da tela */
-  background-image: url('../../assets/fundo.png');
   background-size: 100% 100%;
   background-repeat: no-repeat;
   padding-bottom: 60px; /* Espaço para o footer */
@@ -136,7 +135,6 @@
 
 /* Contatos alternativos */
 #contatosAmais {
-  background: #7999c7;
   height: auto; /* Ajusta a altura para o conteúdo */
   padding: 40px 20px; /* Adiciona espaçamento interno */
   display: flex;
