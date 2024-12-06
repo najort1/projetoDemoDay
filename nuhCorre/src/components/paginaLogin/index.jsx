@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 import Camaleao from "../../assets/camaleao.png";
 import { Image } from "@nextui-org/react";
+
 import {
   TabletView,
   BrowserView,
@@ -287,7 +288,7 @@ const Login = () => {
                 <Image width={150} alt="NuhCorre" src={Camaleao}></Image>
               </div>
 
-              <div className="explica-o-nuhcorre flex flex-col gap-4 ml-4">
+              <div className="explica-o-nuhcorre flex flex-col gap-4 ml-4 dark:bg-[#5b82bbd1]">
                 <h1 className="titulo-informacoes-projeto text-white font-bold text-2xl mb-2">
                   Sobre a NuhCorre
                 </h1>
@@ -384,8 +385,8 @@ const Login = () => {
             </div>
           </div>
 
-          <div className="container-informacoes-projeto w-[50%] bg-[#718CB3] flex flex-col h-dvh">
-            <div className="header-container-infos flex flex-row gap-4 text-white font-medium justify-end mr-8 mt-4">
+          <div className="container-informacoes-projeto w-[50%] bg-[#718CB3] flex flex-col h-dvh dark:bg-[#5b82bbd1]">
+            <div className="header-container-infos flex flex-row gap-4 text-white font-medium justify-end mr-8 mt-4 dark:bg-[#5b82bbd1]">
               <Dropdown>
                 <DropdownTrigger>
                   <h1 className="text-white text-white text-bold text-xl">
@@ -422,7 +423,7 @@ const Login = () => {
               </h1>
             </div>
 
-            <div className="explica-o-nuhcorre flex flex-col justify-center h-full">
+            <div className="explica-o-nuhcorre flex flex-col justify-center h-full dark:bg-[#5b82bbd1]">
               <div className="imagem-projeto flex mt-8 ml-8 flex justify-center items-center">
                 <Image width={170} alt="NuhCorre" src={Camaleao}></Image>
               </div>

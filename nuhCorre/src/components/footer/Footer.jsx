@@ -6,14 +6,9 @@ function Footer() {
   const location = useLocation();
 
   // Verifica qual página está ativa
-  const isSobrePage = location.pathname === '/sobre';
   const isServicosPage = location.pathname === '/servicos';
   const isPoliticaPage = location.pathname === '/politica-de-privacidade';
-
-  const navegarParaSobre = () => {
-    navigate('/sobre');
-  };
-
+  
   const navegarParaServicos = () => {
     navigate('/servicos');
   };
@@ -25,14 +20,6 @@ function Footer() {
   return (
     <footer className="bg-[#5b82bbd1] h-14 w-full flex justify-evenly items-center p-4 bottom-0">
       <div className="items-textuais flex flex-row gap-4 text-white font-bold text-sm hover:cursor-pointer">
-        <div className="item-footer">
-          <p
-            className={`text-footer ${isSobrePage ? 'link-ativo-footer' : ''}`}
-            onClick={navegarParaSobre}
-          >
-            Sobre
-          </p>
-        </div>
 
         <div className="item-footer">
           <p

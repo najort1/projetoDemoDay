@@ -8,9 +8,6 @@ import { Vagas } from "../paginaVagas/IndexVagas";
 import { Sobre } from "../paginaSobre/sobre";
 import { Navigate, useNavigate } from "react-router-dom";
 
-
-
-
 export const PesquisaVagaTelaInicial = () => {
   // Estados dos campos com valores padrão
   const [tipo, setTipo] = useState("Vagas");
@@ -142,6 +139,7 @@ export const PesquisaVagaTelaInicial = () => {
   useEffect(() => {
     document.querySelector('.container').classList.add('fade-in');
   }, []);
+  
 
   return (
     <>
@@ -197,11 +195,11 @@ export const PesquisaVagaTelaInicial = () => {
           ))}
         </select>
 
-
           {/* Botão de Pesquisa */}
           <Button
             isIconOnly
-            className="botao-pesquisar md:w-1/5 bg-[#718CB3] flex items-center justify-center w-[100%] h-[64px] border-0 focus:outline-none transition-all duration-300 ease-in-out transform hover:scale-105"
+            className="botao-pesquisar md:w-1/5 bg-[#718CB3] flex items-center justify-center w-[100%] h-[64px] border-0 
+              focus:outline-none transition-all duration-300 ease-in-out transform hover:scale-105 dark:bg-[#4B6B99]"
             onClick={handlePesquisaVaga}
           >
             <box-icon name="search" color="white"></box-icon>
