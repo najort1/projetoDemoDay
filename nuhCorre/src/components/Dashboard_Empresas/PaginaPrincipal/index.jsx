@@ -8,10 +8,12 @@ import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
-
+import ThemeSwitcher from "../../ThemeSwitcher/ThemeSwitcher";
 import SideBar from "../SideBar";
+import useDarkMode from "../../../hooks/useDarkMode";
 
 const DashBoardPrincipal = () => {
+  const imgPadrao = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIMDsWFBoBCZUhHBwy7G9G65_pJ2SZngH5BQ&s'
   const [visible, setVisible] = useState(false);
   const [chartInstance, setChartInstance] = useState(null);
   const [data, setData] = useState([]);
@@ -24,12 +26,15 @@ const DashBoardPrincipal = () => {
   const [vagas, setVagas] = useState([]);
   const [maximoCandidatos, setMaximoCandidatos] = useState(0);
   const [fetchInicial, setFetchInicial] = useState(false);
+  const isDarkMode = useDarkMode();
 
   const navigate = useNavigate();
 
   const RedirectCadastrarNovaVaga = () => {
     navigate("/cadastrar-vaga");
   };
+
+
 
   const modal = () => {
     return (
@@ -224,16 +229,22 @@ const DashBoardPrincipal = () => {
       {showModal && modal()}
     <SideBar visible={visible} setVisible={setVisible} />
 
-      <header className="header-dashboard flex flex-row w-full shadow-xl p-2 items-center">
+      <header className="header-dashboard flex flex-row w-full shadow-xl p-2 items-center
+        dark:bg-gray-800
+      ">
         <button
           className="abrir-side-bar hover:text-gray-300"
           onClick={() => setVisible(true)}
         >
-          <box-icon name="menu" size="lg"></box-icon>
+
+          {!isDarkMode ? <box-icon name="menu" size="lg"></box-icon> : <box-icon name="menu" size="lg" color='#ffffff'></box-icon>}
         </button>
 
-        <h1 className="titulo-dashboard text-blue-800 text-2xl flex justify-center items-center font-bold m-auto">
+        <h1 className="titulo-dashboard text-blue-800 text-2xl flex justify-center items-center font-bold m-auto
+          dark:text-white
+        ">
           Dashboard
+          <ThemeSwitcher />
         </h1>
 
         <div className="selecionar-vaga">
@@ -242,12 +253,14 @@ const DashBoardPrincipal = () => {
             <select
               name="vagas"
               id="vagas"
-              className="bg-white border-2 border-blue-500 rounded-md p-2"
+              className="bg-white border-2 border-blue-500 rounded-md p-2
+                dark:bg-gray-800
+              "
               onChange={handleMudarVaga}
             >
-              {vagaTitulos.map((vaga) => (
+              {vagaTitulos.map((vaga,index) => (
                 <option value={vaga.id} key={vaga.id}>
-                  {vaga.id} - {vaga.titulo}
+                  {index} - {vaga.titulo}
                 </option>
               ))}
             </select>
@@ -258,20 +271,26 @@ const DashBoardPrincipal = () => {
       <main className="main-dashboard flex flex-col items-center gap-4 p-4">
         <div className="flex flex-row items-center gap-4">
           <h1 className="text-2xl font-bold">
-            Bem vindo, <span className="text-blue-800">{nomeEmpresa}</span>
+            Bem vindo, <span className="text-blue-800 dark:text-blue-400">{nomeEmpresa}</span>
           </h1>
         </div>
 
         <div className="flex flex-row items-center gap-4">
-          <div className="card flex flex-col items-center gap-4 p-4 shadow-md bg-white border-2 border-blue-500">
-            <h1 className="titulo-card text-2xl font-bold text-center">
+          <div className="card flex flex-col items-center gap-4 p-4 shadow-md bg-white border-2 border-blue-500
+            dark:bg-gray-800
+          ">
+            <h1 className="titulo-card text-2xl font-bold text-center
+            ">
               Total candidatos
             </h1>
             <h1 className="numero-card text-4xl font-bold">
               {candidatos.length}
             </h1>
           </div>
-          <div className="card flex flex-col items-center gap-4 p-4 shadow-md bg-white border-2 border-blue-500">
+          <div className="card flex flex-col items-center gap-4 p-4 shadow-md bg-white border-2 border-blue-500
+          dark:bg-gray-800
+          
+          ">
             <h1 className="titulo-card text-2xl font-bold text-center">
               Visualizações totais
             </h1>
@@ -307,7 +326,7 @@ const DashBoardPrincipal = () => {
       >
         <div
           className="container-atividade-recente flex flex-col gap-4 p-4 shadow-md bg-white border-2 border-blue-500 rounded-md
-                
+                dark:bg-gray-800
                 xl:w-[50%]
 
                 "
@@ -316,7 +335,8 @@ const DashBoardPrincipal = () => {
             Atividades recentes
           </h1>
 
-          <div className="atividade-recente flex flex-col gap-4">
+          <div className="atividade-recente flex flex-col gap-4
+          ">
             {candidatos.map((candidato) => (
               <div
                 key={candidato.telefone}
@@ -345,7 +365,7 @@ const DashBoardPrincipal = () => {
 
         <div
           className="container-vagas-em-destaque flex flex-col gap-4 p-4 shadow-md bg-white border-2 border-blue-500 rounded-md
-                
+                dark:bg-gray-800
                 xl:w-[50%]
                 "
         >

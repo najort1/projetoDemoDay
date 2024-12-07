@@ -77,6 +77,10 @@ public class VagaController {
                 return ResponseEntity.badRequest().body("Endereço não encontrado");
             }
 
+            if(!endereco.getEmpresa().getCnpj().equals(cnpj)){
+                return ResponseEntity.badRequest().body("Endereço não pertence a empresa");
+            }
+
             vaga.setEndereco(endereco);
 
             return ResponseEntity.ok(vagaService.salvarVaga(vaga));
@@ -451,6 +455,24 @@ public class VagaController {
 
     @GetMapping("/{vagaId}/visualizacoes")
     public ResponseEntity<VisualizacoesPorAnoEMesDTO> getVisualizacoesPorAnoEMes(@PathVariable long vagaId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+
+        if (!(principal instanceof EmpresaUserDetails)) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        Empresa empresa = ((EmpresaUserDetails) principal).getEmpresa();
+
+        Vaga vaga = vagaService.buscarVagaPorId(vagaId);
+        if (vaga == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+        if (!vaga.getEmpresa().getCnpj().equals(empresa.getCnpj())) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
+
         Map<Integer, Map<Integer, Long>> visualizacoes = vagaDadosService.getVisualizacoesPorAnoEMes(vagaId);
         return ResponseEntity.ok(new VisualizacoesPorAnoEMesDTO(visualizacoes));
     }

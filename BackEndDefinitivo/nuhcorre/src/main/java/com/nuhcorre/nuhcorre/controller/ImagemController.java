@@ -52,18 +52,23 @@ public class ImagemController {
             Object principal = auth.getPrincipal();
             if (principal instanceof Usuario) {
                 novaImagem.setUsuario((Usuario) principal);
+                Optional<Imagem> imagemExiste = imagemService.encontrarPorUsuario(novaImagem.getUsuario());
+                if(imagemExiste.isPresent()){
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Imagem já cadastrada.");
+                }
+
             } else if (principal instanceof EmpresaUserDetails) {
                 novaImagem.setEmpresa(((EmpresaUserDetails) principal).getEmpresa());
+                Optional<Imagem> imagemExisteEmpresa = imagemService.encontrarPorEmpresaId(novaImagem.getEmpresa().getCnpj());
+
+                if(imagemExisteEmpresa.isPresent()){
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Imagem já cadastrada.");
+                }
+
             }else{
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não autenticado.");
             }
 
-            Optional<Imagem> imagemExiste = imagemService.encontrarPorUsuario(novaImagem.getUsuario());
-
-            if(imagemExiste.isPresent()){
-                return ResponseEntity.status(HttpStatus.CONFLICT).body("Usuário já possui uma imagem cadastrada.");
-            }
-            // Salvar o arquivo
             imagem.transferTo(caminhoArquivo.toFile());
             imagemService.salvarImagem(novaImagem);
 

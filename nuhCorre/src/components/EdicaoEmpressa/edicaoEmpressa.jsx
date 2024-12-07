@@ -4,12 +4,18 @@ import './empressaEdicao.css';
 import './caixasEdicoes.css';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { jwtDecode } from "jwt-decode";
 
 export function EdicaoEmpressa() {
+    const imgPadrao = "https://i.pinimg.com/enabled_lo_mid/736x/5c/95/31/5c9531d05f919414e9dff0c974388f67.jpg";
     const [isEditing, setIsEditing] = useState(false); // Estado para controlar se estamos no modo de edição
     const [isPhotoEditing, setIsPhotoEditing] = useState(false);
-    const [photoPerfil, setPhotoPerfil] = useState("https://i.pinimg.com/enabled_lo_mid/736x/5c/95/31/5c9531d05f919414e9dff0c974388f67.jpg");
-    const imgPadrao = "https://i.pinimg.com/enabled_lo_mid/736x/5c/95/31/5c9531d05f919414e9dff0c974388f67.jpg";
+    const [photoPerfil, setPhotoPerfil] = useState(
+        {
+            photo: imgPadrao,
+            error: false
+        }
+    );
 
     const [informacoes, setInformacoes] = useState({
         email: '',
@@ -54,12 +60,94 @@ export function EdicaoEmpressa() {
         setPhotoPerfil(null); // Define como null para remover a foto de perfil
     }
 
+    const handleUploadPhoto = async (e) => {
+        e.preventDefault();
+    
+        const file = e.target.files[0];  // Acessa o primeiro arquivo selecionado
+        if (file) {
+            const formData = new FormData();
+            formData.append('imagem', file);
+    
+            try {
+                const respostaApi = await axios.post('http://localhost:8080/imagem/upload', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                });
+    
+                if (respostaApi.status === 200) {
+                    console.log(respostaApi.data);
+                } else {
+                    console.error(respostaApi.data);
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    }
+
+
+
+    const fetchActualPhoto = async () => {
+        try {
+
+            const token = localStorage.getItem('token');
+            const decoded = jwtDecode(token);
+            let cnpj = decoded.cnpjEmpresa;
+            cnpj = cnpj.replace(/[^\d]+/g,'');
+
+            const response = await axios.get('http://localhost:8080/imagem/empresa/' + cnpj,
+                {
+                    validateStatus: function (status) {
+                        return status <= 500;
+                    },
+                    responseType: 'blob',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+
+                }
+            );
+
+            const data = response.data;
+
+            if(response.status === 200) {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    setPhotoPerfil({photo: reader.result, error: false});
+                };
+                reader.readAsDataURL(data);
+            }else if(response.status === 404){
+                setPhotoPerfil({photo: imgPadrao, error: true});
+            }
+            
+            else{
+                console.error(data);
+
+            }
+
+
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+
 
     const handleEditarInformacoes = async (e) => {
         e.preventDefault();
 
+        const postData = {
+            "nome": informacoes.nome,
+            "telefone": informacoes.telefone,
+            "descricao": informacoes.descricao,
+            "categoria": informacoes.setor,
+          }
+
         try {
-            const response = await axios.put('http://localhost:8080/dados/empresa', informacoes,
+            const response = await axios.put('http://localhost:8080/dados/empresa/atualizar', postData,
                 {
                     validateStatus: function (status) {
                         return status <= 500;
@@ -129,21 +217,32 @@ export function EdicaoEmpressa() {
 
             if(response.status === 200) {
                 setInformacoes({
-                    email: data.email,
-                    cnpj: data.cnpj,
-                    cep: data.enderecos[0].cep,
-                    estado: data.enderecos[0].estado,
-                    setor: data.categoria,
+                    email: data.email ? data.email : 'Email não cadastrado',
+                    cnpj: data.cnpj ? data.cnpj : 'CNPJ não cadastrado',
+                    cep: data.enderecos && data.enderecos[0] && data.enderecos[0].cep ? data.enderecos[0].cep : 'CEP não cadastrado',
+                    estado: data.enderecos && data.enderecos[0] && data.enderecos[0].estado ? data.enderecos[0].estado : 'Estado não cadastrado',
+                    setor: data.categoria ? data.categoria : 'Setor não cadastrado',
                     inclusao: 'Sim',
-                    telefone: data.telefone,
-                    logradouro: data.enderecos[0].rua,
-                    cidade: data.enderecos[0].cidade,
-                    descricao: data.descricao,
-                    nome: data.nome
+                    telefone: data.telefone ? data.telefone : 'Telefone não cadastrado',
+                    logradouro: data.enderecos && data.enderecos[0] ? data.enderecos[0].rua + ', ' + data.enderecos[0].numero : 'Logradouro não cadastrado',
+                    cidade: data.enderecos && data.enderecos[0] && data.enderecos[0].cidade ? data.enderecos[0].cidade : 'Cidade não cadastrada',
+                    descricao: data.descricao ? data.descricao : 'Descrição não cadastrada',
+                    nome: data.nome ? data.nome : 'Nome não cadastrado'
                 });
-            }else{
-                console.error(data);
-
+            } else {
+                setInformacoes({
+                    email: 'Email não cadastrado',
+                    cnpj: 'CNPJ não cadastrado',
+                    cep: 'CEP não cadastrado',
+                    estado: 'Estado não cadastrado',
+                    setor: 'Setor não cadastrado',
+                    inclusao: 'Sim',
+                    telefone: 'Telefone não cadastrado',
+                    logradouro: 'Logradouro não cadastrado',
+                    cidade: 'Cidade não cadastrada',
+                    descricao: 'Descrição não cadastrada',
+                    nome: 'Nome não cadastrado'
+                });
             }
 
         } catch (error) {
@@ -154,8 +253,14 @@ export function EdicaoEmpressa() {
 
     useEffect   (() => {
         returnUserInfo();
+        fetchActualPhoto();
     }
     ,[]);
+
+    useEffect(() => {
+        fetchActualPhoto();
+    }
+    , [photoPerfil.photo]);
 
     return (
         <>
@@ -170,7 +275,7 @@ export function EdicaoEmpressa() {
                     <div>
                         {/* Condicionando a exibição da imagem */}
                         <img 
-                            src={photoPerfil || imgPadrao} // Exibe uma imagem padrão caso a foto seja removida
+                            src={photoPerfil.photo || imgPadrao} // Exibe uma imagem padrão caso a foto seja removida
                             className='foto-perfil' 
                             alt='perfilImg'
                         />
@@ -217,7 +322,7 @@ export function EdicaoEmpressa() {
                                 </div>
 
                                 <div className='mainBox'>
-                                    <img src={photoPerfil || imgPadrao} alt='perfil' className='foto-perfil' />
+                                    <img src={photoPerfil.photo || imgPadrao} className='foto-perfil' alt='perfilImg' />
                                     
                                     <span id='msgEdit'>Use uma foto no perfil para as empresas e pessoas conhece-lo.</span>
 
@@ -226,16 +331,8 @@ export function EdicaoEmpressa() {
                                         <input 
                                             type="file" 
                                             id="fileUpload" 
-                                            onChange={(e) => {
-                                                const file = e.target.files[0];  // Acessa o primeiro arquivo selecionado
-                                                if (file) {
-                                                    const reader = new FileReader();
-                                                    reader.onloadend = () => {
-                                                        setPhotoPerfil(reader.result); // Atualiza o estado com a URL do arquivo selecionado
-                                                    };
-                                                    reader.readAsDataURL(file); // Lê o arquivo como uma URL base64
-                                                }
-                                            }}
+                                            onChange={handleUploadPhoto}
+                                            
                                         />
                                         {/* Botão personalizado que dispara o input file */}
                                         <label htmlFor="fileUpload" className="custom-file-upload">
@@ -286,6 +383,13 @@ export function EdicaoEmpressa() {
                                     onChange={(e) => setInformacoes({ ...informacoes, cnpj: e.target.value })}
                                 />
 
+                                <label htmlFor='telefone' className="dark:text-white">Setor</label>
+                                <input type='text' name='setor' className='dark:bg-[#818181]'
+                                    value={informacoes.setor}
+                                    onChange={(e) => setInformacoes({ ...informacoes, setor: e.target.value })}
+                                />
+
+
                                 <label htmlFor='cep' className="dark:text-white">CEP</label>
                                 <input type='text' name='cep' className='dark:bg-[#818181]'
                                     value={informacoes.cep} 
@@ -298,24 +402,15 @@ export function EdicaoEmpressa() {
                                     onChange={(e) => setInformacoes({ ...informacoes, estado: e.target.value })}
                                 />
 
-                                <div style={{ fontWeight: 600 }}>
-                                    <label id='labelEmpresa' className="dark:text-white">A empresa possui políticas de inclusão?</label>
-                                    <input type='radio' name='inclusao' className='dark:bg-[#818181]'/> <span className="dark:text-white">Não</span>
-                                    <input type='radio' name='inclusao' className='dark:bg-[#818181]' style={{ marginLeft: '40px' }} /><span className="dark:text-white">Sim</span>
-                                </div>
-
                                 <div id='botoes'>
-                                    <input type='submit' value='Salvar informações' className="bg-[#718CB3] h-[64px] w-24 border-0 focus:outline-none
+                                    <input type='submit' value='Salvar informações' 
+                                        onClick={handleEditarInformacoes}
+                                    className="bg-[#718CB3] h-[64px] w-24 border-0 focus:outline-none
                                      transition-all duration-300 ease-in-out transform hover:scale-105" />
                                 </div>
                             </div>
 
                             <div>
-                                <label htmlFor='senha' className="dark:text-white">Senha</label>
-                                <input type='password' name='senha' className='bg-white dark:bg-[#818181]'/>
-
-                                <label htmlFor='telefone'>Telefone</label>
-                                <input type='tel' name='telefone' />
 
                                 <label htmlFor='logradouro'>Logradouro</label>
                                 <input type='text' name='logradouro'className='dark:bg-[#818181]' 
@@ -330,7 +425,10 @@ export function EdicaoEmpressa() {
                                 />
 
                                 <label htmlFor='descricao' className="dark:text-white">Descrição da Empresa</label>
-                                <textarea name='descricao' className='dark:bg-[#818181]'cols={55} rows={10}></textarea>
+                                <textarea name='descricao' className='dark:bg-[#818181]'cols={55} rows={10}
+                                    value={informacoes.descricao}
+                                    onChange={(e) => setInformacoes({ ...informacoes, descricao: e.target.value })}
+                                ></textarea>
                             </div>
                         </form>
                     </div>
