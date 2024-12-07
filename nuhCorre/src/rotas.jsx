@@ -19,12 +19,12 @@ const routes = [
   { path: "/", element: <PesquisaVagaTelaInicial /> },//
   { path: "/login", element: <LoginPage /> },//
   { path: "/cadastro", element: <CadastroUsuario /> },//
-  { path: "/cadastroEmpresa", element: <CadastroEmpresa /> },//
-  { path: "/edicaoEmpressa", element: <EdicaoEmpressa /> },//
+  { path: "/cadastro-Empresa", element: <CadastroEmpresa /> },//
+  { path: "/edicao-Empresa", element: <EdicaoEmpressa /> },//
   { path: "/editar-perfil-candidato", element: <EditarPerfilCandidato /> },//
   { path: "/vagas", element: <Vagas /> },
   { path: "/dashboard", element: <DashBoardPrincipal /> },
-  { path: "/loginEmpresa", element: <LoginPageEm /> },//
+  { path: "/login-Empresa", element: <LoginPageEm /> },//
   { path: "/sobre", element: <Sobre /> },//
   { path: "/contato", element: <Contato/> },//
   { path: "/cadastrar-vaga", element: <CadastrarVaga/> },
