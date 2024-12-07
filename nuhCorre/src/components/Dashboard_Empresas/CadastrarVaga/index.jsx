@@ -1,5 +1,6 @@
 import boxicons from "boxicons";
 import { useEffect, useState } from "react";
+import './styleCadastrarVagas.css';
 
 import axios from "axios";
 
@@ -130,13 +131,12 @@ const CadastrarVaga = () => {
       </header>
 
       <main className="main-cadastrar-vaga">
-        <div className="container-anunciar-vaga mt-8 border shadow-md">
+        <div className="container-anunciar-vaga mt-8">
           <div className="text-blue-800 font-bold text-xl text-center">
             Detalhes da vaga
           </div>
 
-          <div className="inputs-cadastrar-vaga flex flex-col p-4 gap-4
-          xl:grid xl:grid-cols-3 xl:grid-rows-2 xl:gap-4
+          <div className="inputs-cadastrar-vaga flex flex-col
 
           ">
             <div className="input-cadastro flex flex-col">

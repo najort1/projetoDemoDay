@@ -1,0 +1,19 @@
+.main-cadastrar-vaga{
+
+    display: flex;
+    justify-content: center;
+
+}
+
+.container-anunciar-vaga{
+
+    width: 70vw;
+
+}
+
+.input-cadastro{
+
+    margin-bottom: 10px;
+
+}
+

@@ -1,162 +1,268 @@
-.header-perfil-candidato{
-    width: 100dvw;
-    height: 5em;
-    display: flex;
-    justify-content: center;
-    border-bottom: 1px solid black;
+
+
+
+
+
+
+
+
+
+/* Código do checklist */
+.checkBox{
+
+    width: 23px !important;
+    margin-right: 5px;
+
 }
 
-.logo-perfil-candidato img{
-    width: 10em;
-    height: 5em;
-    object-fit: cover;
-}
+.lista{
 
-.perfil-candidato{
-    display: flex;
-    flex-direction: row;
-    width: 100dvw;
-    height: 10em;
-    background-color: #718CB3;
-    color: white;
-}
-
-.imagem-candidato img {
-    border-radius: 50%;
-    width: 7em;
-    height: 7em;
-    background-color: gray;
-}
-
-.informacoes-usuario{
     display: flex;
     align-items: center;
-    gap: 10px;
+
 }
 
-.protecao-dados{
-    text-align: center;
-    background-color: #D8ECF5;
-    color: #3C71BD;
-    border-radius: 10px;
-    width: 70%;
-    margin: 0 auto;
-    margin-top: 2em;
-    margin-bottom: 2em;
+/* Alinhamento do título na seção de perfil */
+.alinhamentoTitulo {
+    align-items: center; /* Alinha itens verticalmente no centro */
+    background: #5b82bbd1; /* Cor de fundo */
+    color: #fff; /* Cor do texto */
+    display: flex; /* Usa o modelo flexbox */
+    padding: 1rem 2rem; /* Espaçamento interno */
 }
 
-.titulo-editar{
-    margin-top: 2em;
-    text-align: center;
-    border-top: 2px solid black;
-    border-bottom: 2px solid black;
+/* Margem à esquerda no caixa do usuário */
+.tituloUsuario {
+    margin-left: 20px;
 }
 
-.formulario-editar{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
-    padding: 1em;
+/* Estilo da imagem de perfil */
+.foto-perfil {
+    border-radius: 100px; /* Deixa a imagem redonda */
+    width: 133px; /* Largura proporcional à tela */
+    border:3px solid #b8b8b8;
 }
 
-.input-group input{
-    width: 100%;
-    height: 3em;
-    border-radius: 5px;
-    border: 1px solid #3C71BD;
+/* Estilo da imagem do botão de editar */
+.editImagem {
+    position: absolute; /* Posicionamento absoluto */
+    top: 29vh; /* Distância do topo */
+    left: 9vw; /* Distância da esquerda */
 }
 
-.input-group label{
-    font-size: 1.2em;
-    margin-bottom: 0.5em;
+/* Estilos para as caixas centrais, irá fazer as caixas do form ficar um ao lado da outra */
+.caixasCentrais {
+    display: flex; /* Flexbox */
+    flex-direction: column; /* Alinha itens na vertical */
+    align-items: center; /* Alinha itens no centro */
 }
 
-.input-group textarea{
-    width: 100%;
-    height: 5em;
-    border-radius: 5px;
-    border: 1px solid #3C71BD;
+/* PARTE DA CITAÇÃO DA LEI */
+
+/* Estilo do texto informativo sobre a Lei */
+.textoLei {
+    background: #D8ECF5 !important; /* Cor de fundo */
+    color: #3C71BD; /* Cor do texto */
+    padding: 20px 30px; /* Espaçamento interno */
+    border-radius: 6px; /* Bordas arredondadas */
+    width: 60vw; /* Largura proporcional */
+    text-align: center; /* Alinha o texto no centro */
+}
+/* ----- FORMULÁRIOS ----- */
+
+/* Estilos para o seção de formulário de empresa */
+#formEmpresa {
+    display: flex; /* Usa flexbox para alinhamento */
+    padding: 20px 0;
+    
 }
 
-.botao-salvar{
-    width: 100%;
-    height: 3em;
-    background-color: #3C71BD;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+/* Estilo do formulário */
+#formEmpresa form {
+    width: calc(95vw - 199px); /* Largura proporcional ao tamanho da tela */
+    justify-content: space-around; /* Espaçamento entre os elementos */
+    display: flex; /* Flexbox */
     margin-top: 10px;
 }
 
-.vulnerabilidade {
-    font-size: 1.2em;
-    margin-top: 1em;
-    border: 1px solid #3C71BD;
-    border-radius: 5px;
-    padding: 1em;
-    background-color: #f9f9f9;
+/* Estilos gerais para os rótulos do formulário */
+#formEmpresa form label {
+    margin: 10px 0; /* Espaçamento entre os elementos */
 }
 
-.vulnerabilidade summary {
-    font-weight: bold;
-    cursor: pointer;
-    color: #3C71BD;
+/* Estilos da caixa interna do formulário */
+.caixaInterna {
+    border: 2px solid #E6E6E6; /* Borda */
+    margin-top: 20px; /* Margem superior */
+    padding-bottom: 20px; /* Espaçamento inferior */
+    border-radius: 10px; /* Cantos arredondados */
 }
 
-.lista-vulnerabilidade {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+/* Estilo do título dentro da caixa interna */
+.caixaInterna h1 {
+    font-weight: 600; /* Negrito */
+    font-size: 1.2em; /* Tamanho da fonte */
+    padding: 10px 0px 10px 40px; /* Espaçamento interno */
+    border-bottom: 2px solid #E6E6E6; /* Linha inferior */
 }
 
-.lista-vulnerabilidade li {
-    margin: 0.5em 0;
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    flex-wrap: nowrap;
+/* Estilos dos inputs e selects dentro de #formEmpresa */
+#formEmpresa input, #formEmpresa select {
+    border: 2px solid #CFCFCF; /* Borda suave */
+    border-radius: 8px; /* Cantos arredondados */
+    padding-left: 10px; /* Espaçamento interno à esquerda */
+    cursor: auto; /* Cursor padrão */
 }
 
-.lista-vulnerabilidade input[type="checkbox"] {
-    margin-right: 0.5em;
-    width: 1.5em;
-    border: 1px solid #3C71BD;
+#formEmpresa input:focus{
+
+    outline: none;
+    border-bottom: 3px solid #1797f5;
+
+}
+#formEmpresa select:focus, #formEmpresa textarea:focus{
+
+    outline: none;
+    border: 3px solid #1797f5;
+
 }
 
-.lista-vulnerabilidade label {
-    font-size: 1em;
-    color: #333;
+/* Estilo para o primeiro radio button */
+#formEmpresa input[type='radio']:first-child {
+    margin-left: 10px; /* Margem à esquerda */
 }
 
-.editar-dados-candidato{
-    border: 2px solid gray;
-    box-shadow: 5px 5px 5px black;
+/* Estilos para inputs não-radio, selects dentro de #formEmpresa */
+#formEmpresa input:not([type="radio"]):not([type="submit"]):not([type="reset"]), #formEmpresa select {
+    width: 30vw; /* Largura proporcional */
+    height: 6vh; /* Altura proporcional */
 }
 
-@media (min-width: 1280px){
+/* Estilo dos botões de submit e reset */
+#formEmpresa input[type='submit'],
+#formEmpresa input[type='reset'] {
+    width: 190px; /* Largura fixa */
+    height: 50px; /* Altura fixa */
+    font-weight: 600; /* Negrito */
+    color: #fff; /* Cor do texto */
+    cursor: pointer !important; /* Cursor de clique */
+    padding: 0 !important; /* Remove o padding padrão */
+}
 
-    .formulario-editar{
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(2, 1fr);
-        grid-column-gap: 10px;
-        grid-row-gap: 10px;
+#formEmpresa input[type='submit']:focus,
+#formEmpresa input[type='reset']:focus {border: none;}
+
+#formEmpresa input[type='submit']:hover,
+#formEmpresa input[type='reset']:hover {
+
+    background-color: #4b7abb;
+    transition: background 0.2s ease;
+    
+  }
+  
+
+/* Estilo para o botão de submit */
+#formEmpresa input[type='submit'] {
+    margin-right: 20px; /* Margem à direita */
+}
+
+/* Estilo para o campo textarea */
+textarea {
+    border: 2px solid #CFCFCF; /* Borda suave */
+}
+
+/* Estilo do contêiner de botões */
+#botoes {
+    margin-top: 11vw; /* Margem superior */
+}
+
+/* PARTE DA LISTA DE NAVEGAÇÃO */
+
+/* Estilo para os links de navegação interna */
+.linksInterno {
+    margin-left: 1rem; /* Margem à esquerda */
+    font-weight: 600; /* Negrito */
+}
+
+/* Estilo de cada item da lista dentro de linksInterno */
+.linksInterno ul li {
+    display: flex; /* Flexbox para alinhamento */
+    flex-direction: row; /* Alinha itens na horizontal */
+    align-items: center; /* Alinha itens verticalmente no centro */
+    margin-bottom: 10px; /* Margem inferior */
+    padding: 10px 10px; /* Espaçamento interno */
+}
+
+.linksInterno ul li:hover{
+
+    background: #9aa9bd;
+
+}
+
+/* Estilos para os links selecionados */
+.linkSelecionado {
+    background: #7e95b5; /* Cor de fundo */
+    color: #fff; /* Cor do texto */
+    border-radius: 3px; /* Bordas arredondadas */
+}
+
+/* Estilo das imagens na lista */
+.listImg {
+    margin-right: 10px; /* Margem à direita */
+}
+
+
+@media (max-width: 500px){
+
+    .foto-perfil{
+
+        width: 25vw;
+
+    }
+    .tituloUsuario{
+
+        font-size: 0.8em;
+
     }
 
-    .input-group textarea{
+}
+
+@media (max-width: 1200px){
+
+    /* Parte do form */
+    #formEmpresa{
+
+        flex-direction: column;
+
+    }
+
+    #formEmpresa form{
+
+        width: 90vw;
+
+    }
+
+    #labelEmpresa{
+
+        font-size: 0.9em;
+
+    }
+
+    .caixaInterna div{
+
+        width: 45%;
+    }
+
+    #formEmpresa input:not([type="radio"]):not([type="submit"]):not([type="reset"]),
+    #formEmpresa select,
+    textarea {
         width: 100%;
-        height: 10em;
-        border-radius: 5px;
-        border: 1px solid #3C71BD;
+        height: 30px;
     }
 
-    .vulnerabilidade {
-        border: 1px solid #3C71BD;
-        border-radius: 5px;
-        background-color: #f9f9f9;
-    }
+    textarea{
 
+        height: 200px;
+
+    }
 }

@@ -148,7 +148,7 @@ export function EdicaoEmpressa() {
                 </div>
             </section>
 
-            <section id='formEmpresa'>
+            <section id='formEmpresa' className="bg-[#F9FAF] dark:bg-[#313935]">
                 <nav className="linksInterno">
                     <ul>
                         <li><box-icon name='home'></box-icon> Página Inicial</li>
@@ -160,67 +160,69 @@ export function EdicaoEmpressa() {
 
                 <div className='caixasCentrais'>
                     <div className="textoLei">Seus dados pessoais estarão protegidos, nos termos da Lei 13.460/2017.</div>
-                    <div className="caixaInterna">
-                        <h1>Dados Pessoais</h1>
+                    <div className="caixaInterna bg-white dark:bg-[#6a6a6a]">
+                        <h1 className="dark:text-white">Dados Pessoais</h1>
 
                         {/* Formulário de edição de informações */}
                         <form>
                             <div>
-                                <label htmlFor='email'>Email corporativo</label>
-                                <input type='email' name='email'/>
+                                <label htmlFor='email' className="dark:text-white">Email corporativo</label>
+                                <input type='email' name='email' className='dark:bg-[#818181]'/>
 
-                                <label htmlFor='cnpj'>CNPJ</label>
-                                <input type='text' name='cnpj' />
+                                <label htmlFor='cnpj' className="dark:text-white">CNPJ</label>
+                                <input type='text' name='cnpj' className='dark:bg-[#818181]'/>
 
-                                <label htmlFor='cep'>CEP</label>
-                                <input type='text' name='cep' />
+                                <label htmlFor='cep' className="dark:text-white">CEP</label>
+                                <input type='text' name='cep' className='dark:bg-[#818181]' />
 
-                                <label htmlFor='estado'>Estado</label>
-                                <select name='estado'>
+                                <label htmlFor='estado' className="dark:text-white">Estado</label>
+                                <select name='estado' className='dark:bg-[#818181]'>
                                     <option value="" defaultChecked>Selecione seu estado</option>
                                 </select>
 
-                                <label htmlFor='setor'>Setor de atuação</label>
-                                <select name='setor'>
+                                <label htmlFor='setor' className="dark:text-white">Setor de atuação</label>
+                                <select name='setor' className='dark:bg-[#818181]'>
                                     <option value="" defaultChecked>Alimentício</option>
                                 </select>
 
                                 <div style={{ fontWeight: 600 }}>
-                                    <label id='labelEmpresa'>A empresa possui políticas de inclusão?</label>
-                                    <input type='radio' name='inclusao' /> Não
-                                    <input type='radio' name='inclusao' style={{ marginLeft: '40px' }} /> Sim
+                                    <label id='labelEmpresa' className="dark:text-white">A empresa possui políticas de inclusão?</label>
+                                    <input type='radio' name='inclusao' className='dark:bg-[#818181]'/> <span className="dark:text-white">Não</span>
+                                    <input type='radio' name='inclusao' className='dark:bg-[#818181]' style={{ marginLeft: '40px' }} /><span className="dark:text-white">Sim</span>
                                 </div>
 
                                 <div id='botoes'>
                                     <input type='submit' value='Salvar informações' className="bg-[#718CB3] h-[64px] w-24 border-0 focus:outline-none
-                                     transition-all duration-300 ease-in-out transform hover:scale-105" />
+                                     transition-all duration-300 ease-in-out transform hover:scale-105 dark:bg-[#818181]" />
                                     <input type='reset' value='Limpar campos' className="bg-[#718CB3] h-[64px] w-24 border-0 focus:outline-none
-                                     transition-all duration-300 ease-in-out transform hover:scale-105" />
+                                     transition-all duration-300 ease-in-out transform hover:scale-10 dark:bg-[#818181]5" />
                                      
                                 </div>
                             </div>
 
                             <div>
+                                <label htmlFor='senha' className="dark:text-white">Senha</label>
+                                <input type='password' name='senha' className='bg-white dark:bg-[#818181]'/>
 
-                                <label htmlFor='telefone'>Telefone</label>
-                                <input type='tel' name='telefone' />
+                                <label htmlFor='telefone'className="dark:text-white">Telefone</label>
+                                <input type='tel' name='telefone' className='dark:bg-[#818181]'/>
 
                                 <label htmlFor='logradouro'>Logradouro</label>
-                                <input type='text' name='logradouro' />
+                                <input type='text' name='logradouro'className='dark:bg-[#818181]' />
 
-                                <label htmlFor='cidade'>Cidade</label>
-                                <select name='cidade'>
+                                <label htmlFor='cidade' className="dark:text-white">Cidade</label>
+                                <select name='cidade' className='dark:bg-[#818181]'>
                                     <option value="" defaultChecked>Selecione sua Cidade</option>
                                 </select>
 
-                                <label htmlFor='descricao'>Descrição da Empresa</label>
-                                <textarea name='descricao' cols={55} rows={10}></textarea>
+                                <label htmlFor='descricao' className="dark:text-white">Descrição da Empresa</label>
+                                <textarea name='descricao' className='dark:bg-[#818181]'cols={55} rows={10}></textarea>
                             </div>
                         </form>
                     </div>
                 </div>
             </section>
-            
+            <Footer/>
         </>
     );
 }
