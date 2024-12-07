@@ -1,10 +1,7 @@
 package com.nuhcorre.nuhcorre.controller;
 
 
-import com.nuhcorre.nuhcorre.model.DTO.EmpresaDTO;
-import com.nuhcorre.nuhcorre.model.DTO.EnderecoDTO;
-import com.nuhcorre.nuhcorre.model.DTO.UsuarioDTO;
-import com.nuhcorre.nuhcorre.model.DTO.VulnerabilidadeDTO;
+import com.nuhcorre.nuhcorre.model.DTO.*;
 import com.nuhcorre.nuhcorre.model.Empresa;
 import com.nuhcorre.nuhcorre.model.Endereco;
 import com.nuhcorre.nuhcorre.model.Usuario;
@@ -16,10 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/dados")
@@ -63,7 +57,7 @@ public class DadosController {
     }
 
     @Transactional
-    @GetMapping("/empresa-logada")
+    @GetMapping("/empresa")
     public ResponseEntity<EmpresaDTO> getEmpresaLogada() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
@@ -100,4 +94,25 @@ public class DadosController {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
+    @PutMapping("/empresa/atualizar")
+    public ResponseEntity<AtualizarEmpresaDTO> atualizarEmpresa(@RequestBody AtualizarEmpresaDTO empresaDTO) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+
+        if (principal instanceof EmpresaUserDetails) {
+            Empresa empresa = ((EmpresaUserDetails) principal).getEmpresa();
+
+            empresa.setNome(empresaDTO.nome());
+            empresa.setTelefone(empresaDTO.telefone());
+            empresa.setDescricao(empresaDTO.descricao());
+            empresa.setCategoria(empresaDTO.categoria());
+
+
+            empresaService.atualizarEmpresa(empresa);
+
+            return ResponseEntity.ok(empresaDTO);
+        }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
 }

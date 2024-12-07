@@ -2,15 +2,30 @@ import Footer from "../footer/Footer";
 import Header from "../header/Header";
 import './empressaEdicao.css';
 import './caixasEdicoes.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 export function EdicaoEmpressa() {
     const [isEditing, setIsEditing] = useState(false); // Estado para controlar se estamos no modo de edição
-    const [nome, setNome] = useState('Cachorro chupetão'); // Estado para o nome
-    const [profissao, setProfissao] = useState('chupar chupeta'); // Estado para a profissão
     const [isPhotoEditing, setIsPhotoEditing] = useState(false);
     const [photoPerfil, setPhotoPerfil] = useState("https://i.pinimg.com/enabled_lo_mid/736x/5c/95/31/5c9531d05f919414e9dff0c974388f67.jpg");
     const imgPadrao = "https://i.pinimg.com/enabled_lo_mid/736x/5c/95/31/5c9531d05f919414e9dff0c974388f67.jpg";
+
+    const [informacoes, setInformacoes] = useState({
+        email: '',
+        cnpj: '',
+        cep: '',
+        estado: '',
+        setor: '',
+        inclusao: '',
+        telefone: '',
+        logradouro: '',
+        cidade: '',
+        descricao: '',
+        nome: ''
+    });
+
+
     // Função chamada quando o botão "editar" é clicado
     function editNome() {
         setIsEditing(true); // Ativa o modo de edição
@@ -38,6 +53,109 @@ export function EdicaoEmpressa() {
     function removePhoto() {
         setPhotoPerfil(null); // Define como null para remover a foto de perfil
     }
+
+
+    const handleEditarInformacoes = async (e) => {
+        e.preventDefault();
+
+        try {
+            const response = await axios.put('http://localhost:8080/dados/empresa', informacoes,
+                {
+                    validateStatus: function (status) {
+                        return status <= 500;
+                    },
+                    headers: {
+
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+
+                }
+
+            );
+
+            const data = response.data;
+
+            if(response.status === 200) {
+                console.log(data);
+            }else{
+                console.error(data);
+            }
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
+
+    const returnUserInfo = async () => {
+
+        // {
+        //     "cnpj": "05.424.215/0001-53",
+        //     "nome": "Pietro e Eliane Vidros ME",
+        //     "telefone": "(12) 99463-1702",
+        //     "email": "fiscal1@pietroeelianevidrosme.com.br",
+        //     "descricao": null,
+        //     "categoria": null,
+        //     "dataCadastro": "2024-11-28",
+        //     "ativo": true,
+        //     "verificado": false,
+        //     "premium": false,
+        //     "enderecos": [
+        //         {
+        //             "id": 1,
+        //             "cep": "79083340",
+        //             "cidade": "Campo Grande",
+        //             "estado": "MS",
+        //             "rua": "Jardim Aero Rancho",
+        //             "numero": "16"
+        //         }
+        //     ]
+        // }
+
+        try {
+            const response = await axios.get('http://localhost:8080/dados/empresa',
+                {
+                    validateStatus: function (status) {
+                        return status <= 500;
+                    },
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+
+                }
+            );
+
+
+            const data = response.data;
+
+            if(response.status === 200) {
+                setInformacoes({
+                    email: data.email,
+                    cnpj: data.cnpj,
+                    cep: data.enderecos[0].cep,
+                    estado: data.enderecos[0].estado,
+                    setor: data.categoria,
+                    inclusao: 'Sim',
+                    telefone: data.telefone,
+                    logradouro: data.enderecos[0].rua,
+                    cidade: data.enderecos[0].cidade,
+                    descricao: data.descricao,
+                    nome: data.nome
+                });
+            }else{
+                console.error(data);
+
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
+
+    useEffect   (() => {
+        returnUserInfo();
+    }
+    ,[]);
 
     return (
         <>
@@ -68,23 +186,12 @@ export function EdicaoEmpressa() {
                                     <input 
                                         type='text' 
                                         name='nome' 
-                                        value={nome} 
-                                        onChange={(e) => setNome(e.target.value)} // Atualiza o nome no estado
+                                        value={informacoes.nome} 
+                                        onChange={(e) => setInformacoes({ ...informacoes, nome: e.target.value })}
                                         className="input-pesquisa h-[64px] w-full rounded-[5px] px-[5px] focus:outline-none
                                         focus:border-b-4 focus:border-b-[#1797f5] transition-all duration-300 ease-in-out"
                                         
                                     />
-
-                                    <label htmlFor='profissao'>Profissão</label>
-                                    <input 
-                                        type='text' 
-                                        name='profissao' 
-                                        value={profissao} 
-                                        onChange={(e) => setProfissao(e.target.value)} // Atualiza a profissão no estado
-                                        className="input-pesquisa h-[64px] w-full rounded-[5px] px-[5px] focus:outline-none
-                                        focus:border-b-4 focus:border-b-[#1797f5] transition-all duration-300 ease-in-out"
-                                    />
-
                                     <div className='botoes'>
 
                                         <input type='submit' className='submitCancel "bg-[#718CB3] h-[64px] w-24 border-0 focus:outline-none
@@ -98,9 +205,8 @@ export function EdicaoEmpressa() {
                             </div>
                         ) : ('')}
                         <>
-                            <h2 className="editNome">{nome}</h2>
+                            <h2 className="editNome">{informacoes.nome}</h2>
                             <button onClick={editNome}><box-icon name='edit' type='solid' color='#ffffff' ></box-icon></button>
-                            <h3>{profissao}</h3>
                         </>
 
                         {isPhotoEditing ? (
@@ -167,23 +273,30 @@ export function EdicaoEmpressa() {
                         <form>
                             <div>
                                 <label htmlFor='email' className="dark:text-white">Email corporativo</label>
-                                <input type='email' name='email' className='dark:bg-[#818181]'/>
+                                <input type='email' name='email' className='dark:bg-[#818181]'
+                                disabled
+                                    value={informacoes.email} 
+                                    onChange={(e) => setInformacoes({ ...informacoes, email: e.target.value })}
+                                />
 
                                 <label htmlFor='cnpj' className="dark:text-white">CNPJ</label>
-                                <input type='text' name='cnpj' className='dark:bg-[#818181]'/>
+                                <input type='text' name='cnpj' className='dark:bg-[#818181]'
+                                disabled
+                                    value={informacoes.cnpj} 
+                                    onChange={(e) => setInformacoes({ ...informacoes, cnpj: e.target.value })}
+                                />
 
                                 <label htmlFor='cep' className="dark:text-white">CEP</label>
-                                <input type='text' name='cep' className='dark:bg-[#818181]' />
+                                <input type='text' name='cep' className='dark:bg-[#818181]'
+                                    value={informacoes.cep} 
+                                    onChange={(e) => setInformacoes({ ...informacoes, cep: e.target.value })}
+                                />
 
-                                <label htmlFor='estado' className="dark:text-white">Estado</label>
-                                <select name='estado' className='dark:bg-[#818181]'>
-                                    <option value="" defaultChecked>Selecione seu estado</option>
-                                </select>
-
-                                <label htmlFor='setor' className="dark:text-white">Setor de atuação</label>
-                                <select name='setor' className='dark:bg-[#818181]'>
-                                    <option value="" defaultChecked>Alimentício</option>
-                                </select>
+                                <label htmlFor='estado'>Estado</label>
+                                <input type='text' name='estado' 
+                                    value={informacoes.estado}
+                                    onChange={(e) => setInformacoes({ ...informacoes, estado: e.target.value })}
+                                />
 
                                 <div style={{ fontWeight: 600 }}>
                                     <label id='labelEmpresa' className="dark:text-white">A empresa possui políticas de inclusão?</label>
@@ -193,10 +306,7 @@ export function EdicaoEmpressa() {
 
                                 <div id='botoes'>
                                     <input type='submit' value='Salvar informações' className="bg-[#718CB3] h-[64px] w-24 border-0 focus:outline-none
-                                     transition-all duration-300 ease-in-out transform hover:scale-105 dark:bg-[#818181]" />
-                                    <input type='reset' value='Limpar campos' className="bg-[#718CB3] h-[64px] w-24 border-0 focus:outline-none
-                                     transition-all duration-300 ease-in-out transform hover:scale-10 dark:bg-[#818181]5" />
-                                     
+                                     transition-all duration-300 ease-in-out transform hover:scale-105" />
                                 </div>
                             </div>
 
@@ -204,16 +314,20 @@ export function EdicaoEmpressa() {
                                 <label htmlFor='senha' className="dark:text-white">Senha</label>
                                 <input type='password' name='senha' className='bg-white dark:bg-[#818181]'/>
 
-                                <label htmlFor='telefone'className="dark:text-white">Telefone</label>
-                                <input type='tel' name='telefone' className='dark:bg-[#818181]'/>
+                                <label htmlFor='telefone'>Telefone</label>
+                                <input type='tel' name='telefone' />
 
                                 <label htmlFor='logradouro'>Logradouro</label>
-                                <input type='text' name='logradouro'className='dark:bg-[#818181]' />
+                                <input type='text' name='logradouro'className='dark:bg-[#818181]' 
+                                    value={informacoes.logradouro}
+                                    onChange={(e) => setInformacoes({ ...informacoes, logradouro: e.target.value })}
+                                />
 
                                 <label htmlFor='cidade' className="dark:text-white">Cidade</label>
-                                <select name='cidade' className='dark:bg-[#818181]'>
-                                    <option value="" defaultChecked>Selecione sua Cidade</option>
-                                </select>
+                                <input type='text' name='cidade' className='dark:bg-[#818181]'
+                                    value={informacoes.cidade}
+                                    onChange={(e) => setInformacoes({ ...informacoes, cidade: e.target.value })}
+                                />
 
                                 <label htmlFor='descricao' className="dark:text-white">Descrição da Empresa</label>
                                 <textarea name='descricao' className='dark:bg-[#818181]'cols={55} rows={10}></textarea>

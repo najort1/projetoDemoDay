@@ -31,5 +31,7 @@ public class EmpresaService {
     }
 
 
-
+    public boolean findByEmail(String email) {
+        return empresaRepository.findByEmail(email).isPresent();
+    }
 }
