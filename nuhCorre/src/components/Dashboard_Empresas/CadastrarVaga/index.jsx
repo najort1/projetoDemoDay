@@ -5,6 +5,7 @@ import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
 import SideBar from "../SideBar";
+import './style.css';
 
 const CadastrarVaga = () => {
   const navigate = useNavigate();
