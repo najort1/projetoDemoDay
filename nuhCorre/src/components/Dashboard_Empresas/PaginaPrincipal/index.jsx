@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import logo from '../../../assets/logo.png';
 import { Avatar } from 'primereact/avatar';
 import {Slider} from "@nextui-org/react";
-import { jwtDecode } from "jwt-decode";
 import axios from "axios";
 
 import { useNavigate } from "react-router-dom";
