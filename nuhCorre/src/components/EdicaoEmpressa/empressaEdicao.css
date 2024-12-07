@@ -49,14 +49,12 @@
 /* Estilos para o seção de formulário de empresa */
 #formEmpresa {
     display: flex; /* Usa flexbox para alinhamento */
-    margin-top: 20px;
-    background: #F9FAFC; /* Cor de fundo */
-    height: 100vh; /* Ocupa toda a altura da tela */
+    padding: 20px 0;
+    
 }
 
 /* Estilo do formulário */
 #formEmpresa form {
-    background: #fff; /* Cor de fundo */
     width: calc(95vw - 199px); /* Largura proporcional ao tamanho da tela */
     justify-content: space-around; /* Espaçamento entre os elementos */
     display: flex; /* Flexbox */

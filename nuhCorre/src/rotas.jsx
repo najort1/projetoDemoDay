@@ -16,17 +16,17 @@ import FormularioDeVagas from './components/paginaVagasEmpresa';
 
 
 const routes = [
-  { path: "/", element: <PesquisaVagaTelaInicial /> },
-  { path: "/login", element: <LoginPage /> },
-  { path: "/cadastro", element: <CadastroUsuario /> },
-  { path: "/cadastro-empresa", element: <CadastroEmpresa /> },
-  { path: "/edicao-empressa", element: <EdicaoEmpressa /> },
-  { path: "/editar-perfil-candidato", element: <EditarPerfilCandidato /> },
+  { path: "/", element: <PesquisaVagaTelaInicial /> },//
+  { path: "/login", element: <LoginPage /> },//
+  { path: "/cadastro", element: <CadastroUsuario /> },//
+  { path: "/cadastroEmpresa", element: <CadastroEmpresa /> },//
+  { path: "/edicaoEmpressa", element: <EdicaoEmpressa /> },//
+  { path: "/editar-perfil-candidato", element: <EditarPerfilCandidato /> },//
   { path: "/vagas", element: <Vagas /> },
   { path: "/dashboard", element: <DashBoardPrincipal /> },
-  { path: "/login-empresa", element: <LoginPageEm /> },
-  { path: "/sobre", element: <Sobre /> },
-  { path: "/contato", element: <Contato/> },
+  { path: "/loginEmpresa", element: <LoginPageEm /> },//
+  { path: "/sobre", element: <Sobre /> },//
+  { path: "/contato", element: <Contato/> },//
   { path: "/cadastrar-vaga", element: <CadastrarVaga/> },
   { path: "/candidatos", element: <Candidatos/> },
   { path: "*", element: <NotFound /> },
