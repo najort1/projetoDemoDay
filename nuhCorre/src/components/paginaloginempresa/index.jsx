@@ -129,7 +129,7 @@ const LoginEmpresa = () => {
                 </div>
             </div>
 
-            <div id="caixaLoginEmpresa">
+            <div className='bg-fundo-claro dark:bg-fundo-escuro' id="caixaLoginEmpresa">
                 <div className='alinhamentoLoginEmpresa'>
                     <img src={Logo2} alt='' className='alinhamentoLoginEmpresaLogo' style={{ width: '11vw' }} />
                     <h2 className='alinhamentoLoginEmpresaTitulo' style={{ marginBottom: '10px' }}>Faça login na sua conta</h2>

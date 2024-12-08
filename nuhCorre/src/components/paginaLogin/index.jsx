@@ -111,7 +111,7 @@ const Login = () => {
         <MobileView>
           <Header />
           <div
-            className="containerPrincipal shadow-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+            className="bg-fundo-claro dark:bg-fundo-escuro containerPrincipal shadow-2xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
                 w-full
                 
                 xl:w-1/3
@@ -180,7 +180,7 @@ const Login = () => {
 
       {isMobile && isTablet && (
         <>
-          <div className="tudo-conteudo-principal w-full h-full flex flex-row items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="bg-fundo-claro dark:bg-fundo-escuro tudo-conteudo-principal w-full h-full flex flex-row items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <div className="container-login w-[50%] shadow-2xl h-dvh flex flex-col">
               <div className="logo-login flex justify-center items-center flex-col font-bold gap-2 mb-6">
                 <Image isZoomed width={250} alt="NuhCorre" src={Logo}></Image>
@@ -324,7 +324,7 @@ const Login = () => {
       )}
 
       <BrowserView>
-        <div className="tudo-conteudo-principal w-full h-full flex flex-row">
+        <div className=" bg-fundo-claro dark:bg-fundo-escuro tudo-conteudo-principal w-full h-full flex flex-row">
           <div className="container-login w-[50%] shadow-2xl h-dvh flex flex-col gap-8 justify-center items-center">
             <div className="logo-login font-bold gap-2 text-center flex flex-col items-center">
               <Image isZoomed width={150} alt="NuhCorre" src={Logo}></Image>
@@ -336,7 +336,7 @@ const Login = () => {
             <div className="form-login p-4 w-full">
               <form className="flex flex-col gap-4 items-center w-full" onSubmit={handleSubmit}>
                 <div className="form-input flex flex-col gap-2 w-[73%]">
-                  <label htmlFor="email" className="text-black">
+                  <label htmlFor="email" className="text-black dark:text-white">
                     Email
                   </label>
                   <input
