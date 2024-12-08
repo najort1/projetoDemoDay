@@ -308,10 +308,10 @@ const CadastroEmpresa = () => {
                     </div>
                 </div>
 
-                <div id="caixaCadastroEmpresa">
+                <div className='bg-fundo-claro dark:bg-fundo-escuro' id="caixaCadastroEmpresa">
                     <div className="alinhamentoEmpresa">
                         <img src={Logo} alt='' className="alinhamentoEmpresa" style={{ width: '11vw' }} />
-                        <h2 className="alinhamentoEmpresaP" style={{ marginBottom: '10px' }}>Olá empresa, conecte-se conosco!</h2>
+                        <h2 className="alinhamentoEmpresaP dark:text-white" style={{ marginBottom: '10px' }}>Olá empresa, conecte-se conosco!</h2>
                         <span className="alinhamentoEmpresaS" style={{ marginBottom: '15px' }}>Inclusão começa com oportunidades!</span>
                     </div>
 

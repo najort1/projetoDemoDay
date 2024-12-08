@@ -317,11 +317,11 @@ const CadastroUsuario = () => {
 
                     </div>
                 </div>
-                <div id="caixaCadastroUsuario">
+                <div className='bg-fundo-claro dark:bg-fundo-escuro' id="caixaCadastroUsuario">
                     <div className='alinhamentousuario'>
 
                         <img src={Logo2} alt='' className='alinhamentousuario' style={{ width: '11vw' }} />
-                        <h2 className='alinhamentousuarioP' style={{ marginBottom: '10px' }}>Olá candidato, conecte-se conosco!</h2>
+                        <h2 className='alinhamentousuarioP dark:text-white' style={{ marginBottom: '10px' }}>Olá candidato, conecte-se conosco!</h2>
                         <span className='alinhamentousuarioS' style={{ marginBottom: '15px' }}>Cada pessoa importa, cada talento conta!</span>
 
                     </div>
@@ -329,31 +329,31 @@ const CadastroUsuario = () => {
                     <form>
 
                         <div>
-                            <label htmlFor="name">Nome completo:</label>
+                            <label htmlFor="name" className='dark:text-white'>Nome completo:</label>
                             <input type="text" name="nome" required pattern="^([a-zA-ZÀ-ÖØ-öø-ÿ]|\s)*$" placeholder="Nome completo" className='dark:text-white dark:bg-black'/>
                             <span ref={erroNome} className="erro"></span>
                         </div>
 
                         <div>
-                            <label htmlFor="email">Email:</label>
+                            <label htmlFor="email" className='dark:text-white'>Email:</label>
                             <input type="email" name="email" required pattern="^[a-zA-Z0-9_]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$" className='dark:text-white dark:bg-black' placeholder="Email" />
                             <span ref={erroEmail} className="erro"></span>
                         </div>
 
                         <div>
-                            <label htmlFor="telefone">Telefone:</label>
+                            <label htmlFor="telefone" className='dark:text-white'>Telefone:</label>
                             <input type="tel" name="telefone" pattern="^\(\d{2}\) \d{4,5}-\d{4}$" className='dark:bg-black dark:text-white' required placeholder="(XX) XXXX-XXXX" />
                             <span ref={erroTelefone} className="erro"></span>
                         </div>
 
                         <div>
-                            <label htmlFor="dataNascimento">Nascimento:</label>
+                            <label htmlFor="dataNascimento" className='dark:text-white'>Nascimento:</label>
                             <input type="date" name="dataNascimento" className='dark:text-white dark:bg-black' required />
                             <span ref={erroData} className="erro"></span>
                         </div>
 
                         <div>
-                            <label htmlFor="senha">Crie uma senha:</label>
+                            <label htmlFor="senha" className='dark:text-white'>Crie uma senha:</label>
 
                             <div style={{ position: 'relative' }}>
                                 <input
@@ -410,7 +410,7 @@ const CadastroUsuario = () => {
                         </div>
 
                         <input type="submit" onClick={handleCadastro} />
-                        <a href='' style={{ color: '#000', textAlign: 'center', display: 'block' }}>Já tem uma conta? <span style={{ color: '#718CB3' }} onClick={paginaLogin}>Faça login</span></a>
+                        <a href=''className='dark:text-white' style={{textAlign: 'center', display: 'block' }}>Já tem uma conta? <span style={{ color: '#718CB3' }} onClick={paginaLogin}>Faça login</span></a>
                     </form>
                 </div>
             </main>

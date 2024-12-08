@@ -12,7 +12,15 @@ export default {
     extend: {
       backgroundImage: {
         'img-clara': "url('/src/assets/fundo.png')",  // Imagem do fundo claro
-        'img-escuro': "url('/src/assets/bgEscuro.png')"  // Imagem do fundo escuro
+        'img-escuro': "url('/src/assets/bgEscuro.png')",  // Imagem do fundo escuro
+        'fundo-claro': "url('/src/assets/back.svg')",
+        'fundo-escuro': "url('/src/assets/fundoBlack.png')"
+      },
+      images: {
+
+        'logoClara': "url('/src/assets/logoBranca.png')",
+        'logoEscura':  "url('/src/assets/logo.png')"
+
       },
     },
   },

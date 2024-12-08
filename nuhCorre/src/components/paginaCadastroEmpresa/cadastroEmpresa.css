@@ -15,7 +15,6 @@ main#main-cadastroempresa{
 }
 #caixaCadastroEmpresa{
 
-    background: url('../../assets/back.svg');
     border: 2px solid rgba(255, 255, 255, 0.2);
     color: #000;
     width: 50vw;
