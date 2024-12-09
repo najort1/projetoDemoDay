@@ -7,12 +7,24 @@ import { useNavigate } from "react-router-dom";
 import Footer from '../../footer/Footer'
 import axios from "axios";
 
+import { ModalError } from "../modals";
+import { ModalSucesso } from "../modals";
+import { ModalConfirmacao } from "../modals";
+
 const CadastrarEndereco = () => {
   const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const isDarkMode = useDarkMode();
+  const [tituloModal, setTituloModal] = useState("");
+  const [descricaoModal, setDescricaoModal] = useState("");
 
+  const [showModals, setShowModals] = useState({
+    sessaoExpirada: false,
+    error: false,
+    sucesso: false,
+    confirmacao: false,
+  });
   
   const estados = [
     { name: 'Acre', code: 'AC' },
@@ -101,7 +113,9 @@ const CadastrarEndereco = () => {
     const token = localStorage.getItem("token");
 
     if (!validaCep(informacoes.cep)) {
-        alert("CEP inválido!");
+        setShowModals(prev => ({ ...prev, error: true }));
+        setTituloModal("Erro ao cadastrar endereço");
+        setDescricaoModal("CEP inválido");
         return;
     }
 
@@ -129,21 +143,42 @@ const CadastrarEndereco = () => {
     );
 
     if (JSON.stringify(resposta.data).includes("JWT expired at")) {
-        setShowModal(true);
+        setShowModals(prev => ({ ...prev, sessaoExpirada: true }));
         return;
       }
 
     if (resposta.status === 201) {
-      alert("Endereço cadastrado com sucesso!");
+      setShowModals(prev => ({ ...prev, sucesso: true }));
+      setTituloModal("Endereço cadastrado com sucesso");
+      setDescricaoModal("Endereço cadastrado com sucesso");
+
     } else {
-      alert ("Erro ao cadastrar endereço");
+      setShowModals(prev => ({ ...prev, error: true }));
+      setTituloModal("Erro ao cadastrar endereço");
+      setDescricaoModal("Erro ao cadastrar endereço");
+
     }
   };
 
   return (
     <>
       <SideBar visible={visible} setVisible={setVisible} />
-      <ModalSessaoExpirada showModal={showModal} setShowModal={setShowModal} />
+      <ModalSessaoExpirada 
+  showModal={showModals.sessaoExpirada} 
+  setShowModal={(value) => setShowModals(prev => ({ ...prev, sessaoExpirada: value }))} 
+/>
+<ModalError 
+  showModal={showModals.error} 
+  setShowModal={(value) => setShowModals(prev => ({ ...prev, error: value }))}
+  Titulo={tituloModal}
+  Descricao={descricaoModal}
+/>
+<ModalSucesso 
+  showModal={showModals.sucesso} 
+  setShowModal={(value) => setShowModals(prev => ({ ...prev, sucesso: value }))} 
+  Titulo={tituloModal}
+  Descricao={descricaoModal}
+/>
 
       <header
         className="header-dashboard flex flex-row w-full shadow-xl p-2 items-center

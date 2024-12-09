@@ -4,14 +4,13 @@ import "./styleCadastrarVagas.css";
 
 import axios from "axios";
 
-import { ModalSessaoExpirada } from "../modals";
-
 import { useNavigate } from "react-router-dom";
 import SideBar from "../SideBar";
 import "./style.css";
 import useDarkMode from "../../../hooks/useDarkMode";
-import Footer from '../../footer/Footer'
+import Footer from "../../footer/Footer";
 
+import { ModalSessaoExpirada, ModalError, ModalSucesso, ModalConfirmacao } from "../modals";
 import ThemeSwitcher from "../../ThemeSwitcher/ThemeSwitcher";
 
 const CadastrarVaga = () => {
@@ -20,7 +19,6 @@ const CadastrarVaga = () => {
     navigate("/cadastrar-vaga");
   };
 
-  const [showModal, setShowModal] = useState(false);
   const [visible, setVisible] = useState(false);
   const [combinarSalario, setCombinarSalario] = useState(false);
   const [endereco, setEndereco] = useState([]);
@@ -35,7 +33,15 @@ const CadastrarVaga = () => {
   const [descricao, setDescricao] = useState("");
   const isDarkMode = useDarkMode();
 
+  const [tituloModal, setTituloModal] = useState("");
+  const [descricaoModal, setDescricaoModal] = useState("");
 
+  const [showModals, setShowModals] = useState({
+    sessaoExpirada: false,
+    error: false,
+    sucesso: false,
+    confirmacao: false,
+  });
 
   const submitCadastrarVaga = async () => {
     const token = localStorage.getItem("token");
@@ -65,14 +71,20 @@ const CadastrarVaga = () => {
     );
 
     if (JSON.stringify(resposta.data).includes("JWT expired at")) {
-      setShowModal(true);
+      setShowModals((prev) => ({ ...prev, sessaoExpirada: true }));
       return;
     }
 
     if (resposta.status === 200) {
-      alert("Vaga cadastrada com sucesso");
-      navigate("/dashboard");
+      setShowModals((prev) => ({ ...prev, sucesso: true }));
+      setTituloModal("Vaga cadastrada com sucesso");
+      setDescricaoModal("Vaga cadastrada com sucesso");
+    } else {
+      setShowModals((prev) => ({ ...prev, error: true }));
+      setTituloModal("Erro ao cadastrar vaga");
+      setDescricaoModal("Erro ao cadastrar vaga");
     }
+    navigate("/dashboard");
   };
 
   const fetchAllAddresses = async () => {
@@ -93,7 +105,7 @@ const CadastrarVaga = () => {
     if (resposta.status === 200) {
       setEndereco(resposta.data);
     } else {
-      setEndereco[["erro", "erro", "erro", "erro", "erro", "erro"]];
+      setEndereco([["erro", "erro", "erro", "erro", "erro", "erro"]]);
     }
   };
 
@@ -103,13 +115,27 @@ const CadastrarVaga = () => {
 
   return (
     <>
-      <ModalSessaoExpirada showModal={showModal} setShowModal={setShowModal} />
+      <ModalSessaoExpirada
+        showModal={showModals.sessaoExpirada}
+        setShowModal={(value) => setShowModals((prev) => ({ ...prev, sessaoExpirada: value }))}
+      />
+      <ModalError
+        showModal={showModals.error}
+        setShowModal={(value) => setShowModals((prev) => ({ ...prev, error: value }))}
+        Titulo={tituloModal}
+        Descricao={descricaoModal}
+      />
+      <ModalSucesso
+        showModal={showModals.sucesso}
+        setShowModal={(value) => setShowModals((prev) => ({ ...prev, sucesso: value }))}
+        Titulo={tituloModal}
+        Descricao={descricaoModal}
+      />
+
       <SideBar visible={visible} setVisible={setVisible} />
 
       <header
-        className="header-dashboard flex flex-row w-full shadow-xl p-2 items-center
-        dark:bg-gray-800
-      "
+        className="header-dashboard flex flex-row w-full shadow-xl p-2 items-center dark:bg-gray-800"
       >
         <button
           className="abrir-side-bar hover:text-gray-300"
@@ -123,9 +149,7 @@ const CadastrarVaga = () => {
         </button>
 
         <h1
-          className="titulo-dashboard text-blue-800 text-2xl flex justify-center items-center font-bold m-auto
-          dark:text-white
-        "
+          className="titulo-dashboard text-blue-800 text-2xl flex justify-center items-center font-bold m-auto dark:text-white"
         >
           Cadastrar vaga
           <ThemeSwitcher />
@@ -135,25 +159,15 @@ const CadastrarVaga = () => {
       <main className="main-cadastrar-vaga">
         <div className="container-anunciar-vaga mt-8">
           <div
-            className="text-blue-800 font-bold text-xl text-center
-            dark:text-blue-500
-          "
+            className="text-blue-800 font-bold text-xl text-center dark:text-blue-500"
           >
             Detalhes da vaga
           </div>
 
-          <div
-            className="inputs-cadastrar-vaga flex flex-col
-
-          "
-          >
+          <div className="inputs-cadastrar-vaga flex flex-col">
             <div className="input-cadastro flex flex-col">
-              <label
-                className="text-blue-800 font-bold
-            dark:text-blue-500
-              "
-              >
-                Titulo da vaga{" "}
+              <label className="text-blue-800 font-bold dark:text-blue-500">
+                Titulo da vaga
               </label>
               <input
                 type="text"
@@ -163,11 +177,7 @@ const CadastrarVaga = () => {
               />
             </div>
             <div className="input-cadastro flex flex-col">
-              <label
-                className="text-blue-800 font-bold
-            dark:text-blue-500
-              "
-              >
+              <label className="text-blue-800 font-bold dark:text-blue-500">
                 Requisitos
               </label>
               <input
@@ -179,11 +189,7 @@ const CadastrarVaga = () => {
             </div>
 
             <div className="input-cadastro flex flex-col">
-              <label
-                className="text-blue-800 font-bold
-            dark:text-blue-500
-              "
-              >
+              <label className="text-blue-800 font-bold dark:text-blue-500">
                 Carga horaria
               </label>
               <input
@@ -195,11 +201,7 @@ const CadastrarVaga = () => {
             </div>
 
             <div className="input-cadastro flex flex-col">
-              <label
-                className="text-blue-800 font-bold
-            dark:text-blue-500
-              "
-              >
+              <label className="text-blue-800 font-bold dark:text-blue-500">
                 Beneficios
               </label>
               <input
@@ -210,11 +212,7 @@ const CadastrarVaga = () => {
               />
             </div>
             <div className="input-cadastro flex flex-col">
-              <label
-                className="text-blue-800 font-bold
-            dark:text-blue-500
-              "
-              >
+              <label className="text-blue-800 font-bold dark:text-blue-500">
                 Salario
               </label>
               <input
@@ -229,11 +227,7 @@ const CadastrarVaga = () => {
             </div>
 
             <div className="input-cadastro flex flex-col">
-              <label
-                className="text-blue-800 font-bold
-            dark:text-blue-500
-              "
-              >
+              <label className="text-blue-800 font-bold dark:text-blue-500">
                 Data expiração
               </label>
               <input
@@ -243,11 +237,7 @@ const CadastrarVaga = () => {
               />
             </div>
             <div className="input-cadastro flex flex-col">
-              <label
-                className="text-blue-800 font-bold
-            dark:text-blue-500
-              "
-              >
+              <label className="text-blue-800 font-bold dark:text-blue-500">
                 Endereço
               </label>
               <select
@@ -283,7 +273,7 @@ const CadastrarVaga = () => {
           </div>
           <div className="flex justify-center items-center gap-4 p-4">
             <button
-              className="bg-blue-800 text-white font-bold  p-2 rounded-xl w-full"
+              className="bg-blue-800 text-white font-bold p-2 rounded-xl w-full"
               onClick={submitCadastrarVaga}
             >
               Publicar vaga

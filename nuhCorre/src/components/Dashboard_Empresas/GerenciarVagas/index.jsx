@@ -9,6 +9,7 @@ import axios from "axios";
 import { ModalSessaoExpirada } from "../modals";
 import { ModalError } from "../modals";
 import { ModalSucesso } from "../modals";
+import { ModalConfirmacao } from "../modals";
 
 const GerenciarVagas = () => {
   const navigate = useNavigate();
@@ -26,7 +27,15 @@ const GerenciarVagas = () => {
     sessaoExpirada: false,
     error: false,
     sucesso: false,
+    confirmacao: false,
   });
+
+  const handleClickDeleteVaga = (vaga) => {
+    setVagaSelecionada(vaga); // Defina a vaga selecionada
+    setTituloModal("Deletar Vaga " + vaga.id);
+    setDescricaoModal("Tem certeza que deseja deletar essa vaga?");
+    setShowModals(prev => ({ ...prev, confirmacao: true }));
+  };
 
 
   const handleDeletarVaga = async (id) => {
@@ -41,10 +50,14 @@ const GerenciarVagas = () => {
       );
 
       if (response.status === 200) {
-        alert("Vaga deletada com sucesso");
+        setShowModals(prev => ({ ...prev, sucesso: true }));
+        setTituloModal("Vaga deletada com sucesso");
+        setDescricaoModal("A vaga foi deletada com sucesso.");
         fetchAllVagas();
       } else {
-        alert("Erro ao deletar vaga");
+        setShowModals(prev => ({ ...prev, error: true }));
+        setTituloModal("Erro ao deletar vaga");
+        setDescricaoModal("Erro inesperado ao deletar vaga. Tente novamente mais tarde.");
       }
     } catch (error) {
       console.error(error);
@@ -65,7 +78,7 @@ const GerenciarVagas = () => {
           "salario": vagaAtualizada.salario,
           "cargaHoraria": vagaAtualizada.cargaHoraria,
           "dataExpiracao": vagaAtualizada.dataExpiracao,
-          "enderecoId": vagaAtualizada.endereco,
+          "enderecoId": vagaAtualizada.endereco ? vagaAtualizada.endereco.id : vagaAtualizada.endereco,
           "status": vagaAtualizada.status
         
       }
@@ -83,10 +96,14 @@ const GerenciarVagas = () => {
         }
       );
       if (response.status === 200) {
-        alert("Vaga atualizada com sucesso!");
+        setShowModals(prev => ({ ...prev, sucesso: true }));
+        setTituloModal("Vaga atualizada com sucesso");
+        setDescricaoModal("A vaga foi atualizada com sucesso.");
         fetchAllVagas();
       } else {
-        alert("Erro ao atualizar vaga");
+        setShowModals(prev => ({ ...prev, error: true }));
+        setTituloModal("Erro ao atualizar vaga");
+        setDescricaoModal("Erro inesperado ao atualizar vaga. Tente novamente mais tarde.");
       }
     } catch (error) {
       console.error(error);
@@ -130,17 +147,21 @@ const GerenciarVagas = () => {
       );
 
       if (JSON.stringify(response.data).includes("JWT expired at")) {
-        setShowModal(true);
+        setShowModals(prev => ({ ...prev, sessaoExpirada: true }));
         return;
       }
 
       if (response.status === 200) {
         setVagas(response.data);
       } else {
-        alert("Erro ao buscar vagas");
+        setShowModals(prev => ({ ...prev, error: true }));
+        setTituloModal("Erro ao buscar vagas");
+        setDescricaoModal("Erro inesperado ao buscar vagas. Tente novamente mais tarde.");
       }
     } catch (error) {
-      console.error(error);
+        setTituloModal("Erro ao buscar vagas");
+        setDescricaoModal("Erro inesperado ao buscar vagas. Tente novamente mais tarde.");
+        setShowModals(prev => ({ ...prev, error: true }));
     }
   };
 
@@ -302,6 +323,15 @@ const GerenciarVagas = () => {
   Descricao={descricaoModal}
 />
 
+<ModalConfirmacao
+  showModal={showModals.confirmacao}
+  setShowModal={(value) => setShowModals(prev => ({ ...prev, confirmacao: value }))}
+  Titulo={tituloModal}
+  Descricao={descricaoModal}
+  onDelete={handleDeletarVaga}
+  vagaId={vagaSelecionada?.id} // Passe o id da vaga selecionada
+/>
+
       <header
         className="header-dashboard flex flex-row w-full shadow-xl p-2 items-center dark:bg-gray-800"
       >
@@ -326,58 +356,77 @@ const GerenciarVagas = () => {
 
       <main className="main-gerenciar-vagas w-screen h-screen p-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-          {vagas.map((vaga) => (
-            <div
-              key={vaga.id}
-              className="vaga-card bg-white p-4 rounded-md shadow-sm bg-gray-200 dark:bg-gray-800 flex flex-col gap-1"
+          {vagas.length > 0 ? (
+                      <>
+                                            {vagas.map((vaga) => (
+                        <div
+                          key={vaga.id}
+                          className="vaga-card bg-white p-4 rounded-md shadow-sm bg-gray-200 dark:bg-gray-800 flex flex-col gap-1"
+                        >
+                          <h2 className="text-xl font-bold text-blue-800 text-center">
+                            {vaga.titulo}
+                          </h2>
+                          <hr></hr>
+                          <p className="text-blue-600 font-bold overflow-auto h-24 text-center">
+                            {vaga.descricao}
+                          </p>
+                          <hr></hr>
+                          <p className="text-blue-600 font-bold">
+                            Requisitos: {vaga.requisitos}
+                          </p>
+                          <p className="text-blue-600 font-bold">Benefícios: {vaga.beneficios}</p>
+                          <p className="text-blue-600 font-bold">Salário: {vaga.salario}</p>
+                          <p className="text-blue-600 font-bold">
+                            Carga Horária: {vaga.cargaHoraria}
+                          </p>
+                          <p className="text-blue-600 font-bold">
+                            Data de Cadastro: {vaga.dataCadastro}
+                          </p>
+                          <p className="text-blue-600 font-bold">
+                            Data de Expiração: {vaga.dataExpiracao}
+                          </p>
+                          <p className="text-blue-600 font-bold">
+                            Status: {vaga.status ? "Ativa" : "Inativa"}
+                          </p>
+                          <p className="text-blue-600 font-bold">
+                            Endereço: {vaga.endereco.rua}, {vaga.endereco.numero},{" "}
+                            {vaga.endereco.cidade} - {vaga.endereco.estado}
+                          </p>
+            
+                          <div className="botoes-acoes-vagas flex flex-row justify-evenly gap-4">
+                            <button
+                              className="bg-blue-800 text-white p-2 rounded-md mt-4 w-1/2"
+                              onClick={() => handleEditarVaga(vaga)}
+                            >
+                              Editar
+                            </button>
+            
+                            <button
+              className="bg-red-800 text-white p-2 rounded-md mt-4 w-1/2"
+              onClick={() => handleClickDeleteVaga(vaga)} // Passe a vaga inteira
             >
-              <h2 className="text-xl font-bold text-blue-800 text-center">
-                {vaga.titulo}
-              </h2>
-              <hr></hr>
-              <p className="text-blue-600 font-bold overflow-auto h-24 text-center">
-                {vaga.descricao}
-              </p>
-              <hr></hr>
-              <p className="text-blue-600 font-bold">
-                Requisitos: {vaga.requisitos}
-              </p>
-              <p className="text-blue-600 font-bold">Benefícios: {vaga.beneficios}</p>
-              <p className="text-blue-600 font-bold">Salário: {vaga.salario}</p>
-              <p className="text-blue-600 font-bold">
-                Carga Horária: {vaga.cargaHoraria}
-              </p>
-              <p className="text-blue-600 font-bold">
-                Data de Cadastro: {vaga.dataCadastro}
-              </p>
-              <p className="text-blue-600 font-bold">
-                Data de Expiração: {vaga.dataExpiracao}
-              </p>
-              <p className="text-blue-600 font-bold">
-                Status: {vaga.status ? "Ativa" : "Inativa"}
-              </p>
-              <p className="text-blue-600 font-bold">
-                Endereço: {vaga.endereco.rua}, {vaga.endereco.numero},{" "}
-                {vaga.endereco.cidade} - {vaga.endereco.estado}
-              </p>
+              Deletar
+            </button>
+                          </div>
+                        </div>
+                      ))}
+                      </>
 
-              <div className="botoes-acoes-vagas flex flex-row justify-evenly gap-4">
+          ): 
+            (
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                <h1 className="text-2xl font-bold text-blue-800 dark:text-white">
+                  Nenhuma vaga cadastrada
+                </h1>
                 <button
-                  className="bg-blue-800 text-white p-2 rounded-md mt-4 w-1/2"
-                  onClick={() => handleEditarVaga(vaga)}
+                  className="bg-blue-800 text-white p-2 rounded-md mt-4 mx-auto"
+                  onClick={() => navigate("/cadastrar-vaga")}
                 >
-                  Editar
-                </button>
-
-                <button
-                  className="bg-red-800 text-white p-2 rounded-md mt-4 w-1/2"
-                  onClick={() => handleDeletarVaga(vaga.id)}
-                >
-                  Deletar
+                  Cadastrar Vaga
                 </button>
               </div>
-            </div>
-          ))}
+            )
+          }
         </div>
       </main>
     </>
