@@ -18,7 +18,7 @@ const SideBar = ({ visible, setVisible }) => {
     const navigate = useNavigate();
     const isDarkMode = useDarkMode();
     const [photoPerfil, setPhotoPerfil] = useState({photo: null, error: false});
-    const imgPadrao = 'https://www.pngkey.com/png/full/114-1149878_setting-user-avatar-in-specific-size-without-breaking.png';
+    const imgPadrao = 'https://i.pinimg.com/enabled_lo_mid/736x/5c/95/31/5c9531d05f919414e9dff0c974388f67.jpg';
     
     const RedirectCadastrarNovaVaga = () => {
         navigate('/cadastrar-vaga')
@@ -30,12 +30,14 @@ const SideBar = ({ visible, setVisible }) => {
 
     const EditarPerfil = () => { navigate('/edicao-Empresa') }
 
+    const EditarEndereco = () => { navigate('/cadastrar-endereco') }
+
     const RedirectCandidatos = () => {
         navigate('/candidatos')
     }
 
     const RedirectVagas = () => {
-        navigate('/vagas')
+        navigate('/gerenciar-vagas')
     }
 
     const handleLogout = () => {
@@ -176,6 +178,18 @@ const SideBar = ({ visible, setVisible }) => {
                   dark:text-white
                 ">
                   Editar perfil
+                </a>
+
+              </div>
+
+              <div className="nav-item flex items-center gap-3 text-lg font-medium hover:text-gray-300 transition-colors"
+                onClick={EditarEndereco}
+              >
+                {!isDarkMode ? ( <box-icon type='solid' name='edit-location'></box-icon> ) : ( <box-icon type='solid' name='edit-location' color='#ffffff'></box-icon> )}
+                <a href="#" className="text-black
+                  dark:text-white
+                ">
+                  Cadastrar endereço
                 </a>
 
               </div>

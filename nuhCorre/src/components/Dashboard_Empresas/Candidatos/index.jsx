@@ -6,6 +6,9 @@ import {Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, cn} from 
 import { useNavigate } from "react-router-dom";
 import SideBar from "../SideBar";
 import imagemUsuarioDefault from "../../../assets/camaleao.png"
+import Footer from '../../footer/Footer'
+import ThemeSwitcher from "../../ThemeSwitcher/ThemeSwitcher";
+import useDarkMode from "../../../hooks/useDarkMode";
 
 const Candidatos = () => {
   const [visible, setVisible] = useState(false);
@@ -25,6 +28,7 @@ const Candidatos = () => {
   const [dataNascimentoCandidato, setDataNascimentoCandidato] = useState("");
   const [enderecosCandidato, setEnderecosCandidato] = useState([]);
   const [vulnerabilidadesCandidato, setVulnerabilidadesCandidato] = useState([]);
+  const isDarkMode = useDarkMode();
 
   const RedirectCadastrarNovaVaga = () => {
     navigate("/cadastrar-vaga");
@@ -196,9 +200,12 @@ const fetchUltimasCandidaturas = async () => {
         w-[90%]
         md:w-[50%]
         xl:w-[30%]
+        dark:bg-gray-800
         
         flex-col items-center justify-center gap-4 p-4 bg-white shadow-2xl rounded-md border-2 z-10">
-          <h1 className="titulo-modal text-2xl font-bold">Dados de {nomeCandidato}</h1>
+          <h1 className="titulo-modal text-2xl font-bold
+            dark:text-white
+          ">Dados de {nomeCandidato}</h1>
           <button
             className="botao-modal bg-blue-800 text-white p-2 rounded-md"
             onClick={() => {
@@ -214,12 +221,24 @@ const fetchUltimasCandidaturas = async () => {
             </div>
   
             <div className="dados-usuario flex flex-col gap-4">
-              <p className="paragrafo-modal text-blue-800 font-bold">Nome: {nomeCandidato}</p>
-              <p className="paragrafo-modal text-blue-800 font-bold">Email: {emailCandidato}</p>
-              <p className="paragrafo-modal text-blue-800 font-bold">Telefone: {telefoneCandidato}</p>
-              <p className="paragrafo-modal text-blue-800 font-bold">CPF: {cpfCandidato}</p>
-              <p className="paragrafo-modal text-blue-800 font-bold">Data de Nascimento: {dataNascimentoCandidato}</p>
-              <p className="paragrafo-modal text-blue-800 font-bold">Endereços:</p>
+              <p className="paragrafo-modal text-blue-800 font-bold
+                dark:text-blue-400
+              ">Nome: {nomeCandidato}</p>
+              <p className="paragrafo-modal text-blue-800 font-bold
+                dark:text-blue-400
+              ">Email: {emailCandidato}</p>
+              <p className="paragrafo-modal text-blue-800 font-bold
+                dark:text-blue-400
+              ">Telefone: {telefoneCandidato}</p>
+              <p className="paragrafo-modal text-blue-800 font-bold
+                dark:text-blue-400
+              ">CPF: {cpfCandidato ? cpfCandidato : "Não informado"}</p>
+              <p className="paragrafo-modal text-blue-800 font-bold
+                dark:text-blue-400
+              ">Data de Nascimento: {dataNascimentoCandidato}</p>
+              <p className="paragrafo-modal text-blue-800 font-bold
+                dark:text-blue-400
+              ">Endereços:</p>
               <ul className="lista-enderecos flex flex-col h-12 overflow-auto">
 
                 {enderecosCandidato && enderecosCandidato.length > 0 ? (
@@ -230,10 +249,15 @@ const fetchUltimasCandidaturas = async () => {
                     </li>
                   ))
                 ) : (
-                  <li className="item-endereco">Nenhum endereço cadastrado</li>
+                  <li className="item-endereco
+                dark:text-blue-400
+                   dark:font-bold
+                  ">Nenhum endereço cadastrado</li>
                 )}
               </ul>
-              <p className="paragrafo-modal text-blue-800 font-bold">Vulnerabilidades:</p>
+              <p className="paragrafo-modal text-blue-800 font-bold
+                dark:text-blue-400
+              ">Vulnerabilidades:</p>
               <ul className="lista-vulnerabilidades flex flex-col h-12 overflow-auto">
                 {vulnerabilidadesCandidato && vulnerabilidadesCandidato.length > 0 ? (
                   vulnerabilidadesCandidato.map((vulnerabilidade, index) => (
@@ -242,7 +266,10 @@ const fetchUltimasCandidaturas = async () => {
                     </li>
                   ))
                 ) : (
-                  <li className="item-vulnerabilidade">Nenhuma vulnerabilidade cadastrada</li>
+                  <li className="item-vulnerabilidade
+                dark:text-blue-400
+                     dark:font-bold
+                  ">Nenhuma vulnerabilidade cadastrada</li>
                 )}
               </ul>
             </div>
@@ -257,16 +284,22 @@ const fetchUltimasCandidaturas = async () => {
       <SideBar visible={visible} setVisible={setVisible} />
       {showModal && modal()}
       {showModalInformacoesUsuario && modalInformacoesUsuario()}
-      <header className="header-dashboard flex flex-row w-full shadow-xl p-2 items-center">
+      <header className="header-dashboard flex flex-row w-full shadow-xl p-2 items-center
+        dark:bg-gray-800
+      ">
         <button
           className="abrir-side-bar hover:text-gray-300"
           onClick={() => setVisible(true)}
         >
-          <box-icon name="menu" size="lg"></box-icon>
+
+          {!isDarkMode ? <box-icon name="menu" size="lg"></box-icon> : <box-icon name="menu" size="lg" color='#ffffff'></box-icon>}
         </button>
 
-        <h1 className="titulo-dashboard text-blue-800 text-2xl flex justify-center items-center font-bold m-auto">
+        <h1 className="titulo-dashboard text-blue-800 text-2xl flex justify-center items-center font-bold m-auto
+          dark:text-white
+        ">
           Gerenciar Candidatos
+          <ThemeSwitcher />
         </h1>
 
         <div className="selecionar-vaga">
@@ -275,12 +308,14 @@ const fetchUltimasCandidaturas = async () => {
             <select
               name="vagas"
               id="vagas"
-              className="bg-white border-2 border-blue-500 rounded-md p-2"
+              className="bg-white border-2 border-blue-500 rounded-md p-2
+                dark:bg-gray-800
+              "
               onChange={handleMudarVaga}
             >
-              {vagaTitulos.map((vaga) => (
+              {vagaTitulos.map((vaga,index) => (
                 <option value={vaga.id} key={vaga.id}>
-                  {vaga.id} - {vaga.titulo}
+                  {index} - {vaga.titulo}
                 </option>
               ))}
             </select>
@@ -323,11 +358,17 @@ const fetchUltimasCandidaturas = async () => {
                   className="candidato-imagem w-20 h-20 rounded-full"
                 />
                 <div className="candidato-info flex flex-col gap-2">
-                  <h3 className="candidato-nome text-blue-800 font-bold text-lg">
+                  <h3 className="candidato-nome text-blue-800 font-bold text-lg
+                    dark:text-blue-300
+                  ">
                     {candidato.nome}
                   </h3>
-                  <p className="candidato-email text-blue-800">{candidato.email}</p>
-                  <p className="candidato-telefone text-blue-800">{candidato.telefone}</p>
+                  <p className="candidato-email text-blue-800
+                    dark:text-blue-300
+                    ">{candidato.email}</p>
+                  <p className="candidato-telefone text-blue-800
+                    dark:text-blue-300
+                  ">{candidato.telefone}</p>
                 </div>
 
                 <div className="botao-acao-candidato">
@@ -336,6 +377,7 @@ const fetchUltimasCandidaturas = async () => {
         <Button 
           variant="bordered" 
           color="primary"
+          className="dark:text-white"
         >
           Ações
         </Button>
@@ -348,8 +390,10 @@ const fetchUltimasCandidaturas = async () => {
           onClick={() => fetchInformacoesUsuario(candidato.id)}
         >
             <div className="acao-candidato flex flex-row items-center justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <box-icon type='solid' name='user-check' ></box-icon>
-                <p className="paragrafo-drop font-bold text-black">Informações</p>
+            {isDarkMode ? <box-icon type='solid' name='user-check' color='#ffffff'></box-icon> : <box-icon type='solid' name='user-check' ></box-icon>}
+                <p className="paragrafo-drop font-bold text-black
+                  dark:text-white
+                ">Informações</p>
             </div>
 
         </DropdownItem>
@@ -359,8 +403,10 @@ const fetchUltimasCandidaturas = async () => {
           color="primary"
         >
             <div className="acao-candidato flex flex-row items-center justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <box-icon type='solid' name='user-check' ></box-icon>
-                <p className="paragrafo-drop font-bold text-black">Aprovar</p>
+            {isDarkMode ? <box-icon type='solid' name='user-check' color='#ffffff'></box-icon> : <box-icon type='solid' name='user-check' ></box-icon>}
+                <p className="paragrafo-drop font-bold text-black
+                  dark:text-white
+                ">Aprovar</p>
             </div>
 
         </DropdownItem>
@@ -370,8 +416,11 @@ const fetchUltimasCandidaturas = async () => {
           color="danger"
         >
             <div className="acao-candidato flex flex-row items-center justify-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <box-icon type='solid' name='user-x' ></box-icon>
-                <p className="paragrafo-drop font-bold text-black">Reprovar</p>
+                {isDarkMode ? <box-icon type='solid' name='user-x' color='#ffffff'></box-icon> : <box-icon type='solid' name='user-x' ></box-icon>}
+
+                <p className="paragrafo-drop font-bold text-black
+                  dark:text-white
+                ">Reprovar</p>
             </div>
         </DropdownItem>
       </DropdownMenu>
@@ -387,6 +436,7 @@ const fetchUltimasCandidaturas = async () => {
 
         </div>
       </main>
+      <Footer />
     </>
   );
 };

@@ -13,6 +13,8 @@ import NotFound from './components/PageNotFound';
 import CadastrarVaga from './components/Dashboard_Empresas/CadastrarVaga';
 import Candidatos from './components/Dashboard_Empresas/Candidatos';
 import FormularioDeVagas from './components/paginaVagasEmpresa';
+import CadastrarEndereco from './components/Dashboard_Empresas/CadastrarEndereco';
+import GerenciarVagas from './components/Dashboard_Empresas/GerenciarVagas';
 
 
 const routes = [
@@ -31,6 +33,8 @@ const routes = [
   { path: "/candidatos", element: <Candidatos/> },
   { path: "*", element: <NotFound /> },
   { path: "/formulario-de-vagas", element: <FormularioDeVagas/>},
+  { path: "/cadastrar-endereco", element: <CadastrarEndereco/>},
+  { path: "/gerenciar-vagas", element: <GerenciarVagas/>},
 ];
 
 export default routes;

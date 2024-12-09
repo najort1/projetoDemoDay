@@ -4,10 +4,14 @@ import "./styleCadastrarVagas.css";
 
 import axios from "axios";
 
+import { ModalSessaoExpirada } from "../modals";
+
 import { useNavigate } from "react-router-dom";
 import SideBar from "../SideBar";
 import "./style.css";
 import useDarkMode from "../../../hooks/useDarkMode";
+import Footer from '../../footer/Footer'
+
 import ThemeSwitcher from "../../ThemeSwitcher/ThemeSwitcher";
 
 const CadastrarVaga = () => {
@@ -31,29 +35,7 @@ const CadastrarVaga = () => {
   const [descricao, setDescricao] = useState("");
   const isDarkMode = useDarkMode();
 
-  const modal = () => {
-    return (
-      <div className="modal-container fixed inset-0 flex items-center justify-center">
-        <div className="overlay fixed inset-0 bg-black opacity-50"></div>
-        <div className="modal flex flex-col items-center justify-center gap-4 p-4 bg-white shadow-2xl rounded-md z-10">
-          <h1 className="titulo-modal text-2xl font-bold">Sessão Expirada</h1>
-          <p className="descricao-modal text-center">
-            Sua sessão expirou, por favor faça login novamente
-          </p>
-          <button
-            className="botao-modal bg-blue-800 text-white p-2 rounded-md"
-            onClick={() => {
-              navigate("/login");
-              localStorage.clear();
-              setShowModal(false);
-            }}
-          >
-            Fazer login
-          </button>
-        </div>
-      </div>
-    );
-  };
+
 
   const submitCadastrarVaga = async () => {
     const token = localStorage.getItem("token");
@@ -81,6 +63,11 @@ const CadastrarVaga = () => {
         },
       }
     );
+
+    if (JSON.stringify(resposta.data).includes("JWT expired at")) {
+      setShowModal(true);
+      return;
+    }
 
     if (resposta.status === 200) {
       alert("Vaga cadastrada com sucesso");
@@ -116,7 +103,7 @@ const CadastrarVaga = () => {
 
   return (
     <>
-      {showModal && modal()}
+      <ModalSessaoExpirada showModal={showModal} setShowModal={setShowModal} />
       <SideBar visible={visible} setVisible={setVisible} />
 
       <header
@@ -304,6 +291,7 @@ const CadastrarVaga = () => {
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 };

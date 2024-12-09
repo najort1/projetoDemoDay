@@ -182,7 +182,7 @@ const DashBoardPrincipal = () => {
 
   const geraGrafico = () => {
     const ctx = document
-      .getElementById("grafico-candidatura-por-mes")
+      .getElementById("grafico-visu-por-mes")
       .getContext("2d");
     if (chartInstance) {
       chartInstance.destroy();
@@ -193,7 +193,7 @@ const DashBoardPrincipal = () => {
         labels: data.map((item) => item.mes),
         datasets: [
           {
-            label: "Candidaturas por mês",
+            label: "Visualizações por mês",
             data: data.map((item) => item.count),
             fill: false,
             borderColor: "rgb(75, 192, 192)",
@@ -313,7 +313,7 @@ const DashBoardPrincipal = () => {
                         xl:w-[40%]
                     "
         >
-          <canvas id="grafico-candidatura-por-mes"></canvas>
+          <canvas id="grafico-visu-por-mes"></canvas>
         </div>
       </section>
 
@@ -345,7 +345,8 @@ const DashBoardPrincipal = () => {
                             "
               >
                 <div className="informacoes-usuario flex flex-row">
-                  <box-icon name="user"></box-icon>
+                  {!isDarkMode ? ( <box-icon name='user' size='sm' color='#000000'></box-icon> ) : ( <box-icon name='user' size='sm' color='#ffffff'></box-icon> )}
+
                   <div className="nome-funcao flex flex-col">
                     <h1 className="nome font-bold">{candidato.nome}</h1>
                     <p className="telefone text-gray-400 text-sm">

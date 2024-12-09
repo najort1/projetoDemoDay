@@ -20,6 +20,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.nuhcorre.nuhcorre.utils.ValidaCNPJ;
 import com.nuhcorre.nuhcorre.utils.ValidaCPF;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.logging.Logger;
 
@@ -33,6 +34,10 @@ public class ApplicationConfiguration {
     public ApplicationConfiguration(UsuarioRepository usuarioRepository, EmpresaRepository empresaRepository) {
         this.usuarioRepository = usuarioRepository;
         this.empresaRepository = empresaRepository;
+    }
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 
     @Bean

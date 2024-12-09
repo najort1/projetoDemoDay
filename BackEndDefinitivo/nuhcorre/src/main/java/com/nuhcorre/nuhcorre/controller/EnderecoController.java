@@ -2,17 +2,20 @@ package com.nuhcorre.nuhcorre.controller;
 
 import com.nuhcorre.nuhcorre.model.DTO.AtualizarEnderecoDTO;
 import com.nuhcorre.nuhcorre.model.DTO.CadastrarEnderecoDTO;
+import com.nuhcorre.nuhcorre.model.DTO.RespostaViaCepDTO;
 import com.nuhcorre.nuhcorre.model.Empresa;
 import com.nuhcorre.nuhcorre.model.Usuario;
 import com.nuhcorre.nuhcorre.model.Endereco;
 import com.nuhcorre.nuhcorre.model.details.EmpresaUserDetails;
 import com.nuhcorre.nuhcorre.service.EmpresaService;
 import com.nuhcorre.nuhcorre.service.EnderecoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 
 @RestController
@@ -20,6 +23,9 @@ import org.springframework.web.bind.annotation.*;
 public class EnderecoController {
     private final EnderecoService enderecoService;
     private final EmpresaService empresaService;
+
+    @Autowired
+    private RestTemplate restTemplate;
 
     public EnderecoController(EnderecoService enderecoService, EmpresaService empresaService) {
         this.enderecoService = enderecoService;
@@ -184,6 +190,18 @@ public class EnderecoController {
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Usuário não autorizado.");
 
+    }
+
+    @GetMapping("/consultar-cep/{cep}")
+    public ResponseEntity<RespostaViaCepDTO> consultarCep(@PathVariable String cep) {
+        String url = "https://viacep.com.br/ws/" + cep + "/json/";
+        RespostaViaCepDTO response = restTemplate.getForObject(url, RespostaViaCepDTO.class);
+
+        if (response == null || response.cep() == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
+        return ResponseEntity.ok(response);
     }
 
 

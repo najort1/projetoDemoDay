@@ -18,7 +18,9 @@ function Footer() {
   };
 
   return (
-    <footer className="bg-[#5b82bbd1] h-14 w-full flex justify-evenly items-center p-4 bottom-0">
+    <footer className="bg-[#5b82bbd1] h-14 w-full flex justify-evenly items-center p-4 bottom-0
+      dark:bg-gray-800
+    ">
       <div className="items-textuais flex flex-row gap-4 text-white font-bold text-sm hover:cursor-pointer">
 
         <div className="item-footer">
