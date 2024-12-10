@@ -84,6 +84,7 @@ const Login = () => {
 
       if(respostaLogin.status === 200){
         localStorage.setItem('token', respostaLogin.data.token);
+        navigate('/');
         return;
       }else{
         console.log("erro")

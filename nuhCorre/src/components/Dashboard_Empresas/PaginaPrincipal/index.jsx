@@ -30,9 +30,6 @@ const DashBoardPrincipal = () => {
 
   const navigate = useNavigate();
 
-  const RedirectCadastrarNovaVaga = () => {
-    navigate("/cadastrar-vaga");
-  };
 
 
 
@@ -82,6 +79,7 @@ const DashBoardPrincipal = () => {
 
 
   const fetchVagasCadastradas = async () => {
+    
     try {
       const response = await axios.get(
         "http://localhost:8080/vaga/minhas-vagas",
@@ -115,6 +113,9 @@ const DashBoardPrincipal = () => {
   };
 
   const fetchUltimasCandidaturas = async () => {
+
+    if(!vagaSelecionada) return;
+
     const response = await axios.get(
       `http://localhost:8080/vaga/${vagaSelecionada}/candidatos`,
       {
@@ -143,6 +144,8 @@ const DashBoardPrincipal = () => {
   };
 
   const fetchData = async () => {
+    if(!vagaSelecionada) return;
+
     try {
       const response = await axios.get(
         `http://localhost:8080/vaga/${vagaSelecionada}/visualizacoes`,

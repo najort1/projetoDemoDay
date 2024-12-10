@@ -108,11 +108,6 @@
     margin-left: 10px; /* Margem à esquerda */
 }
 
-/* Estilos para inputs não-radio, selects dentro de #formEmpresa */
-#formEmpresa input:not([type="radio"]):not([type="submit"]):not([type="reset"]), #formEmpresa select {
-    width: 30vw; /* Largura proporcional */
-    height: 6vh; /* Altura proporcional */
-}
 
 /* Estilo dos botões de submit e reset */
 #formEmpresa input[type='submit'],

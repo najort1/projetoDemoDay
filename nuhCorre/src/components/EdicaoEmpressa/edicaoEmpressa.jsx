@@ -8,6 +8,12 @@ import { jwtDecode } from "jwt-decode";
 import SideBar from "../Dashboard_Empresas/SideBar";
 import useDarkMode from "../../hooks/useDarkMode";
 
+import {ModalConfirmacao} from "../Dashboard_Empresas/modals/index.jsx";
+import {ModalError} from "../Dashboard_Empresas/modals/index.jsx";
+import {ModalSucesso} from "../Dashboard_Empresas/modals/index.jsx";
+import {ModalSessaoExpirada} from "../Dashboard_Empresas/modals/index.jsx";
+import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher.jsx";
+
 export function EdicaoEmpressa() {
   const imgPadrao =
     "https://i.pinimg.com/enabled_lo_mid/736x/5c/95/31/5c9531d05f919414e9dff0c974388f67.jpg";
@@ -34,33 +40,60 @@ export function EdicaoEmpressa() {
     descricao: "",
     nome: "",
   });
+  const [showModals, setShowModals] = useState(
+      {
+        showModalSessaoExpirada: false,
+        showModalError: false,
+        showModalSucesso: false,
+        showModalConfirmacao: false,
+      }
+  )
 
-  // Função chamada quando o botão "editar" é clicado
-  function editNome() {
-    setIsEditing(true); // Ativa o modo de edição
-  }
+  const [tituloModal, setTituloModal] = useState("");
+  const [descricaoModal, setDescricaoModal] = useState("");
+
+
 
   function editPhoto() {
     setIsPhotoEditing(true); // Ativa o modo de edição
   }
 
-  // Função chamada quando o botão "Salvar" é clicado
-  function altSub(e) {
-    e.preventDefault(); // Previne o comportamento padrão do formulário
-    setIsEditing(false); // Desativa o modo de edição após salvar
-  }
-
-  // Função chamada quando o botão "Cancelar" é clicado
-  function altCancel() {
-    setIsEditing(false); // Desativa o modo de edição após cancelar
-  }
 
   function cancelPhoto() {
     setIsPhotoEditing(false);
   }
 
-  function removePhoto() {
-    setPhotoPerfil(null); // Define como null para remover a foto de perfil
+  const removePhoto = async () => {
+    
+    try {
+
+      const response = await axios.delete(
+        "http://localhost:8080/imagem/deletar",
+        {
+          validateStatus: function (status) {
+            return status <= 500;
+          },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      if (response.status === 200) {
+        setPhotoPerfil({ photo: imgPadrao, error: false });
+        setShowModals((prev) => ({ ...prev, sucesso: true }));
+        setTituloModal("Foto removida com sucesso!");
+        setDescricaoModal("Sua foto de perfil foi removida com sucesso.");
+      } else {
+        setShowModals((prev) => ({ ...prev, error: true }));
+        setTituloModal("Erro ao remover a foto!");
+        setDescricaoModal("Não foi possível remover sua foto de perfil.");
+      }
+    } catch (error) {
+      console.error(error);
+    }
+
+
   }
 
   const handleUploadPhoto = async (e) => {
@@ -84,9 +117,13 @@ export function EdicaoEmpressa() {
         );
 
         if (respostaApi.status === 200) {
-          console.log(respostaApi.data);
+            setShowModals((prev) => ({ ...prev, sucesso: true }));
+            setTituloModal("Foto atualizada com sucesso!");
+            setDescricaoModal("Sua foto de perfil foi atualizada com sucesso.");
         } else {
-          console.error(respostaApi.data);
+            setShowModals((prev) => ({ ...prev, error: true }));
+            setTituloModal("Erro ao atualizar a foto!");
+            setDescricaoModal("Não foi possível atualizar sua foto de perfil.");
         }
       } catch (error) {
         console.error(error);
@@ -159,9 +196,13 @@ export function EdicaoEmpressa() {
       const data = response.data;
 
       if (response.status === 200) {
-        console.log(data);
+        setShowModals((prev) => ({ ...prev, sucesso: true }));
+        setTituloModal("Informações atualizadas com sucesso!");
+        setDescricaoModal("Suas informações foram atualizadas com sucesso.");
       } else {
-        console.error(data);
+        setShowModals((prev) => ({ ...prev, error: true }));
+        setTituloModal("Erro ao atualizar as informações!");
+        setDescricaoModal("Não foi possível atualizar suas informações.");
       }
     } catch (error) {
       console.error(error);
@@ -239,269 +280,257 @@ export function EdicaoEmpressa() {
   }, [photoPerfil.photo]);
 
   return (
-    <>
+      <>
+        <ModalSessaoExpirada
+            showModal={showModals.sessaoExpirada}
+            setShowModal={(value) => setShowModals((prev) => ({...prev, sessaoExpirada: value}))}
+        />
+        <ModalError
+            showModal={showModals.error}
+            setShowModal={(value) => setShowModals((prev) => ({...prev, error: value}))}
+            Titulo={tituloModal}
+            Descricao={descricaoModal}
+        />
+        <ModalSucesso
+            showModal={showModals.sucesso}
+            setShowModal={(value) => setShowModals((prev) => ({...prev, sucesso: value}))}
+            Titulo={tituloModal}
+            Descricao={descricaoModal}
+        />
+        {/* Adicionando a sobreposição escura quando estamos no modo de edição */}
+        {isEditing && <div className="dark-overlay"></div>}
+        {isPhotoEditing && <div className="dark-overlay"></div>}
 
-      {/* Adicionando a sobreposição escura quando estamos no modo de edição */}
-      {isEditing && <div className="dark-overlay"></div>}
-      {isPhotoEditing && <div className="dark-overlay"></div>}
-
-      <section className="perfil">
-        <div className="alinhamentoTitulo">
-          <div className="flex flex-row items-center">
-            {/* Condicionando a exibição da imagem */}
-            <img
-              src={photoPerfil.photo || imgPadrao} // Exibe uma imagem padrão caso a foto seja removida
-              className="foto-perfil"
-              alt="perfilImg"
-            />
-            <button className="editImagem" onClick={editPhoto}>
-              {isDarkMode ? (
-                <box-icon name="edit" type="solid" color="#ffffff"></box-icon>
-              ) : (
-                <box-icon name="edit" type="solid" color="#000000"></box-icon>
-              )}{" "}
-            </button>
-          </div>
-          <div className="tituloUsuario">
-            {/* Exibe o nome e profissão ou a caixa de edição */}
-            {isEditing ? (
-              <div className="editBoxNome editBox">
-                <form onSubmit={altSub}>
-                  <h2>Editar</h2>
-                  <label htmlFor="nome">Nome</label>
-                  <input
-                    type="text"
-                    name="nome"
-                    value={informacoes.nome}
-                    onChange={(e) =>
-                      setInformacoes({ ...informacoes, nome: e.target.value })
-                    }
-                    className="input-pesquisa h-[64px] w-full rounded-[5px] px-[5px] focus:outline-none
-                                        focus:border-b-4 focus:border-b-[#1797f5] transition-all duration-300 ease-in-out"
-                  />
-                  <div className="botoes">
-                    <input
-                      type="submit"
-                      className='submitCancel "bg-[#718CB3] h-[64px] w-24 border-0 focus:outline-none
-                                        transition-all duration-300 ease-in-out transform hover:scale-105"'
-                      value="Salvar"
-                    />
-
-                    <input
-                      type="button"
-                      onClick={altCancel}
-                      className='submitCancel "bg-[#718CB3] h-[64px] w-24 border-0 focus:outline-none
-                                        transition-all duration-300 ease-in-out transform hover:scale-105"'
-                      value="Cancelar"
-                    />
-                  </div>
-                </form>
-              </div>
+        <header
+            className="header-dashboard flex flex-row w-full shadow-xl p-2 items-center dark:bg-gray-800"
+        >
+          <button
+              className="abrir-side-bar hover:text-gray-300"
+              onClick={() => setVisible(true)}
+          >
+            {!isDarkMode ? (
+                <box-icon name="menu" size="lg"></box-icon>
             ) : (
-              ""
+                <box-icon name="menu" size="lg" color="#ffffff"></box-icon>
             )}
-            <>
-              <h2 className="editNome">{informacoes.nome}</h2>
-              <button onClick={editNome}>
-                <box-icon name="edit" type="solid" color="#ffffff"></box-icon>
+          </button>
+
+          <h1
+              className="titulo-dashboard text-blue-800 text-2xl flex justify-center items-center font-bold m-auto dark:text-white"
+          >
+            Editar informações
+            <ThemeSwitcher/>
+          </h1>
+        </header>
+
+        <section className="perfil">
+          <div className="alinhamentoTitulo">
+            <div className="flex flex-row items-center">
+              {/* Condicionando a exibição da imagem */}
+              <img
+                  src={photoPerfil.photo || imgPadrao} // Exibe uma imagem padrão caso a foto seja removida
+                  className="foto-perfil"
+                  alt="perfilImg"
+              />
+              <button className="editImagem" onClick={editPhoto}>
+                {isDarkMode ? (
+                    <box-icon name="edit" type="solid" color="#ffffff"></box-icon>
+                ) : (
+                    <box-icon name="edit" type="solid" color="#000000"></box-icon>
+                )}{" "}
               </button>
-            </>
+            </div>
+            <div className="tituloUsuario">
+              <>
+                <h2 className="editNome">{informacoes.nome}</h2>
+              </>
 
-            {isPhotoEditing ? (
-              <div className="editBox boxPhoto">
-                <div className="boxTitle">
-                  <h2>Editar Foto</h2>
-                  <button onClick={cancelPhoto}>
-                    <box-icon type="solid" name="x-circle"></box-icon>
-                  </button>
-                </div>
+              {isPhotoEditing ? (
+                  <div className="editBox boxPhoto">
+                    <div className="boxTitle">
+                      <h2>Editar Foto</h2>
+                      <button onClick={cancelPhoto}>
+                        <box-icon type="solid" name="x-circle"></box-icon>
+                      </button>
+                    </div>
 
-                <div className="mainBox">
-                  <img
-                    src={photoPerfil.photo || imgPadrao}
-                    className="foto-perfil"
-                    alt="perfilImg"
-                  />
+                    <div className="mainBox">
+                      <img
+                          src={photoPerfil.photo || imgPadrao}
+                          className="foto-perfil"
+                          alt="perfilImg"
+                      />
 
-                  <span id="msgEdit">
+                      <span id="msgEdit">
                     Use uma foto no perfil para as empresas e pessoas
                     conhece-lo.
                   </span>
 
-                  <div className="btn-group">
-                    {/* O input file escondido */}
-                    <input
-                      type="file"
-                      id="fileUpload"
-                      onChange={handleUploadPhoto}
-                    />
-                    {/* Botão personalizado que dispara o input file */}
-                    <label htmlFor="fileUpload" className="custom-file-upload">
-                      Editar
-                    </label>
+                      <div className="btn-group">
+                        {/* O input file escondido */}
+                        <input
+                            type="file"
+                            id="fileUpload"
+                            onChange={handleUploadPhoto}
+                        />
+                        {/* Botão personalizado que dispara o input file */}
+                        <label htmlFor="fileUpload" className="custom-file-upload">
+                          Editar
+                        </label>
 
-                    {/* Botão de remover */}
-                    <button className="btn btn-warning" onClick={removePhoto}>
-                      Remover
-                    </button>
+                        {/* Botão de remover */}
+                        <button className="btn btn-warning" onClick={removePhoto}>
+                          Remover
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+              ) : (
+                  ""
+              )}
+            </div>
+          </div>
+        </section>
+
+        <section id="formEmpresa" className="bg-[#F9FAF] dark:bg-[#313935]">
+          <SideBar visible={visible} setVisible={setVisible}/>
+          <div className="caixasCentrais">
+            <div className="textoLei">
+              Seus dados pessoais estarão protegidos, nos termos da Lei
+              13.460/2017.
+            </div>
+            <div className="caixaInterna bg-white dark:bg-[#6a6a6a]">
+              <h1 className="dark:text-white">Dados Pessoais</h1>
+
+
+              {/* Formulário de edição de informações */}
+              <form>
+                <div>
+                  <label htmlFor="email" className="dark:text-white">
+                    Email corporativo
+                  </label>
+                  <input
+                      type="email"
+                      name="email"
+                      className="dark:bg-[#818181]"
+                      disabled
+                      value={informacoes.email}
+                      onChange={(e) =>
+                          setInformacoes({...informacoes, email: e.target.value})
+                      }
+                  />
+
+                  <label htmlFor="cnpj" className="dark:text-white">
+                    CNPJ
+                  </label>
+                  <input
+                      type="text"
+                      name="cnpj"
+                      className="dark:bg-[#818181]"
+                      disabled
+                      value={informacoes.cnpj}
+                      onChange={(e) =>
+                          setInformacoes({...informacoes, cnpj: e.target.value})
+                      }
+                  />
+
+                  <label htmlFor="telefone" className="dark:text-white">
+                    Setor
+                  </label>
+                  <input
+                      type="text"
+                      name="setor"
+                      className="dark:bg-[#818181]"
+                      value={informacoes.setor}
+                      onChange={(e) =>
+                          setInformacoes({...informacoes, setor: e.target.value})
+                      }
+                  />
+
+                  <label htmlFor="cep" className="dark:text-white">
+                    CEP
+                  </label>
+                  <input
+                      type="text"
+                      name="cep"
+                      className="dark:bg-[#818181]"
+                      value={informacoes.cep}
+                      onChange={(e) =>
+                          setInformacoes({...informacoes, cep: e.target.value})
+                      }
+                  />
+
+                  <label htmlFor="estado">Estado</label>
+                  <input
+                      type="text"
+                      name="estado"
+                      value={informacoes.estado}
+                      onChange={(e) =>
+                          setInformacoes({...informacoes, estado: e.target.value})
+                      }
+                  />
+
+                  <div id="botoes">
+                    <input
+                        type="submit"
+                        value="Salvar informações"
+                        onClick={handleEditarInformacoes}
+                        className="bg-[#718CB3] h-[64px] w-24 border-0 focus:outline-none
+                                     transition-all duration-300 ease-in-out transform hover:scale-105"
+                    />
                   </div>
                 </div>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-        </div>
-      </section>
 
-      <section id="formEmpresa" className="bg-[#F9FAF] dark:bg-[#313935]">
-        <SideBar visible={visible} setVisible={setVisible} />
-        <div className="caixasCentrais">
-          <div className="textoLei">
-            Seus dados pessoais estarão protegidos, nos termos da Lei
-            13.460/2017.
-          </div>
-          <div className="caixaInterna bg-white dark:bg-[#6a6a6a]">
-            <h1 className="dark:text-white">Dados Pessoais</h1>
-            <button
-              className="abrir-side-bar hover:text-gray-300"
-              onClick={() => setVisible(true)}
-            >
-              {!isDarkMode ? (
-                <box-icon name="menu" size="lg"></box-icon>
-              ) : (
-                <box-icon name="menu" size="lg" color="#ffffff"></box-icon>
-              )}
-            </button>
-
-            {/* Formulário de edição de informações */}
-            <form>
-              <div>
-                <label htmlFor="email" className="dark:text-white">
-                  Email corporativo
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  className="dark:bg-[#818181]"
-                  disabled
-                  value={informacoes.email}
-                  onChange={(e) =>
-                    setInformacoes({ ...informacoes, email: e.target.value })
-                  }
-                />
-
-                <label htmlFor="cnpj" className="dark:text-white">
-                  CNPJ
-                </label>
-                <input
-                  type="text"
-                  name="cnpj"
-                  className="dark:bg-[#818181]"
-                  disabled
-                  value={informacoes.cnpj}
-                  onChange={(e) =>
-                    setInformacoes({ ...informacoes, cnpj: e.target.value })
-                  }
-                />
-
-                <label htmlFor="telefone" className="dark:text-white">
-                  Setor
-                </label>
-                <input
-                  type="text"
-                  name="setor"
-                  className="dark:bg-[#818181]"
-                  value={informacoes.setor}
-                  onChange={(e) =>
-                    setInformacoes({ ...informacoes, setor: e.target.value })
-                  }
-                />
-
-                <label htmlFor="cep" className="dark:text-white">
-                  CEP
-                </label>
-                <input
-                  type="text"
-                  name="cep"
-                  className="dark:bg-[#818181]"
-                  value={informacoes.cep}
-                  onChange={(e) =>
-                    setInformacoes({ ...informacoes, cep: e.target.value })
-                  }
-                />
-
-                <label htmlFor="estado">Estado</label>
-                <input
-                  type="text"
-                  name="estado"
-                  value={informacoes.estado}
-                  onChange={(e) =>
-                    setInformacoes({ ...informacoes, estado: e.target.value })
-                  }
-                />
-
-                <div id="botoes">
+                <div>
+                  <label htmlFor="logradouro">Logradouro</label>
                   <input
-                    type="submit"
-                    value="Salvar informações"
-                    onClick={handleEditarInformacoes}
-                    className="bg-[#718CB3] h-[64px] w-24 border-0 focus:outline-none
-                                     transition-all duration-300 ease-in-out transform hover:scale-105"
+                      type="text"
+                      name="logradouro"
+                      className="dark:bg-[#818181]"
+                      value={informacoes.logradouro}
+                      onChange={(e) =>
+                          setInformacoes({
+                            ...informacoes,
+                            logradouro: e.target.value,
+                          })
+                      }
                   />
+
+                  <label htmlFor="cidade" className="dark:text-white">
+                    Cidade
+                  </label>
+                  <input
+                      type="text"
+                      name="cidade"
+                      className="dark:bg-[#818181]"
+                      value={informacoes.cidade}
+                      onChange={(e) =>
+                          setInformacoes({...informacoes, cidade: e.target.value})
+                      }
+                  />
+
+                  <label htmlFor="descricao" className="dark:text-white">
+                    Descrição da Empresa
+                  </label>
+                  <textarea
+                      name="descricao"
+                      className="dark:bg-[#818181]"
+                      cols={55}
+                      rows={10}
+                      value={informacoes.descricao}
+                      onChange={(e) =>
+                          setInformacoes({
+                            ...informacoes,
+                            descricao: e.target.value,
+                          })
+                      }
+                  ></textarea>
                 </div>
-              </div>
-
-              <div>
-                <label htmlFor="logradouro">Logradouro</label>
-                <input
-                  type="text"
-                  name="logradouro"
-                  className="dark:bg-[#818181]"
-                  value={informacoes.logradouro}
-                  onChange={(e) =>
-                    setInformacoes({
-                      ...informacoes,
-                      logradouro: e.target.value,
-                    })
-                  }
-                />
-
-                <label htmlFor="cidade" className="dark:text-white">
-                  Cidade
-                </label>
-                <input
-                  type="text"
-                  name="cidade"
-                  className="dark:bg-[#818181]"
-                  value={informacoes.cidade}
-                  onChange={(e) =>
-                    setInformacoes({ ...informacoes, cidade: e.target.value })
-                  }
-                />
-
-                <label htmlFor="descricao" className="dark:text-white">
-                  Descrição da Empresa
-                </label>
-                <textarea
-                  name="descricao"
-                  className="dark:bg-[#818181]"
-                  cols={55}
-                  rows={10}
-                  value={informacoes.descricao}
-                  onChange={(e) =>
-                    setInformacoes({
-                      ...informacoes,
-                      descricao: e.target.value,
-                    })
-                  }
-                ></textarea>
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
-        </div>
-      </section>
-      <Footer />
-    </>
+        </section>
+        <Footer/>
+      </>
   );
 }

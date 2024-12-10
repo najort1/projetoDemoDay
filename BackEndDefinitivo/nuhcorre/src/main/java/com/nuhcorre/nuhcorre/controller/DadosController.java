@@ -3,8 +3,8 @@ package com.nuhcorre.nuhcorre.controller;
 
 import com.nuhcorre.nuhcorre.model.DTO.*;
 import com.nuhcorre.nuhcorre.model.Empresa;
-import com.nuhcorre.nuhcorre.model.Endereco;
 import com.nuhcorre.nuhcorre.model.Usuario;
+import com.nuhcorre.nuhcorre.model.Vulnerabilidade;
 import com.nuhcorre.nuhcorre.model.details.EmpresaUserDetails;
 import com.nuhcorre.nuhcorre.service.EmpresaService;
 import com.nuhcorre.nuhcorre.service.UsuarioService;
@@ -115,4 +115,60 @@ public class DadosController {
 
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
+
+    @GetMapping("/usuario")
+    public ResponseEntity<UsuarioDTO> getUsuarioLogado() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+
+        if (principal instanceof Usuario) {
+            Usuario usuario = (Usuario) principal;
+            Long usuarioId=  usuario.getId();
+            Usuario usuarioAtual = usuarioService.findById(usuarioId);
+
+            UsuarioDTO usuarioDTO = new UsuarioDTO(
+                    usuarioAtual.getId(),
+                    usuarioAtual.getNome(),
+                    usuarioAtual.getEmail(),
+                    usuarioAtual.getCpf(),
+                    usuarioAtual.getTelefone(),
+                    usuarioAtual.getDataNascimento(),
+                    usuarioAtual.getEnderecos().stream().map(endereco -> new EnderecoDTO(
+                            endereco.getId(),
+                            endereco.getCep(),
+                            endereco.getCidade(),
+                            endereco.getEstado(),
+                            endereco.getRua(),
+                            endereco.getNumero()
+                    )).toList(),
+                    usuarioAtual.getVulnerabilidades().stream().map(vulnerabilidade -> new VulnerabilidadeDTO(
+                            vulnerabilidade.getNome(),
+                            vulnerabilidade.getDescricao()
+                    )).toList()
+            );
+
+            return ResponseEntity.ok(usuarioDTO);
+
+        }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+
+    @PutMapping("/usuario/atualizar")
+    public ResponseEntity<AtualizarUsuarioDTO> atualizarUsuario(@RequestBody AtualizarUsuarioDTO usuarioDTO) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object principal = authentication.getPrincipal();
+
+        if (principal instanceof Usuario) {
+            Usuario usuario = (Usuario) principal;
+            Long id = usuario.getId();
+
+            usuarioService.atualizarUsuario(id, usuarioDTO);
+
+            return ResponseEntity.ok(usuarioDTO);
+        }
+
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }
+
 }

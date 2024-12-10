@@ -1,6 +1,8 @@
 package com.nuhcorre.nuhcorre.model.DTO;
 
+import java.util.List;
+
 public record AtribuirVulnerabilidadeDTO(
-        String vulnerabilidade
+        List<String> vulnerabilidades
 ) {
 }

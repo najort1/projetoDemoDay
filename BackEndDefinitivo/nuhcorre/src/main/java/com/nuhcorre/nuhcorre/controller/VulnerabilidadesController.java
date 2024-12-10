@@ -37,7 +37,7 @@ public class VulnerabilidadesController {
     }
 
     @PostMapping("/atribuir-vulnerabilidade")
-    public ResponseEntity<?> atribuirVulnerabilidade(@RequestBody AtribuirVulnerabilidadeDTO vulnerabilidade) {
+    public ResponseEntity<?> atribuirVulnerabilidade(@RequestBody AtribuirVulnerabilidadeDTO vulnerabilidadeDTO) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Object principal = authentication.getPrincipal();
@@ -45,8 +45,10 @@ public class VulnerabilidadesController {
         if (principal instanceof Usuario) {
             Usuario usuario = (Usuario) principal;
             Long id = usuario.getId();
-            Usuario usuarioAtualizado = usuarioService.atribuirVulnerabilidade(id, vulnerabilidade.vulnerabilidade());
-            return ResponseEntity.ok("Vulnerabilidade atribuída com sucesso");
+            for (String vulnerabilidade : vulnerabilidadeDTO.vulnerabilidades()) {
+                usuarioService.atribuirVulnerabilidade(id, vulnerabilidade);
+            }
+            return ResponseEntity.ok("Vulnerabilidades atribuídas com sucesso");
         } else if (principal instanceof EmpresaUserDetails) {
             return ResponseEntity.badRequest().body("Empresa não pode receber vulnerabilidade");
         } else {

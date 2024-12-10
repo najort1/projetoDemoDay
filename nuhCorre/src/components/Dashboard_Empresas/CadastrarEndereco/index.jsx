@@ -6,10 +6,13 @@ import ThemeSwitcher from "../../ThemeSwitcher/ThemeSwitcher";
 import { useNavigate } from "react-router-dom";
 import Footer from '../../footer/Footer'
 import axios from "axios";
+import {jwtDecode} from "jwt-decode";
 
 import { ModalError } from "../modals";
 import { ModalSucesso } from "../modals";
 import { ModalConfirmacao } from "../modals";
+
+import HeaderLogado from "../../header/HeaderLogado.jsx";
 
 const CadastrarEndereco = () => {
   const navigate = useNavigate();
@@ -18,6 +21,7 @@ const CadastrarEndereco = () => {
   const isDarkMode = useDarkMode();
   const [tituloModal, setTituloModal] = useState("");
   const [descricaoModal, setDescricaoModal] = useState("");
+  const [tipoUsuario, setTipoUsuario] = useState("");
 
   const [showModals, setShowModals] = useState({
     sessaoExpirada: false,
@@ -25,6 +29,13 @@ const CadastrarEndereco = () => {
     sucesso: false,
     confirmacao: false,
   });
+
+  const getTipoUsuario = () => {
+    const token = localStorage.getItem("token");
+    const decoded = jwtDecode(token);
+    setTipoUsuario(decoded.cpfUsuario ? "cliente" : "empresa");
+
+  }
   
   const estados = [
     { name: 'Acre', code: 'AC' },
@@ -101,6 +112,12 @@ const CadastrarEndereco = () => {
           ConsultarCep(informacoes.cep);
         }
       }, [informacoes.cep]);
+
+
+    useEffect(() => {
+        getTipoUsuario();
+    }
+        , []);
 
     const handleAutoComplete = (e) => {
         const cep = e.target.value;
@@ -180,35 +197,39 @@ const CadastrarEndereco = () => {
   Descricao={descricaoModal}
 />
 
-      <header
-        className="header-dashboard flex flex-row w-full shadow-xl p-2 items-center
+        {tipoUsuario === "empresa" ? (
+            <header
+                className="header-dashboard flex flex-row w-full shadow-xl p-2 items-center
         dark:bg-gray-800
       "
-      >
-        <button
-          className="abrir-side-bar hover:text-gray-300"
-          onClick={() => setVisible(true)}
-        >
-          {!isDarkMode ? (
-            <box-icon name="menu" size="lg"></box-icon>
-          ) : (
-            <box-icon name="menu" size="lg" color="#ffffff"></box-icon>
-          )}
-        </button>
+            >
+                <button
+                    className="abrir-side-bar hover:text-gray-300"
+                    onClick={() => setVisible(true)}
+                >
+                    {!isDarkMode ? (
+                        <box-icon name="menu" size="lg"></box-icon>
+                    ) : (
+                        <box-icon name="menu" size="lg" color="#ffffff"></box-icon>
+                    )}
+                </button>
 
-        <h1
-          className="titulo-dashboard text-blue-800 text-2xl flex justify-center items-center font-bold m-auto
+                <h1
+                    className="titulo-dashboard text-blue-800 text-2xl flex justify-center items-center font-bold m-auto
           dark:text-white
         "
-        >
-          Cadastrar Endereço
-          <ThemeSwitcher />
-        </h1>
-      </header>
+                >
+                    Cadastrar Endereço
+                    <ThemeSwitcher/>
+                </h1>
+            </header>
+        ) : (
+            <HeaderLogado/>
+        )}
 
-    <main className="principal-cadastrar-endereco w-screen h-screen"> 
+        <main className="principal-cadastrar-endereco w-screen h-screen">
 
-          <div className="container-cadastrar-endereco flex flex-col gap-4 p-4 shadow-2xl
+            <div className="container-cadastrar-endereco flex flex-col gap-4 p-4 shadow-2xl
             dark:bg-gray-800
             bg-gray-100
             mt-8
@@ -218,15 +239,16 @@ const CadastrarEndereco = () => {
           ">
 
 
-            <div className="item-container-endereco flex flex-col items-center">
-                <label className="titulo-endereco">CEP</label>
-                <input type="text" className="w-full h-12 border-2 rounded-md border-blue-800 p-2" placeholder="Digite o CEP" 
-                onChange={(e) => handleAutoComplete(e)}
-                value={informacoes.cep}
-                />
-            </div>
+                <div className="item-container-endereco flex flex-col items-center">
+                    <label className="titulo-endereco">CEP</label>
+                    <input type="text" className="w-full h-12 border-2 rounded-md border-blue-800 p-2"
+                           placeholder="Digite o CEP"
+                           onChange={(e) => handleAutoComplete(e)}
+                           value={informacoes.cep}
+                    />
+                </div>
 
-            <div className="item-container-endereco flex flex-col items-center">
+                <div className="item-container-endereco flex flex-col items-center">
                 <label className="titulo-endereco">Cidade</label>
                 <input type="text" className="w-full h-12 border-2 rounded-md border-blue-800 p-2" placeholder="Digite a cidade" 
                 onChange={(e) => setInformacoes({ ...informacoes, cidade: e.target.value })}

@@ -237,11 +237,10 @@ const CadastroUsuario = () => {
             const response = await axios.post('http://localhost:8080/auth/cadastrar', data);
             const repostaJson = response.data;
 
-            if (response.status === 201) {
+            if (response.status === 201 || response.status === 200) {
                 const bearer = repostaJson.token;
                 localStorage.setItem('token', bearer);
-                alert('Usuário cadastrado com sucesso!');
-                navigate('/vagas');
+                navigate('/editar-perfil-candidato')
             } else {
                 alert(`${repostaJson.detail}`);
             }

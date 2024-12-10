@@ -6,6 +6,8 @@ import "boxicons";
 import axios from "axios";
 import gifSuccess from '../../assets/Sucesso.webm';
 import gifError from '../../assets/Error.webm';
+import HeaderLogado from "../header/HeaderLogado.jsx";
+import {jwtDecode} from "jwt-decode";
 
 
 export const Vagas = () => {
@@ -25,6 +27,18 @@ export const Vagas = () => {
   );
   const [detalheErro, setDetalheErro] = useState("");
   const [tituloErro, setTitulo] = useState("");
+  const [logado, setLogado] = useState(false);
+
+  const getUsuarioLogado = () => {
+    const token = localStorage.getItem("token");
+    if(!token){
+      return null;
+    }
+
+    const decoded = jwtDecode(token);
+    setLogado(decoded.cpfUsuario ? true : false);
+
+  }
 
   useEffect(() => {
     const fetchVagas = async () => {
@@ -43,6 +57,8 @@ export const Vagas = () => {
 
     fetchVagas();
   }, [filtros]);
+
+
 
 
   const handleVisualizar = async (vagaId) => {
@@ -199,7 +215,7 @@ export const Vagas = () => {
     <>
       {retorno.erro && modalError()}
       {retorno.sucesso && modalSuccess()}
-      <Header />
+      {logado ? <HeaderLogado /> : <Header />}
 
       <main className="secao-vagas">
         <div

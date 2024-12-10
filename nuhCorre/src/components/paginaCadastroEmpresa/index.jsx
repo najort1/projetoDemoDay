@@ -228,11 +228,10 @@ const CadastroEmpresa = () => {
 
         try {
             const response = await axios.post('http://localhost:8080/auth/empresa/cadastrar', data);
-            if (response.status === 201) {
+            if (response.status === 201 || response.status === 200) {
                 const repostaJson = response.data;
                 localStorage.setItem('token', repostaJson.token);
-                alert('Usuário cadastrado com sucesso!');
-                navigate('/vagas');
+                navigate('/dashboard');
             } else {
                 alert(`${response.data.detail}`);
             }

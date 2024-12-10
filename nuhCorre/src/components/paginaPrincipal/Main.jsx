@@ -7,6 +7,9 @@ import axios from "axios";
 import { Vagas } from "../paginaVagas/IndexVagas";
 import { Sobre } from "../paginaSobre/sobre";
 import { Navigate, useNavigate } from "react-router-dom";
+import HeaderLogado from "../header/HeaderLogado.jsx";
+import {jwtDecode} from "jwt-decode";
+
 
 export const PesquisaVagaTelaInicial = () => {
   // Estados dos campos com valores padrão
@@ -15,9 +18,21 @@ export const PesquisaVagaTelaInicial = () => {
   const [pesquisa, setPesquisa] = useState("");
   const [vagas, setVagas] = useState([]);
   const [pesquisou, setPesquisou] = useState(false);
+  const [logado, setLogado] = useState(false);
 
   const navigate = useNavigate();
-  
+
+  const getUsuarioLogado = () => {
+    const token = localStorage.getItem("token");
+    if(!token){
+      return null;
+    }
+
+    const decoded = jwtDecode(token);
+    setLogado(decoded.cpfUsuario ? true : false);
+
+  }
+
 
   const handlePesquisaVaga = async () => {
 
@@ -139,12 +154,17 @@ export const PesquisaVagaTelaInicial = () => {
   useEffect(() => {
     document.querySelector('.container').classList.add('fade-in');
   }, []);
+
+  useEffect(() => {
+    getUsuarioLogado();
+  }, []);
   
 
   return (
     <>
-      
-      <Header />
+
+      {logado ? <HeaderLogado /> : <Header />}
+
 
       {/* Div das fotos de fundo */}
       <div className="fotos w-full min-h-screen"></div>
