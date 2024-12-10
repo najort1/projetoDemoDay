@@ -334,11 +334,6 @@ const fetchUltimasCandidaturas = async () => {
               placeholder="Buscar por nome"
               className="w-full h-12 border-2 rounded-md border-blue-800 p-2"
             />
-            <input
-              type="text"
-              placeholder="Buscar por vaga"
-              className="w-full h-12 border-2 rounded-md border-blue-800 p-2"
-            />
 
             <button className="bg-blue-800 text-white p-2 rounded-md">Filtrar</button>
           </div>

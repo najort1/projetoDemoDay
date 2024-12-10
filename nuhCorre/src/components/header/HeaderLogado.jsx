@@ -25,6 +25,12 @@ function HeaderLogado(
   const [nome, setNome] = useState('');
   const imgPadrao = 'https://i.pinimg.com/enabled_lo_mid/736x/5c/95/31/5c9531d05f919414e9dff0c974388f67.jpg';
 
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+    };
+
   const fetchActualPhoto = async () => {
     try {
 
@@ -47,6 +53,11 @@ function HeaderLogado(
         );
 
         const data = response.data;
+
+        if(response.status === 403){
+            localStorage.removeItem('token');
+            navigate('/login');
+        }
 
         if(response.status === 200) {
             const reader = new FileReader();
@@ -118,6 +129,7 @@ function HeaderLogado(
 
           <DropdownItem
             onClick={navegarParaPaginaPerfil}
+            color='primary'
           >
             <div className="item-dropdown-header-logado">
                 <p className="texto-informacao-item text-black font-bold
@@ -129,12 +141,25 @@ function HeaderLogado(
           </DropdownItem>
           <DropdownItem
             onClick={navegarParaPaginaEndereco}
+            color='primary'
           >
             <div className="item-dropdown-header-logado">
             <p className="texto-informacao-item text-black font-bold
                 dark:text-white
             ">
                     Cadastrar endereco
+                </p>
+            </div>
+          </DropdownItem>
+          <DropdownItem
+            onClick={handleLogout}
+            color='danger'
+          >
+            <div className="item-dropdown-header-logado">
+            <p className="texto-informacao-item text-black font-bold
+                dark:text-white
+            ">
+                    Sair da conta
                 </p>
             </div>
           </DropdownItem>

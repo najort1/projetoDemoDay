@@ -177,7 +177,6 @@ export const Vagas = () => {
       }
 
       if (respostaAPI.status === 200) {
-        alert("Candidatura realizada com sucesso!");
         setErro({ erro: false, sucesso: true });
         setDetalheErro("Candidatura realizada com sucesso!");
         setTitulo("Candidatura realizada");

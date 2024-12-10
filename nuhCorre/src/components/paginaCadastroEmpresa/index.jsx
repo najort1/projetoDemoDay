@@ -216,6 +216,12 @@ const CadastroEmpresa = () => {
 
     const handleCadastro = async (e) => {
         e.preventDefault(); // Impede o envio padrão do formulário
+
+        if(erroNome.current.innerHTML !== '' || erroData.current.innerHTML !== '' || erroCNPJ.current.innerHTML !== '' || erroEmail.current.innerHTML !== '' || erroSenha.current.innerHTML !== '' || erroTelefone.current.innerHTML !== '' || errovulnerabilidade.current.innerHTML !== '') {
+            alert('Preencha todos os campos corretamente.');
+            return;
+        }
+
         const form = document.querySelector('form');
         const formData = new FormData(form);
 

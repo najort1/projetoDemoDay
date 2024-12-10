@@ -224,6 +224,12 @@ const CadastroUsuario = () => {
     },);
 
     const handleCadastro = async () => {
+
+        if(erroNome.current.innerHTML !== '' || erroData.current.innerHTML !== '' || erroCpf.current.innerHTML !== '' || erroEmail.current.innerHTML !== '' || erroSenha.current.innerHTML !== '' || erroTelefone.current.innerHTML !== '' || errovulnerabilidade.current.innerHTML !== ''){
+            alert('Preencha os campos corretamente.');
+            return;
+        }
+
         const form = document.querySelector('form');
         const formData = new FormData(form);
 
